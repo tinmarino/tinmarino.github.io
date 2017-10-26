@@ -1,10 +1,12 @@
 var Module;if(typeof Module==="undefined")Module=eval("(function() { try { return Module || {} } catch(e) { return {} } })()");if(!Module.expectedDataFileDownloads){Module.expectedDataFileDownloads=0;Module.finishedDataFileDownloads=0}Module.expectedDataFileDownloads++;((function(){function runWithFS(){function assert(check,msg){if(!check)throw msg+(new Error).stack}Module["FS_createPath"]("/","usr",true,true);
-	Module["FS_createPath"]("/usr","local",true,true);
-	Module["FS_createPath"]("/usr/local","share",true,true);
-	Module["FS_createPath"]("/usr/local/share","vim",true,true);
-	Module["FS_createPath"]("/usr/local/share/vim","syntax",true,true);
-	Module["FS_createPath"]("/usr/local/share/vim","colors",true,true);
-	Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
+
+
+Module["FS_createPath"]("/usr","local",true,true);
+Module["FS_createPath"]("/usr/local","share",true,true);
+Module["FS_createPath"]("/usr/local/share","vim",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","syntax",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","colors",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
 
 
 fileData0=[];
@@ -39,6 +41,13 @@ xhttp.open("GET", "usr/local/share/vim/syntax/sh.vim", false);
 xhttp.send();
 var res = xhttp.responseText;
 Module["FS_createDataFile"]("/usr/local/share/vim/syntax", "sh.vim", res, true, true);
+
+// tags
+var xhttp = new XMLHttpRequest();
+xhttp.open("GET", "usr/local/share/vim/doc/tags", false);
+xhttp.send();
+var res = xhttp.responseText;
+Module["FS_createDataFile"]("/usr/local/share/vim/doc", "tags", res, true, true);
 // <-- Tinmarino 
 
 
