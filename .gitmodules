@@ -1,0 +1,3 @@
+[submodule "Vim/Interpreter/usr/local/share/vim/doc"]
+	path = Vim/Interpreter/usr/local/share/vim/doc
+	url = https://github.com/tinmarino/Vimdoc
