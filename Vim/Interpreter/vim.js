@@ -1,13 +1,3 @@
-var Module;if(typeof Module==="undefined")Module=eval("(function() { try { return Module || {} } catch(e) { return {} } })()");if(!Module.expectedDataFileDownloads){Module.expectedDataFileDownloads=0;Module.finishedDataFileDownloads=0}Module.expectedDataFileDownloads++;((function(){function runWithFS(){function assert(check,msg){if(!check)throw msg+(new Error).stack}Module["FS_createPath"]("/","usr",true,true);
-
-
-Module["FS_createPath"]("/usr","local",true,true);
-Module["FS_createPath"]("/usr/local","share",true,true);
-Module["FS_createPath"]("/usr/local/share","vim",true,true);
-Module["FS_createPath"]("/usr/local/share/vim","syntax",true,true);
-Module["FS_createPath"]("/usr/local/share/vim","colors",true,true);
-Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
-
 
 // --> Tinmarino change to use AJAX
 // path:  "usr/local/share/vim/doc/v-tips.txt"
@@ -20,6 +10,30 @@ function tin_load(path, file){
 	var res = xhttp.responseText;
 	Module["FS_createDataFile"]( "/" + path, file, res, true, true);
 }
+function tin_load_doc(file){
+	tin_load("usr/local/share/vim/doc", file);
+}
+
+
+var Module;
+if(typeof Module==="undefined")Module=eval("(function() { try { return Module || {} } catch(e) { return {} } })()");
+if(!Module.expectedDataFileDownloads){
+	Module.expectedDataFileDownloads=0;
+	Module.finishedDataFileDownloads=0}
+Module.expectedDataFileDownloads++;
+
+
+((function(){function runWithFS(){function assert(check,msg){if(!check)throw msg+(new Error).stack}Module["FS_createPath"]("/","usr",true,true);
+
+
+Module["FS_createPath"]("/usr","local",true,true);
+Module["FS_createPath"]("/usr/local","share",true,true);
+Module["FS_createPath"]("/usr/local/share","vim",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","syntax",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","colors",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
+
+
 
 
 

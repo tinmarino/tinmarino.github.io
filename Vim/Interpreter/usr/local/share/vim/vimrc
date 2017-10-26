@@ -2,16 +2,27 @@
 " Copyright (c) 2013 Lu Wang <coolwanglu@gmail.com>
 " Tinmarino
 
-set cmdheight=3
+set cmdheight=15
+
+
+" Function to load a file in mem
+function! Load(file)
+
+endfunction
+
+command! -nargs=* Load call Load(<f-args>)
+
+
+
+
+
+
+
 
 
 " You can edit your own ~/.vimrc
 " which will be saved into localStorage and loaded next time
-
-
-
 "========== APPEARANCE ==========
-
 " GUI elements (tabline, scrollbar, menu etc) are not implemented
 set guioptions=
 
@@ -60,7 +71,5 @@ set nocompatible
 set fileencodings=utf8
 set backspace=indent,eol,start
 set wildmode=longest,list,full
-set mouse=
-"set smartindent
-"set cindent 
+set mouse=a
 set shiftwidth=4
