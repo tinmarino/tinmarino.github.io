@@ -1,6 +1,8 @@
 " Default vimrc for vim.js
 " Copyright (c) 2013 Lu Wang <coolwanglu@gmail.com>
+" Tinmarino
 
+set cmdheight=3
 
 
 " You can edit your own ~/.vimrc

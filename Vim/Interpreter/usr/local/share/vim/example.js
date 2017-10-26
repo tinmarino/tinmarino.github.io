@@ -1,6 +1,7 @@
 /*  vim: set sw=2 ts=2 et ft=javascript   : */
 /*
- *  This is tinmarino Test
+ * Jeudi Soir version
+ *
  * vim_lib.js: connect DOM and user inputs to Vim.js
  *
  * Copyright (c) 2013,2014 Lu Wang <coolwanglu@gmail.com>

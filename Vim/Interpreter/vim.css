@@ -9,7 +9,7 @@ body {
 }
 
 #vimjs-container { 
-  border:1px solid; 
+  border:3px solid; 
   padding:0;
   overflow:hidden;
   width:100%;
@@ -41,8 +41,6 @@ body {
   height:100%;
   display:none;
 }
-
-/* Ths size of vim inside its canvas */
 .vimjs-invisible {
   position:absolute;
   right:100%;
@@ -82,9 +80,22 @@ code, kbd, pre, samp {
 }
 
 
+/* overrides some bootstrap styles */
+.jumbotron { 
+  padding-top: 32px;
+  padding-bottom: 16px;
+  margin-bottom: 0px;
+  background-color: transparent;
+  text-align: center;
+  text-shadow: 0px 2px 2px rgb(210, 225, 235);
+}
+.jumbotron h1 {
+  margin-top: 0px;
+}
 
 
 /*
+ * Tinmarino says: Useless from here 
  * CSS Loading indicator
  * Originally by Dom Sammut | https://www.domsammut.com/projects/pure-css-loading-animation
  * Modified by Lu Wang
@@ -166,15 +177,3 @@ code, kbd, pre, samp {
   width: 100px;
 }
 
-/* overrides some bootstrap styles */
-.jumbotron { 
-  padding-top: 32px;
-  padding-bottom: 16px;
-  margin-bottom: 0px;
-  background-color: transparent;
-  text-align: center;
-  text-shadow: 0px 2px 2px rgb(210, 225, 235);
-}
-.jumbotron h1 {
-  margin-top: 0px;
-}
