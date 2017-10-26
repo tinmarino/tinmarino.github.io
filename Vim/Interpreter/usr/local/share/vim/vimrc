@@ -1,16 +1,30 @@
-" Default vimrc for vim.js
-" Copyright (c) 2013 Lu Wang <coolwanglu@gmail.com>
-" Tinmarino
+!console.log('Hello vimrc 1');
 
 set cmdheight=15
 
 
 " Function to load a file in mem
-function! Load(file)
+function! ReadDoc(file)
+  	" Load file
+	let l:st =  "!tin_load(" . '"usr/local/share/vim/doc"' . ", " 
+	let l:st .=  '"' . a:file . '"' . ")"
+	let @a=l:st
+    execute  l:st
 
+	" Edit file 
+	let l:ft = "/usr/local/share/vim/doc/" . a:file
+	let @b=l:ft
+	execute "edit"  l:ft
 endfunction
 
-command! -nargs=* Load call Load(<f-args>)
+command! -nargs=1 Read call ReadDoc(<f-args>)
+
+function! ReadWrapper(word)
+  let l:file = substitute(a:word, "|", "", "g")
+  call ReadDoc(l:file)
+endfunction
+
+map gf BvE"fy:call ReadWrapper(@f)<CR>
 
 
 
@@ -50,7 +64,6 @@ syntax on
 " :bro e dropbox
 
 " Call JavaScript (Note the escape of !)
-!console.log('Hello from vimrc\!');
 
 " If you are editing a JavaScript file:
 " :!%
