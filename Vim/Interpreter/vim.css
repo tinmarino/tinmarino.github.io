@@ -8,12 +8,6 @@ body {
   background-color: #f5f0eb;
 }
 
-#github-star {
-  position:absolute;
-  top: 32px;
-  right: 128px;
-}
-
 #vimjs-container { 
   border:1px solid; 
   padding:0;
