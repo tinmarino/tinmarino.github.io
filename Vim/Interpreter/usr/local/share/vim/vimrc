@@ -48,7 +48,7 @@ function DownloadFile()
     let l:content = substitute(l:content, "'", "<tinq1>", 'g')
     let l:content = substitute(l:content, "\\", "<tinbs>", 'g')
     let l:cmd = "!tin_download('" . l:filename. "', '" . l:content . "');"
-    execute l:cmd
+    silent execute l:cmd
 endfunction
 
 
