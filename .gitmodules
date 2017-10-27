@@ -3,4 +3,4 @@
 	url = https://github.com/tinmarino/Vimdoc
 [submodule "Vim/Interpreter/usr/local/share/vim/cheatsheet"]
 	path = Vim/Interpreter/usr/local/share/vim/cheatsheet
-	url = https://github.com/tinmarino/Vimcheat.git
+	url = https://github.com/tinmarino/Vimcheat
