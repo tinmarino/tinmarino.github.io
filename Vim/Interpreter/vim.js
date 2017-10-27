@@ -14,6 +14,9 @@ function tin_load_doc(file){
 	tin_load("usr/local/share/vim/doc", file);
 }
 
+// Tin: get mouse
+
+
 
 var Module;
 if(typeof Module==="undefined")Module=eval("(function() { try { return Module || {} } catch(e) { return {} } })()");
@@ -34,6 +37,8 @@ Module["FS_createPath"]("/usr/local/share/vim","colors",true,true);
 Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
 Module["FS_createPath"]("/usr/local/share/vim","vimfiles",true,true);
 Module["FS_createPath"]("/usr/local/share/vim/vimfiles","doc",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","cheatsheet",true,true);
+Module["FS_createPath"]("/usr/local/share/vim/cheatsheet","doc",true,true);
 
 
 
@@ -50,6 +55,7 @@ tin_load("usr/local/share/vim/colors","Darkside.vim");
 
 // Tin heritage
 tin_load("usr/local/share/vim", "first-page.txt");
+tin_load("usr/local/share/vim/cheatsheet/doc", "c-meta.txt");
 tin_load("usr/local/share/vim/syntax", "myhelp.vim");
 tin_load("usr/local/share/vim/syntax", "sh.vim");
 tin_load("usr/local/share/vim/syntax", "help.vim");

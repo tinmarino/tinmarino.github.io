@@ -43,8 +43,6 @@ endfunction
 " As autocmd otherwise CR is interpreted ... 
 au VimEnter * map gf gEWvE"fy:call ReadWrapper(@f)<CR>
 
-
-
 " Use monospace fonts only!
 set guifont=14px\ \"Source\ Code\ Pro\"\\,monospace
 

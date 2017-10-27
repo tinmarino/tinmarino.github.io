@@ -13,7 +13,6 @@ This is an online version of Vim the text editor.
 
 |gf| 	 			goto file.
 
-
 ==============================================================================
 Table of Content ~
 
@@ -24,7 +23,19 @@ Table of Content ~
     -> Help file browser by tinmarino 
     -> My personal help files
 
+/usr/local/share/vim/cheatsheet/doc/c-meta.txt ~
+    -> Cheatsheet collection
 
+
+==============================================================================
+Firefox shortcut ~
+
+I disabled some firefox shrotcut using pluggin "menu wizard"
+C-W                 Close tab
+C-D                 Boomark this page
+C-R                 Key reload
+C-Q                 Close firefox (dangerous)
+C-P                 Print
 
 ==============================================================================
 Thank ~

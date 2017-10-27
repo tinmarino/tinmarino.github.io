@@ -23,6 +23,18 @@ syn match helpSectionDelim	"^---.*--$"
 
 " Tin
 syn match helpSectionDelim	"^=.*$"
+syn match helpSectionDelim	"^=.*_"
+
+" For cheatography
+" a ... means anything
+syn match helpMeta              "\.\.\."
+" my keywords to be replaced (from Python)
+syn keyword helpMeta            statement statements expression var value key key: collection expr old new num  arg1 arg2 arg3 op start end item delim lst name prompt index seq
+syn keyword helpMeta            s x t n e i d
+" TODO remove
+hi helpMeta ctermfg=blue cterm=italic guifg=lightblue gui=italic
+" TODO True False
+
 
 if has("conceal")
 syn region helpExample	matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<" concealends
@@ -198,10 +210,18 @@ else
   syntax region bashSnip matchgroup=Snip start=">bash"  end="<bash" contains=@MYBASH 
 endif
 
+"WITH PYTHON SYNTAX
+syntax include @MYPYTHON syntax/python.vim
+if has("conceal")
+  set conceallevel=2
+  syntax region pythonSnip matchgroup=Snip start=">python"  end="<python" concealends  contains=@MYPYTHON
+else
+  syntax region pythonSnip matchgroup=Snip start=">python"  end="<python" contains=@MYPYTHON
+endif
 
 
 
-"hi link Snip SpecialComment
+hi link Snip SpecialComment
 "hi def link vimComment	Comment
 "hi def link vimFuncName		Function
 "hi def link vimCommand 		Statement
