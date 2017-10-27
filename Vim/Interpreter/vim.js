@@ -18,6 +18,17 @@ function tin_href(link){
     window.open(link, '<-vim.js');
 }
 
+function tin_download(file, content){
+    var str = content;
+    var str = str.replace(/<tincr>/g, "\n");
+    var str = str.replace(/<tinq1>/g, "'");
+    var str = str.replace(/<tinbs>/g, "\\");
+    var str = encodeURIComponent(str);
+    var str = "data:text/plain," + str;
+    dl.href = str;
+    dl.click();
+}
+
 // Tin: get mouse
 
 

@@ -1,6 +1,5 @@
 !console.log('Hello vimrc 1');
 
-" ==============================================================
 " Javascript wrap
 function! ReadDoc(file)
     " Function to load a file in mem
@@ -42,13 +41,22 @@ function OpenXref(link)
     execute l:cmd
 endfunction
 
+function DownloadFile()
+    " Download buffer content with filename
+    let l:filename = expand("%:t")
+    let l:content = join(getline(1,'$'), "<tincr>")
+    let l:content = substitute(l:content, "'", "<tinq1>", 'g')
+    let l:content = substitute(l:content, "\\", "<tinbs>", 'g')
+    let l:cmd = "!tin_download('" . l:filename. "', '" . l:content . "');"
+    execute l:cmd
+endfunction
 
 
-" ==============================================================
 " Vim
 " As autocmd otherwise CR is interpreted ... 
 au VimEnter * map gf gEWvE"fy:call ReadWrapper(@f)<CR>
 au VimEnter * map gx gEWvE"fy:call OpenXref(@f)<CR>
+au VimEnter * map gs :call DownloadFile()<CR>
 
 " Use monospace fonts only!
 set guifont=14px\ \"Source\ Code\ Pro\"\\,monospace

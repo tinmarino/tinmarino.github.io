@@ -12,6 +12,8 @@
 This is an online version of Vim the text editor.
 
 |gf| 	 			goto file.
+|gx| 	 			goto xref.
+|gs|                download content fo current file
 
 ==============================================================================
 Table of Content ~
