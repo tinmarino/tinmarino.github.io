@@ -32,6 +32,8 @@ Module["FS_createPath"]("/usr/local/share","vim",true,true);
 Module["FS_createPath"]("/usr/local/share/vim","syntax",true,true);
 Module["FS_createPath"]("/usr/local/share/vim","colors",true,true);
 Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
+Module["FS_createPath"]("/usr/local/share/vim","vimfiles",true,true);
+Module["FS_createPath"]("/usr/local/share/vim/vimfiles","doc",true,true);
 
 
 
@@ -39,7 +41,6 @@ Module["FS_createPath"]("/usr/local/share/vim","doc",true,true);
 
 // Yu heritage
 tin_load("usr/local/share/vim", "vimrc");
-tin_load("usr/local/share/vim","example.js");
 tin_load("usr/local/share/vim/syntax","synload.vim");
 tin_load("usr/local/share/vim/syntax","syntax.vim");
 tin_load("usr/local/share/vim/syntax","javascript.vim");
@@ -48,10 +49,12 @@ tin_load("usr/local/share/vim/syntax","vim.vim");
 tin_load("usr/local/share/vim/colors","Darkside.vim");
 
 // Tin heritage
+tin_load("usr/local/share/vim/vimfiles/doc", "help.txt");
 tin_load("usr/local/share/vim/doc", "v-tips.txt");
 tin_load("usr/local/share/vim/doc","v-plugin.txt");
 tin_load("usr/local/share/vim/syntax", "myhelp.vim");
 tin_load("usr/local/share/vim/syntax", "sh.vim");
+tin_load("usr/local/share/vim/syntax", "help.vim");
 tin_load("usr/local/share/vim/doc", "tags");
 // <-- Tinmarino 
 

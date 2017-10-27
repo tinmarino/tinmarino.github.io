@@ -6,13 +6,18 @@ set cmdheight=15
 " Function to load a file in mem
 function! ReadDoc(file)
   	" Load file
-	let l:st =  "!tin_load(" . '"usr/local/share/vim/doc"' . ", " 
+	let l:ph = expand("%:p:h")
+	if (l:ph[0] == "/")
+	  let l:ph=l:ph[1:]
+	endif
+	let @c=l:ph
+	let l:st =  "!tin_load(" . '"' . l:ph . '"' . ", " 
 	let l:st .=  '"' . a:file . '"' . ")"
 	let @a=l:st
     execute  l:st
 
 	" Edit file 
-	let l:ft = "/usr/local/share/vim/doc/" . a:file
+	let l:ft = "/" . l:ph . "/" . a:file
 	let @b=l:ft
 	execute "edit"  l:ft
 endfunction
@@ -21,7 +26,7 @@ command! -nargs=1 Read call ReadDoc(<f-args>)
 
 function! ReadWrapper(word)
   let l:file = substitute(a:word, "|", "", "g")
-  call ReadDoc(l:file)
+  silent call ReadDoc(l:file)
 endfunction
 
 map gf BvE"fy:call ReadWrapper(@f)<CR>
