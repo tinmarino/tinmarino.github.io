@@ -1,47 +1,54 @@
 !console.log('Hello vimrc 1');
 
-set cmdheight=15
-
-
-" Function to load a file in mem
+" ==============================================================
+" Javascript wrap
 function! ReadDoc(file)
+    " Function to load a file in mem
   	" Get current path/file
 	if (a:file[0] == "/")
-	  let l:ph = "".join(split(a:file, "/")[:-2], "/")
+	  let l:path = "".join(split(a:file, "/")[:-2], "/")
 	  let l:file = split(a:file, "/")[-1] 
 	else
-	  let l:ph = expand("%:p:h")
-	  if (l:ph[0] == "/")
-		let l:ph=l:ph[1:]
+	  let l:path = expand("%:p:h")
+	  if (l:path[0] == "/")
+		let l:path=l:path[1:]
 	  endif
 	  let l:file = a:file
 	endif
 
   	" Load file
-	let l:st =  "!tin_load(" . '"' . l:ph . '"' . ", " 
-	let l:st .=  '"' . l:file . '"' . ")"
+	let l:cmd =  "!tin_load(" . '"' . l:path . '"' . ", " 
+	let l:cmd .=  '"' . l:file . '"' . ")"
 
 	" Edit file 
-	let l:ft = "/" . l:ph . "/" . l:file
-    execute  l:st
-	execute "edit"  l:ft
+	let l:file_path = "/" . l:path . "/" . l:file
+    execute  l:cmd
+	execute "edit"  l:file_path
 
 	" Debug regs
-	let @a=l:st
-	let @b=l:ft
-	let @c=l:ph
+	let @a=l:cmd
+	let @b=l:file_path
+	let @c=l:path
 	let @d=a:file
 endfunction
-
-command! -nargs=1 Read call ReadDoc(<f-args>)
 
 function! ReadWrapper(word)
   let l:file = substitute(a:word, "|", "", "g")
   silent call ReadDoc(l:file)
 endfunction
 
+function OpenXref(link)
+	let l:cmd =  "!tin_href('" . a:link . "', '<-vim.js');"
+    execute l:cmd
+endfunction
+
+
+
+" ==============================================================
+" Vim
 " As autocmd otherwise CR is interpreted ... 
 au VimEnter * map gf gEWvE"fy:call ReadWrapper(@f)<CR>
+au VimEnter * map gx gEWvE"fy:call OpenXref(@f)<CR>
 
 " Use monospace fonts only!
 set guifont=14px\ \"Source\ Code\ Pro\"\\,monospace
@@ -50,22 +57,6 @@ set guifont=14px\ \"Source\ Code\ Pro\"\\,monospace
 colorscheme Darkside
 
 syntax on
-
-"========== EXPERIMENTAL (not in Vim) ==========
-" Read local files
-" :bro e local
-
-" Read files from Dropbox
-" :bro e dropbox
-
-" Call JavaScript (Note the escape of !)
-
-" If you are editing a JavaScript file:
-" :!%
-
-" emscripten API works:
-" :!FS.mkdir('/foo')
-
 
 
 "========== OTHERS ==========
@@ -81,3 +72,19 @@ set backspace=indent,eol,start
 set wildmode=longest,list,full
 set mouse=a
 set shiftwidth=4
+
+
+"========== EXPERIMENTAL (not in Vim) ==========
+" Read local files
+" :bro e local
+
+" Read files from Dropbox
+" :bro e dropbox
+
+" Call JavaScript (Note the escape of !)
+
+" If you are editing a JavaScript file:
+" :!%
+
+" emscripten API works:
+" :!FS.mkdir('/foo')

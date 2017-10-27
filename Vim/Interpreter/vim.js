@@ -14,6 +14,10 @@ function tin_load_doc(file){
 	tin_load("usr/local/share/vim/doc", file);
 }
 
+function tin_href(link){
+    window.open(link, '<-vim.js');
+}
+
 // Tin: get mouse
 
 
