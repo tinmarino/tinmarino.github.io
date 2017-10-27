@@ -41,7 +41,7 @@ function! ReadWrapper(word)
 endfunction
 
 " As autocmd otherwise CR is interpreted ... 
-au VimEnter * map gf BvE"fy:call ReadWrapper(@f)<CR>
+au VimEnter * map gf gEWvE"fy:call ReadWrapper(@f)<CR>
 
 
 
