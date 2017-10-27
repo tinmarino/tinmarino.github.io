@@ -5,23 +5,32 @@ set cmdheight=15
 
 " Function to load a file in mem
 function! ReadDoc(file)
-  	" Get current path
-	let l:ph = expand("%:p:h")
-	if (l:ph[0] == "/")
-	  let l:ph=l:ph[1:]
+  	" Get current path/file
+	if (a:file[0] == "/")
+	  let l:ph = "".join(split(a:file, "/")[:-2], "/")
+	  let l:file = split(a:file, "/")[-1] 
+	else
+	  let l:ph = expand("%:p:h")
+	  if (l:ph[0] == "/")
+		let l:ph=l:ph[1:]
+	  endif
+	  let l:file = a:file
 	endif
 
   	" Load file
-	let @c=l:ph
 	let l:st =  "!tin_load(" . '"' . l:ph . '"' . ", " 
-	let l:st .=  '"' . a:file . '"' . ")"
-	let @a=l:st
-    execute  l:st
+	let l:st .=  '"' . l:file . '"' . ")"
 
 	" Edit file 
-	let l:ft = "/" . l:ph . "/" . a:file
-	let @b=l:ft
+	let l:ft = "/" . l:ph . "/" . l:file
+    execute  l:st
 	execute "edit"  l:ft
+
+	" Debug regs
+	let @a=l:st
+	let @b=l:ft
+	let @c=l:ph
+	let @d=a:file
 endfunction
 
 command! -nargs=1 Read call ReadDoc(<f-args>)
