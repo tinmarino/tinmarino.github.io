@@ -5,11 +5,13 @@ set cmdheight=15
 
 " Function to load a file in mem
 function! ReadDoc(file)
-  	" Load file
+  	" Get current path
 	let l:ph = expand("%:p:h")
 	if (l:ph[0] == "/")
 	  let l:ph=l:ph[1:]
 	endif
+
+  	" Load file
 	let @c=l:ph
 	let l:st =  "!tin_load(" . '"' . l:ph . '"' . ", " 
 	let l:st .=  '"' . a:file . '"' . ")"
@@ -29,7 +31,8 @@ function! ReadWrapper(word)
   silent call ReadDoc(l:file)
 endfunction
 
-map gf BvE"fy:call ReadWrapper(@f)<CR>
+" As autocmd otherwise CR is interpreted ... 
+au VimEnter * map gf BvE"fy:call ReadWrapper(@f)<CR>
 
 
 
