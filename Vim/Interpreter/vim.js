@@ -57,9 +57,9 @@ tin_load("usr/local/share/vim/colors","Darkside.vim");
 tin_load("usr/local/share/vim", "first-page.txt");
 tin_load("usr/local/share/vim/cheatsheet/doc", "c-meta.txt");
 tin_load("usr/local/share/vim/syntax", "myhelp.vim");
-tin_load("usr/local/share/vim/syntax", "sh.vim");
 tin_load("usr/local/share/vim/syntax", "help.vim");
-tin_load("usr/local/share/vim/doc", "tags");
+tin_load("usr/local/share/vim/syntax", "sh.vim");
+tin_load("usr/local/share/vim/syntax", "python.vim");
 // <-- Tinmarino 
 
 

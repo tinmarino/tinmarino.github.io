@@ -1,7 +1,6 @@
 " Tinamrino help syntax file
 
 
-let b:current_syntax = "myhelp"
 
 syn keyword arrow -> 
 "hi arrow term=reverse ctermfg=gray ctermbg=red guifg=gray guibg=red3
@@ -44,6 +43,7 @@ hi helpMeta ctermfg=lightgreen cterm=italic guifg=lightgreen gui=italic
 
 
 " WITH VIM SYNTAX 
+let b:current_syntax = ""
 unlet b:current_syntax
 syntax include @MYVIM syntax/vim.vim
 if has("conceal")
@@ -54,6 +54,7 @@ else
 endif
 
 "WITH BASH SYNTAX 
+let b:current_syntax = ""
 unlet b:current_syntax
 syntax include @MYBASH syntax/sh.vim
 if has("conceal")
@@ -65,6 +66,7 @@ endif
 
 
 "WITH PYTHON SYNTAX
+let b:current_syntax = ""
 unlet b:current_syntax
 syntax include @MYPYTHON syntax/python.vim
 if has("conceal")
