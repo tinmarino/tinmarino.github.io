@@ -45,33 +45,13 @@ au VimEnter * map gf BvE"fy:call ReadWrapper(@f)<CR>
 
 
 
-
-
-
-
-
-
-" You can edit your own ~/.vimrc
-" which will be saved into localStorage and loaded next time
-"========== APPEARANCE ==========
-" GUI elements (tabline, scrollbar, menu etc) are not implemented
-set guioptions=
-
-" Use CSS font format
 " Use monospace fonts only!
-set guifont=12px\ \"Source\ Code\ Pro\"\\,monospace
+set guifont=14px\ \"Source\ Code\ Pro\"\\,monospace
 
 " Only Darkside is available right now
 colorscheme Darkside
 
-" blink is not supported right now
-set guicursor=a:blinkon0
-
-" may be very slow on Firefox
 syntax on
-" you need to set filetype yourself, e.g. :set ft=vim
-
-
 
 "========== EXPERIMENTAL (not in Vim) ==========
 " Read local files

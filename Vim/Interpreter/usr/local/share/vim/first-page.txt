@@ -1,0 +1,39 @@
+*first-page.txt*    The Js version first page
+==============================================================================
+=                     ____   ____   _____   ____    ____                     =
+=                    |_  _| |_  _| |_   _| |_   \  /   _|                    =
+=                      \ \   / /     | |     |   \/   |                      = 
+=                       \ \ / /      | |     | |\  /| |                      =
+=                        \ ' /      _| |_   _| |_\/_| |_                     =
+=                         \_/      |_____| |_____||_____|                    =
+=                                                                            =
+==============================================================================
+
+This is an online version of Vim the text editor.
+
+|gf| 	 			goto file.
+
+
+==============================================================================
+Table of Content ~
+
+/usr/local/share/vim/vimfiles/doc/help.txt ~
+    -> Vim Help file by Bram Mollenar
+
+/usr/local/share/vim/doc/meta-help.txt ~
+    -> Help file browser by tinmarino 
+    -> My personal help files
+
+
+
+==============================================================================
+Thank ~
+
+Bram Moleanar 	(C code)
+Yu Wang 		(JavaScirpt port)
+Tinmarino 		(myself)
+
+
+
+
+vim:tw=78:ft=myhelp 

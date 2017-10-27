@@ -21,6 +21,8 @@ syn match helpHeadline		"^[-A-Z .][-A-Z0-9 .()]*[ \t]\+\*"me=e-1
 syn match helpSectionDelim	"^===.*===$"
 syn match helpSectionDelim	"^---.*--$"
 
+" Tin
+syn match helpSectionDelim	"^=.*$"
 
 if has("conceal")
 syn region helpExample	matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<" concealends

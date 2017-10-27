@@ -49,9 +49,7 @@ tin_load("usr/local/share/vim/syntax","vim.vim");
 tin_load("usr/local/share/vim/colors","Darkside.vim");
 
 // Tin heritage
-tin_load("usr/local/share/vim/vimfiles/doc", "help.txt");
-tin_load("usr/local/share/vim/doc", "v-tips.txt");
-tin_load("usr/local/share/vim/doc","v-plugin.txt");
+tin_load("usr/local/share/vim", "first-page.txt");
 tin_load("usr/local/share/vim/syntax", "myhelp.vim");
 tin_load("usr/local/share/vim/syntax", "sh.vim");
 tin_load("usr/local/share/vim/syntax", "help.vim");
