@@ -11,12 +11,12 @@
 
 This is an online version of Vim the text editor. v0.0.2
 
-|gf| 	 			goto file.
-|gx| 	 			goto xref.
+|gf|                goto file.
+|gx|                goto xref.
 |gs|                download content fo current file
 
 ==============================================================================
-Table of Content ~
+TABLE OF CONTENT                                                            **
 
 /usr/local/share/vim/vimfiles/doc/help.txt ~
     -> Vim Help file by Bram Mollenar
@@ -30,7 +30,21 @@ Table of Content ~
 
 
 ==============================================================================
-Firefox shortcut ~
+LINKS                                                                       **    
+
+https://docs.python.org                 Python
+
+https://docs.oracle.com/javase          Java
+
+https://docs.perl6.org                  Perl6
+
+http://en.cppreference.com              C / Cpp
+
+https://www.w3schools.com/jsref         Js (JavaScript)
+
+
+==============================================================================
+FIREFOX SHORTCUT                                                            **
 
 I disabled some firefox shrotcut using pluggin "menu wizard"
 C-W                 Close tab
@@ -40,11 +54,12 @@ C-Q                 Close firefox (dangerous)
 C-P                 Print
 
 ==============================================================================
-Thank ~
+THANK                                                                       **
 
-Bram Moleanar 	(C code)
-Yu Wang 		(JavaScirpt port)
-Tinmarino 		(myself)
+Bill Joy            (Vi)
+Bram Moleanar       (Vim C code)
+Yu Wang             (JavaScirpt port)
+Tinmarino           (myself)
 
 
 
