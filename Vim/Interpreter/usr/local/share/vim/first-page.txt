@@ -9,7 +9,8 @@
 =                                                                            =
 ==============================================================================
 
-This is an online version of Vim the text editor. v0.0.2
+
+This is an online version of Vim the text editor. v0.0.3
 
 |gf|                goto file.
 |gx|                goto xref.
@@ -22,7 +23,7 @@ TABLE OF CONTENT                                                            **
     -> Vim Help file by Bram Mollenar
 
 /usr/local/share/vim/doc/meta-help.txt ~
-    -> Help file browser by tinmarino 
+    -> Help file browser by Tinmarino 
     -> My personal help files
 
 /usr/local/share/vim/cheatsheet/doc/c-meta.txt ~
@@ -40,7 +41,9 @@ https://docs.perl6.org                  Perl6
 
 http://en.cppreference.com              C / Cpp
 
-https://www.w3schools.com/jsref         Js (JavaScript)
+https://www.w3schools.com/jsref         Js / Html / Css
+
+http://tldp.org/guides.html             Bash / Linux
 
 
 ==============================================================================
@@ -59,7 +62,7 @@ THANK                                                                       **
 Bill Joy            (Vi)
 Bram Moleanar       (Vim C code)
 Yu Wang             (JavaScirpt port)
-Tinmarino           (myself)
+Tinmarino           (VimL maps)
 
 
 
