@@ -1,0 +1,40 @@
+*meta-help*         Help file table (jumper)
+
+MISC
+VIM
+
+================================================================================
+MISC ~
+
+|cmake.txt|             Cmake: C project generator
+|cmder-shortcut.txt|    Cmder: Terminal Emulator for windows, a stupid list of
+    shortcuts
+|git.txt|               Git: The Version Control System
+|harmonica.txt|         Harmonica: list of partitions
+|linux.txt|             IDK
+|meta-help.txt|         Myself
+|python.txt|            Python: Currently the only help file on python
+
+================================================================================
+VIM ~
+
+|v-appearance.txt|      
+|v-buffer.txt|
+|v-eclim.txt|
+|v-edit.txt|
+|v-ex.txt|
+|v-fold.txt|
+|v-function.txt|
+|v-help.txt|
+|v-link.txt|
+|v-map.txt|
+|v-plugin.txt|
+|v-regex.txt|
+|v-register.txt|
+|v-script.txt|
+|v-stack.txt|
+|v-tips.txt|
+|v-todo.txt|
+
+
+vim: ft=myhelp
