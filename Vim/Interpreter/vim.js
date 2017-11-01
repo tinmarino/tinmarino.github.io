@@ -1,35 +1,8 @@
 
-// --> Tinmarino change to use AJAX
-// path:  "usr/local/share/vim/doc/v-tips.txt"
-// file:  "v-tips.txt" 
-function tin_load(path, file){
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET",path + "/" + file, false);
-	console.log("tin: " + path + "/" + file);
-	xhttp.send();
-	var res = xhttp.responseText;
-	Module["FS_createDataFile"]( "/" + path, file, res, true, true);
-}
-function tin_load_doc(file){
-	tin_load("usr/local/share/vim/doc", file);
-}
 
-function tin_href(link){
-    window.open(link, '<-vim.js');
-}
 
-function tin_download(file, content){
-    var str = content;
-    var str = str.replace(/<tincr>/g, "\n");
-    var str = str.replace(/<tinq1>/g, "'");
-    var str = str.replace(/<tinbs>/g, "\\");
-    var str = encodeURIComponent(str);
-    var str = "data:text/plain," + str;
-    dl.href = str;
-    dl.click();
-}
 
-// Tin: get mouse
+
 
 
 
@@ -76,7 +49,6 @@ tin_load("usr/local/share/vim/syntax", "help.vim");
 tin_load("usr/local/share/vim/syntax", "sh.vim");
 tin_load("usr/local/share/vim/syntax", "python.vim");
 // <-- Tinmarino 
-
 
 
 
