@@ -5,6 +5,8 @@
 " This file is used for ":syntax on".
 " It installs the autocommands and starts highlighting for all buffers.
 
+!console.log("tinp : syntax loading");
+
 if !has("syntax")
   finish
 endif

@@ -1,4 +1,4 @@
-!console.log('Hello vimrc 1');
+silent exec '!console.log('tinp: vimrc 3')'
 
 " Javascript wrap
 function! ReadDoc(file)
@@ -64,7 +64,9 @@ set guifont=14px\ \"Source\ Code\ Pro\"\\,monospace
 " Only Darkside is available right now
 colorscheme Darkside
 
+syntax enable
 syntax on
+"ru syntax/myhelp.vim
 
 
 "========== OTHERS ==========
@@ -76,10 +78,17 @@ set tabstop=4
 set expandtab
 set nocompatible
 set fileencodings=utf8
+set nowrap
+set encoding=utf8
+set termencoding=utf8
 set backspace=indent,eol,start
 set wildmode=longest,list,full
 set mouse=a
 set shiftwidth=4
+
+"========== PLUGGIN ==========
+
+" let &runtimepath.=",./vim/plugin/ansiesc"
 
 
 "========== EXPERIMENTAL (not in Vim) ==========
