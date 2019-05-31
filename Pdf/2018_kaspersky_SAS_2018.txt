@@ -1,0 +1,1043 @@
+﻿                                                                             ~
+                                                                             ~
+                    ad88888ba         db         ad88888ba                   ~
+                   d8"     "8b       d88b       d8"     "8b                  ~
+                   Y8,              d8'`8b      Y8,                          ~
+                   `Y8aaaaa,       d8'  `8b     `Y8aaaaa,                    ~
+                     `"""""8b,    d8YaaaaY8b      `"""""8b,                  ~
+                           `8b   d8""""""""8b           `8b                  ~
+                   Y8a     a8P  d8'        `8b  Y8a     a8P                  ~
+                    "Y88888P"  d8'          `8b  "Y88888P"                   ~
+                                                                             ~
+                                                                             ~
+                                                                             ~
+                ad888888b,     ,a8888a,         88   ad88888ba               ~
+               d8"     "88   ,8P"'  `"Y8,     ,d88  d8"     "8b              ~
+                       a8P  ,8P        Y8,  888888  Y8a     a8P              ~
+                    ,d8P"   88          88      88   "Y8aaa8P"               ~
+                  a8P"      88          88      88   ,d8"""8b,               ~
+                a8P'        `8b        d8'      88  d8"     "8b              ~
+               d8"           `8ba,  ,ad8'       88  Y8a     a8P              ~
+               88888888888     "Y8888P"         88   "Y88888P"               ~
+                                                                             ~
+
+
+Martin
+DGA-MI/SSI5/VSE/AVG
+
+
+                                         à l'attention du personnel SSI DGA-MI
+
+
+    Objet : Restitution de la conférence Kaspersky (SAS 2018)
+
+Chers Collègues,
+                                                                       *intro0*
+    Les 8 et 9 Mars, j'ai participé à la conférence Kaspersky sur les menaces
+et malgiciels de l'année 2017. Voici ci-dessous ma restitution non protégée.
+Cette conférence a eut lieu à Cancun au Mexique.
+    Pour la première année, il y a eut des workshops, des petites classes de
+1h30. J'en ai suivi que un sur la `déception`.
+
+
+                                                                       *intro1*
+Chers collègues informaticiens,
+
+1gurgites
+    D'une conférence internationale organisée par Kaspersky au Mexique je reviens.
+    A un résumé, point de vue extérieur des événements marquant de 2017 sous bannière bleu j'ai assisté.
+    Aussi, en quelques lignes, les plus croustillantes élocutions et importantes informations je vous transmet.
+    Mais également un compte rendu détaillé, non protégé, que vous ne lirez sans doute jamais, je vous joins.
+
+2viens
+    * Les agents faisant de la désinformation, crées de fausses nouvelles des 2 côtés afin de créer un vide médian et donc un conflit
+    * Pour lutter, privilégier les nouvelles récentes et non les ressuscitées
+
+    * Les renseignements Libanais ainsi que les Kazaks sous-traitent le même agent de SSI, ce qui a 2 avantages:
+        1/ Moins cher
+        2/ Rend l'attribution plus difficile
+
+    * Le cryptomining est le nouveau ransomware
+
+    * La police Hollandaise a maintenu un marché noir cybernétique pendant 1 mois afin de piéger quelques vendeurs
+
+    * La Déception est la création de plusieurs leurres, de fausses machines, réseaux, adresses IPs, utilisateurs, fichiers, tokens, process, sessions, crédentials ...
+    * Conclusion: Dans la guerre de l'information, comme dans celle des ondes, faites du bruit
+
+    * Faire une signature à partir de l'offuscation n'est pas une mauvaise idée car les créateurs de malgiciels aiment ça (l'offuscation pas les signatures)
+
+    ! La résolution de DNS est considérée comme surface externe par les entreprises. Mais si quelqu'un crée kasperskey.com (au lieu de kaspersky.com), il peut voler quelques credentials d'utilisateur et donc pénétrer ton entreprise
+
+    * Notre privacité dépend donc plus d'entreprises privées que du gouvernement. C'est un problème intéressant
+    * La meilleure protection, l'information la mieux protégée est celle que tu n'as pas
+    * Petite remarque: avec les attributs étendues d'un fichier ajoutés par google earth aux photos, un inconnu peut savoir où tu as pris la photo de ton chat. Ce qui est dangereux car cette personne peut avoir envie de voler ton chat. Alors que sans ces attributs, cela ne nuit absolument pas à la vie privée de ton chat (même s'il est nu sur la photo)
+
+
+3vailles
+    En pièce jointe, mes notes au format texte, à grepper à volonté.
+    Aussi en html pour donner des couleurs à la lecture en survol des curieux.
+    C'est non protégé donc vous pouvez vous l'envoyer à la maison.
+    Je le met aussi sur le répertoire du TRUC pour l'unification des connaissances et rappel que c'est préférable que chacun fasse de même suite à une conf. Ainsi, à terme, l'info ne se perd pas dans les méandres des archives mails.
+
+
+4astrophiquement votre,
+Mart'1 T.
+
+
+
+============================================================================
+                                                                        *plan*
+    
+    0. Introduction                         |intro|  
+    1. Résumé                               |resume|
+    2. Programme                            |programme|
+        2.1 Programme du jour 1             |programme-jour1|
+        2.2 Programme du jour 2             |programme-jour2|
+    3. Premier jour                         |jour1|
+    4. Deuxième jour                        |jour2|
+
+
+
+============================================================================
+                                                                      *resume*
+1. Résumé~
+----------
+
+    * Les agents faisant de la désinformation, crée de fausses nouvelles des 2
+côtés afin de crée un vide médian et donc un conflit
+    * Pour lutter, privilégier les nouvelles récentes et non les ressuscitées
+    (|desinformation| j1-9h45)
+
+    * Les renseignements Libanais ainsi que les Kazaks sous-traitent le même
+ agent de SSI, ce qui a 2 avantages:
+        1/ Moins cher
+        2/ Rend l'attribution plus difficile
+    (|dark-caracal| j1-10h15)
+
+    * Le |cryptomining| est le nouveau |ransomware|
+    (|all-your-cloud-belong-to-us| j1-12h45)
+
+    * La police Hollandaise a maintenu un marché noir cybernétique pendant 1
+mois afin de piéger quelques vendeurs
+    (|dark-market-admin| j1-14h30)
+
+    * La Déception est la création de plusieurs leurres, de fausses machines,
+réseaux, adresses IPs, utilisateurs, fichiers, tokens, process, sessions,
+crédentials ...
+    * Conclusion: Dans la guerre de l'information, comme dans celle des ondes,
+faites du bruit
+    (|deception| j2-9h30)
+
+    * Faire une signature à partir de l'obfuscation n'est pas une mauvaise
+idée car les créateurs de malgiciels aiment ça
+    (|android-anti-re| j2-11h30)
+
+    ! La résolution de DNS est considérée comme surface externe par les
+entreprises. Mais si quelqu'un crée kasperskey.com (au lieu de kaspersky.com),
+il peut voler quelques credentials d'utilisateur et donc pénétrer ton
+entreprise
+    (|9tail| j2-12h00)
+
+    * Notre privacité dépend donc plus d'entreprises privées que du
+gouvernement. C'est un problème intéressant
+    * La meilleure protection, l'information la mieux protégée est celle que
+tu n'as pas
+    * Petite remarque: avec les attributs étendues d'un fichier ajoutés par
+google earth aux photos, un inconnu peut savoir où tu a pris la photo de ton
+chat. Ce qui est dangereux car cette personne peut avoir envie de voler ton
+chat. Alors que sans ses attributs, cela ne nuit absolument pas à la vie
+privée de ton chat (même s'il est nu sur la photo)
+    (|dns-analytics| j2-12h40)
+
+============================================================================
+                                                                   *programme*
+2. Programme~
+------------
+----------------------------------------------------------------------------
+                                                             *programme-jour1*
+2.1 Programme-jour1~
+-------------------
+
+    |SESSION1| You can't play God without being acquainted with the devil
+    *Sergey-Novikov* 
+
+9:30 - 9:45     Welcome and introductions 
+                *Eugene-Kaspersky*
+9:45 - 10:15    A Brief History of Disinformation, and What to Do About It
+                *Matt-Tait* @ University of Texas 
+10:15 - 10:40   Dark Caracal part I: Introducing Dark Caracal
+                *Cooper-Quintin* @ EFF
+                *Mike-Flossman* @ Lookout     
+10:40 - 11:00   Dark Caracal part II: Where in the world is Dark Caracal?
+                *Eva-Galperin* @ EFF
+                *Andrew-Blaich* @ Lookout 
+
+
+    |SESSION2| Mozart, Beethoven and Chopin never died. They simply became
+                music
+    *Ryan-Naraine*
+ 
+11:30 - 12:00   10 Years of Being GReAT
+                *Costin-Raiu* & *Vitaly-Kamluk* @ Kaspersky Lab 
+12:00 - 12:20   Surprise keynote
+12:20 - 12:45   Supply-chain and Corporate Espionage:
+                Attacking the Masses to Target the Few
+                *Martin-Hron* @ Avast 
+12:45 - 13:10   All Your Cloud Are Belong To Us
+                Hunting Compromise in Azure
+                *Nate-Warfield* @ Microsoft 
+13:10 - 13:30   The SAS 2018 MVP Award  
+
+
+    |SESSION3| No matter how dirty the business, do it well
+    *Costin-Raiu*
+ 
+14:30 - 14:55   How to Become a Dark Market Admin?
+                *Marinus-Boekelo* & *Gert-Ras* @ NHTCU, The Netherlands
+14:55 - 15:20   The Criminal Hall of Shame
+                *Peter-Kruse* & *Jan-Kaastrup* @ CSIS Security Group 
+15:20 - 15:40   Conversations with Guccifer 2.0:
+                What I Learned About Election Influence Operations
+                *John-Bambenek* @ Bambenek Consulting 
+15:40 - 16:00   Cryptocurrency Enabled Crime Jonathan Levin, Chainalysis 
+
+
+    |SESSION4| Doesn't look like anything to me
+    *David-Jacoby*
+ 
+16:30 - 16:50   Hacking Cars for Fun and Profit
+                A Walkthrough of Car Vulns and the State of the Auto Industry
+                *Marc-Rogers* @ Cloudflare 
+16:50 - 17:10   The Hardware Pivot
+                *Joe-FitzPatrick* @ SecuringHardware.com 
+17:10 - 18:00   Hey, what happens here, stays here
+                Live debates 
+
+
+----------------------------------------------------------------------------
+                                                             *programme-jour2*
+2.2 Programme-jour2~
+-------------------
+
+
+    |SESSION5| Free. Here. Under my control
+    *Juan-Andres-Guerrero-Saade*
+
+9:30 - 10:00    The Infinite Loop of Information Security in China 
+                *Christopher-Ahlberg* @ Recorded Future
+10:00 - 10:20   Territorial Dispute:
+                A Peek into NSA's Knowledge of APT Attacks of Others 
+                *Boldizsár-Bencsáth* @ CrySyS Lab
+10:20 - 10:40   New Sophisticated Targeted Cyber Espionage Framework: 
+                Back to Kernel
+                *Sergey-Yunakovsky* & *Alexey-Shulmin* @ Kaspersky Lab
+10:40 - 11:00   The Chaos & Malicious Dragon behind the Clouds
+                *Sung-Ting-Tsai* & *Steve-Su* @ Team T5
+
+
+    |SESSION6| Hell is empty, and all the devils are here
+    *Dmitry-Bestuzhev*
+
+9:30 - 10:00    Goodfellas, the Brazilian Carding Scene Is After You
+                *Santiago-Pontiroli* & *Thiago-Marques* @ Kaspersky Lab 
+10:00 - 10:20   Its a Small World After All: 
+                The Evolution of Small POS RAM Scrapers
+                *Matt-Bromiley* & *Courtney-Dayter* @ Kroll Inc
+10:20 - 10:40   Stopping the Fireball - How We Took Down a Global Threat
+                Operation, Step by Step
+                *Maya-Horowitz* @ Check Point
+10:40 - 11:00   Miners on the Rise
+                *Anton-Ivanov* & *Evgeny-Lopatin* @ Kaspersky Lab
+                
+
+    |SESSION7| Being a survivor is just another loop
+    *Dewan-Chowdhury* 
+
+9:30 - 10:00    How to Save the Industrial World. OPC UA Vulnerability
+                Research
+                *Pavel-Cheremushkin* & *Sergey-Temnikov* @ Kaspersky Lab
+10:00 - 10:20   SCADA Intellectual Property: a Red Teaming mission
+                *Matteo-Beccaro* @ Opposing Force S.r.l
+10:20 - 10:40   TRITON: The attack path to ICS safety systems
+                *Dan-Caban* & *Marina-Krotofil* @ FireEye
+10:40 - 11:00   How {Goilbarco Veeder} Root a Gas Station
+                *Ido-Naor* @ Kaspersky Lab
+                *Amihai-Neiderman*
+                
+
+    |SESSION8| Time undoes even the mightiest creatures
+    *Vitaly-Kamluk*
+
+11:30 - 12:00   APT Street Creds: How Modern Credential Theft Goes Horribly
+                Wrong
+                *Michael-Matonis* @ FireEye
+12:00 - 12:20   Masha and These Bears
+                *Kurt-Baumgartner* @ Kaspersky Lab 
+12:20 - 12:40   Surprise Supplies!
+                *Warren-Mercer* & *Paul-Rascagneres* @ Talos
+12:40 - 13:00   Finding a Monster by Its Shadow
+                *Noushin-Shabab* @ Kaspersky Lab
+
+
+
+    |SESSION9| Everything you do, it's because the engineers upstairs
+                programmed you to do it
+    *Kymberlee-Price*
+
+11:30 - 12:00   Android Anti-RE Choosing a Different Path
+                *Lukasz-Siewierski* @ Google
+12:00 - 12:20   9Tail: Proactive Security Assessment
+                *Rob-Ragan* & *Oscar-Salazar* @ Bishop Fox
+12:20 - 12:40   Alphathreat Soup: Burning Threat Actors with Data
+                *Brandon-Dixon* @ RiskIQ
+                *Brian-Candlish* @ Telstra
+12:40 - 13:00   Privacy Preservation in DNS Analytics
+                *Paul-Vixie* @ Farsight Security
+
+
+    |SESSION10| The maze isn't meant for you
+    *Mike-Lennon*
+
+11:30 - 12:00   Hey! Im Spying on YOU! How Weve Found a Backdoor in Popular
+                Smart-cam
+                *Vladimir-Dashchenko* & *Andrey-Muravitsky* @ Kaspersky Lab
+12:00 - 12:20   Things Attack: Peek into a 18 Months IoT Honeypot
+                *Tan-Kean-Siong* @ The Honeynet Project
+12:20 - 12:40   Time of Death? A Therapeutic Postmortem for Medical
+                Infrastructure
+                *Denis-Makrushin* & *Yury-Namestnikov* @ Kaspersky Lab
+12:40 - 13:00   Yet Another Useful Blockchain Application for Security
+                *Andrey-Nikishin* @ Kaspersky Lab
+
+
+    |SESSION11| Maybe you got more of an appetite for this than you think
+    *Brian-Bartholomew*
+
+14:00 - 14:30   The Rise of Middle East - Blue vs Red
+                *Muks-Hirani* @ Mandiant
+14:30 - 15:00   Weaponizing the Internet: Malware and State-Sponsored Attacks
+                *Jay-Rosenberg* @ Intezer
+15:00 - 15:20   The Limits of Threat Intelligence: Omens Forecasting the End
+                of Threat Hunting as We Know It
+                *Vicente-Diaz* @ Kaspersky Lab
+15:20 - 15:40   APT15 Is Alive and Strong
+                *Ahmed-Zaki* @ NCC Group
+15:40 - 16:00   The Underground Invasion Tunnel: State-Sponsored Cyber Miners
+                Recent Status
+                *Kyoung-Ju-Kwak* @ Financial Security Institute in South Korea
+
+
+    |SESSION12| This world doesnt belong to them; it belongs to us
+    *Chris-Eng*
+
+14:00 - 14:30   AI & ML in Cyber Security - Why Algorithms Are Dangerous
+                *Raffael-Marty* @ PixlCloud
+14:30 - 15:00   Let Me Yara That for You
+                *Dan-Demeter* @ Kaspersky Lab
+15:00 - 15:20   Is IPv6 Killing Your Privacy?
+                *Paul-Alderson* @ FireEye iSIGHT Intelligence
+15:20 - 15:40   How to Hide Your Browser 0-days
+                *Zoltan-Balazs* @ MRG Effitas
+15:40 - 16:00   Stopping Macro Malware in Its Tracks 
+                *Giulia-Biagini* @ Microsoft
+
+
+    |SESSION13| I was born. You were made
+    *Andrey-Nikishin*
+
+14:00 - 14:30   Smart Car Forensics and Vehicle Weaponization
+                *Stefan-Tanase* & *Gabriel-Cirlig* @ Ixia
+14:30 - 15:00   Modern Yacht Hacking
+                *Stephan-Gerling* @ ROSEN Group
+15:00 - 15:20   The Voice of Esau: Hacking Enterprises Through Voice Interfaces
+                *Tal-Beery* & *Amichai-Shulman* @ independent researchers
+15:20 - 15:40   Robots threats are challenging our safety
+                *Cesar-Cerrudo* & *Lucas-Apa* @ IOActive Labs
+15:40 - 16:00   Hack Your Robot
+                *Dewan-Chowdhury* @ MalCrawler
+                
+
+    |SESSION14| This time, I'm never goin' back
+                 (20 x 20 presentations)
+    *Sergey-Novikov*
+
+
+    |SESSION15| Take me to where the mountains meet the sea
+                 (Open Microphone) 
+    *Stefan-Tanase*
+
+
+    |SESSION16| Everything in this world is magic, except to the magician
+                 (Quiz Show)
+    *Vladimir-Dashchenko*
+
+
+    |WORKSHOPS|
+
+9:30 - 11:00    Deceive to Detect: Cyber Deception Strategy for Lateral
+                Movement Detection
+                *Denis-Makrushin* @ Kaspersky Lab 
+11:30 - 13:00   Hunting from the Outside - 7 Strategies for Finding Cool Sh!t
+                *John-Wetzel* @ Recorded Future 
+14:00 - 16:00   Better Red than Dead: Elegant Weapons for a More Civilized Age
+                *Rob-Ragan* & *Oscar-Salazar* @ Bishop Fox 
+16:30 - 17:30   Internet of Things
+                *David-Jacoby* & *Marco-Preuss* @ Kaspersky Lab 
+
+
+
+
+
+============================================================================
+                                                                       *jour1*
+3 Jour1~
+--------
+
+
+                                                              *desinformation*
+9:45 - 10:15    A Brief History of Disinformation, and What to Do About It ~
+                |Matt-Tait| @ University of Texas
+
+    * Côtés Américain, Donald Trump adore employer le terme "fake news"
+    * Côtés Russe, le mot désinformation fut inventé, par Staline:
+"dezinformatzia". Selon lui, ça sonnait Latin
+
+    * Histoire:
+        -> Ramses II est le premier personnage de l'histoire (ie: dans les
+écrits) a avoir employer la désinformation. Alors qu'il était en conflit avec
+l'Itat (actuelle Turquie), il affirma être intervenus personnellement et fait
+gagner son armée. En réalité, son armée avait perdu cette guerre
+        -> Zion (1800 ...) 
+        -> British (1900 ...)
+        -> Nazy (1930 ...)
+        -> Soviet (1960 ...)
+        -> 1972: La désinformation est formalisée
+        -> La guerre froide a industrialisé cette discipline
+        -> Déclasification de documents de la CIA qui couta 10 G$ pendant la
+guerre froide, le cout est compté en dollars actuels (à l'époque c'était 2 G$)
+
+    * Cyber:
+        -> 1990: Le Mossad commence une guerre digitale contre Fatah
+        -> 2014: Les élections Ukraniennes
+        -> 2016: Glucifer 2.0 (@wikileak). Cette campagne fut revendiqué par un
+Roumain disant, ce ne sont pas les russes car c'est moi et je suis Roumain
+Malheureusement pour lui, il ne pouvait pas parler Roumain
+
+    * Souvent les acteurs de la désinformation jouent les 2 côtés (ie: le pour
+et le contre) afin de discréditer les institutions et de crée un fossé entre
+les deux côtés (ie: que personne ne reste "au milieu") => création de 2
+groupes => conflict
+
+    * Solution: Promouvoir les nouvelles nouvelles et non les nouvelles
+résucitées
+
+
+
+
+
+
+                                               *dark-caracal* *dark-caracal-1*
+10:15 - 10:40   Dark Caracal part I: Introducing Dark Caracal ~
+                |Cooper-Quintin| @ EFF
+                |Mike-Flossman| @ Lookout     
+
+    * 1 an de travail, 4 personnes
+    * Kazakhstan: c'est là où tout à commencé. Le gouvernement se battait alors
+contre des opposants politiques. Il a même menacé un/une journaliste
+    * Des campagnes de renseignement furent effectuées à travers des fichiers
+desktop et mobile corrompues
+
+    * Mobile:
+    * |Pallas| fut employé, il s'agit d'un rootkit avec pleins de pouvoirs
+    * Vecteurs de transmission:
+        -> Hameçonnage : whatsapp, faux appstore, facebook
+        -> Pas d'exploitation, le code vient en majorité de stackoverflow, pas
+très sophistiqué
+    * Pas cher => Il peut se faire attraper, analyser, il n'y a pas de perte
+pour l'attaquant
+
+    * Desktop:
+    * Documents avec des macros
+    * Fichiers chm (=Microsoft HTML) qui exécutent du |powershell|
+    * |BANDOOK| = pistolet en Hindi
+        -> Plaintext TCP to C2 (ie: command and control server)
+    * |CROSSRAT|
+        -> Java
+        -> Cross OS: Windows, Linux, OS X
+        -> Plaintext TCP
+        -> Le serveur de commande et contrôle revoit différents entiers pour
+différentes commandes
+
+    ! Les chercheurs (ie: universitaires) s'intéressent, (ie: s'excitent)
+énormément à propos de |Pegasus| qui nécessite 3 vulnérabilités mais dans le
+monde réel, il n'y a pas d'exploitation de vulnérabilité: c'est trop cher.
+=> Ces chercheurs devraient s'intéresser plus à l'hameçonnage
+
+
+
+
+
+
+                                                              *dark-caracal-2*
+10:40 - 11:00   Dark Caracal part II: Where in the world is Dark Caracal? ~
+                |Eva-Galperin| @ EFF
+                |Andrew-Blaich| @ Lookout 
+
+    * La piste commence par des serveurs localisés au Pakistan
+    * Ensuite, les défenseurs suivent qui se connecte
+    * Dark caracal n'infecte pas les iphone mais simplement fait fuir la
+sauvegarde automatique qui n'est pas chiffrée sur le desktop de l'utilisateur
+    ! La dernière chose a utilisé pour communiquer de manière privée sont les
+SMS
+    * La piste même à `op13mail.com`
+
+    * `whois op13mail.com`
+        -> De faux noms
+        -> Un numéro de téléphone d'un inconnu qui n'a rien à voir
+        -> En traçant la console de login de l'administrateur...
+        -> Beyrouth (Liban)
+        -> En observant le SSID des appareils se connectent: `bld3F6`
+        -> En envoyant quelqu'un à Beyrouth en recherche du SSID (building 6 floor
+3)...
+        -> Proche du campus France, le GDGS: General Security of Lebanon in
+Beirut
+        -> L'armée Libanaise
+
+    * Un unique acteur espionne au compte de différents pays, il loue ses
+services
+        -> Espionnage bon marché
+        -> Dark Caracal a su se cacher dans de fausses attribution
+        -> L'auteur n'est pas le même que celui de |OP-MANUAL|
+
+
+
+
+
+
+                                                                       *GReAt*
+11:30 - 12:00   10 Years of Being GReAT ~
+                *Costin-Raiu* & *Vitaly-Kamluk* @ Kaspersky Lab 
+
+    * `Qui possède l'information possède le monde` (Rothschild Nathan)
+
+    * Stuxnet, Duqu, Gauss, Flame, Duqu2.0, Red October, Dark Hotel, Sattelite Tula,
+Lazarus
+    * WannaCry
+        -> A été classifié en quelques minutes alors qu'avant ça aurait pris 3
+ans
+        -> Utilise le même TEB lookup que Lazarus
+        -> Or Lazarus possédait des mots Russe
+        => La Russie a perdu de la crédibilité pendant les JO d'hiver
+
+    * `Soit de l'eau mon frère` (Bruce Lee)
+
+
+
+
+
+
+
+12:00 - 12:20   Psyberops Vs infosec ~
+
+    -> Olympic destroyer n'est pas de la même source que Lazarus bien qu'ayant
+essayer d'imiter son Rich Header (non documenté dans le format du Portable
+Exécutable de Windows)
+
+
+
+
+
+
+
+
+
+                                        *supply-chain-and-corporate-espionage*
+12:20 - 12:45   Supply-chain and Corporate Espionage: ~
+                Attacking the Masses to Target the Few ~
+                *Martin-Hron* @ Avast 
+
+    * Ccleaner: ~
+        -> Largement répandu
+        -> Faible fréquence de mise à jour
+        -> Cible parfaite pour une exploit
+        -> 1M infectés et 40 ont reçut la Payload
+        -> La réaction des défenseurs fut d'éteindre le C&C
+
+    * Premier stage ~
+        -> Shellcode qui change le CRT
+        -> Payload.dll est un downloader
+        -> Pour se cacher les attaquants utilisent un faux host et les
+registry au lieu de fichiers
+        -> Prend quelques informations de la cible (OS , dernière mise à jour,
+AV ...)
+        -> BinDiff montre 20% de ressemblance avec une APT connue
+
+    * Deuxième payload ~
+        -> Il y a un script php qui discrimine à qui devrait être envoyer la
+seconde payload. Ce script cible les entreprises dans les technologies de
+l'information
+        -> C'est un downloader
+        -> Il utilise Avast pour la persistence
+        -> Il est tuable par le C&C
+
+    * Troisième partie ~
+        -> |Shadowpad| est un rootkit connus
+
+
+
+
+
+                                                 *all-your-cloud-belong-to-us*
+12:45 - 13:10   All Your Cloud Are Belong To Us ~
+                Hunting Compromise in Azure ~
+                *Nate-Warfield* @ Microsoft 
+
+    * |NOSQL| n'a PAS été dessiné pour internet
+    * Allons chasser les compromissions NOSQL sur |Azure|
+    * Utilisons |Shodan|
+    * Patchons Shodan pour mettre le status de la VM dans un base de donné
+locale
+    * 562 ports ouverts par la VM azure
+    * Amazon aussi a beaucoup de ports ouverts non documentés
+    * Comme beaucoup de clouds ont le même problème, la collaboration inter
+entreprise est la clef de la sécurité
+
+    * |IAAS|
+    * La sécurité IAAS est ta responsabilité, tout ce passe comme si c'était
+ta machine
+
+    * |PAAS| & |SAAS|
+    * Une responsabilité partagée => plus facile pour toi
+
+    * Les marchés sur le clouds sont des chaines de fournisseurs: bcp de
+ressources => cible de haute valeur (bon point de pivot) => fait gaffe si t'es
+responsable d'un marché de la sorte
+
+    * Cryptomining est le nouveau ransomware
+
+
+
+
+
+
+                                                                   *mvp-award*
+13:10 - 13:30   The SAS 2018 MVP Award ~
+    |katie-moussouris|
+
+    * Award attribué à Katie Moussourie pour son travail sur ...
+
+    * LA DIVULGATION INTERNATIONALE DES VULNÉRABILITÉS
+    
+    * LES CHASSES AUX BUG INTERNATIONALES (HACK THE PENTAGON)
+    
+    
+
+
+
+
+                                                           *dark-market-admin*
+14:30 - 14:55   How to Become a Dark Market Admin?
+                |Marinus-Boekelo| & |Gert-Ras| @ NHTCU, The Netherlands
+
+    * Au commencement un partenaire donna l'information: l'IP d'un marché
+noir. Les défenseurs virent due l'IP était bonne et ils séparèrent 3 taches
+policières d'avec les ténèbres:
+    1/ Poursuivre les plus grands vendeurs
+    2/ Déligitimer le marché
+    3/ Chercher la source de Bitcoin
+    * Mais le serveur changea de pays, les défenseurs le voulaient de retour
+en Hollande pour des raisons légales
+    * Les défenseurs (Hollandais) se sont coordonnés avec le FBI pour amener
+de nouveaux clients au marché
+    * Ils ont arrêté 2 personnes qui ont donnés leur crédentials
+    * La base de donnée du marché noir fut facile a déplacer parce qu'elle
+était clusterisée
+    * Les défenseurs ont supprimés les images (pour de faux) et informé les
+vendeurs afin que ces derniers upload de nouvelles images, avec bien souvent
+des données de géo localisation
+
+
+
+
+
+
+                                                              *hardware-pivot*
+16:50 - 17:10   The Hardware Pivot
+                *Joe-FitzPatrick* @ SecuringHardware.com 
+
+    * L'exfiltration est plus simple
+    * Infiltration via la chaine de fourniture
+    * Possibilité de s'implanter là où le software ne va pas: là où il n'y a
+pas de vulnérabilités
+    * Les composants ne sont pas cher ajd donc tu gagne une fois, achète pleins
+de petits composants et en mets partout (dans ta ville)
+    * Comme les composants sont également de plus en plus petits, il est
+facile de les cacher
+    * `Tout dans ce monde est magique excepter pour le magicien`
+    * Conclusion: utilise le hardware quand c'est facile
+
+
+
+
+
+                                                                  *live-debate*
+17:10 - 18:00   Hey, what happens here, stays here
+                Live debates 
+
+    1/ La propagande et les fausses nouvelles sont des armes d'Etat. Est ce
+qu'on devrait autoriser cela ?
+
+    2/ La balkanisation d'Internet et des softwares arrive. Est ce que c'est
+bien ?
+
+    3/ Les logiciels sécurisés ont ils besoin du 'god-mode' (ie: 1 root) pour
+protéger l'écosystème informatique ?
+
+    4/ Existe t il quelque chose comme un "bon" malware ?
+
+
+
+
+
+----------------------------------------------------------------------------
+                                                                       *jour2*
+4 Jour2~
+-------
+
+                                                                   *deception*
+9:30 - 11:00    Deceive to Detect: Cyber Deception Strategy for Lateral
+                Movement Detection
+                *Denis-Makrushin* @ Kaspersky Lab 
+
+    * Au commencement il y avait les pots de miels, ces machines pleines de
+vulnérabilités qui attire les équipes rouges. Parfois ça marche mais ça sent
+un peu l'entourloupe pour une équipe avisée
+    * Quelque fois ça marche car chaque humain possède de nombreuses
+vulnérabilités dans son ADN
+    * Il y a une asymétrie dans la lutte informatique car l'attaquant connait
+sa victime mais le défenseur est aveugle
+    * Tout ce qui suit est Open Source
+
+    * Une chaine d'attaque: ~
+        1/ Reconnaissance, caractérisation de la cible
+        2/ Escalade de privilège et mouvements latéraux
+        3/ Extraction de l'information
+    * On ne peut pas stopper la chaine d'attaque au début (phase de
+reconnaissance) car il y a trop de faux positifs (ie: faux attaquants)
+
+    * La déception est la création de plusieurs leurres, de fausses machines,
+réseaux, adresses IPs, utilisateurs, fichiers, tokens, process, sessions,
+crédentials ...
+    * Son but est de faire perdre du temps à l'attaquant
+    * Ce n'est pas un outil (tout pré fait) comme le pot de miel, c'est un
+framework, un piège, un processus qui mène la lutte a 1 contre 1 et permet au
+défenseur de se défendre:
+        -> Soit contre attaquer avec la chaine d'attaque préalablement définit
+        -> Soit activement cacher, protéger ses données
+        -> Dans tout les cas, l'alerte est données  
+        -> Merci le leurre
+
+    * 2 frameworks de déception ~
+    * |LURE| pour les endpoints 
+    * |PORTAIL| pour les serveurs
+        
+    * |Vagrant| pour créer et multiplier les VMs
+    * |Vagrant| + |Docker| = Piège
+    * |Camel| Peut émuler des machines privées (moi non plus je sais pas ce que
+ça veut dire)
+    * La redirection SSH permet d'émuler un faux réseau. L'utilisateur
+légitime n'a aucune raison de faire du SSH, surtout pas pour reconnaitre le
+réseau
+    * Quelques entreprise s'assurent qu'il y a au moins 200 crédentials dans
+la mémoire pour leurrer que quelqu'un utilisant mimikatz utilise une fausse
+crédentials
+    * |Becons| sont des DOC/XLS qui ont des macro template à l'intérieur. Par
+exemple, quand il sont ouverts, ils cherchent une image sur internet. Si il
+sont ouvert dans la maison d'un attaquant, alors on a une attribution
+gratuite
+    * |Elastic-honey| est un lien récursif qui permet qu'un attaquant scannant
+ton réseau passe un temps infini à le faire, c'est long ! En plus, il va
+saturer sa RAM
+
+    * Conclusion: Dans la guerre de l'information, comme dans celle des ondes,
+faites du bruit
+    
+
+
+
+
+
+                                                             *android-anti-re*
+11:30 - 12:00   Android Anti-RE Choosing a Different Path
+                *Lukasz-Siewierski* @ Google
+
+    * RE: Reverse Engeenering
+
+    1/ Échecs dues à l'environnement d'exécution
+        -> |SIGSEGV|: l'app doit être empaqueté avec une signature spécifique
+    2/ Basés sur la policy compliance ou sur le réponse du réseau: du C&C
+        -> L'app ne peut télécharger d'autre app sur gplay, c'est une
+protection établie par Google
+    3/ Basés sur l'évaluation de l'appareil
+        -> L'app fait un POST avec les info de l'appareil (modèle, langage)
+
+    * L'app cible les appareils non google, les réseau non google
+    * Depuis le site Web d'hameçonnage, tu ne peut que télécharger des app
+depuis un réseau non-google et non-proxyfier
+
+    * Faire une signature à partir de l'obfuscation n'est pas une mauvaise
+idée car les créateurs de malware aiment ça
+
+ 
+
+
+
+
+
+                                                                       *9tail*
+12:00 - 12:20   9Tail: Proactive Security Assessment
+                *Rob-Ragan* & *Oscar-Salazar* @ Bishop Fox
+
+    * Quelques conseils de pentesteurs ...
+    * Pénétration possible à partir de vieux VPN
+    * Attaque par brute force des service de login
+
+    1/ Mauvais mot de passe
+    2/ Social engineering
+    3/ Mauvaise configuration
+    4/ Patch de sécurité non appliqué
+    5/ Application vulnérable
+
+    ! La résolution de DNS est considérée comme surface externe par les
+entreprises. Mais si quelqu'un crée kasperskey.com (au lieu de kaspersky.com),
+il peut voler quelques credentials d'utilisateur et donc pénétrer ton
+entreprise
+
+
+
+
+
+
+                                                               *dns-analytics*
+12:40 - 13:00   Privacy Preservation in DNS Analytics
+                *Paul-Vixie* @ Farsight Security
+
+    * L'entreprise en question fait de la résolution DNS
+    * Si tu ne respecte pas la privacité, les gens ne te feront pas confiance
+donc tu ne survivra pas
+    * Tu ne peut pas répondre à "qui regarde ce DNS (pornographique)". Le
+système t'empêche de savoir ceci, même si la police te le demande, ce qui te
+protège
+    * Orwell 1984 ne connaissait pas Facebook ou Google qui en réalité
+détiennent bien plus de données privée que n'importe quel gouvernement
+    * D'ailleurs les gouvernements ne seront jamais assez fort pour protéger
+notre privacité car les choses vont trop vite
+    * Notre privacité dépend donc plus d'entreprises privées que du
+gouvernement. C'est un problème intéressant
+    * La meilleur protection, l'information la mieux protégée est celle que tu
+n'as pas
+    * Pour cette raison l'entreprise GDPR ne collecte pas les données (pas de
+log de DNS queries)
+    * Pour cette raison n'utilise jamais la "social security ID" d'une personne
+pour identifier tes utilisateurs
+
+    * Petite remarque: avec les attributs étendues d'un fichier ajoutés par
+google earth aux photos, un inconnu peut savoir où tu a pris la photo de ton
+chat. Ce qui est dangereux car cette personne peut avoir envie de voler ton
+chat. Alors que sans ses attributs, cela ne nuit absolument pas à la vie
+privée de ton chat (même s'il est nu sur la photo)
+
+
+
+
+
+
+14:30 - 15:00   Weaponizing the Internet: Malware and State-Sponsored Attacks
+                *Jay-Rosenberg* @ Intezer
+
+    * |DCM| le fantome noire
+    * C'est un super rootkit, il fait ce que tu veut (plus encore qu'un
+utilisateur légitime comme ta grand mère)
+    * Support pour différentes architectures
+    * Détecte la version de l'OS de la victime (la base)
+    * S'injecte dans 3 navigateurs pour faire un key logging. 2 d'entre eux
+sont Chinois
+    * Détecte les antivirus présent sur l'appareil infecté
+    * Il hijack le Layer Service Protocole, une DLL pour monitorer le flux
+TCP/IP à travers des callbacks, ce qui lui permet de rester furtif
+
+
+
+
+
+                                                           *hide-browser-0day*
+15:20 - 15:40   How to Hide Your Browser 0-days
+                *Zoltan-Balazs* @ MRG Effitas
+
+    * |Ironsquirelles| est le nom de cette outil, présenté par un
+universitaire mais sérieusement utile aux criminels. Il est pourtant mit en
+Open Source 
+    * Utilise la cryptographie pour un échange de clefs de session pour
+cacher une 0day
+    * Utilise les courbes elliptiques (ECDH) qui sont 5 fois plus rapides que
+AES
+    * ECDH permet aussi des clefs plus longues
+    
+    1/ Échange de clefs
+    2/ Envois de la Payload chiffrée
+    3/ La payload télécharge la charge chiffrée
+
+    * Quand une 0day leak, ça coute de l'argent argumente cette universitaire
+pour justifier ses travaux
+    * L'avantage de cette outil est que personne sur la route ne peut
+intercepter la payload d'un attaquant
+    * De plus la forensic post infection, n'ayant pas accès aux clefs de
+sessions (celles-ci ayant été effacées), ne peut répéter l'exploitation et
+donc trouver la 0day
+
+    * Conseils d'anti analyse
+        -> Un URL ne doit être utilisé qu'une fois
+        -> Tout doit expirer (y compris l'URL)
+        -> Retire les objets COMs après l'exploitation
+        -> Utilise une fonction différente que eval pour éviter l'analyse via
+|evalisis|. Il y a 55 fonctions pour remplacer eval, par exemple setTimeout 
+    
+
+
+
+
+
+                                                      *stopping-macro-malware*
+15:40 - 16:00   Stopping Macro Malware in Its Tracks 
+                *Giulia-Biagini* @ Microsoft
+
+    * Présentation d'un outil récent de Microsoft afin de monitorer les
+appels systèmes des macros
+    * Il s'agit d'une détection dynamique basée sur un log de comportement
+
+                                                                              
+                                                                              
+     +----------------------+                         +------------------+    
+     |  Microsoft document  |                         |       OS         |    
+     |                      |                         |                  |    
+     |                      |  ....................   |                  |    
+     |                      |  '                  '   |                  |    
+     |                      |  '                  '   |                  |    
+     |                      |  '                  '   |                  |    
+     |                      |  '                  '   |                  |    
+     |  +----------------+  |  '      API        ____\|                  |    
+     |  |     MACRO      |  |  '        ________/ '  /|                  |    
+     |  |                |  |  '_______/          '   |                  |    
+     |  |                |_____/                  '   |                  |    
+     |  |                |_____'                  '   |                  |    
+     |  |                |  |  \________          '   |                  |    
+     |  |                |  |  '        \________ '   |                  |    
+     |  +----------------+  |  '      COM        \___\|                  |    
+     |                      |  '                  '  /|                  |    
+     +----------------------+  '                  '   +------------------+    
+                               '                  '                           
+                               ....................                           
+                                       '                                      
+                                       '                                      
+                                       '                                      
+                                       '                                      
+                        +---------------------------------+                   
+                        |                                 |                   
+                        |      Monitoring interfaces      |                   
+                        |                                 |                   
+      +------------+    +---------------------------------+                   
+      |            |                  /|\                                     
+      |            |                   |                                      
+      |   Anti     | __________________|                                      
+      |   Virus    |                                                          
+      |            |                                                          
+      +------------+                                                          
+
+
+
+ 
+    * A chaque fois qu'une macro enclenche une API de modification de
+RAM/fichier/registry, le contenu d'un buffer, est analysé par le scanner
+antivirus
+    * |RTP| Real Time Protection de Windows defender fait ceci
+    * Comme la plupart des macros sont des droppers, elles sont facilement
+détectable
+
+
+
+
+
+
+                                                         *20x20-presentations*
+16h00           This time, I'm never goin' back
+                (20 x 20 presentations)
+                *Sergey-Novikov*
+
+    * Des présentations de 20 slides de 20 secondes chacun
+
+
+    1/ IsraBye: The first Anti-Israeli wiper
+    ------------------------------------------
+        -> Pro Palestinien, anti Israélien
+        -> Message politique
+        -> Efface complètement le disque dur de la victime
+        -> Codé en C#
+        -> Tue ProcessHacker (et ProcMon, Process exlorer)
+
+
+    2/ Exploring new depth ARM shellcode
+    ------------------------------------
+        -> r7 = syscall number
+        -> Thumb mode (1- bits) réduit la taille du shellcode
+        -> Create socket
+        -> Connect
+        -> Receive
+        -> Exceve <- bin/sh(X)
+
+
+    3/ Fighting RTF obfuscation
+    ---------------------------
+        -> RTF = Rich Text Format
+        -> Le format le plus abusé aujourd'hui
+        -> Mal documenté
+
+
+    4/ Digital vengeance exploiting C&C toolkits
+    --------------------------------------------
+        -> Hack back
+        -> DLL suide loading
+        -> Demandant au server de downlaoder ce que la victime lui envois
+
+
+    5/ Sifting thought dark sand
+    ----------------------------
+        -> L'auteur joue le rôle d'un criminel sur les forums pour obtenir de
+nouveaux malwares pour kaspersky
+        -> Il explique comment se faire passer pour un bandit
+        -> La réputation est primordiale
+        -> Ne pas oublier la chaine de confiance
+
+
+
+
+
+
+
+
+
+
+                        88888888888  88  888b      88                       ~
+                        88           88  8888b     88                       ~
+                        88           88  88 `8b    88                       ~
+                        88aaaaa      88  88  `8b   88                       ~
+                        88"""""      88  88   `8b  88                       ~
+                        88           88  88    `8b 88                       ~
+                        88           88  88     `8888                       ~
+                        88           88  88      `888                       ~
+
+
+
+
+
+
+vim:tw=78:ts=4:et:sw=4:ft=help
