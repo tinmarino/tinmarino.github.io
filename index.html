@@ -3,6 +3,8 @@
 
 <style>
 
+/* Generic */
+
 html, body {
   margin: 0;
   background: white;
@@ -12,26 +14,6 @@ html, body {
     position: absolute;
     bottom: 0;
     width: 100%;
-}
-
-.split {
-  display: inline;
-  vertical-align: bottom;
-  width: 50%;
-  position: fixed;
-  text-align: center;
-}
-
-.right {
-  height: 50%;
-  right: 0;
-  left: 50%;
-}
-
-.left {
-  height: 50%;
-  left: 0;
-  background: black;
 }
 
 a {
@@ -44,6 +26,29 @@ a {
 
 .right h2 {
     color: black;
+}
+
+
+.split {
+  display: inline;
+  vertical-align: bottom;
+  width: 50%;
+  position: fixed;
+  text-align: center;
+}
+
+/* Specific */
+
+.right {
+  height: 50%;
+  right: 0;
+  left: 50%;
+}
+
+.left {
+  height: 50%;
+  left: 0;
+  background: black;
 }
 
 .left:after {
@@ -74,24 +79,27 @@ a {
 <body>
 
 
+  <!-- Pro -->
+  <a href="pro.html">
   <div class="split left">
     <div class="content">
-    <a href="pro.html">
       <h2> Pro </h2>
-    </a>
     </div>
   </div>
+  </a>
 
+  <!-- Pro -->
+  <a href="perso.html">
   <div class="split right go" style="background: black;">
   </div>
-
   <div class="split right" style="background: transparent;">
     <div class="content">
-    <a href="perso.html">
       <h2> Perso </h2>
-    </a>
     </div>
   </div>
+  </a>
+
+  <!-- Hi -->
 
 </body>
 </html>
