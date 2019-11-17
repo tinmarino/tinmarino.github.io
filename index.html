@@ -25,10 +25,8 @@ html, body {
 .right {
   height: 50%;
   right: 0;
-  background: transparent;
   left: 50%;
 }
-
 
 .left {
   height: 50%;
@@ -36,24 +34,38 @@ html, body {
   background: black;
 }
 
-.left:before {
-  content: '';
-  background-image: radial-gradient(circle at 100% 100%, rgba(255, 0, 0, 0) 71%, black 0%);
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
+a {
+    text-decoration: none;
 }
-div.left:after {
+
+.left h2 {
+    color: white;
+}
+
+.right h2 {
+    color: black;
+}
+
+.left:after {
   content: '';
   position: absolute;
   width: 100%;
   height: 100%;
-  background: black;
-  border-radius: 0 0 100% 0 / 0 0 100% 0;
   top: 100%;
   left: 0;
+  background: black;
+  border-radius: 0 0 100% 0 / 0 0 100% 0;
+}
+
+.go:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  right: 0;
+  background: white;
+  border-radius: 100% 0 0 0;
 }
 </style>
 
@@ -70,7 +82,10 @@ div.left:after {
     </div>
   </div>
 
-  <div class="split right">
+  <div class="split right go" style="background: black;">
+  </div>
+
+  <div class="split right" style="background: transparent;">
     <div class="content">
     <a href="perso.html">
       <h2> Perso </h2>
