@@ -15,6 +15,36 @@ body {
   color: #fdf6e3;
 }
 
+/* Image square and rounded */
+div.w3-display-container img {
+  border-radius: 50px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+/* The overlay effect (full height and width) - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 101%;
+  height: 101%;
+  transform: scale(0);
+  transition: .3s ease;
+  background-color: #002b36;
+}
+
+/* When you mouse over the container, the overlay text will "zoom" in display */
+.w3-display-container:hover .overlay {
+  transform: scale(1);
+}
+
+/* text color 
+.text {
+  color: #fdf6e3;
+} */
 
 </style>
 
@@ -24,9 +54,10 @@ body {
 <body>
 
 <!-- Page content -->
-<div class="w3-padding" style="max-width:1564px">
+<div class="w3-padding">
 
 <!-- 1/ Web -->
+<h1>Web</h1>
 
   <!-- 1.1 StackOverflow top questions -->
   <div class="w3-col l3 m6 w3-margin-bottom">
@@ -42,46 +73,132 @@ body {
 <!-- 2/ Astro -->
 </div>
 <div class="w3-row-padding">
+<h1>Astronomy</h1>
 
 
-<!-- TODO when cursor hover gives a short presentation -->
+<!-- 
+  TODO when cursor hover gives a short presentation at least date 
+  anyway add date for all
 
-  <!-- 1 Comsops 10 commands -->
+-->
+
+  <!-- 1 Comsops 10 commands TODO cheat -->
   <div class="w3-col l3 m6 w3-margin-bottom">
   <a href="./Pdf/2019_cosmondements_1_presentation.pdf">
     <div class="w3-display-container">
       <div class="w3-display-topleft w3-black w3-padding">Observational Cosmology: 10 Cmd</div>
       <img src="./Image/cosmobs_256.png" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        Pdf presentation in French</br>
+        Introduction to observational cosmology tools and practices
+      </div>
     </div>
   </a>
   </div>
 
-  <!-- 2 Master tesis TODO image and search slides -->
+  <!-- 2 Master tesis TODO search slides -->
   <div class="w3-col l3 m6 w3-margin-bottom">
   <a href="./Pdf/2013_tesis_MartinTourneboeuf_Magister.pdf">
     <div class="w3-display-container">
       <div class="w3-display-topleft w3-black w3-padding">Searching though gavitational lenses</div>
-      <img src="./Image/cosmobs_256.png" alt="image not found" height=350>
+      <img src="./Image/lenses_rcs_bravo_256.png" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        Pdf book in French</br>
+        Master tesis </br>
+        Searching for i-band dropout galaxies lensed by galaxy clusters
+      </div>
     </div>
   </a>
   </div>
 
-  <!-- 3 Abism TODO image and dual  -->
+  <!-- 3 Abism TODO dual  -->
   <div class="w3-col l3 m6 w3-margin-bottom">
   <a href="./Pdf/2016_abism_paper_jgirard.pdf">
     <div class="w3-display-container">
       <div class="w3-display-topleft w3-black w3-padding">Abism</div>
-      <img src="./Image/cosmobs_256.png" alt="image not found" height=350>
+      <img src="./Image/abism_256.png" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        ABISM: an interactive image quality assessment toolfor adaptive optics instruments
+      </div>
     </div>
   </a>
   </div>
 
-  <!-- 4 Hawai TODO image-->
+  <!-- 4 Hawai TODO image & search slides-->
   <div class="w3-col l3 m6 w3-margin-bottom">
   <a href="./Pdf/2011_astro_hawaii_formation_stellaire.pdf">
     <div class="w3-display-container">
       <div class="w3-display-topleft w3-black w3-padding">Stellar formation</div>
-      <img src="./Image/cosmobs_256.png" alt="image not found" height=350>
+      <img src="./Image/cosmos_galaxy2_xx.jpg" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        TODO
+      </div>
+    </div>
+  </a>
+  </div>
+
+
+<!-- 3/ Ciber -->
+</div>
+<div class="w3-row-padding">
+<h1>Ciber</h1>
+
+  <!-- 1 YaDiff TODO  multiple: report + html + slide -->
+  <div class="w3-col l3 m6 w3-margin-bottom">
+  <a href="./Pdf/2018_yadiff_du_sstic.pdf">
+    <div class="w3-display-container">
+      <div class="w3-display-topleft w3-black w3-padding">YaDiff</div>
+      <img src="./Image/yadiff_instruction_white.svg" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        TODO
+      </div>
+    </div>
+  </a>
+  </div>
+
+  <!-- 2 FID Todo kaspersky dual iframe to see both -->
+  <div class="w3-col l3 m6 w3-margin-bottom">
+  <a href="./Pdf/2018_retex_FID.html">
+    <div class="w3-display-container">
+      <div class="w3-display-topleft w3-black w3-padding">Forum Innovation Défense</div>
+      <img src="./Image/fid_fly_256.jpg" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        TODO
+      </div>
+    </div>
+  </a>
+  </div>
+
+  <!-- 3 kaspersky Sas Todo kaspersky dual iframe to see both -->
+  <div class="w3-col l3 m6 w3-margin-bottom">
+  <a href="./Pdf/2018_kaspersky_SAS_2018.txt">
+    <div class="w3-display-container">
+      <div class="w3-display-topleft w3-black w3-padding">Kaspersky: SAS</div>
+      <img src="./Image/sas2018_256.png" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        TODO
+      </div>
+    </div>
+  </a>
+  </div>
+
+  <!-- 4 LibGdx slides -->
+  <div class="w3-col l3 m6 w3-margin-bottom">
+  <a href="./Pdf/2017_libgdx.pdf">
+    <div class="w3-display-container">
+      <div class="w3-display-topleft w3-black w3-padding">LibGdx</div>
+      <img src="./Image/libgdx_logos_256.png" alt="image not found" height=350>
+      <!-- Description -->
+      <div class="overlay">
+        TODO
+      </div>
     </div>
   </a>
   </div>
