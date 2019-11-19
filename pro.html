@@ -78,14 +78,14 @@ html, body {
 
   <a href="./pro/welcome.html" target="main_iframe"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll()">
+    onclick="closeAll(false)">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>Home</p>
   </a>
 
   <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll()">
+    onclick="closeAll(false)">
     <i class="fa fa-address-card-o w3-xxlarge"></i>
     <p>CV</p>
   </a>
@@ -113,7 +113,7 @@ html, body {
 
   <a href="./w_project.html" target="main_iframe"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll()">
+    onclick="closeAll(false)">
     <i class="fa fa-newspaper-o w3-xxlarge"></i>
     <p>Projects</p>
   </a>
@@ -204,7 +204,7 @@ html, body {
 <script>
 
 function openOne(id) {
-  closeAll();
+  closeAll(true);
   document.getElementById(id).style.display = "flex";
   document.getElementById("id_main").style.marginLeft = "240px";
 }
@@ -215,15 +215,18 @@ function closeOne(id) {
   elt.style.display = "none";
 }
 
-function closeAll() {
+function closeAll(b_keep_open) {
   for (id of [
     "id_web",
     "id_astro",
     "id_cyber",
     "id_contact",
   ]){ closeOne(id); }
-  document.getElementById("id_main").style.marginLeft = "120px";
+  if (!b_keep_open) {
+    document.getElementById("id_main").style.marginLeft = "120px";
+  }
 }
+
 </script>
 
 </body>
