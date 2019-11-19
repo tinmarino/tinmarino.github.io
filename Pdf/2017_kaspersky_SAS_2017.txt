@@ -1,50 +1,54 @@
-                  ad88888ba         db         ad88888ba      
-                 d8"     "8b       d88b       d8"     "8b     
-                 Y8,              d8'`8b      Y8,             
-                 `Y8aaaaa,       d8'  `8b     `Y8aaaaa,       
-                   `"""""8b,    d8YaaaaY8b      `"""""8b,     
-                         `8b   d8""""""""8b           `8b     
-                 Y8a     a8P  d8'        `8b  Y8a     a8P     
-                  "Y88888P"  d8'          `8b  "Y88888P"      
-                                                                                                                  
-                                                                                                 
-              ad888888b,     ,a8888a,         88  888888888888  
-             d8"     "88   ,8P"'  `"Y8,     ,d88          ,8P'  
-                     a8P  ,8P        Y8,  888888         d8"    
-                  ,d8P"   88          88      88       ,8P'     
-                a8P"      88          88      88      d8"       
-              a8P'        `8b        d8'      88    ,8P'        
-             d8"           `8ba,  ,ad8'       88   d8"          
-             88888888888     "Y8888P"         88  8P'           
+
+
+                  ad88888ba         db         ad88888ba                     ~
+                 d8"     "8b       d88b       d8"     "8b                    ~
+                 Y8,              d8'`8b      Y8,                            ~
+                 `Y8aaaaa,       d8'  `8b     `Y8aaaaa,                      ~
+                   `"""""8b,    d8YaaaaY8b      `"""""8b,                    ~
+                         `8b   d8""""""""8b           `8b                    ~
+                 Y8a     a8P  d8'        `8b  Y8a     a8P                    ~
+                  "Y88888P"  d8'          `8b  "Y88888P"                     ~
+                                                                             ~
+                                                                             ~
+
+              ad888888b,     ,a8888a,         88  888888888888               ~
+             d8"     "88   ,8P"'  `"Y8,     ,d88          ,8P'               ~
+                     a8P  ,8P        Y8,  888888         d8"                 ~
+                  ,d8P"   88          88      88       ,8P'                  ~
+                a8P"      88          88      88      d8"                    ~
+              a8P'        `8b        d8'      88    ,8P'                     ~
+             d8"           `8ba,  ,ad8'       88   d8"                       ~
+             88888888888     "Y8888P"         88  8P'                        ~
+
 
 
 Martin
 DGA-MI/IMPS/VSE
 
 
-                                         à l'attention du personnel SSI DGA-MI
+                                         Ã  l'attention du personnel SSI DGA-MI
 
 
-    Object : Restitution de la conférence Kaspersky (SAS 2017)
+    Object : Restitution de la confÃ©rence Kaspersky (SAS 2017)
 
-Chers Collègues,
+Chers CollÃ¨gues,
                                                                        *intro*
-    Les 3 et 4 avril, j'ai participé à la conférence Kaspersky sur les 
-menaces et malgiciels de l'année 2016. Voici ci-dessous ma restitution en 
+    Les 3 et 4 avril, j'ai participÃ© Ã  la confÃ©rence Kaspersky sur les 
+menaces et malgiciels de l'annÃ©e 2016. Voici ci-dessous ma restitution en 
 diffusion restreinte.
-La conférence s'est déroulé à Saint Martin : Ile Franco Hollandaise des
-caraïbes.
+La confÃ©rence s'est dÃ©roulÃ© Ã  Saint Martin : Ile Franco Hollandaise des
+caraÃ¯bes.
     https://fr.wikipedia.org/wiki/Saint-Martin_(Antilles_fran%C3%A7aises)
-Initialement, il y a 10 ans, Eugène Kaspersky crée un évènement annuel
-interne pour permettre à ses techniciens de communiquer et de savourer de la
-vodka. Le temps passa et la liste des invités grandit, maintenant la DGA en
+Initialement, il y a 10 ans, EugÃ¨ne Kaspersky crÃ©e un Ã©vÃ¨nement annuel
+interne pour permettre Ã  ses techniciens de communiquer et de savourer de la
+vodka. Le temps passa et la liste des invitÃ©s grandit, maintenant la DGA en
 fait parti.
-La conférence est sous une bannière bleu de collaboration pour la lutte contre
-les menaces informatiques. Les Russes sont en majorité, suivi des Américains,
-Israéliens, Britanniques puis Européens. Les Sud-américains puis les
-Asiatiques sont minoritaires mais présent tout de même. Par ailleurs Kaspersky
-est bien installé au Brésil.
-Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
+La confÃ©rence est sous une banniÃ¨re bleu de collaboration pour la lutte contre
+les menaces informatiques. Les Russes sont en majoritÃ©, suivi des AmÃ©ricains,
+IsraÃ©liens, Britanniques puis EuropÃ©ens. Les Sud-amÃ©ricains puis les
+Asiatiques sont minoritaires mais prÃ©sent tout de mÃªme. Par ailleurs Kaspersky
+est bien installÃ© au BrÃ©sil.
+Voici la vidÃ©os youtube d'introduction (youtube interdit sur l'ISPT):
     https://www.youtube.com/watch?v=kRXr4pkYJiw
 
 
@@ -52,81 +56,81 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                                                                         *plan*
     
     0. Introduction                         |intro|  
-    1. Résumé                               |resume|
+    1. RÃ©sumÃ©                               |resume|
     2. Programme                            |programme|
         2.1 Programme du jour 1             |programme-jour1|
         2.2 Programme du jour 2             |programme-jour2|
     3. Premier jour                         |jour1|
-    4. Deuxième jour                        |jour2|
+    4. DeuxiÃ¨me jour                        |jour2|
 
 
 
 ============================================================================
                                                                       *resume*
-1. Résumé~
+1. RÃ©sumÃ©~
 ---------
 
                                                                       |le-vol|
-    -> Le vol d'identité reste l'attaque la plus populaire 
+    -> Le vol d'identitÃ© reste l'attaque la plus populaire 
                                                                      |aux_usa|
-    -> Aux USA, la cyber est une nouvelle arme au même titre que la terre, la
-    marine et l'aéro
+    -> Aux USA, la cyber est une nouvelle arme au mÃªme titre que la terre, la
+    marine et l'aÃ©ro
                                                              |le-recouverment|
     -> Le recouvrement de signatures entre 2 moteurs antivirus est de
-    seulement 20%. Il n'est donc pas délirant de les empiler
+    seulement 20%. Il n'est donc pas dÃ©lirant de les empiler
                                                                 |risque_equal|
-    -> RISQUE = VULNÉRABILITÉ X MENACE
+    -> RISQUE = VULNÃ‰RABILITÃ‰ X MENACE
                                                                         |ncsa|
-    -> la NCSA est l'équivalent Israélien de l'ANSSI
+    -> la NCSA est l'Ã©quivalent IsraÃ©lien de l'ANSSI
         - Elle fait de l'audit open source sur les produits critiques
-        - NCSA = National Cyber Security Authority (crée en 2015)
+        - NCSA = National Cyber Security Authority (crÃ©e en 2015)
                                                                      |en-1996|
     -> En 1996: 
         -> 99% des guerriers informatiques agissaient seul pour se divertir
-        -> 1% étaient professionnels pour le gouvernement
+        -> 1% Ã©taient professionnels pour le gouvernement
         -> Maintenant c'est l'inverse
                                                       |kapsersky-non-attribue|
-    -> Kaspersky n'a jamais attribué cependant au SAS 2017, il a fait 2
+    -> Kaspersky n'a jamais attribuÃ© cependant au SAS 2017, il a fait 2
     attributions:
                                                            |attribution-coree|
-        -> Attribution d'un logiciel de vol bancaire à des attaquants de
-            Korée du Nord   
+        -> Attribution d'un logiciel de vol bancaire Ã  des attaquants de
+            KorÃ©e du Nord   
                                                            |attribution-hamas|
-        -> Attribution d'un logiciel  d'exfiltration de données militaire sur
-        Android ainsi que 100 attaques de social-engeenering à des attaquants
+        -> Attribution d'un logiciel  d'exfiltration de donnÃ©es militaire sur
+        Android ainsi que 100 attaques de social-engeenering Ã  des attaquants
         appartenant au Hamas
                                                                    |prime-yara|
-    -> Le prix du meilleur expert en sécurité informatique offert au créateur
+    -> Le prix du meilleur expert en sÃ©curitÃ© informatique offert au crÃ©ateur
     de YARA: framework antivirus (grep en mieux)
                                                                   |tizen-vuln|
     -> Tizen le nouvel OS Samsung (galaxy S9) contient plusieurs
-    vulnérabilités dont des tableuax, malloc et stcpy sans vérifications
+    vulnÃ©rabilitÃ©s dont des tableuax, malloc et stcpy sans vÃ©rifications
                                                                      |sagesse|
-    -> Ne blâme pas la victime (d'une attaque informatique)
+    -> Ne blÃ¢me pas la victime (d'une attaque informatique)
     -> Personne ne se rend au travail pour y faire un mauvais travail
-    -> Les petits pas dans la défense rendent l'attaque plus difficile
+    -> Les petits pas dans la dÃ©fense rendent l'attaque plus difficile
                                                                    |la-moitie|
-    -> La moitié des banques ne contrôle pas leur serveur DNS (Brésil)
-    -> Quelques unes de ces banques partagent le même serveur DNS
+    -> La moitiÃ© des banques ne contrÃ´le pas leur serveur DNS (BrÃ©sil)
+    -> Quelques unes de ces banques partagent le mÃªme serveur DNS
                                                                   |la-securite|
-    -> La sécurité est un processus et non une destination (Blackberry)
+    -> La sÃ©curitÃ© est un processus et non une destination (Blackberry)
                                                                 |armee-zombie|
-    -> Le mieux pour obtenir une armée de zombie est l'hameçonnage (fishing)
+    -> Le mieux pour obtenir une armÃ©e de zombie est l'hameÃ§onnage (fishing)
                                                                 |open-defense|
-    -> Interdire les scripts powershell non signés
+    -> Interdire les scripts powershell non signÃ©s
     -> Interdire les macros MS-Office
-    -> Utiliser des Scanners de mémoire chez l'hôte
+    -> Utiliser des Scanners de mÃ©moire chez l'hÃ´te
     -> Utiliser des Scanners de comportement
                                                              |14-journalistes|
     -> Turquie: 14 journalistes en prison depuis 18 mois pour un document
-    électronique. L'analyse des fichiers "log sequence numbers" semblent
-    révéler un coup monté. L'agence d'enquête "Arsenal" sous attaque lors de
-    son enquête 
+    Ã©lectronique. L'analyse des fichiers "log sequence numbers" semblent
+    rÃ©vÃ©ler un coup montÃ©. L'agence d'enquÃªte "Arsenal" sous attaque lors de
+    son enquÃªte 
 ============================================================================
                                                                    *programme*
 2. Programme~
 ------------
-    Voici ci-après le programme que vous pourrez trouver ici:
+    Voici ci-aprÃ¨s le programme que vous pourrez trouver ici:
     https://sas.kaspersky.com/#conference-day-1-monday-april-3-2017
     https://sas.kaspersky.com/#conference-day-2-tuesday-april-4-2017
 
@@ -153,7 +157,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 |2.2| |Intuition|
 
 11:40 - 12:10   A link to the past: Connecting the birth of cyberespionage 
-                Thomas Rid, Daniel Moore, King’s College London; 
+                Thomas Rid, Daniel Moore, King's College London; 
                 Juan Andres Guerrero-Saade, Costin Raiu @ Kaspersky Lab 
 12:10 - 12:35   The seven year itch 
                 *Kris-McConkey* @PwC 
@@ -201,7 +205,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 09:30 - 10:00   Hunting bugs for humanity 
                 *David-Jacoby* @ Kaspersky Lab;
                 *Frans-Rosen* @ Detectify
-10:00 - 10:20   Wassenaaren’t you glad I didn’t say banya?
+10:00 - 10:20   Wassenaaren't you glad I didn't say banya?
                 Katie Moussouris, Luta Security 
 10:20 - 10:40   Stop hacking me bro! Changing behavior through gamification 
                 and behavior modification principles
@@ -216,7 +220,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 
 |2.6| |Flexibility|
 
-09:30 - 10:00   A bad guy’s dream coming true: The hijack of an entire bank 
+09:30 - 10:00   A bad guy's dream coming true: The hijack of an entire bank 
                 operation
                 Dmitry Besthuzhev, Fabio Assolini @ Kaspersky Lab  
 10:00 - 10:20   From hot tubs to thousands of booze bottles: Real world PoS
@@ -254,7 +258,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 Brian Candlish, Christian Teutenberg, Telstra
 12:10 - 12:30   Ransomware in targeted attacks
                 Anton Ivanov, Kaspersky Lab
-12:30 - 12:50   China’s evolving cyber operations: A look into APT19’s shift
+12:30 - 12:50   China's evolving cyber operations: A look into APT19's shift
                 in tactics
                 Ben Withnell, Erica Eng, FireEye
 12:50 - 13:10   Finding Shamoon
@@ -289,7 +293,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 Jan Hoersch, Securai GmbH 
 12:30 - 12:50   Trade controls impact on industrial Internet of Things
                 Harsha Banavara, Schneider Electric 
-12:50 - 13:10   BackConnect’s suspicious BGP hijacks
+12:50 - 13:10   BackConnect's suspicious BGP hijacks
                 Doug Madory, Dyn 
 13:10 - 13:30   What zombies know about ICS
                 Kirill Kruglov, Vyacheslav Kopeitsev, Kaspersky Lab 
@@ -361,7 +365,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                     injected into our web browsers Paul Alderson, FireEye
                 - Ghosts in the WMI Yury Namestnikov, Kaspersky Lab     
                 - PowerShell threats: Why they work so well and why they will
-                    develop further Candid Wüest, Symantec     
+                    develop further Candid WÃ¼est, Symantec     
                 The secret power of Yara Vitaly Kmluk, Kaspersky Lab 
 
 
@@ -378,7 +382,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Eugene-Kaspersky| 
 
     * Il y a 360 participants de 36 pays
-    * C'est le SAS numéro 9
+    * C'est le SAS numÃ©ro 9
     * Toujours dans un lieu exotique
 
 
@@ -387,9 +391,9 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 
     * Auteur Australien
     * Chef de Azimuth Security
-    * Son but est de prévenir les vulnérabilités
+    * Son but est de prÃ©venir les vulnÃ©rabilitÃ©s
 
-    1/ Défense
+    1/ DÃ©fense
     ----------
         1.a Minimisation de bogues
             * Fuzz
@@ -407,83 +411,83 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
         ! Exceptions -> Fuite d'information
         1 Corrompt 
         2 Injecte
-        3 Exécute
-        * C'est plus difficile de trouver des vulnérabilités que jadis
-        * Les exploitations sont utilisables peu de temps car la fréquence des
-        patchs a augmentée
-        * S'échapper d'un banc à sable est ce qu'il y a de plus difficile
-            -> L'usage d'un bac à sable double le travail de l'attaquant
-        * La majorités des chercheurs de vulnérabilités en trouvent grâce au
+        3 ExÃ©cute
+        * C'est plus difficile de trouver des vulnÃ©rabilitÃ©s que jadis
+        * Les exploitations sont utilisables peu de temps car la frÃ©quence des
+        patchs a augmentÃ©e
+        * S'Ã©chapper d'un banc Ã  sable est ce qu'il y a de plus difficile
+            -> L'usage d'un bac Ã  sable double le travail de l'attaquant
+        * La majoritÃ©s des chercheurs de vulnÃ©rabilitÃ©s en trouvent grÃ¢ce au
         fuzzing
-        * La recherche de vulnérabilité est 4 fois plus dur qu'en 2010
-        * Le problème des statistiques disponibles est qu'elles dépendent du
+        * La recherche de vulnÃ©rabilitÃ© est 4 fois plus dur qu'en 2010
+        * Le problÃ¨me des statistiques disponibles est qu'elles dÃ©pendent du
         software et de sa version 
             -> Ne pas faire confiance aux statistiques (publiques)
-        * Maintenant l'attaquant nécessite toujours une ou plusieurs fuites
+        * Maintenant l'attaquant nÃ©cessite toujours une ou plusieurs fuites
         d'information
         * Les explorateurs web (ie: browsers) sont les logiciels les plus
-        attaqués car ils donnent un feedback au programmeur.
-            -> JavaScript est facile à attaquer et dur à défendre.
+        attaquÃ©s car ils donnent un feedback au programmeur.
+            -> JavaScript est facile Ã  attaquer et dur Ã  dÃ©fendre.
 
     3/ Futur
     --------
-        * JIT : la compilation "juste à temps"
-        * L'intégrité du Noyau
+        * JIT : la compilation "juste Ã  temps"
+        * L'intÃ©gritÃ© du Noyau
         ! Les bogues au niveau du processeur restent des dangers bas niveau
         * Trust - zone
-            -> La chaine totale pour écrire une exploitation durera 1 ans en
+            -> La chaine totale pour Ã©crire une exploitation durera 1 ans en
             2020
 
     ~/ Conclusion                                                     *le-vol*
     -------------                                       
-        * Les attaquants vont toujours à la victoire facile
-            -> Le vol d'identité est et restera l'attaque la plus populaire
+        * Les attaquants vont toujours Ã  la victoire facile
+            -> Le vol d'identitÃ© est et restera l'attaque la plus populaire
                     
                  
 10:10 - 10:35   Threat intelligence threatening intel operations 
                 |Catherine-Lotrionte| @ Georgetown University 
 
-    * l'auteur est un avocat d'état
-    * Elle réduit sa présentation de 4h à 20 min (les excuses)
-    * Préalablement elle travaillait à la CIA et nous explique la législation
-    sur la sécurité informatique
-        -> Il n'y a pas de législation internationale sur la sécurité
+    * l'auteur est un avocat d'Ã©tat
+    * Elle rÃ©duit sa prÃ©sentation de 4h Ã  20 min (les excuses)
+    * PrÃ©alablement elle travaillait Ã  la CIA et nous explique la lÃ©gislation
+    sur la sÃ©curitÃ© informatique
+        -> Il n'y a pas de lÃ©gislation internationale sur la sÃ©curitÃ©
         informatique
 
                                                                      *aux_usa*
-    -> Aux USA, la cyber est une nouvelle arme au même titre que la terre, la
-    marine et l'aéro
+    -> Aux USA, la cyber est une nouvelle arme au mÃªme titre que la terre, la
+    marine et l'aÃ©ro
 
     ~/ Les politiques des agences gouvernementales aux US.
     ------------------------------------------------------
-        * Ne pas recruter de méchantes entités privée (ie: cyber mercenaire)
-        * Ne pas compromettre la pays (même si on est sous attaque digitale)
+        * Ne pas recruter de mÃ©chantes entitÃ©s privÃ©e (ie: cyber mercenaire)
+        * Ne pas compromettre la pays (mÃªme si on est sous attaque digitale)
         * Ne pas donner d'information classifier aux journalistes
             -> Si tu le fais, explique leur alors l'impact potentiel d'une
             divulgation
-            -> Donne la responsabilité de la compromission à cet agent -> le
-            journaliste doit être habilité au secret
+            -> Donne la responsabilitÃ© de la compromission Ã  cet agent -> le
+            journaliste doit Ãªtre habilitÃ© au secret
                 
     * Il n'existe malheureusement pas de protocole de communication entre les
-    médias et les agences gouvernementales (CIA, NSA)
+    mÃ©dias et les agences gouvernementales (CIA, NSA)
 
-    * En bref ces questions d'éthiques regroupent:
-        1 Média
+    * En bref ces questions d'Ã©thiques regroupent:
+        1 MÃ©dia
         2 Gouvernement
         3 Entreprises
         4 La loi
 
-    Questions à un avocats : 
+    Questions Ã  un avocats : 
     -------------------------
-        ? Comment les agences espionnent légitimement ?
-            -> Pour la paix (l'US veut savoir ce que mijotent les Européens
+        ? Comment les agences espionnent lÃ©gitimement ?
+            -> Pour la paix (l'US veut savoir ce que mijotent les EuropÃ©ens
             avec les pays frontaliers, pour rester "in"
 
-        ? Pourquoi on ne voit pas de relations cyber - média ?
-            -> Les autres secteurs, même militaire voir nucléaire ont leurs
-            service médiatiques : en effet, des impôts, ils travaillent pour
+        ? Pourquoi on ne voit pas de relations cyber - mÃ©dia ?
+            -> Les autres secteurs, mÃªme militaire voir nuclÃ©aire ont leurs
+            service mÃ©diatiques : en effet, des impÃ´ts, ils travaillent pour
             le peuple
-            -> Les opérations cybers sont en retard étant tout simplement
+            -> Les opÃ©rations cybers sont en retard Ã©tant tout simplement
             plus jeunes
 
         * A savoir :
@@ -491,11 +495,11 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                                                       *kapsersky-non-attribue*
             -> Kaspersky n'attribue jamais
 
-        ? Peut on impunément faire fuir de l'information ?
-            -> Tant que tu ne romps aucune loi (ex : atteinte à la vie
-            privée), tu peux dire ce qu'il te plait car il existe la liberté
-            des médias
-            -> Évidement tu perd ton job mais seras toujours jugé dans le 
+        ? Peut on impunÃ©ment faire fuir de l'information ?
+            -> Tant que tu ne romps aucune loi (ex : atteinte Ã  la vie
+            privÃ©e), tu peux dire ce qu'il te plait car il existe la libertÃ©
+            des mÃ©dias
+            -> Ã‰videment tu perd ton job mais seras toujours jugÃ© dans le 
             civil comme un civil
 
 
@@ -503,45 +507,45 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Ron-Gula|  @ Gula Tech Adventures 
 
     * L'auteur est un ancien pentesteur
-    * Il nous enseigne à nous défendre (comme chuck norris)
+    * Il nous enseigne Ã  nous dÃ©fendre (comme chuck norris)
 
     * Utilise plusieurs  "thread inteligence" (ie : antivirus)
                                                              *le-recouverment*
         -> Le recouvrement de signatures entre 2 moteurs anti-viraux est de
-        seulement 20%. Il n'est donc pas délirant de les empiler
-    * Dessine un cadre (framework) de sécurité permettant de ne pas répéter
-    les mêmes erreurs
+        seulement 20%. Il n'est donc pas dÃ©lirant de les empiler
+    * Dessine un cadre (framework) de sÃ©curitÃ© permettant de ne pas rÃ©pÃ©ter
+    les mÃªmes erreurs
                                                                 *risque_equal*
-    * risque = vulnérabilité x menace
-        -> Il est dur d'estimer la vulnérabilité
+    * risque = vulnÃ©rabilitÃ© x menace
+        -> Il est dur d'estimer la vulnÃ©rabilitÃ©
 
-    1 Qu'est ce que tu veux protéger ? (ex : ta virginité)
-    2 Quels sont les outils qui te permettent de protéger ceci ? (ex : une
-    ceinture de chasteté)
+    1 Qu'est ce que tu veux protÃ©ger ? (ex : ta virginitÃ©)
+    2 Quels sont les outils qui te permettent de protÃ©ger ceci ? (ex : une
+    ceinture de chastetÃ©)
 
     ! Cloud: Tout est dans le cloud aujourd'hui, n'y vas pas
-    ! IOT: Internet Of Things ou objets connecté. On en reparlera mais évite
-    de connecter ta tronçonneuse ou tes plaques chauffantes
-    ! Legacy: en héritant de code pourri un code deviens pourri
+    ! IOT: Internet Of Things ou objets connectÃ©. On en reparlera mais Ã©vite
+    de connecter ta tronÃ§onneuse ou tes plaques chauffantes
+    ! Legacy: en hÃ©ritant de code pourri un code deviens pourri
 
 
 11:00 - 11:20   From defending an organization to defending a country 
                 |Buky-Carmeli|  @ Israeli National Cyber Security Authority
 
-    * L'auteur est le chef de l'NCSA qui est la copie Israélienne de l'ANSSI
+    * L'auteur est le chef de l'NCSA qui est la copie IsraÃ©lienne de l'ANSSI
     * Le nom que vous lisez 'Buky' n'est pas son vrai nom et il fait peur
-    * La NCSA est crée en 2015 pour se séparer des services de renseignement
-    et de l'armée. Ces dernières sont appelées agences "spéciales"
-    * La NCSA est une agence civile  qui défend :
+    * La NCSA est crÃ©e en 2015 pour se sÃ©parer des services de renseignement
+    et de l'armÃ©e. Ces derniÃ¨res sont appelÃ©es agences "spÃ©ciales"
+    * La NCSA est une agence civile  qui dÃ©fend :
         -> Les infrastructures critiques (ex : train, eau ...) (ie : vitale)
-        -> Les secrets gouvernementaux (ex : adresses de représentants)
-    * La NCSA veut que les citoyens Israéliens se sentent en sécurité
+        -> Les secrets gouvernementaux (ex : adresses de reprÃ©sentants)
+    * La NCSA veut que les citoyens IsraÃ©liens se sentent en sÃ©curitÃ©
                                                                         *ncsa*
-    * Concrètement la NCSA fait de l'audit open source sur les produits
+    * ConcrÃ¨tement la NCSA fait de l'audit open source sur les produits
     critiques
     
-    -> La NCSA cherche à collaborer avec le reste du monde contre le
-    terrorisme car le monde cybernétique n'a pas de frontière
+    -> La NCSA cherche Ã  collaborer avec le reste du monde contre le
+    terrorisme car le monde cybernÃ©tique n'a pas de frontiÃ¨re
 
 11:20 - 11:40   Coffee break 
 
@@ -550,45 +554,45 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 
 
 11:40 - 12:10   A link to the past: Connecting the birth of cyberespionage 
-                |Thomas-Rid|  |Daniel-Moore| @ King’s College London; 
+                |Thomas-Rid|  |Daniel-Moore| @ King's College London; 
                 |Juan-Andres| |Guerrero-Saade| |Costin-Raiu| @ Kaspersky Lab 
 
     * Un log datant d' il y a 20 a permit aux auteurs de localiser des
-    délinquants informatiques
+    dÃ©linquants informatiques
                                                                      *en-1996*
     * 1996 : Hacking Universitaire pour se divertir
         -> 99% des hackers le faisaient en solo pour se divertir
         -> 1%  le faisaient pour le gouvernement
         -> Mainteant c'est l'inverse
-    * Le FBI détruit des preuves aujourd'hui : c'était mieux avant
-    * Remontons en 1996 du temps où le but était dévoiler le plus de données
-    * Une vulnérabilité httpd était communément exploitée. Ah les jeunes ...
-    * Les auteurs cherchent à savoir qui l'exploitait d'antan. Le problème
-    revient à filtrer (grep) les mouvements de l'attaquant dans les
-    gigantesques logs des serveurs Étasuniens.
-    * Un serveur était alors utilisé pour faire un tunnel vers un autre. Il
-    faut donc suivre les données et pas les actions serveurs, comme un combat
-    au couteau où il faut suivre le couteau et non les mains de l'adversaire
-    * Attaquants: utilisaient |Loki2| comme outil de prédilection. Les auteurs
-    suivent donc cet outil de log en log et en 2014 sort |Penquin-Turla| basé
-    sur Loki2. Il est le premier malware attaquant les systèmes Linux et est
-    basé sur une backdoor datant d'il y a 20 ans. Ah les anciens ... 
-    * |Moonlight-Maze| est une version de Loki2 à partir de laquelle les
-    attaquants ont strippé leur code (ie: retirer les noms de fonctions pour
-    gêner le reverseur)
+    * Le FBI dÃ©truit des preuves aujourd'hui : c'Ã©tait mieux avant
+    * Remontons en 1996 du temps oÃ¹ le but Ã©tait dÃ©voiler le plus de donnÃ©es
+    * Une vulnÃ©rabilitÃ© httpd Ã©tait communÃ©ment exploitÃ©e. Ah les jeunes ...
+    * Les auteurs cherchent Ã  savoir qui l'exploitait d'antan. Le problÃ¨me
+    revient Ã  filtrer (grep) les mouvements de l'attaquant dans les
+    gigantesques logs des serveurs Ã‰tasuniens.
+    * Un serveur Ã©tait alors utilisÃ© pour faire un tunnel vers un autre. Il
+    faut donc suivre les donnÃ©es et pas les actions serveurs, comme un combat
+    au couteau oÃ¹ il faut suivre le couteau et non les mains de l'adversaire
+    * Attaquants: utilisaient |Loki2| comme outil de prÃ©dilection. Les auteurs
+    suivent donc cet outil de log en log et en 2014 sort |Penquin-Turla| basÃ©
+    sur Loki2. Il est le premier malware attaquant les systÃ¨mes Linux et est
+    basÃ© sur une backdoor datant d'il y a 20 ans. Ah les anciens ... 
+    * |Moonlight-Maze| est une version de Loki2 Ã  partir de laquelle les
+    attaquants ont strippÃ© leur code (ie: retirer les noms de fonctions pour
+    gÃªner le reverseur)
     * Il s'agit d'un des meilleurs groupes d'attaquants au monde, ils passent
-    sous les radars depuis 20 ans mais les auteurs ont pu les détecter grâce à
-    un log datant d'il y a 20 ans qui les localise sur méridien GMT+3 (Russie,
+    sous les radars depuis 20 ans mais les auteurs ont pu les dÃ©tecter grÃ¢ce Ã 
+    un log datant d'il y a 20 ans qui les localise sur mÃ©ridien GMT+3 (Russie,
     Turquie, Iran, Arabie Saoudite)
 
 
 12:10 - 12:35   The seven year itch 
                 |Kris-McConkey| @PwC 
 
-    * Un autre lien vers le passé mais encore plus ancien
-    * Il s'agit de suivre la chaine de caractère "comme on man don't kill me"
-    qui a été découverte dans un malware
-    * Ces malwares appelés |rats| sont attribué au même groupe  ( |APT10| ):
+    * Un autre lien vers le passÃ© mais encore plus ancien
+    * Il s'agit de suivre la chaine de caractÃ¨re "comme on man don't kill me"
+    qui a Ã©tÃ© dÃ©couverte dans un malware
+    * Ces malwares appelÃ©s |rats| sont attribuÃ© au mÃªme groupe  ( |APT10| ):
         1 - |PlugX|
         2 - |Chches|        (Powershell malware)
         3 - |Redleaves|     (Malware family)
@@ -597,7 +601,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
     compilations ces rats
     * Les attaquants sont:
         -> Chinois
-        -> Expérimentés en C, C++, C# et PowerShell
+        -> ExpÃ©rimentÃ©s en C, C++, C# et PowerShell
         -> Toujours actifs
         -> Sous la vigilance de FireEye
 
@@ -612,37 +616,37 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
         -> Google
         -> Amazon
         -> Microsoft
-    * Les entreprises citées ont des chercheurs en grandes données (data -
+    * Les entreprises citÃ©es ont des chercheurs en grandes donnÃ©es (data -
     scientists)
 
     * Microsoft suit des dizaines de groupes d'APT. Il les nomme et les
-    étudie. Ceci est une nécessite engendrée par la migration vers le nuage
+    Ã©tudie. Ceci est une nÃ©cessite engendrÃ©e par la migration vers le nuage
     (cloud-shift)
-    * Les attaquants répondent par un appâts (fish) aux appâts de Microsoft.
+    * Les attaquants rÃ©pondent par un appÃ¢ts (fish) aux appÃ¢ts de Microsoft.
     Ce sont donc des attaquants avec un certains sens de l'humour (ie: pas des
     britanniques)
-    * Microsoft est client de son propre nuage -> se défendre lui même lui
-    permet de défendre ses clients
-    * L'impossibilité actuelle du voyage temporel ou du voyage spatial rapide
-    permet de localiser les utilisateurs illégitimes
+    * Microsoft est client de son propre nuage -> se dÃ©fendre lui mÃªme lui
+    permet de dÃ©fendre ses clients
+    * L'impossibilitÃ© actuelle du voyage temporel ou du voyage spatial rapide
+    permet de localiser les utilisateurs illÃ©gitimes
 
-    * Attaquants: utilisent l'attaque des touches rémanentes (sticky keys
+    * Attaquants: utilisent l'attaque des touches rÃ©manentes (sticky keys
     attack) :
-        -> Récrire la callback graphique des touches rémanentes afin
+        -> RÃ©crire la callback graphique des touches rÃ©manentes afin
     d'obtenir une commande.
-        -> Écrire un registre de la base de registre Windows
+        -> Ã‰crire un registre de la base de registre Windows
         -> Cliquer 5 fois sur shift pour lancer la commande des touches
-    rémanentes
+    rÃ©manentes
         -> Obtenir l'IP de la victime en changeant ce registre
-        -> Installer à souhait (ex: chrome)
+        -> Installer Ã  souhait (ex: chrome)
         -> Contaminer une autre machine
 
-    * Les défenseurs ont accés à des logs qui rendent compte de ce type
+    * Les dÃ©fenseurs ont accÃ©s Ã  des logs qui rendent compte de ce type
     d'attaque
-    * Les attaquants exploitent également des macros commandes office. Par
+    * Les attaquants exploitent Ã©galement des macros commandes office. Par
     exemple ils placent de faux boutons en haut des pages (du genre warning
     read-only page, click here to enable write)
-    * Les attaquants esquivent la géolocalisation
+    * Les attaquants esquivent la gÃ©olocalisation
     * Les attaquants n'attaquent pas les entreprises fortes (comme Microsoft)
 
 
@@ -657,26 +661,26 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Adrian-Nish| |Sergei-Shevchenko| @ BAE Systems
                 |Dries-Watteyne| @ SWIFT 
 
-    * Des attaquants ont patché un contrôle d'intégrité (hash-check) d'un code 
+    * Des attaquants ont patchÃ© un contrÃ´le d'intÃ©gritÃ© (hash-check) d'un code 
     de transaction bancaire en changeant un jmp en nop. Qui sont ils ?
     * On peut aussi changer jnz 04 en jnz 00 en patchant simplement 1 bit
-    * Cette technique a été employée mais n'a pas fonctionné au Bangladesh
-    donc les attaquants ont changé de cible
-    * Un "iFrame" js mène à un script jsp (JavaServer Pages) qui cherche
-    l'endroit où patcher ce programme bancaire
-    * Le script jsp possède une liste blanche pour éviter d'attaquer les pays
-    riches où les banques se défendent fortement : les attaquants attaquent
+    * Cette technique a Ã©tÃ© employÃ©e mais n'a pas fonctionnÃ© au Bangladesh
+    donc les attaquants ont changÃ© de cible
+    * Un "iFrame" js mÃ¨ne Ã  un script jsp (JavaServer Pages) qui cherche
+    l'endroit oÃ¹ patcher ce programme bancaire
+    * Le script jsp possÃ¨de une liste blanche pour Ã©viter d'attaquer les pays
+    riches oÃ¹ les banques se dÃ©fendent fortement : les attaquants attaquent
     les pauvres. Ils ont attaquer bitcoins et aussi le Chili, estos aweonados
     de la concha su madre !
-    * La charge utile (payload) a été testée en Asie du sud est sur
+    * La charge utile (payload) a Ã©tÃ© testÃ©e en Asie du sud est sur
     virustotal.com
-    * Le compilateur de l'OS révèle l'utilisation du langage Koréen : même si
-    il était utilisé en Anglais, c'était une version Koréenne.
+    * Le compilateur de l'OS rÃ©vÃ¨le l'utilisation du langage KorÃ©en : mÃªme si
+    il Ã©tait utilisÃ© en Anglais, c'Ã©tait une version KorÃ©enne.
     * Les attaquants utilisent de faux drapeaux (flag) Russes
-    * L'attaque a été tester via VPN en France, bachibouzouk !
-    * Pour la première fois, Kaspersky fait une attribution :
+    * L'attaque a Ã©tÃ© tester via VPN en France, bachibouzouk !
+    * Pour la premiÃ¨re fois, Kaspersky fait une attribution :
                                                            *attribution-coree*
-        -> L'attaque vient de Corée du Nord
+        -> L'attaque vient de CorÃ©e du Nord
 
 
 14:40 - 15:05   Attacking the hospitality and gaming industries: Tracking an 
@@ -688,9 +692,9 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
     * Attaquant:
         -> Parle Russe
         -> Agit aux US
-        -> Est très bruyant
-        -> Très focalisé sur sa, ses cible(s): il échoue mais revient
-        -> Efface les logs derrière lui
+        -> Est trÃ¨s bruyant
+        -> TrÃ¨s focalisÃ© sur sa, ses cible(s): il Ã©choue mais revient
+        -> Efface les logs derriÃ¨re lui
     * Attaquant cible:
         -> Restaurants
         -> Hotels
@@ -700,9 +704,9 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
         McAfee
         -> Batch script -> Batch script -> |psexec| -> Service discovery
         -> |Perl2Exe| -> des fichiers SO avec beaucoup de bruit (ie: lourds)
-    * Défenseur le traque via:
+    * DÃ©fenseur le traque via:
         -> Logs:
-            -> Évènements système
+            -> Ã‰vÃ¨nements systÃ¨me
             -> VPN
             -> Firewalls
         -> Des exports particuliers
@@ -713,21 +717,21 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Peter-Kruse| |Jan-Kaastrup| @ CSIS Security Group 
 
     
-    * Auteur a un accent difficile voici quelques caractérisations de la
+    * Auteur a un accent difficile voici quelques caractÃ©risations de la
     menace
     * Attaquant:
-        -> Commence avec des email d'hameçonnage (fishing)
-        -> Corrompt 1000 serveurs (Européen)
-        -> Exploite: l'indice du mot de passe administrateur aide souvent à le
+        -> Commence avec des email d'hameÃ§onnage (fishing)
+        -> Corrompt 1000 serveurs (EuropÃ©en)
+        -> Exploite: l'indice du mot de passe administrateur aide souvent Ã  le
         deviner
-        -> Exploite: les connexions ADSL gouvernementales utilisent la même
+        -> Exploite: les connexions ADSL gouvernementales utilisent la mÃªme
         clef ssh
-    * Défenseur:
+    * DÃ©fenseur:
         -> Le monitoring des cookies indique que les attaquants attaquent
-        toujours les mêmes personnes
+        toujours les mÃªmes personnes
         -> Fait une revue pour savoir qui a cliquer sur les sites
-        d'hameçonnage
-    * Les données sur les serveurs compromis ne sont pas en sécurité
+        d'hameÃ§onnage
+    * Les donnÃ©es sur les serveurs compromis ne sont pas en sÃ©curitÃ©
 
 
 15:30 - 15:55   Live in the ATM malware trenches 
@@ -736,32 +740,32 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
     1/ La magie en boite noire
     --------------------------
         -> Vol d'argent sur les ATM
-        -> Laissant un log appelé kl.txt (comme kaspersky lab). Il y est écrit
+        -> Laissant un log appelÃ© kl.txt (comme kaspersky lab). Il y est Ã©crit
         "catch money bitch"
         -> La technique fonctionne avec tout les ATM
         -> Utilise MSXFS.dll
-        -> Nécessite une installation depuis une banque
+        -> NÃ©cessite une installation depuis une banque
 
-    2/ A l'intérieur de la boite
+    2/ A l'intÃ©rieur de la boite
     ----------------------------
-        -> Pour pénétrer l'ATM il faut brancher un clavier usb-bluetooth
+        -> Pour pÃ©nÃ©trer l'ATM il faut brancher un clavier usb-bluetooth
         -> Installer un driver bluetooth (OS = Windows)
-        -> Démarrer la machine ATM et utiliser le clavier pour obtenir le fric
+        -> DÃ©marrer la machine ATM et utiliser le clavier pour obtenir le fric
 
     3/ DRDRDRDRDRDRDRDRLLLLING
     --------------------------
         -> Attaquant: perce l'ATM
         -> Attaquant: essaie d'atteindre le bus SDC: un bus RS485 de 9 bits 
-        -> Défenseur: reverse le protocole du bus via le hardware
-            -> Chaque appareil est appelé par son adresse
-            -> Chaque erreur fait redémarrer l'ATM (attente = 10 min)
-        -> Défenseur: construit un petit appareil pour imiter la requête du
+        -> DÃ©fenseur: reverse le protocole du bus via le hardware
+            -> Chaque appareil est appelÃ© par son adresse
+            -> Chaque erreur fait redÃ©marrer l'ATM (attente = 10 min)
+        -> DÃ©fenseur: construit un petit appareil pour imiter la requÃªte du
         vol d'argent
         
 
 15:55 - 16:10   The SAS 2017 MVP award  
                                                                   *prime-yara*
-    * Victor Manuel Alvarez a été primé. C'est un Cubain créateur de |YARA|
+    * Victor Manuel Alvarez a Ã©tÃ© primÃ©. C'est un Cubain crÃ©ateur de |YARA|
 
 
 16:10 - 16:30   Coffee break 
@@ -773,40 +777,41 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 16:30 - 16:55   Breaking Tizen 
                 |Amihai-Neiderman| 
 
-    * Tizen est le futur OS Samsung. Il est open source, réputé sécurisé
+    * Tizen est le futur OS Samsung. Il est open source, rÃ©putÃ© sÃ©curisÃ©
     * ADB -> SDB
-    * Linux (basé sur...)
-    * Le marché virtual Tizen a un haut privilège (ie: SYSTEM)
+    * Linux (basÃ© sur...)
+    * Le marchÃ© virtual Tizen a un haut privilÃ¨ge (ie: SYSTEM)
     * Pas de review de code
                                                                   *tizen-vuln*
-    * |strcpy| sans vérification de taille
-    * |malloc| sans vérification du retour
-    * taille des tableaux non vérifier
-    * On peut pas faire d'injection SQL: c'est le point fort de ce système
+    * |strcpy| sans vÃ©rification de taille
+    * |malloc| sans vÃ©rification du retour
+    * taille des tableaux non vÃ©rifier
+    * On peut pas faire d'injection SQL: c'est le point fort de ce systÃ¨me
     faible
     * Auteur: trouve 40 bugs et se sent comme en 2005. Comme en 40 quoi
-    * Samsung Galaxy S9 viendra avec Tizen installé
-    * Samsung a proposé 1000$ a l'auteur pour son silence
+    * Samsung Galaxy S9 viendra avec Tizen installÃ©
+    * Samsung a proposÃ© 1000$ a l'auteur pour son silence
     * Auteur: est un chercheur de vulns solo, cherche partenaire particulier
 
 
 16:55 - 17:20   Elephant and monkey
                 |Peter-Zinn| |Erik-Johansson| 
                 
-    * Petite présentation rigolote qui se moque des
-        -> IOT: Internet Of Things = objects connectés (monkey)
+    * Petite prÃ©sentation rigolote qui se moque des
+        -> IOT: Internet Of Things = objects connectÃ©s (monkey)
         -> L'informatique industrielle (IT)
-    * L'accouplement des deux crée une aberration
+    * L'accouplement des deux crÃ©e une aberration
 
 
-17:20 - 17:45   Time to grow up: Counterproductive security behaviors that must end
+17:20 - 17:45   Time to grow up: Counterproductive security behaviors that
+                    must end
                 |Chris-Eng| @ Veracode 
 
-    * On critique plus les choses imparfaites que félicite les bonnes choses
-    * Les petits pas dans la défense rendent l'attaque plus difficile
+    * On critique plus les choses imparfaites que fÃ©licite les bonnes choses
+    * Les petits pas dans la dÃ©fense rendent l'attaque plus difficile
     * Penser "Mieux Vs Moins bien" au lieu de "Bon VS Mauvais"
         -> Personelement je formulerai: "La pente importe plus que l'altitude"
-    * Se souvenir qu'au USA, certains s'opposaient au vote féminin par peur
+    * Se souvenir qu'au USA, certains s'opposaient au vote fÃ©minin par peur
     qu'elles interdisent l'alcool
                                                                      *sagesse*
     * Ne blame pas la victime (d'une attaque informatique)
@@ -814,21 +819,21 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
     travail
     * Plus tu dis que t'es un hackeur moins probable que tu le sois
     * Hackeur ~= elite ! Mon cul !
-    * Pense comment les gens te perçoivent en dehors de ton domaine
+    * Pense comment les gens te perÃ§oivent en dehors de ton domaine
     d'expertise
 
 
 17:45 - 18:30   The digital frontier Live debates 
                 Dinner 
 
-    * Quelques débats actuels 3 vs 3 sur base de l'humour
+    * Quelques dÃ©bats actuels 3 vs 3 sur base de l'humour
     
-    1/ Sécurité: Le gouvernement peut-il pénétrer ta vie privée
-    2/ La "Nouvelle génération" d'AV est-elle différente ou n'est ce que de
+    1/ SÃ©curitÃ©: Le gouvernement peut-il pÃ©nÃ©trer ta vie privÃ©e
+    2/ La "Nouvelle gÃ©nÃ©ration" d'AV est-elle diffÃ©rente ou n'est ce que de
     la com ?
-    3/ IoT.net, ça vous fait peur ?
-    4/ Les entreprises devraient elles travailler avec Wikileak pour réparer
-    leurs propres vulnérabilités ?
+    3/ IoT.net, Ã§a vous fait peur ?
+    4/ Les entreprises devraient elles travailler avec Wikileak pour rÃ©parer
+    leurs propres vulnÃ©rabilitÃ©s ?
 
 
 
@@ -838,29 +843,29 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 
 
 @Stamina
-09:30 - 10:00   A bad guy’s dream coming true: The hijack of an entire bank 
+09:30 - 10:00   A bad guy's dream coming true: The hijack of an entire bank 
                 operation
                 |Dmitry-Besthuzhev| |Fabio-Assolini| @ Kaspersky Lab  
 
-    * Auteur: Brésilien
+    * Auteur: BrÃ©silien
     * Malware: regarde index.html dans le pluggin jar
-    * Le module jar est complètement non détecté: pas d'entrée VirusTotal
+    * Le module jar est complÃ¨tement non dÃ©tectÃ©: pas d'entrÃ©e VirusTotal
     * Malware: contient |Avanger| un outil pour retirer les rootkits. Il est
-    ici utilisé pour retirer les AV
-    * Malware: Cible 36 banques Brésiliennes et 9 internationales
+    ici utilisÃ© pour retirer les AV
+    * Malware: Cible 36 banques BrÃ©siliennes et 9 internationales
     * Malware: compromet le PoS Network. Puis le lecteur de carte bleu envois
     de la victime envois des informations au serveur compromis
     * Attaquant: vole les certificats des clients de la banque
-    * Attaquant: a même compromis l'email de la banque ce qui empêcha cette
-    dernière de communiquer à ses clients et de les avertir de la faille
+    * Attaquant: a mÃªme compromis l'email de la banque ce qui empÃªcha cette
+    derniÃ¨re de communiquer Ã  ses clients et de les avertir de la faille
     * DNS hijacking:
-        -> Le DNS des banques a été court-circuité
-        -> Google.com redirigé vers un site porno
+        -> Le DNS des banques a Ã©tÃ© court-circuitÃ©
+        -> Google.com redirigÃ© vers un site porno
         -> Tous ces DNS compromis par simplement 1 registre "registro.br"
-        -> Le "Certificate Pinning" a protégé les utilisateurs Android
+        -> Le "Certificate Pinning" a protÃ©gÃ© les utilisateurs Android
                                                                    *la-moitie*
-        -> La moitié des banques ne contrôle pas leur serveur DNS
-        -> Quelques unes de ces banques partagent le même serveur DNS
+        -> La moitiÃ© des banques ne contrÃ´le pas leur serveur DNS
+        -> Quelques unes de ces banques partagent le mÃªme serveur DNS
 
 
 @Flexibility
@@ -869,14 +874,14 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Domingo-Montanaro| @ Ventura Enterprise Risk Management;
                 |Cyllas-Elia| @ Sao Paulo State Police
 
-    * Attaquants: se sont rendu physiquement dans des supermarché pour
-    réaliser leur attaque
-    * Attaquants: ont falsifié des factures
+    * Attaquants: se sont rendu physiquement dans des supermarchÃ© pour
+    rÃ©aliser leur attaque
+    * Attaquants: ont falsifiÃ© des factures
     * Attaquants: utilisent un Rasberry-Pi pour faire un Man-In-The-Middle
-    * Attaquants: trop gourmands: ils ont transféré 100k$ en 2h ce qui a
-    éveillé l'attention de la banque qui a appelé la police qui a regardé les
-    vidéo de surveillance des supermarchés et qui a démasqué les attaquants
-    * Attaquants: achetèrent des bouteilles de whisky et du matériel de
+    * Attaquants: trop gourmands: ils ont transfÃ©rÃ© 100k$ en 2h ce qui a
+    Ã©veillÃ© l'attention de la banque qui a appelÃ© la police qui a regardÃ© les
+    vidÃ©o de surveillance des supermarchÃ©s et qui a dÃ©masquÃ© les attaquants
+    * Attaquants: achetÃ¨rent des bouteilles de whisky et du matÃ©riel de
     construction. Le montant total atteignant 200 000$ 
 
 
@@ -888,9 +893,9 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Amin-Hasbini| @ Kaspersky Lab 
 
     * Presentation RH expliquant la nouvelle perspective de Microsoft pour
-    guider ses travailleurs avec une carotte plutôt qu'un bâton.
-    * Gamification = donner aux travailleur des taches de complexité
-    croissantes tels les niveuax d'un jeu vidéo
+    guider ses travailleurs avec une carotte plutÃ´t qu'un bÃ¢ton.
+    * Gamification = donner aux travailleur des taches de complexitÃ©
+    croissantes tels les niveuax d'un jeu vidÃ©o
 
 
 @Stamina
@@ -898,7 +903,7 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Alex-Rice| @ HackerOne;
                 |Ryan-Naraine| @ Kaspersky Lab
 
-    * Les entreprises répondent en 7h aux rapports de bogues
+    * Les entreprises rÃ©pondent en 7h aux rapports de bogues
     * Correctif en moins de 24h
 
 
@@ -919,13 +924,13 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 
     * Les pentesteurs de Blackberry font des concours internes : chasse aux
     bogues
-    * Backbverry est compatible Android donc ils donnent à Google tout les
+    * Backbverry est compatible Android donc ils donnent Ã  Google tout les
     bogues qu'ils y trouvent
-    * Les mises à jour depuis le cloud sont intéressantes mais sont un
-    véritable casse tête en sécurité
+    * Les mises Ã  jour depuis le cloud sont intÃ©ressantes mais sont un
+    vÃ©ritable casse tÃªte en sÃ©curitÃ©
     
                                                                   *la-securite*
-    -> La sécurité est un processus et non une destination
+    -> La sÃ©curitÃ© est un processus et non une destination
 
 
 @Expertise
@@ -933,19 +938,19 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Jan-Hoersch| @ Securai GmbH 
 
 
-    * Étude du routeur de voyage |Starttech|
+    * Ã‰tude du routeur de voyage |Starttech|
         -> Il ouvre |telnet|
-        -> Le password root est hardcoder et est "root" et ne peut pas être
+        -> Le password root est hardcoder et est "root" et ne peut pas Ãªtre
         changer
     * Hotoo
     * TrendNet = routeur
     * WD MyCloud/Miroir 
         -> 85 RCE
-        -> 'sprintf' la commande interprétée puis 'eval' dessus
-        -> Il faut faire 1 ticket par bogue pour que les réparations se
-        fassent en parallèle 
+        -> 'sprintf' la commande interprÃ©tÃ©e puis 'eval' dessus
+        -> Il faut faire 1 ticket par bogue pour que les rÃ©parations se
+        fassent en parallÃ¨le 
 
-    -> Tu es toujours le débutant de quelqu'un
+    -> Tu es toujours le dÃ©butant de quelqu'un
 
 
 @Expertise
@@ -953,14 +958,14 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Kirill-Kruglov| |Vyacheslav-Kopeitsev| @ Kaspersky Lab 
 
                                                                 *armee-zombie*
-    * Le mieux pour obtenir une armée de zombie est l'hameçonnage (fishing)
-    * Défenseur: a vu des emails depuis des entreprises légitimes
+    * Le mieux pour obtenir une armÃ©e de zombie est l'hameÃ§onnage (fishing)
+    * DÃ©fenseur: a vu des emails depuis des entreprises lÃ©gitimes
     * 500 entreprises sous attaque
     * Attaquant: utilise une boite de pandore de malgiciels voleurs de mot de
     passe 
-    * Attaquant: prépare soigneusement ses emails en fonction de l'entreprise
-    à hameçonner (ie: social engineering)
-    * Défenseur: crée un cercle d'information pour pouvoir réagir plus vite
+    * Attaquant: prÃ©pare soigneusement ses emails en fonction de l'entreprise
+    Ã  hameÃ§onner (ie: social engineering)
+    * DÃ©fenseur: crÃ©e un cercle d'information pour pouvoir rÃ©agir plus vite
 
 
 @Collaboration
@@ -971,21 +976,21 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
     * |Unicorn|
     * |Pupy|
     * |Mimikatz|
-    * Les APT commencent à utiliser du code en source ouverte ou fermée mais
+    * Les APT commencent Ã  utiliser du code en source ouverte ou fermÃ©e mais
     en tout cas ne font plus tout tout seuls. Ils deviennent donc plus
-    difficiles à détecter, attribuer
+    difficiles Ã  dÃ©tecter, attribuer
     * ISIS est en turquie
     * Les gouvernements Indiens et Russes sont compromis
-    * |Puppy| est une porte dérobée vivant dans la RAM: quand il est chargé
+    * |Puppy| est une porte dÃ©robÃ©e vivant dans la RAM: quand il est chargÃ©
     par powershell, il ne passe pas du tout par le disque
-    * |NewBeef| utilise Beef partout et tatoue les systèmes, lance de faux
+    * |NewBeef| utilise Beef partout et tatoue les systÃ¨mes, lance de faux
     installateurs
     * |Sofacy|
-    * Défenseur:
+    * DÃ©fenseur:
                                                                 *open-defense*
-        -> Interdire les scripts powershell non signés
+        -> Interdire les scripts powershell non signÃ©s
         -> Interdire les macros MS-Office
-        -> Utiliser des Scanners de mémoire chez l'hôte
+        -> Utiliser des Scanners de mÃ©moire chez l'hÃ´te
         -> Utiliser des Scanners de comportement
 
 
@@ -996,35 +1001,35 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
                 |Mark-Spencer| @ Arsenal Consulting
 
     * Mark spencer est le chef de Arsenal Consulting, la meilleure entreprise
-    privée de forensic
-    * Jadis, l'entreprise a été impliquée dans une affaire concernant la
-    préparation d'une bombe contre une mosquée
+    privÃ©e de forensic
+    * Jadis, l'entreprise a Ã©tÃ© impliquÃ©e dans une affaire concernant la
+    prÃ©paration d'une bombe contre une mosquÃ©e
     * L'histoire qui suit concerne le destin de 14 journalistes Turques,
-    emprisonnés depuis 18 mois et qui ont versé tout les fonds de leur
+    emprisonnÃ©s depuis 18 mois et qui ont versÃ© tout les fonds de leur
     entreprise pour en sortir
-    * Ils sont  accusé d'être une "TV patriotique" liée au Mossad et à la CIA
-    * Cette accusation est basée sur le travail forensic d'un PC portable d'un
-    journaliste fait par un enquêteur envoyé par le président Erdogan
-    * Mais Arsenal ne croit pas en la véracitée de cette enquête
+    * Ils sont  accusÃ© d'Ãªtre une "TV patriotique" liÃ©e au Mossad et Ã  la CIA
+    * Cette accusation est basÃ©e sur le travail forensic d'un PC portable d'un
+    journaliste fait par un enquÃªteur envoyÃ© par le prÃ©sident Erdogan
+    * Mais Arsenal ne croit pas en la vÃ©racitÃ©e de cette enquÃªte
     gouvernementale Turque
-    * Arsenal a regardé les "log sequence Number" pour vérifier la chronologie
+    * Arsenal a regardÃ© les "log sequence Number" pour vÃ©rifier la chronologie
     des faits
-        -> Des documents ont été crée puis supprimer alors que le laptop était
-        éteint
-        -> C'est le troisième cas de ce type au moyen orient que traite
+        -> Des documents ont Ã©tÃ© crÃ©e puis supprimer alors que le laptop Ã©tait
+        Ã©teint
+        -> C'est le troisiÃ¨me cas de ce type au moyen orient que traite
         Arsenal
-        -> Le document légitimant l'arrestation des journaliste a été copié
-        juste avant que l'ordinateur ne soit saisi et le "timestamp" a été
-        modifié pour faire croire qu'il était là depuis plus longtemps
-        -> Apparemment le document comptait être copier Jeudi soir mais
+        -> Le document lÃ©gitimant l'arrestation des journaliste a Ã©tÃ© copiÃ©
+        juste avant que l'ordinateur ne soit saisi et le "timestamp" a Ã©tÃ©
+        modifiÃ© pour faire croire qu'il Ã©tait lÃ  depuis plus longtemps
+        -> Apparemment le document comptait Ãªtre copier Jeudi soir mais
         l'attaquant aurai du revenir Vendredi et pris de vitesse, il aurait
         oublier de supprimer les logs de chronologie de Windows (event tracing)
-    * Attaquant: Voyant Arsenal si près du but, il publie de faux rapport
-    en leur nom, ce qui énerva particulièrement Mark Spencer qui pris
-    l'affaire à titre personnel
-        -> ID d'Arsenal a été usrupé
+    * Attaquant: Voyant Arsenal si prÃ¨s du but, il publie de faux rapport
+    en leur nom, ce qui Ã©nerva particuliÃ¨rement Mark Spencer qui pris
+    l'affaire Ã  titre personnel
+        -> ID d'Arsenal a Ã©tÃ© usrupÃ©
         -> Arsenal traque les attaquants de ODATV 
-        -> Arsenal retrouve 4 attaques similaires avec le déploiement du même
+        -> Arsenal retrouve 4 attaques similaires avec le dÃ©ploiement du mÃªme
         rat
 
                                                              *14-journalistes*
@@ -1036,13 +1041,13 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 15:40 - 16:00   Undocumented MS Word features abused by attackers
                 |Alexander-Liskin| |Anton-Ivanov| @ Kaspersky Lab
 
-    * MS-word a une fonction permettant de télécharger des images depuis
+    * MS-word a une fonction permettant de tÃ©lÃ©charger des images depuis
     internet. C'est une technique bien connue pour attaquer
-    * Défenseur: doit lire OLE2 (MS-CFB) documentation
-    * Défenseur: trouve |IncludePicture| fonction avec un URL invalide
-    * Il y a un byte 0x01 supicieux dans le 2ème champs de la fonction
+    * DÃ©fenseur: doit lire OLE2 (MS-CFB) documentation
+    * DÃ©fenseur: trouve |IncludePicture| fonction avec un URL invalide
+    * Il y a un byte 0x01 supicieux dans le 2Ã¨me champs de la fonction
     |IncludePicture|
-    * Ce n'est pas facile à détecter, non documenté, les attaquants ont fait
+    * Ce n'est pas facile Ã  dÃ©tecter, non documentÃ©, les attaquants ont fait
     une reverse lourde du format MS-Word
 
     -> Finalement ce 0x01 pointe vers un conteneur qui contient l'URL
@@ -1050,19 +1055,20 @@ Voici la vidéos youtube d'introduction (youtube interdit sur l'ISPT):
 
 
 @Collaboration
-16:20 - 16:40   Battle of hunters: Attacking the weakest link of the strongest chain?
+16:20 - 16:40   Battle of hunters: Attacking the weakest link of the strongest
+                    chain?
                 Ido Naor, Kaspersky Lab
 
-    * Conférence sur le social engineering confrontant Mossad et Hamas <-
-    l'auteur est Israélien, il travaillait pour l'ISA : Israel Security
+    * ConfÃ©rence sur le social engineering confrontant Mossad et Hamas <-
+    l'auteur est IsraÃ©lien, il travaillait pour l'ISA : Israel Security
     Agency
-    * Hameçonnage ciblé, une fille (attaquante) drague un mec (victime) sur fb
-    lui demande d'installer une app pour un chat privé. Son hébreu n'est pas
-    top, cette attaque visant 100 soldats Israélien est attribué au Hamas
-    * Quelques données militaires Israélienne ont été ainsi exfiltrée
+    * HameÃ§onnage ciblÃ©, une fille (attaquante) drague un mec (victime) sur fb
+    lui demande d'installer une app pour un chat privÃ©. Son hÃ©breu n'est pas
+    top, cette attaque visant 100 soldats IsraÃ©lien est attribuÃ© au Hamas
+    * Quelques donnÃ©es militaires IsraÃ©lienne ont Ã©tÃ© ainsi exfiltrÃ©e
 
                                                            *attribution-hamas*
-    -> Pour la deuxième fois un agent de Kaspersky attribue (ici au Hamas)
+    -> Pour la deuxiÃ¨me fois un agent de Kaspersky attribue (ici au Hamas)
         
 
 
