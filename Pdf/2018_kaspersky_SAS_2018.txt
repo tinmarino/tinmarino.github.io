@@ -28,11 +28,26 @@ DGA-MI/SSI5/VSE/AVG
 
                                          à l'attention du personnel SSI DGA-MI
 
-
     Objet : Restitution de la conférence Kaspersky (SAS 2018)
 
-Chers Collègues,
+============================================================================
+                                                                        *plan*
+    
+    0. Introduction                         |intro0| & |intro1|  
+    1. Résumé                               |resume|
+    2. Programme                            |programme|
+        2.1 Programme du jour 1             |programme-jour1|
+        2.2 Programme du jour 2             |programme-jour2|
+    3. Premier jour                         |jour1|
+    4. Deuxième jour                        |jour2|
+
+
+============================================================================
+
+
                                                                        *intro0*
+Chers Collègues,
+
     Les 8 et 9 Mars, j'ai participé à la conférence Kaspersky sur les menaces
 et malgiciels de l'année 2017. Voici ci-dessous ma restitution non protégée.
 Cette conférence a eut lieu à Cancun au Mexique.
@@ -44,57 +59,72 @@ Cette conférence a eut lieu à Cancun au Mexique.
 Chers collègues informaticiens,
 
 1gurgites
-    D'une conférence internationale organisée par Kaspersky au Mexique je reviens.
-    A un résumé, point de vue extérieur des événements marquant de 2017 sous bannière bleu j'ai assisté.
-    Aussi, en quelques lignes, les plus croustillantes élocutions et importantes informations je vous transmet.
-    Mais également un compte rendu détaillé, non protégé, que vous ne lirez sans doute jamais, je vous joins.
+    D'une conférence internationale organisée par Kaspersky au Mexique je
+        reviens.
+    A un résumé, point de vue extérieur des événements marquant de 2017 sous
+        bannière bleu j'ai assisté.
+    Aussi, en quelques lignes, les plus croustillantes élocutions et
+        importantes informations je vous transmet.
+    Mais également un compte rendu détaillé, non protégé, que vous ne lirez
+        sans doute jamais, je vous joins.
 
 2viens
-    * Les agents faisant de la désinformation, crées de fausses nouvelles des 2 côtés afin de créer un vide médian et donc un conflit
+    * Les agents faisant de la désinformation, crées de fausses nouvelles des
+        2 côtés afin de créer un vide médian et donc un conflit
     * Pour lutter, privilégier les nouvelles récentes et non les ressuscitées
 
-    * Les renseignements Libanais ainsi que les Kazaks sous-traitent le même agent de SSI, ce qui a 2 avantages:
+    * Les renseignements Libanais ainsi que les Kazaks sous-traitent le même
+        agent de SSI, ce qui a 2 avantages:
         1/ Moins cher
         2/ Rend l'attribution plus difficile
 
     * Le cryptomining est le nouveau ransomware
 
-    * La police Hollandaise a maintenu un marché noir cybernétique pendant 1 mois afin de piéger quelques vendeurs
+    * La police Hollandaise a maintenu un marché noir cybernétique pendant 1
+        mois afin de piéger quelques vendeurs
 
-    * La Déception est la création de plusieurs leurres, de fausses machines, réseaux, adresses IPs, utilisateurs, fichiers, tokens, process, sessions, crédentials ...
-    * Conclusion: Dans la guerre de l'information, comme dans celle des ondes, faites du bruit
+    * La Déception est la création de plusieurs leurres, de fausses machines,
+        réseaux, adresses IPs, utilisateurs, fichiers, tokens, process,
+        sessions, crédentials ...
 
-    * Faire une signature à partir de l'offuscation n'est pas une mauvaise idée car les créateurs de malgiciels aiment ça (l'offuscation pas les signatures)
+    * Conclusion: Dans la guerre de l'information, comme dans celle des ondes,
+        faites du bruit
 
-    ! La résolution de DNS est considérée comme surface externe par les entreprises. Mais si quelqu'un crée kasperskey.com (au lieu de kaspersky.com), il peut voler quelques credentials d'utilisateur et donc pénétrer ton entreprise
+    * Faire une signature à partir de l'offuscation n'est pas une mauvaise
+        idée car les créateurs de malgiciels aiment ça (l'offuscation pas les
+        signatures)
 
-    * Notre privacité dépend donc plus d'entreprises privées que du gouvernement. C'est un problème intéressant
-    * La meilleure protection, l'information la mieux protégée est celle que tu n'as pas
-    * Petite remarque: avec les attributs étendues d'un fichier ajoutés par google earth aux photos, un inconnu peut savoir où tu as pris la photo de ton chat. Ce qui est dangereux car cette personne peut avoir envie de voler ton chat. Alors que sans ces attributs, cela ne nuit absolument pas à la vie privée de ton chat (même s'il est nu sur la photo)
+    ! La résolution de DNS est considérée comme surface externe par les
+        entreprises. Mais si quelqu'un crée kasperskey.com (au lieu de
+        kaspersky.com), il peut voler quelques credentials d'utilisateur et
+        donc pénétrer ton entreprise
+
+    * Notre privacité dépend donc plus d'entreprises privées que du
+        gouvernement. C'est un problème intéressant
+
+    * La meilleure protection, l'information la mieux protégée est celle que
+        tu n'as pas
+
+    * Petite remarque: avec les attributs étendues d'un fichier ajoutés par
+        google earth aux photos, un inconnu peut savoir où tu as pris la photo
+        de ton chat. Ce qui est dangereux car cette personne peut avoir envie
+        de voler ton chat. Alors que sans ces attributs, cela ne nuit
+        absolument pas à la vie privée de ton chat (même s'il est nu sur la
+        photo)
 
 
 3vailles
     En pièce jointe, mes notes au format texte, à grepper à volonté.
     Aussi en html pour donner des couleurs à la lecture en survol des curieux.
     C'est non protégé donc vous pouvez vous l'envoyer à la maison.
-    Je le met aussi sur le répertoire du TRUC pour l'unification des connaissances et rappel que c'est préférable que chacun fasse de même suite à une conf. Ainsi, à terme, l'info ne se perd pas dans les méandres des archives mails.
+    Je le met aussi sur le répertoire du TRUC pour l'unification des
+        connaissances et rappel que c'est préférable que chacun fasse de même
+        suite à une conf. Ainsi, à terme, l'info ne se perd pas dans les
+        méandres des archives mails.
 
 
 4astrophiquement votre,
 Mart'1 T.
-
-
-
-============================================================================
-                                                                        *plan*
-    
-    0. Introduction                         |intro|  
-    1. Résumé                               |resume|
-    2. Programme                            |programme|
-        2.1 Programme du jour 1             |programme-jour1|
-        2.2 Programme du jour 2             |programme-jour2|
-    3. Premier jour                         |jour1|
-    4. Deuxième jour                        |jour2|
 
 
 
@@ -240,7 +270,7 @@ privée de ton chat (même s'il est nu sur la photo)
 
 9:30 - 10:00    Goodfellas, the Brazilian Carding Scene Is After You
                 *Santiago-Pontiroli* & *Thiago-Marques* @ Kaspersky Lab 
-10:00 - 10:20   Its a Small World After All: 
+10:00 - 10:20   It's a Small World After All: 
                 The Evolution of Small POS RAM Scrapers
                 *Matt-Bromiley* & *Courtney-Dayter* @ Kroll Inc
 10:20 - 10:40   Stopping the Fireball - How We Took Down a Global Threat
@@ -298,7 +328,7 @@ privée de ton chat (même s'il est nu sur la photo)
     |SESSION10| The maze isn't meant for you
     *Mike-Lennon*
 
-11:30 - 12:00   Hey! Im Spying on YOU! How Weve Found a Backdoor in Popular
+11:30 - 12:00   Hey! I' Spying on YOU! How We've Found a Backdoor in Popular
                 Smart-cam
                 *Vladimir-Dashchenko* & *Andrey-Muravitsky* @ Kaspersky Lab
 12:00 - 12:20   Things Attack: Peek into a 18 Months IoT Honeypot
@@ -327,7 +357,7 @@ privée de ton chat (même s'il est nu sur la photo)
                 *Kyoung-Ju-Kwak* @ Financial Security Institute in South Korea
 
 
-    |SESSION12| This world doesnt belong to them; it belongs to us
+    |SESSION12| This world doesn't belong to them; it belongs to us
     *Chris-Eng*
 
 14:00 - 14:30   AI & ML in Cyber Security - Why Algorithms Are Dangerous
@@ -350,7 +380,7 @@ privée de ton chat (même s'il est nu sur la photo)
 14:30 - 15:00   Modern Yacht Hacking
                 *Stephan-Gerling* @ ROSEN Group
 15:00 - 15:20   The Voice of Esau: Hacking Enterprises Through Voice Interfaces
-                *Tal-Beery* & *Amichai-Shulman* @ independent researchers
+                *Tal-Be'ery* & *Amichai-Shulman* @ independent researchers
 15:20 - 15:40   Robots threats are challenging our safety
                 *Cesar-Cerrudo* & *Lucas-Apa* @ IOActive Labs
 15:40 - 16:00   Hack Your Robot
@@ -374,8 +404,8 @@ privée de ton chat (même s'il est nu sur la photo)
 
     |WORKSHOPS|
 
-9:30 - 11:00    Deceive to Detect: Cyber Deception Strategy for Lateral
-                Movement Detection
+9:30 - 11:00    Deceive to Detect Cyber Deception Strategy for Lateral
+                Movement' Detection
                 *Denis-Makrushin* @ Kaspersky Lab 
 11:30 - 13:00   Hunting from the Outside - 7 Strategies for Finding Cool Sh!t
                 *John-Wetzel* @ Recorded Future 
@@ -419,8 +449,8 @@ guerre froide, le cout est compté en dollars actuels (à l'époque c'était 2 G
     * Cyber:
         -> 1990: Le Mossad commence une guerre digitale contre Fatah
         -> 2014: Les élections Ukraniennes
-        -> 2016: Glucifer 2.0 (@wikileak). Cette campagne fut revendiqué par un
-Roumain disant, ce ne sont pas les russes car c'est moi et je suis Roumain
+        -> 2016: Glucifer 2.0 (@wikileak). Cette campagne fut revendiqué par
+un Roumain disant, ce ne sont pas les russes car c'est moi et je suis Roumain
 Malheureusement pour lui, il ne pouvait pas parler Roumain
 
     * Souvent les acteurs de la désinformation jouent les 2 côtés (ie: le pour
@@ -442,8 +472,8 @@ résucitées
                 |Mike-Flossman| @ Lookout     
 
     * 1 an de travail, 4 personnes
-    * Kazakhstan: c'est là où tout à commencé. Le gouvernement se battait alors
-contre des opposants politiques. Il a même menacé un/une journaliste
+    * Kazakhstan: c'est là où tout à commencé. Le gouvernement se battait
+alors contre des opposants politiques. Il a même menacé un/une journaliste
     * Des campagnes de renseignement furent effectuées à travers des fichiers
 desktop et mobile corrompues
 
@@ -497,7 +527,8 @@ SMS
         -> En traçant la console de login de l'administrateur...
         -> Beyrouth (Liban)
         -> En observant le SSID des appareils se connectent: `bld3F6`
-        -> En envoyant quelqu'un à Beyrouth en recherche du SSID (building 6 floor
+        -> En envoyant quelqu'un à Beyrouth en recherche du SSID (building 6
+           floor
 3)...
         -> Proche du campus France, le GDGS: General Security of Lebanon in
 Beirut
@@ -520,7 +551,8 @@ services
 
     * `Qui possède l'information possède le monde` (Rothschild Nathan)
 
-    * Stuxnet, Duqu, Gauss, Flame, Duqu2.0, Red October, Dark Hotel, Sattelite Tula,
+    * Stuxnet, Duqu, Gauss, Flame, Duqu2.0, Red October, Dark Hotel, Sattelite
+    Tula,
 Lazarus
     * WannaCry
         -> A été classifié en quelques minutes alors qu'avant ça aurait pris 3
@@ -705,8 +737,8 @@ protéger l'écosystème informatique ?
 -------
 
                                                                    *deception*
-9:30 - 11:00    Deceive to Detect: Cyber Deception Strategy for Lateral
-                Movement Detection
+9:30 - 11:00    Deceive to Detect: Cyber Deception Strategy for Lateral
+                Movement' Detection
                 *Denis-Makrushin* @ Kaspersky Lab 
 
     * Au commencement il y avait les pots de miels, ces machines pleines de
@@ -743,8 +775,8 @@ défenseur de se défendre:
         
     * |Vagrant| pour créer et multiplier les VMs
     * |Vagrant| + |Docker| = Piège
-    * |Camel| Peut émuler des machines privées (moi non plus je sais pas ce que
-ça veut dire)
+    * |Camel| Peut émuler des machines privées (moi non plus je sais pas ce
+que ça veut dire)
     * La redirection SSH permet d'émuler un faux réseau. L'utilisateur
 légitime n'a aucune raison de faire du SSH, surtout pas pour reconnaitre le
 réseau
@@ -838,8 +870,8 @@ gouvernement. C'est un problème intéressant
 n'as pas
     * Pour cette raison l'entreprise GDPR ne collecte pas les données (pas de
 log de DNS queries)
-    * Pour cette raison n'utilise jamais la "social security ID" d'une personne
-pour identifier tes utilisateurs
+    * Pour cette raison n'utilise jamais la "social security ID" d'une
+personne pour identifier tes utilisateurs
 
     * Petite remarque: avec les attributs étendues d'un fichier ajoutés par
 google earth aux photos, un inconnu peut savoir où tu a pris la photo de ton
@@ -917,11 +949,11 @@ appels systèmes des macros
 
                                                                               
                                                                               
-     +----------------------+                         +------------------+    
-     |  Microsoft document  |                         |       OS         |    
-     |                      |                         |                  |    
-     |                      |  ....................   |                  |    
-     |                      |  '                  '   |                  |    
+     +----------------------+                         +------------------+
+     |  Microsoft document  |                         |       OS         |
+     |                      |                         |                  |
+     |                      |  ....................   |                  |
+     |                      |  '                  '   |                  |
      |                      |  '                  '   |                  |    
      |                      |  '                  '   |                  |    
      |                      |  '                  '   |                  |    
