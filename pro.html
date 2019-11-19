@@ -17,24 +17,42 @@ html, body {
 }
 .base03, .hover-base03:hover{color:#fdf6e3!important;background-color:#002b36!important}
 
-.w3-sidebar {
+.sidebar {
   /* Set the width of the sidebar to 120px */
-  width: 120px;background: #222;
+  width: 120px; height: 100%;
+  z-index: 1;
+  background: #222;
+  /* Position */
+  position: absolute;
+  float: left;
+  overflow: auto;
   /* Trick to push bottom some bar-item*/
   display: flex;
   flex-direction: column;
 }
 
+.sidebar2 {
+  display: none;
+  /* Position */
+  margin: 0 0 0 120px;
+}
+
+.sidebar img {
+  width: 100%;
+  height: auto;
+}
+
 #id_main {
   background: #002b36;
   color: #fdf6e3;
+  height: 100%;
+  /* Position */
+  position: absolute;
+  top:0; left:0; bottom:0; right:0; 
   margin: 0 0 0 120px;
   padding: 0;
   border: 0;
   overflow: hidden;
-  height: 100%;
-  position: absolute;
-  top:0; left:0; bottom:0; right:0; 
 }
 
 /* Helper */
@@ -54,33 +72,107 @@ html, body {
 <body>
 
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+<nav id="side_main" class="sidebar sidebar1 w3-bar-block w3-small w3-hide-small w3-center">
   <!-- Avatar image in top left corner -->
   <!-- <img src="/w3images/avatar_smoke.jpg" style="width:100%"> -->
 
-  <a href="./pro/welcome.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pro/welcome.html" target="main_iframe"
+    class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="closeAll()">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>Home</p>
   </a>
 
-  <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
+    class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="closeAll()">
     <i class="fa fa-address-card-o w3-xxlarge"></i>
     <p>CV</p>
   </a>
 
-  <a href="./w_project.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-newspaper-o w3-xxlarge"></i>
-    <p>Projects</p>
-  </a>
+  <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="openOne('id_web')">
+    <i class="fa fa-star w3-xxlarge"></i>
+    <p>Web</p>
+  </button>
+
+  <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="openOne('id_astro')">
+    <i class="fa fa-star w3-xxlarge"></i>
+    <p>Astro</p>
+  </button>
+
+  <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="openOne('id_cyber')">
+    <i class="fa fa-star w3-xxlarge"></i>
+    <p>Cyber</p>
+  </button>
 
   <!-- Fill -->
   <div style="flex-grow:1;"></div>
 
+  <a href="./w_project.html" target="main_iframe"
+    class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="closeAll()">
+    <i class="fa fa-newspaper-o w3-xxlarge"></i>
+    <p>Projects</p>
+  </a>
+
+  <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="openOne('id_contact')">
+    <i class="fa fa-star w3-xxlarge"></i>
+    <p>Contact</p>
+  </button>
+
+</nav>
+
+
+<!-- 1. Web -->
+<nav id="id_web" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
+  <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <img src="./img/stackoverflow_xx.svg" 
+    alt="image not found" class="w3-xxlarge">
+    <p>StackOverflow: Top 100</p>
+  </a>
+
+  <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <img src="./img/vim_xx.svg" 
+    alt="image not found" class="w3-xxlarge">
+    <p>Vim.js</p>
+  </a>
+</nav>
+
+
+<!-- 2. Astro -->
+<nav id="id_astro" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
   <a href="https://www.wikipedia.org" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-newspaper-o w3-xxlarge"></i>
     <p>Wiki iFrame Test</p>
   </a>
 
+  <a href="https://www.wikipedia.org" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-newspaper-o w3-xxlarge"></i>
+    <p>Wiki iFrame Test</p>
+  </a>
+</nav>
+
+
+<!-- 3. Cyber -->
+<nav id="id_cyber" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
+  <a href="https://www.wikipedia.org" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-newspaper-o w3-xxlarge"></i>
+    <p>Wiki iFrame Test</p>
+  </a>
+
+  <a href="https://www.wikipedia.org" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-newspaper-o w3-xxlarge"></i>
+    <p>Wiki iFrame Test</p>
+  </a>
+</nav>
+
+
+<!-- 9. Contact -->
+<nav id="id_contact" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
   <a href="https://www.github.com/tinmarino" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-github-square w3-xxlarge"></i>
     <p>Github</p>
@@ -107,6 +199,32 @@ html, body {
     name="main_iframe" id="id_iframe"></iframe>
 
 </div>
+
+
+<script>
+
+function openOne(id) {
+  closeAll();
+  document.getElementById(id).style.display = "flex";
+  document.getElementById("id_main").style.marginLeft = "240px";
+}
+
+function closeOne(id) {
+  var elt = document.getElementById(id);
+  if (elt == null) { return; }
+  elt.style.display = "none";
+}
+
+function closeAll() {
+  for (id of [
+    "id_web",
+    "id_astro",
+    "id_cyber",
+    "id_contact",
+  ]){ closeOne(id); }
+  document.getElementById("id_main").style.marginLeft = "120px";
+}
+</script>
 
 </body>
 </html>
