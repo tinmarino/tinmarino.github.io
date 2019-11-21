@@ -116,11 +116,11 @@ input[readonly]:focus + input:checked ~ #zero {
     pointer-events: initial;
 }
 input[readonly]:focus + input + input:checked ~ #zero {
-    left: 30vmin;
+    left: 30vmin; /* TODO */
     pointer-events: initial;
 }
 input[readonly]:focus + input + input + input:checked ~ #zero {
-    left: 60vmin;
+    left: 60vmin; /* TODO */
     pointer-events: initial;
 }
 
@@ -169,38 +169,38 @@ input + input + input + input:active + label + .disc {
 }
 
 .one {
-    margin: 0 10vmin;
-    width: 10vmin;
+    margin: 0 10%;
+    width: 10%;
     background: linear-gradient(to right, #eea668, #ed7e1d, #e67e22);
 }
 .two {
-    margin: 0 8vmin;
-    width: 14vmin;
+    margin: 0 8%;
+    width: 14%;
     background: linear-gradient(to right, #8ac4ea, #0f9fff, #3498db);
 }
 .three {
-    margin: 0 6vmin;
-    width: 18vmin;
+    margin: 0 6%;
+    width: 18%;
     background: linear-gradient(to right, #f0d775, #fc0, #e6bd19);
 }
 .four {
-    margin: 0 4vmin;
-    width: 22vmin;
+    margin: 0 4%;
+    width: 22%;
     background: linear-gradient(to right, #666, #000, #333);
 }
 .five {
-    margin: 0 2vmin;
-    width: 26vmin;
+    margin: 0 2%;
+    width: 26%;
     background: linear-gradient(to right, #7ee2a8, #09f16a, #2ecc71);
 }
 .six {
-    width: 30vmin;
+    width: 30%;
     background: linear-gradient(to right, #f2a097, #ff3a24, #e74c3c);
 }
 
 /* Spacers/Separators */
 .spacer {
-    width: 30vmin;
+    width: 30%;
     height: 1px;
     flex-grow: 0;
     pointer-events: none;
