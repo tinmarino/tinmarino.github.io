@@ -169,32 +169,32 @@ input + input + input + input:active + label + .disc {
 .one {
     margin: 0 11%;
     width: 10%;
-    background: linear-gradient(to right, #666, #999, #333);
+    background: linear-gradient(to right, #666, #888, #777);
 }
 .two {
     margin: 0 9%;
     width: 14%;
-    background: linear-gradient(to right, #666, #999, #333);
+    background: linear-gradient(to right, #555, #777, #666);
 }
 .three {
     margin: 0 7%;
     width: 18%;
-    background: linear-gradient(to right, #666, #999, #333);
+    background: linear-gradient(to right, #444, #666, #555);
 }
 .four {
     margin: 0 5%;
     width: 22%;
-    background: linear-gradient(to right, #666, #999, #333);
+    background: linear-gradient(to right, #333, #555, #444);
 }
 .five {
     margin: 0 3%;
     width: 26%;
-    background: linear-gradient(to right, #666, #999, #333);
+    background: linear-gradient(to right, #222, #444, #332);
 }
 .six {
     margin: 0 1%;
     width: 30%;
-    background: linear-gradient(to right, #666, #999, #333);
+    background: linear-gradient(to right, #111, #333, #222);
 }
 
 /* Spacers/Separators: distance between disk positions */
@@ -245,7 +245,7 @@ input[readonly]:focus + input + input + input:checked ~ .c {
     border-radius: 1%;
     width: 5%;
     height: 80%;
-    background: linear-gradient(to right, #d7b889, #b27315, #966f33);
+    background: linear-gradient(to right, #111, #222, #000);
 }
 .a {
   /* b - 33% - 1 (1 = 100 - 33 - 33)*/
@@ -268,20 +268,12 @@ input[readonly]:focus + input + input + input:checked ~ .c {
     width: 100%;
     height: 20%;
     /* left (clear) -> right (dark) */
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent),
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent),
     linear-gradient(
-      #b27315,
-      #966f33 13%,
-      #faddb0 14.5%,
-      #faddb0 27.5%,
-      #966f33 29%,
-      #966f33 42%,
-      #faddb0 43.5%,
-      #d7b889 56.5%,
-      #966f33 58%,
-      #966f33 71%,
-      #d7b889 72.5%,
-      #d7b889 85.5%,
-      #966f33 87%,
-      #b27315);
+      #000,
+      #111 25%,
+      #000 50%,
+      #111 75%,
+      #000
+      );
 }
