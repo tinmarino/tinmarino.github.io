@@ -249,42 +249,22 @@ input[readonly]:focus + input + input + input:checked ~ .c {
     background: linear-gradient(to right, #d7b889, #b27315, #966f33);
 }
 .a {
-    left: 12.5vmin;
+    left: 12.5%;
 }
 .b {
-    left: 42.5vmin;
+    left: 42.5%;
 }
 .c {
-    left: 72.5vmin;
+    left: 72.5%;
 }
 
 .bottom {
     position: relative;
     display: block;
     margin: 0 auto;
-    border-radius: 1vmin;
-    width: 95vmin;
-    height: 7.5vmin;
+    border-radius: 1vmin; /* TODO */
+    width: 95vmin; /* TODO */
+    height: 7.5vmin; /* TODO */
     background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent),
     linear-gradient(#b27315, #966f33 13%, #faddb0 14.5%, #faddb0 27.5%, #966f33 29%, #966f33 42%, #faddb0 43.5%, #d7b889 56.5%, #966f33 58%, #966f33 71%, #d7b889 72.5%, #d7b889 85.5%, #966f33 87%, #b27315);
-}
-
-button {
-    margin: 7.5vmin auto;
-    border: none;
-    border-radius: 1vmin;
-    width: 35vmin;
-    height: 10vmin;
-    font-size: 4vmin;
-    color: rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to right, #c39550, #966f33);
-    outline: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-button:hover {
-    background: linear-gradient(to right, #caa163, #a77b39);
-}
-button:active {
-    background: linear-gradient(to right, #cf9844, #9e6f29);
 }
