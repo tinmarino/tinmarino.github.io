@@ -31,8 +31,9 @@ th, td {
   border: none;
 }
 th { color: #6c71c4 }
-tr:hover {background-color: #6c71c4;} 
-tr:nth-child(even) {background-color: #073642;} 
+tr:nth-child(even) {background-color: #073642;}
+tr:hover {background-color: #03063b;}
+tr:nth-child(even):hover {background-color: #03063b;}
 
 
 html {
