@@ -29,7 +29,7 @@ form {
     height: 35vmin;
 }
 
-/* 2. Discs */
+/* 3.1 Discs */
 .disc {
     z-index: 1;
     border-radius: 1vmin;
@@ -38,16 +38,16 @@ form {
     transition: order 0.3s step-end;
 }
 
-/* Controls/Logic */
+/* 3.2 Label: Input: Controls/Logic */
 label,
 input {
     position: absolute;
-    top: -10vmin;
+    top: -10%;
     margin: 0;
     border: 0;
     padding: 0;
-    width: 30vmin;
-    height: 52.5vmin;
+    width: 30%;
+    height: 80%;
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
