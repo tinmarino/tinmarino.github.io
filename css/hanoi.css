@@ -253,7 +253,7 @@ input[readonly]:focus + input + input + input:checked ~ .c {
 }
 .b {
   /* 50% - size/2 */
-  left: 47.5%; 
+  left: 47%; 
 }
 .c {
   /* b + 33% */
