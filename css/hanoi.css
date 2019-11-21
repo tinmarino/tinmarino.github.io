@@ -242,10 +242,10 @@ input[readonly]:focus + input + input + input:checked ~ .c {
 
 .tower {
     position: absolute;
-    top: 7.5vmin;
-    border-radius: 1vmin;
-    width: 5vmin;
-    height: 30vmin;
+    top: 20%;
+    border-radius: 1%;
+    width: 5%;
+    height: 80%;
     background: linear-gradient(to right, #d7b889, #b27315, #966f33);
 }
 .a {
