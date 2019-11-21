@@ -169,32 +169,32 @@ input + input + input + input:active + label + .disc {
 .one {
     margin: 0 11%;
     width: 10%;
-    background: linear-gradient(to right, #eea668, #ed7e1d, #e67e22);
+    background: linear-gradient(to right, #666, #999, #333);
 }
 .two {
     margin: 0 9%;
     width: 14%;
-    background: linear-gradient(to right, #8ac4ea, #0f9fff, #3498db);
+    background: linear-gradient(to right, #666, #999, #333);
 }
 .three {
     margin: 0 7%;
     width: 18%;
-    background: linear-gradient(to right, #f0d775, #fc0, #e6bd19);
+    background: linear-gradient(to right, #666, #999, #333);
 }
 .four {
     margin: 0 5%;
     width: 22%;
-    background: linear-gradient(to right, #666, #000, #333);
+    background: linear-gradient(to right, #666, #999, #333);
 }
 .five {
     margin: 0 3%;
     width: 26%;
-    background: linear-gradient(to right, #7ee2a8, #09f16a, #2ecc71);
+    background: linear-gradient(to right, #666, #999, #333);
 }
 .six {
     margin: 0 1%;
     width: 30%;
-    background: linear-gradient(to right, #f2a097, #ff3a24, #e74c3c);
+    background: linear-gradient(to right, #666, #999, #333);
 }
 
 /* Spacers/Separators: distance between disk positions */
@@ -267,6 +267,21 @@ input[readonly]:focus + input + input + input:checked ~ .c {
     border-radius: 2px;
     width: 100%;
     height: 20%;
+    /* left (clear) -> right (dark) */
     background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent),
-    linear-gradient(#b27315, #966f33 13%, #faddb0 14.5%, #faddb0 27.5%, #966f33 29%, #966f33 42%, #faddb0 43.5%, #d7b889 56.5%, #966f33 58%, #966f33 71%, #d7b889 72.5%, #d7b889 85.5%, #966f33 87%, #b27315);
+    linear-gradient(
+      #b27315,
+      #966f33 13%,
+      #faddb0 14.5%,
+      #faddb0 27.5%,
+      #966f33 29%,
+      #966f33 42%,
+      #faddb0 43.5%,
+      #d7b889 56.5%,
+      #966f33 58%,
+      #966f33 71%,
+      #d7b889 72.5%,
+      #d7b889 85.5%,
+      #966f33 87%,
+      #b27315);
 }
