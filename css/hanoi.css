@@ -238,27 +238,6 @@ input[readonly]:focus + input + input + input:checked ~ .c {
     flex-grow: 1;
 }
 
-/* Winning */
-.win {
-    z-index: 7;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -10vmin;
-    bottom: -7.5vmin;
-    color: #966f33;
-    font-family: Arial, sans-serif;
-    font-size: 6vmin;
-    line-height: 17.5vmin;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-}
-input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ .win {
-    opacity: 1;
-    pointer-events: initial;
-}
-
 /* Everything Else */
 
 .tower {
