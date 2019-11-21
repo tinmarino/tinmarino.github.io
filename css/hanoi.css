@@ -1,3 +1,18 @@
+/*
+  Copied from Ben Szabo: https://codepen.io/finnhvman/pen/gzmMaa
+
+*/
+
+
+/* Main (page) */
+body {
+  --var-size: vmin;
+}
+
+form {
+    text-align: center;
+}
+
 /* Controls/Logic */
 label,
 input {
@@ -238,26 +253,6 @@ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-ch
 }
 
 /* Everything Else */
-body {
-    margin: 0;
-    background-color: #f8f8f8;
-}
-
-h1 {
-    margin: 0;
-    padding: 5vmin;
-    color: rgba(0, 0, 0, 0.5);
-    font-family: Arial, sans-serif;
-    font-size: 7.5vmin;
-    font-weight: lighter;
-    text-align: center;
-    background: linear-gradient(to right, rgba(150, 111, 51, 0.4), rgba(150, 111, 51, 0.2)),
-    repeating-linear-gradient(to right, #eec487, #eec487 3vmin, #f3cf9a 3vmin, #f3cf9a 6vmin, #f8d8a2 6vmin, #f8d8a2 9vmin, #f1ca88 9vmin, #f1ca88 12vmin, #f4d09e 12vmin, #f4d09e 15vmin, #faddb0 15vmin, #faddb0 18vmin, #eec88a 18vmin, #eec88a 21vmin);
-}
-
-form {
-    text-align: center;
-}
 
 .tower {
     position: absolute;
