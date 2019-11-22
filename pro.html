@@ -55,11 +55,12 @@ html, body {
 }
 
 /* Helper */
-#id_iframe {
+#id_iframe, #id_welcome_iframe {
+  float:left;
   width: 100%; height: 100%;
   border:none;
   margin:0; padding:0;
-  position: relative;
+  position: absolute;
   top:0; left:0; bottom:0; right:0; 
 }
 
@@ -75,9 +76,10 @@ html, body {
   <!-- Avatar image in top left corner -->
   <!-- <img src="/w3images/avatar_smoke.jpg" style="width:100%"> -->
 
-  <a href="./pro/welcome.html" target="main_iframe"
+  <a
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll(false)">
+    onclick="closeAll(false); showHome()"
+  >
     <img src="./img/fa/home-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -86,7 +88,8 @@ html, body {
 
   <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll(false)">
+    onclick="closeAll(false); hideHome();"
+  >
     <img src="./img/fa/address-card-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -94,7 +97,8 @@ html, body {
   </a>
 
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="openOne('id_web')">
+    onclick="openOne('id_web')"
+  >
     <img src="./img/fa/globe-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -102,7 +106,8 @@ html, body {
   </button>
 
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="openOne('id_astro')">
+    onclick="openOne('id_astro')"
+  >
     <img src="./img/telescope_white_xx.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -110,7 +115,8 @@ html, body {
   </button>
 
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="openOne('id_cyber')">
+    onclick="openOne('id_cyber')"
+  >
     <img src="./img/fa/user-secret-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -122,7 +128,8 @@ html, body {
 
   <a href="./w_project.html" target="main_iframe"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll(false)">
+    onclick="closeAll(false); hideHome();"
+  >
     <img src="./img/fa/newspaper-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -130,7 +137,8 @@ html, body {
   </a>
 
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="openOne('id_contact')">
+    onclick="openOne('id_contact')"
+  >
     <img src="./img/fa/star-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -144,42 +152,54 @@ html, body {
 <nav id="id_web" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
 
   <!-- Web.1 StackOverflow -->
-  <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/stackoverflow_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>StackOverflow: Top 100</p>
   </a>
 
   <!-- Web.2 Vim -->
-  <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/vim_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Vim.js</p>
   </a>
 
   <!-- Web.3 TaranFighters -->
-  <a href="https://tinmarino.github.io/app/taran_fighters/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="https://tinmarino.github.io/app/taran_fighters/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/taran_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Taran Fighters</p>
   </a>
 
   <!-- Web.4 My Grid Game -->
-  <a href="https://tinmarino.github.io/app/my_grid_game/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="https://tinmarino.github.io/app/my_grid_game/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/thor_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Grid Game</p>
   </a>
 
   <!-- Web.5 Keep your ball TODO logo -->
-  <a href="https://tinmarino.github.io/app/keep_your_ball/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="https://tinmarino.github.io/app/keep_your_ball/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/keep_your_ball_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Keep your Balls</p>
   </a>
 
   <!-- Web.6 Pizza Reina -->
-  <a href="https://tinmarino.github.io/app/pizza_repetto/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="https://tinmarino.github.io/app/pizza_repetto/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/pizza_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Pizza Reina</p>
@@ -193,28 +213,36 @@ html, body {
 <nav id="id_astro" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
 
   <!-- Astro.1 Cosmo Obs -->
-  <a href="./pdf/2019_cosmondements_1_presentation.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2019_cosmondements_1_presentation.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/cosmo_obs_small_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Cosmo Obs</p>
   </a>
 
   <!-- Astro.2 Gav Lens -->
-  <a href="./pdf/2013_tesis_MartinTourneboeuf_Magister.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2013_tesis_MartinTourneboeuf_Magister.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/grav_len_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Gravitational Lenses</p>
   </a>
 
   <!-- Astro.3 Abism-->
-  <a href="./pdf/2016_abism_paper_jgirard.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2016_abism_paper_jgirard.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/abism_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Abism</p>
   </a>
 
   <!-- Astro.4 Hawai -->
-  <a href="./pdf/2011_astro_hawaii_formation_stellaire.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2011_astro_hawaii_formation_stellaire.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/cfht_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Stellar formation</p>
@@ -226,28 +254,36 @@ html, body {
 <nav id="id_cyber" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
 
   <!-- Cyber.1 YaDiff TODO reduce icon -->
-  <a href="./pdf/2018_yadiff_du_sstic.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2018_yadiff_du_sstic.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/yadiff_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>YaDiff</p>
   </a>
 
   <!-- Cyber.2 FID -->
-  <a href="./pdf/2018_retex_FID.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2018_retex_FID.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/fid_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>Fid</p>
   </a>
 
   <!-- Cyber 3 SaS -->
-  <a href="w_sas.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="w_sas.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/sas2018_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>SAS</p>
   </a>
 
   <!-- Cyber 4 LibGdx -->
-  <a href="./pdf/2017_libgdx.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="./pdf/2017_libgdx.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    onclick="hideHome();"
+  >
     <img src="./img/libgdx_xx.svg" 
     alt="image not found" class="w3-xxlarge">
     <p>LibGdx</p>
@@ -258,19 +294,30 @@ html, body {
 
 <!-- 9. Contact -->
 <nav id="id_contact" class="sidebar sidebar2 w3-bar-block w3-small w3-hide-small w3-center">
-  <a href="https://www.github.com/tinmarino" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+
+  <!-- 9.1 Github -->
+  <a href="https://www.github.com/tinmarino" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    target="_blank"
+  >
     <img src="./img/fa/github-brands-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
     <p>Github</p>
   </a>
-  <a href="mailto:martin.tourneboeuf@gmail.com" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+
+  <!-- 9.2 Gmail -->
+  <a href="mailto:martin.tourneboeuf@gmail.com" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+  >
     <img src="./img/fa/envelope-light-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
     <p>Contact</p>
   </a>
-  <a href="https://www.linkedin.com/in/martin-tourneboeuf-713b5696/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+
+  <!-- 9.3 LinkedIn -->
+  <a href="https://www.linkedin.com/in/martin-tourneboeuf-713b5696/" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    target="_blank"
+  >
     <img src="./img/fa/linkedin-in-brands-white.svg" 
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -282,18 +329,37 @@ html, body {
 <!-- Page content -->
 <div id="id_main">
 
-  <!--- <iframe src="./cv/martin_tourneboeuf_cv_english.html" class="fill"> -->
   <iframe
     src="./pro/welcome.html"
     class="fill" 
     height="100%" width="100%"
     allowfullscreen
+    style="z-index:2;"
+    name="welcome_iframe" id="id_welcome_iframe"></iframe>
+
+  <!--- <iframe src="./cv/martin_tourneboeuf_cv_english.html" class="fill"> -->
+  <iframe
+    src=""
+    display: none;
+    class="fill" 
+    height="100%" width="100%"
+    allowfullscreen
+    style="z-index:1;"
     name="main_iframe" id="id_iframe"></iframe>
+
 
 </div>
 
 
 <script>
+
+function hideHome(){
+  document.getElementById("id_welcome_iframe").style.display = "none";
+}
+
+function showHome(){
+  document.getElementById("id_welcome_iframe").style.display = "block";
+}
 
 function openOne(id) {
   closeAll(true);
