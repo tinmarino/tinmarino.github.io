@@ -337,10 +337,8 @@ html, body {
     style="z-index:2;"
     name="welcome_iframe" id="id_welcome_iframe"></iframe>
 
-  <!--- <iframe src="./cv/martin_tourneboeuf_cv_english.html" class="fill"> -->
   <iframe
     src=""
-    display: none;
     class="fill" 
     height="100%" width="100%"
     allowfullscreen
@@ -359,6 +357,7 @@ function hideHome(){
 
 function showHome(){
   document.getElementById("id_welcome_iframe").style.display = "block";
+  document.getElementById("id_iframe").src = "";
 }
 
 function openOne(id) {
