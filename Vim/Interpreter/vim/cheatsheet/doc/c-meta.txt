@@ -1,4 +1,0 @@
-*c-meta.txt*		Cheatsheet collection directory
-
-|c-python.txt|		Python
-|c-principle-of-war.txt|
