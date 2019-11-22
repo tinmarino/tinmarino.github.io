@@ -31,7 +31,7 @@ form {
     border-radius: 5px;
     height: 12% ; /* you can put 8 in discs but not 9 */
     pointer-events: none;
-    transition: order 0.3s step-end;
+    transition: order 0.03s step-end;
 }
 
 /* 3.2 Label: Input: Controls/Logic */
@@ -203,7 +203,7 @@ input + input + input + input:active + label + .disc {
     height: 1px;
     flex-grow: 0;
     pointer-events: none;
-    transition: flex 0.3s;
+    transition: flex 0.03s;
 }
 .separator {
     width: 0;
