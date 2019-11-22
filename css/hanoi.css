@@ -7,7 +7,6 @@
   %s#\(-\?[0-9\.]\+\)vmin#\="calc(" . submatch(1) . " * var(--vmin))"
 */
 
-
 /* 1. Form (mina page) */
 form {
   width: 100%;
@@ -49,20 +48,6 @@ input {
     pointer-events: none;
     -webkit-tap-highlight-color: transparent;
 }
-/* Position of clickables */
-input:nth-child(6n + 2),
-input:checked + input + input + label {
-    left: 0;
-}
-input:nth-child(6n + 3),
-input:checked + input + label {
-    left: 33%;
-}
-input:nth-child(6n + 4),
-input:checked + label {
-    left: 67%;
-}
-
 label,
 input:hover,
 input[readonly]:focus + input,
@@ -102,13 +87,15 @@ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4) {
 #six ~ label {
     z-index: 1;
 }
-
 input#zero {
     z-index: 7;
 }
 input#zero:focus {
     pointer-events: none;
 }
+
+
+/* Input moving with disks */
 input[readonly]:focus + input:checked ~ #zero {
     left: 0;
     pointer-events: initial;
@@ -122,6 +109,21 @@ input[readonly]:focus + input + input + input:checked ~ #zero {
     pointer-events: initial;
 }
 
+/* Position of clickables */
+input:nth-child(6n + 2),
+input:checked + input + input + label {
+    left: 0;
+}
+input:nth-child(6n + 3),
+input:checked + input + label {
+    left: 33%;
+}
+input:nth-child(6n + 4),
+input:checked + label {
+    left: 67%;
+}
+
+/* Position of disks */
 input:checked + input + input + label + .disc {
     order: 3;
 }
