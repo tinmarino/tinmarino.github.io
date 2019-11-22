@@ -11,10 +11,30 @@
 <style>
 
 body {
-  background-color: #002b36;
   color: #fdf6e3;
   height: 100%;
   width: 100%;
+
+  /* Background */
+  background-color: #002b36;
+}
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Aspect */
+  opacity: 0.2;
+  object-fit: cover;
 }
 
 footer {
@@ -63,6 +83,11 @@ footer {
 
 <body>
 
+<!-- Background image -->
+<img class="bg" src="../img/bck/north_xx.svg">
+
+
+<!-- Left Div -->
 <div id="presentation">
 </br></br>
   <center><h2>
