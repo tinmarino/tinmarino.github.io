@@ -24,10 +24,21 @@ footer {
   text-align: right;
 }
 
+#presentation {
+  /* position */
+  position: absolute;
+  left: 5%;
+  /* size */
+  width: 38vw;
+  text-indent: -2vw;
+  text-align: left;
+
+}
+
 #quote {
   /* position */
   position: absolute;
-  top: 2.5%;
+  top: 10%;
   right: 10%;
   /* size */
   width: 38vw;
@@ -52,8 +63,20 @@ footer {
 
 <body>
 
+<div id="presentation">
 </br></br>
-Welcome to Martin Tourneboeuf show off page v9
+  <center><h2>
+    Martin Tourneboeuf
+  </h1></center>
+
+  On my page, you can see my personal:
+
+  <p class="p">CV</p>
+  <p class="p">Projects (Web | Astro | Cyber-security)</p>
+  <p class="p">Contact</p>
+
+</div>
+ 
 
 <div id="quote">
   <!-- Proverbs -->
@@ -142,6 +165,7 @@ Welcome to Martin Tourneboeuf show off page v9
   style="line-height:150%;font-size: 8px;"
 >
 
+v0.1
 <script charset="utf-8">
   var options = { year: 'numeric', month: 'long', day: 'numeric' };
   var d_date = new Date(document.lastModified)
