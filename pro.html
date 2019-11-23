@@ -43,16 +43,26 @@ html, body {
   height: auto;
 }
 
-/* Do not shrink <a> or button when too much on sidebar */
-.sidebar > * {
+.sidebar ~ *:hover  {
   flex-shrink: 0;
 }
 
 /* Add overlay description */
 .description {
+  /* Position */
   position: absolute;
   margin-left: 120px;
+  /* Apperance */
+  background: #222;
+  border: 10px;
+  padding: 10px;
   z-index: 4;
+  display: none;
+}
+
+/* Show description when hover */
+.sidebar > *:hover > .description {
+  display: block;
 }
 
 
@@ -118,11 +128,6 @@ html, body {
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="openOne('id_web')"
   >
-    <!-- Description -->
-    <div class="description">
-      Html page in English</br></br>
-      Vim.js: vim compiled as js with emscirpten to be used in navigator
-    </div>
     <img src="./img/fa/globe-light-white.svg"
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -171,6 +176,11 @@ html, body {
   <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="description">
+      Html page in English</br></br>
+      StackOverflow top 100 post for certain tags
+    </div>
     <img src="./img/stackoverflow_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>StackOverflow</br>Top 100</p>
@@ -180,6 +190,12 @@ html, body {
   <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="description">
+      Vim.js: vim compiled as js</br>
+      with emscirpten</br>
+      use in navigator
+    </div>
     <img src="./img/vim_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>Vim.js</p>
@@ -214,6 +230,11 @@ html, body {
   <a href="./pdf/2019_cosmondements_1_presentation.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="description">
+      Pdf presentation in French</br></br>
+      CosmObs: Introduction to observational cosmology tools and practices
+    </div>
     <img src="./img/cosmo_obs_small_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>Cosmo Obs</br>Slide</p>
@@ -223,6 +244,11 @@ html, body {
   <a href="./pdf/2019_cosmondements_2_cheat.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="description">
+      Pdf cheatsheet in French</br></br>
+      CosmObs: Introduction to observational cosmology tools and practices
+    </div>
     <img src="./img/cosmo_cheat_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>Cosmo Obs</br>Cheat</p>
@@ -232,6 +258,12 @@ html, body {
   <a href="./pdf/2013_tesis_MartinTourneboeuf_Magister.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="overlay">
+      Pdf book in Spanish</br></br>
+      Master tesis:</br>
+      Searching for i-band dropout galaxies lensed by galaxy clusters
+    </div>
     <img src="./img/grav_len_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>Gravitational Lenses</br>Book</p>
