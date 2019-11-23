@@ -12,7 +12,7 @@
 html, body {
   background: #002b36;
   color: #fdf6e3;
-  min-height: 100%;
+  height: 100%;
   --sidebar-width: 120px;
 }
 
@@ -25,7 +25,6 @@ html, body {
   z-index: 1;
   background: #222;
   /* Position */
-  position: absolute;
   float: left;
   overflow: auto;
   /* Trick to push bottom some bar-item*/
@@ -36,7 +35,7 @@ html, body {
 .sidebar2 {
   display: none;
   /* Position */
-  margin: 0 0 0 120px;
+  margin: 0;
 }
 
 .sidebar img {
@@ -48,6 +47,14 @@ html, body {
 .sidebar > * {
   flex-shrink: 0;
 }
+
+/* Add overlay description */
+.description {
+  position: absolute;
+  margin-left: 120px;
+  z-index: 4;
+}
+
 
 #id_main {
   background: #002b36;
@@ -111,6 +118,11 @@ html, body {
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="openOne('id_web')"
   >
+    <!-- Description -->
+    <div class="description">
+      Html page in English</br></br>
+      Vim.js: vim compiled as js with emscirpten to be used in navigator
+    </div>
     <img src="./img/fa/globe-light-white.svg"
     style="height:36px; width:auto;"
     alt="image not found" class="w3-xxlarge">
@@ -357,7 +369,7 @@ html, body {
     class="fill"
     height="100%" width="100%"
     allowfullscreen
-    style="z-index:2;"
+    style="z-index:3;"
     name="welcome_iframe" id="id_welcome_iframe"
   ></iframe>
 
@@ -366,7 +378,7 @@ html, body {
     class="fill"
     height="100%" width="100%"
     allowfullscreen
-    style="z-index:1;"
+    style="z-index:2;"
     name="main_iframe" id="id_iframe"
   ></iframe>
 
