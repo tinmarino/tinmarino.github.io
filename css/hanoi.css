@@ -41,7 +41,7 @@ input {
     margin: 0;
     border: 0;
     padding: 0;
-    width: 33%;
+    width: 33.3%;
     height: 110%;
     cursor: pointer;
     opacity: 0;
@@ -101,11 +101,11 @@ input[readonly]:focus + input:checked ~ #zero {
     pointer-events: initial;
 }
 input[readonly]:focus + input + input:checked ~ #zero {
-    left: 33%;
+    left: 33.3%;
     pointer-events: initial;
 }
 input[readonly]:focus + input + input + input:checked ~ #zero {
-    left: 67%;
+    left: 66.6%;
     pointer-events: initial;
 }
 
@@ -116,11 +116,11 @@ input:checked + input + input + label {
 }
 input:nth-child(6n + 3),
 input:checked + input + label {
-    left: 33%;
+    left: 33.3%;
 }
 input:nth-child(6n + 4),
 input:checked + label {
-    left: 67%;
+    left: 66.6%;
 }
 
 /* Position of disks */
@@ -201,7 +201,7 @@ input + input + input + input:active + label + .disc {
 
 /* Spacers/Separators: distance between disk positions */
 .spacer {
-    width: 33%;
+    width: 33.3%;
     height: 1px;
     flex-grow: 0;
     pointer-events: none;
@@ -254,12 +254,12 @@ input[readonly]:focus + input + input + input:checked ~ .c {
   left: 13.5%;
 }
 .b {
-  /* 50% - size/2 */
-  left: 47%; 
+  /* a + 33.3 */
+  left: 46.8%; 
 }
 .c {
-  /* b + 33% */
-  left: 80.5%;
+  /* b + 33.3% */
+  left: 80.1%;
 }
 
 .bottom {
