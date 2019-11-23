@@ -44,6 +44,11 @@ html, body {
   height: auto;
 }
 
+/* Do not shrink <a> or button when too much on sidebar */
+.sidebar > * {
+  flex-shrink: 0;
+}
+
 #id_main {
   background: #002b36;
   color: #fdf6e3;
@@ -286,6 +291,7 @@ html, body {
     alt="image not found" class="w3-xxlarge">
     <p>Stellar formation</p>
   </a>
+
 </nav>
 
 
