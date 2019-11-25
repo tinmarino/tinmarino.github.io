@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="./css/w3.css">
 </head>
 
+<body>
+
+<div id="preload" style="display:none">
+  <link rel="prefetch" href="./pro/welcome.html">
+  <link rel="prefetch" href="./img/bck/north_xx.svg">
+</div>
+
+
 <style>
 /* Solarized colors */
 html, body {
@@ -98,10 +106,32 @@ html, body {
 
 </style>
 
-</head>
 
 
-<body>
+<!-- Page content -->
+<div id="id_main">
+
+  <iframe
+    src="./pro/welcome.html"
+    class="fill"
+    height="100%" width="100%"
+    allowfullscreen
+    style="z-index:3;"
+    name="welcome_iframe" id="id_welcome_iframe"
+  ></iframe>
+
+  <iframe
+    src=""
+    class="fill"
+    height="100%" width="100%"
+    allowfullscreen
+    style="z-index:2;"
+    name="main_iframe" id="id_iframe"
+  ></iframe>
+
+
+</div>
+
 
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav id="side_main" class="sidebar sidebar1 w3-bar-block w3-small w3-center">
@@ -456,31 +486,6 @@ html, body {
     <p>LinkedIn</p>
   </a>
 </nav>
-
-
-<!-- Page content -->
-<div id="id_main">
-
-  <iframe
-    src="./pro/welcome.html"
-    class="fill"
-    height="100%" width="100%"
-    allowfullscreen
-    style="z-index:3;"
-    name="welcome_iframe" id="id_welcome_iframe"
-  ></iframe>
-
-  <iframe
-    src=""
-    class="fill"
-    height="100%" width="100%"
-    allowfullscreen
-    style="z-index:2;"
-    name="main_iframe" id="id_iframe"
-  ></iframe>
-
-
-</div>
 
 
 <script>
