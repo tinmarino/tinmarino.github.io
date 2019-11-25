@@ -1,0 +1,36 @@
+.w3-bar-item .w3-bar-block {
+  display: block;
+  float: none;
+  width: 100%;
+  min-width: 100%;
+  text-align:left;
+  padding:8px 16px;
+  outline: 0;
+  white-space: normal;
+}
+
+.w3-button{
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  outline:none;
+  border-style: none;
+
+  font: inherit;
+  margin: 0;
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  white-space: nowrap;
+}
+button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+
+.w3-center { text-align: center; }
+.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
+.w3-small{font-size:12px!important}
+.w3-xxlarge{font-size:36px!important}
+.w3-padding-large{padding:12px 24px!important}
