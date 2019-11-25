@@ -16,7 +16,7 @@ body {
   background-color: #002b36;
 }
 
-img.bg {
+img#bg {
   /* Set rules to fill background */
   min-height: 100%;
 	
@@ -85,8 +85,8 @@ footer {
 
 <body>
 
-<!-- Background image -->
-<img class="bg" src="../img/bck/north_xx.svg">
+<!-- Background image see js -->
+<img id="bg">
 
 
 <!-- Left Div -->
@@ -210,12 +210,22 @@ footer {
   style="line-height:150%;font-size: 8px;"
 >
 
-v0.10
+v0.11
 <script charset="utf-8">
-  var options = { year: 'numeric', month: 'long', day: 'numeric' };
-  var d_date = new Date(document.lastModified)
-  var s_date = d_date.toLocaleDateString("en-US", options);
-  document.write(s_date);
+
+var options = { year: 'numeric', month: 'long', day: 'numeric' };
+var d_date = new Date(document.lastModified)
+var s_date = d_date.toLocaleDateString("en-US", options);
+document.write(s_date);
+
+function main() {
+  // Set bg image 
+  var bg = document.getElementById('bg');
+  bg.src = "../img/bck/north_xx.svg";
+}
+
+window.onload = main;
+
 </script>
 </br>
 Tinmarino
