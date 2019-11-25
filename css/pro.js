@@ -58,11 +58,13 @@ function setDescriptionSizeHandler() {
   });
 }
 
+// Set delayed image src
 function setImageSrc () {
-  var images = document.getElementsByClassName('delayed'); 
-  [images].forEach(img => {
+  var imgs = document.getElementsByClassName('delayed');
+  for (let img of imgs){
+    if (null == img.dataset) { continue }
     img.src = img.dataset.src;
-  });
+  }
 }
 
 function main() {
