@@ -199,9 +199,8 @@ html, body {
   >
     <!-- Description -->
     <div class="description">
-      Vim.js: vim compiled as js</br>
-      with emscirpten</br>
-      use in navigator
+      Html app in English</br></br>
+      vim.js: vim compiled as js with emscirpten, to use in navigator
     </div>
     <img src="./img/vim_xx.svg"
     alt="image not found" class="w3-xxlarge">
@@ -212,6 +211,11 @@ html, body {
   <a href="https://tinmarino.github.io/app/taran_fighters/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="description">
+      Html app in English</br></br>
+      TaranFighters: a game with some Tourneboeuf figthing zombies
+    </div>
     <img src="./img/taran_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>Taran Fighters</p>
@@ -221,6 +225,12 @@ html, body {
   <a href="https://tinmarino.github.io/app/my_grid_game/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
   >
+    <!-- Description -->
+    <div class="description">
+      Html app in English</br></br>
+      My Grid Game: some easy arcade game,</br>
+      getting difficult if playing 2 at a time
+    </div>
     <img src="./img/thor_xx.svg"
     alt="image not found" class="w3-xxlarge">
     <p>Grid Game</p>
@@ -326,8 +336,8 @@ html, body {
     <!-- Description -->
     <div class="description">
       Pdf book in French</br></br>
-      Internship report:</br>
-      Les galaxies de faible masse et le scénario de formation stellaire
+      Internship report:
+      Low mass galaxies and the star forming scenario
     </div>
     <img src="./img/cfht_xx.svg"
     alt="image not found" class="w3-xxlarge">
@@ -341,8 +351,8 @@ html, body {
     <!-- Description -->
     <div class="description">
       Pdf book in English</br></br>
-      Internship report:</br>
-      Les galaxies de faible masse et le scénario de formation stellaire
+      Internship report:
+      Low mass galaxies and the star forming scenario
     </div>
     <img src="./img/cfht_sfr_slide_xx.svg"
     alt="image not found" class="w3-xxlarge">
@@ -362,7 +372,6 @@ html, body {
     <!-- Description -->
     <div class="description">
       Pdf slide in French</br></br>
-      Presentation:</br>
       YaDiff: Yet Another Diffing software to propagate reverse analysis symbols between Ida databases
     </div>
     <img src="./img/yadiff_xx.svg"
@@ -529,7 +538,7 @@ function handleMouseOver(event) {
 // Set description position <- https://css-tricks.com/popping-hidden-overflow/
 // Translated to js <- https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/ (awesome page)
 function setDescriptionSizeHandler() {
-  // whenever we hover over a menu item (TODO that a description)
+  // whenever we hover over a menu item (TODO that has a description)
   var buttons = document.querySelectorAll('.sidebar > *')
   buttons.forEach(item => {
     item.addEventListener('mouseover', handleMouseOver);
