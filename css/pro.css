@@ -1,0 +1,87 @@
+/* Solarized colors */
+html, body {
+  background: #002b36;
+  color: #fdf6e3;
+  /* Position */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  height: 100%;
+  --sidebar-width: 120px;
+}
+
+
+.base03, .hover-base03:hover{color:#fdf6e3!important;background-color:#002b36!important}
+
+.sidebar {
+  /* Set the width of the sidebar to 120px */
+  width: 120px; height: 100%;
+  z-index: 1;
+  background: #222;
+  /* Position */
+  float: left;
+  /* use scrolling if necessary, but don't show a horizontal scrollbar */
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Trick to push bottom some bar-item*/
+  display: flex;
+  flex-direction: column;
+
+}
+
+.sidebar2 {
+  display: none;
+  /* Position */
+  margin: 0;
+}
+
+.sidebar img {
+  width: 100%;
+  height: auto;
+}
+
+.sidebar > * {
+  flex-shrink: 0;
+}
+
+/* Add overlay description */
+.description {
+  /* Position */
+  position: absolute;
+  margin-left: 120px;
+  /* Apperance */
+  background: #222;
+  border: 10px;
+  padding: 10px;
+  z-index: 4;
+  display: none;
+}
+
+/* Show description when hover */
+.sidebar > *:hover > .description {
+  display: block;
+}
+
+
+#id_main {
+  background: #002b36;
+  color: #fdf6e3;
+  height: 100%;
+  /* Position */
+  position: absolute;
+  top:0; left:0; bottom:0; right:0;
+  margin: 0 0 0 120px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+/* Helper */
+#id_iframe, #id_welcome_iframe {
+  float:left;
+  width: 100%; height: 100%;
+  border:none;
+  margin:0; padding:0;
+  position: absolute;
+  top:0; left:0; bottom:0; right:0;
+}
