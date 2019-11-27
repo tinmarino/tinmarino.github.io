@@ -53,6 +53,7 @@
   <!-- <img src="/w3images/avatar_smoke.jpg" style="width:100%"> -->
 
   <a
+    id="home"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="closeAll(false); showHome()"
   >
@@ -63,6 +64,7 @@
   </a>
 
   <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
+    id="cv"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="closeAll(false); hideHome();"
   >
@@ -77,6 +79,7 @@
 
   <!-- Web -->
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="web"
     onclick="openOne('id_web')"
   >
     <img src="./img/fa/globe-light-white.svg"
@@ -87,6 +90,7 @@
 
   <!-- Astro -->
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="astro"
     onclick="openOne('id_astro')"
   >
     <img src="./img/telescope_white_xx.svg"
@@ -97,6 +101,7 @@
 
   <!-- Cyber -->
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="cyber"
     onclick="openOne('id_cyber')"
   >
     <img src="./img/fa/user-secret-light-white.svg"
@@ -109,6 +114,7 @@
   <div style="flex-grow:10;"></div>
 
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="contact"
     onclick="openOne('id_contact')"
   >
     <img src="./img/fa/star-light-white.svg"
@@ -125,6 +131,7 @@
 
   <!-- Web.1 StackOverflow -->
   <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="so_top_100"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -140,6 +147,7 @@
 
   <!-- Web.2 Vim -->
   <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="vim_js"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -155,6 +163,7 @@
 
   <!-- Web.3 TaranFighters -->
   <a href="https://tinmarino.github.io/app/taran_fighters/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="taran_fighters"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -170,6 +179,7 @@
 
   <!-- Web.4 My Grid Game -->
   <a href="https://tinmarino.github.io/app/my_grid_game/" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="my_grid_game"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -193,6 +203,7 @@
 
   <!-- Astro.1.1 Cosmo Obs Slide -->
   <a href="./pdf/2019_cosmondements_1_presentation.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="cosmo_obs_slide"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -208,6 +219,7 @@
 
   <!-- Astro.1 Cosmo Obs Cheat -->
   <a href="./pdf/2019_cosmondements_2_cheat.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="cosmo_obs_cheat"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -221,8 +233,9 @@
     <p>Cosmo Obs</br>Cheat</p>
   </a>
 
-  <!-- Astro.2.1 Gav Lens Book -->
+  <!-- Astro.2.1 Grav Lens Book -->
   <a href="./pdf/2013_tesis_MartinTourneboeuf_Magister.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="grav_lens_book"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -239,6 +252,7 @@
 
   <!-- Astro.2.2 Gav Lens Slides -->
   <a href="./pdf/2013_gravlens_master_slide_30q.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="grav_lens_slide"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -255,6 +269,7 @@
 
   <!-- Astro.3.1 Abism Paper -->
   <a href="./pdf/2016_abism_paper_jgirard.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="abism_paper"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -270,6 +285,7 @@
 
   <!-- Astro.3.2 Abism Slide -->
   <a href="./pdf/2012_abism_slide_jgirard.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="abism_slide"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -285,6 +301,7 @@
 
   <!-- Astro.4.1 Hawai Book -->
   <a href="./pdf/2011_astro_hawaii_formation_stellaire.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="sfr_book"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -301,6 +318,7 @@
 
   <!-- Astro.4.2 Hawai Slide -->
   <a href="./pdf/2011_hawaii_cfht_sfr_50q.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="sfr_slide"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -323,6 +341,7 @@
 
   <!-- Cyber.1 YaDiff TODO + html + slide -->
   <a href="./pdf/2018_yadiff_du_sstic.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="yadiff_slide"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -338,6 +357,7 @@
 
   <!-- Cyber.2 FID -->
   <a href="./pdf/2018_retex_FID.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="fid_2018_report"
     onclick="hideHome();"
   >
     <!-- Description -->
@@ -354,6 +374,7 @@
   <!-- Cyber 3 SaS -->
   <a href="w_sas.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     onclick="hideHome();"
+    id="sas_2018_report"
   >
     <!-- Description -->
     <div class="description">

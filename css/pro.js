@@ -67,9 +67,27 @@ function setImageSrc () {
   }
 }
 
+
+// Read params from URL to show what I want
+function readUrlParameters () {
+  const url = window.location.href;
+  const params = new URL(url).searchParams;
+  params.forEach(function(value, key) {
+    // Check start with show
+    if (key.startsWith('show')) {
+      // Click on value
+      var elt = document.getElementById(value);
+      if (null == elt) { return }
+      elt.click();
+    }
+  });
+}
+
 function main() {
+  readUrlParameters();
   setDescriptionSizeHandler();
   setImageSrc();
+
 }
 
 window.onload = main;
