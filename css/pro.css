@@ -10,6 +10,8 @@ html, body {
   --sidebar-width: 120px;
 }
 
+/* Interactive */
+
 
 .base03, .hover-base03:hover{color:#fdf6e3!important;background-color:#002b36!important}
 
@@ -77,7 +79,7 @@ html, body {
 }
 
 /* Helper */
-#id_iframe, #id_welcome_iframe {
+#id_iframe, #welcome {
   float:left;
   width: 100%; height: 100%;
   border:none;

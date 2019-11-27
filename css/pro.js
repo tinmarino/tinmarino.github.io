@@ -1,9 +1,9 @@
 function hideHome(){
-  document.getElementById("id_welcome_iframe").style.display = "none";
+  document.getElementById("welcome").style.display = "none";
 }
 
 function showHome(){
-  document.getElementById("id_welcome_iframe").style.display = "block";
+  document.getElementById("welcome").style.display = "block";
   document.getElementById("id_iframe").src = "";
 }
 
