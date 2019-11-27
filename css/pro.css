@@ -15,7 +15,7 @@ html, body {
 
 .sidebar {
   /* Set the width of the sidebar to 120px */
-  width: 120px; height: 100%;
+  width: var(--sidebar-width); height: 100%;
   z-index: 1;
   background: #222;
   /* Position */
@@ -48,7 +48,7 @@ html, body {
 .description {
   /* Position */
   position: absolute;
-  margin-left: 120px;
+  margin-left: var(--sidebar-width);
   /* Apperance */
   background: #222;
   border: 10px;
@@ -70,7 +70,7 @@ html, body {
   /* Position */
   position: absolute;
   top:0; left:0; bottom:0; right:0;
-  margin: 0 0 0 120px;
+  margin: 0 0 0 var(--sidebar-width);
   padding: 0;
   border: 0;
   overflow: hidden;
