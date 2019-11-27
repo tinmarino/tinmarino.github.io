@@ -66,7 +66,8 @@
   <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
     id="cv"
     class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-    onclick="closeAll(false); hideHome();"
+    onclick="openOne('id_cv');
+      document.getElementById('cv_en').click();"
   >
     <img src="./img/fa/address-card-light-white.svg"
     style="height:36px; width:auto;"
@@ -80,7 +81,7 @@
   <!-- Web -->
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     id="web"
-    onclick="openOne('id_web')"
+    onclick="openOne('id_web');"
   >
     <img src="./img/fa/globe-light-white.svg"
     style="height:36px; width:auto;"
@@ -91,7 +92,7 @@
   <!-- Astro -->
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     id="astro"
-    onclick="openOne('id_astro')"
+    onclick="openOne('id_astro');"
   >
     <img src="./img/telescope_white_xx.svg"
     style="height:36px; width:auto;"
@@ -102,7 +103,7 @@
   <!-- Cyber -->
   <button class="w3-bar-item w3-button w3-padding-large w3-hover-black"
     id="cyber"
-    onclick="openOne('id_cyber')"
+    onclick="openOne('id_cyber');"
   >
     <img src="./img/fa/user-secret-light-white.svg"
     style="height:36px; width:auto;"
@@ -122,6 +123,61 @@
     alt="" class="w3-xxlarge">
     <p>Contact</p>
   </button>
+
+</nav>
+
+
+<!-- 0. CV -->
+<nav id="id_cv" class="sidebar sidebar2 w3-bar-block w3-small w3-center">
+
+  <!-- CV.1 English -->
+  <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="cv_en"
+    onclick="hideHome();"
+  >
+    <!-- Description -->
+    <div class="description">
+      Html page in English</br></br>
+      CV
+    </div>
+    <img src=""
+      data-src="./img/flag/gb.svg"
+      alt="" class="delayed w3-xxlarge">
+    <p>CV English</p>
+  </a>
+
+  <!-- CV.2 Spanish -->
+  <a href="./cv/martin_tourneboeuf_cv_spanish.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="cv_es"
+    onclick="hideHome();"
+  >
+    <!-- Description -->
+    <div class="description">
+      Html page in Spanish</br></br>
+      CV
+    </div>
+    <img src=""
+      data-src="./img/flag/es.svg"
+      alt="" class="delayed w3-xxlarge">
+    <p>CV Spanish</p>
+  </a>
+
+  <!-- CV.3 French -->
+  <a href="./cv/martin_tourneboeuf_cv_french.html" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="cv_fr"
+    onclick="hideHome();"
+  >
+    <!-- Description -->
+    <div class="description">
+      Html page in French</br></br>
+      CV
+    </div>
+    <img src=""
+      data-src="./img/flag/fr.svg"
+      alt="" class="delayed w3-xxlarge">
+    <p>CV French</p>
+  </a>
+
 
 </nav>
 
@@ -389,6 +445,7 @@
 
   <!-- Cyber 4 LibGdx -->
   <a href="./pdf/2017_libgdx.pdf" target="main_iframe" class="w3-bar-item w3-button w3-padding-large w3-hover-black"
+    id="libgdx_slide"
     onclick="hideHome();"
   >
     <!-- Description -->
