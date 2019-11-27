@@ -21,6 +21,7 @@ function closeOne(id) {
 
 function closeAll(b_keep_open) {
   for (id of [
+    "id_cv",
     "id_web",
     "id_astro",
     "id_cyber",
