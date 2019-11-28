@@ -227,6 +227,14 @@ input:nth-child(6n + 32):not(:checked) ~ div#quote p.p12 {
   opacity: 1;
 }
 
+/* Win 7 really Win -> p13 */
+input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p13 {
+  opacity: 1;
+}
+input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p13 {
+  opacity: 1;
+}
+
 
 
 /* 1. Form (mina page) */
