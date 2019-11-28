@@ -30,6 +30,10 @@ input[name="one"]:nth-child(3):checked ~ div#quote p.p1{
 input[name="one"]:nth-child(4):checked ~ div#quote p.p1{
   opacity: 1;
 }
+/* ** survive if any higher disc is out */
+input:nth-child(6n+2):not(:checked) ~ div#quote p.p1{
+  opacity: 1;
+}
 
 /* Win 1.1 : middle and right eternal */
 input[name="one"]:nth-child(3):checked ~ div#quote p.p2{
@@ -38,6 +42,48 @@ input[name="one"]:nth-child(3):checked ~ div#quote p.p2{
 input[name="one"]:nth-child(4):checked ~ div#quote p.p2{
   opacity: 1;
 }
+input:nth-child(6n+2):not(:checked) ~ div#quote p.p2{
+  opacity: 1;
+}
+
+
+/* Win 2.0 Drag */
+/* ** lift */
+input#two:focus ~ div#quote p.p3 {
+  opacity: 1;
+}
+/* ** move (i.e lose focus) */
+input[name="two"]:nth-child(6n+ 3):hover ~ div#quote p.p3 {
+  opacity: 1;
+}
+input[name="two"]:nth-child(6n + 4):hover ~ div#quote p.p3 {
+  opacity: 1;
+}
+/* ** survive */
+input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p3{
+  opacity: 1;
+}
+input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p3{
+  opacity: 1;
+}
+/* ** survive if any higher disc is out */
+input:nth-child(6n + 8):not(:checked) ~ div#quote p.p3{
+  opacity: 1;
+}
+
+
+/* Win 2.1 : middle and right eternal */
+input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p4{
+  opacity: 1;
+}
+input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p4{
+  opacity: 1;
+}
+input:nth-child(6n + 8):not(:checked) ~ div#quote p.p4{
+  opacity: 1;
+}
+
+
 
 
 
