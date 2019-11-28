@@ -15,8 +15,6 @@ html, body {
 /* Interactive */
 
 
-.base03, .hover-base03:hover{color:#fdf6e3!important;background-color:#002b36!important}
-
 .sidebar {
   /* Set the width of the sidebar to 120px */
   width: var(--sidebar-width); height: 100%;
@@ -91,17 +89,6 @@ html, body {
 }
 
 /* W3 selected */
-.w3-bar-item .w3-bar-block {
-  display: block;
-  float: none;
-  width: 100%;
-  min-width: 100%;
-  text-align:left;
-  padding:8px 16px;
-  outline: 0;
-  white-space: normal;
-}
-
 .w3-button{
   overflow: hidden;
   text-decoration: none;
