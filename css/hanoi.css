@@ -7,6 +7,45 @@
   %s#\(-\?[0-9\.]\+\)vmin#\="calc(" . submatch(1) . " * var(--vmin))"
 */
 
+
+/* -1 Win */
+
+
+/* Win 1.0 Drag */
+/* ** lift */
+input#one:focus ~ div#quote p.p1 {
+  opacity: 1;
+}
+/* ** move (i.e lose focus) */
+input[name="one"]:nth-child(3):hover ~ div#quote p.p1 {
+  opacity: 1;
+}
+input[name="one"]:nth-child(4):hover ~ div#quote p.p1 {
+  opacity: 1;
+}
+/* ** survive */
+input[name="one"]:nth-child(3):checked ~ div#quote p.p1{
+  opacity: 1;
+}
+input[name="one"]:nth-child(4):checked ~ div#quote p.p1{
+  opacity: 1;
+}
+
+/* Win 1.1 : middle and right eternal */
+input[name="one"]:nth-child(3):checked ~ div#quote p.p2{
+  opacity: 1;
+}
+input[name="one"]:nth-child(4):checked ~ div#quote p.p2{
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
 /* 1. Form (mina page) */
 form {
   width: 100%;
@@ -239,7 +278,8 @@ input[readonly]:focus + input + input + input:checked ~ .c {
     flex-grow: 1;
 }
 
-/* Everything Else */
+
+/* Absolute: Tower spacers and bottom */
 
 .tower {
     position: absolute;
