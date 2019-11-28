@@ -1,5 +1,7 @@
 /* Solarized colors */
 html, body {
+  /* Appearance, font */
+  font-family: Dejavu Sans;
   background: #002b36;
   color: #fdf6e3;
   /* Position */
