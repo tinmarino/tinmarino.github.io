@@ -36,16 +36,19 @@ img#bg {
 
 footer {
   /* position */
-  float: right;
   position: relative;
   text-align: right;
-  left: 33vw;
-  top: 19vw;
+  right: 5%;
+  /* According to left */
+  bottom: 130px;
+
+  /* custom */
+  line-height: 150%;
+  font-size: 8px;
 }
 
-#presentation {
-  /* position */
-  float: left;
+#left {
+  /* position*/
   position: relative;
   left: 15%;
   /* size */
@@ -53,30 +56,40 @@ footer {
   text-indent: -2vw;
   text-align: left;
 
+  /* For succersors (Hannoi) not to expand body */
+  margin-bottom: -200px;
+  padding-bottom: 12px;
 }
 
-#quote {
-  /* position */
-  float: right;
-  position: relative;
-  top: 10%;
-  right: 10%;
-  /* size */
-  width: 38vw;
-  text-indent: -2vw;
-  text-align: left;
-}
 
-#hanoi {
-  /* bottom right */
-  float: right;
+#right {
   position: relative;
-  right: 10%;
-  bottom: 15%;
+  left: 50%;
+  /* According to left */
+  top: -200px;
   /* 1:3 Aspect Ratio */
   width: 40vw;
   height: 13.3vw;
 }
+
+
+/* top brx4 + h1
+   br:20 h1:75+40 and p:+15
+*/
+#quote {
+  /* position */
+  position: relative;
+  top: -110%;
+  /* 24 for indent and 95 because more prettty (centered) than 100 */
+  left: calc(24px - 95%);
+  order: 10;
+  /* size */
+  width: 38vw;
+  text-indent: -24px;
+  text-align: left;
+}
+
+
 
 </style>
 
@@ -90,13 +103,12 @@ footer {
 
 
 <!-- Left Div -->
-<div id="presentation">
-</br></br>
+<div id="left">
+  </br></br>
   <h1>
     Martin Tourneboeuf
   </h1>
-  </br>
-  </br>
+  </br> </br>
   <p class="pdes">French pirates yes they rob I</p>
   <p class="pdes">Stole I from the chilean ship</p>
   <p class="pdes">Minutes after they sent I</p>
@@ -121,28 +133,11 @@ footer {
 </div>
  
 
-<div id="quote">
-  <!-- Proverbs -->
-  </br></br>
-  </br></br>
-  <p class="p p1">Talk do not cook rice (chinese proverb)</p>
-  <p class="p p2">Do not wait to be perfect to start something good (Abbé Pierre)</p>
-  <p class="p p3">Hope is the last thing you lose (chilean proverb)</p>
-  <p class="p p4">The journey of a thousand miles begins with one step (Lao Tseu)</p>
-  <p class="p p5">He who knows that enough is enough will always have enough (Lao Tseu)<p>
-
-  <!-- Tinmarino -->
-  </br></br>
-  <p class="p p0">The essential is in the detail</p>
-  <p class="p p0">No matter the altitude, what counts is the slope</p>
-  <p class="p p0">Your strong treats you as you treat your weak</p>
-</div>
-
 
 
 <!-- Pure CSS Tower of Hanoi -->
 <link rel="stylesheet" href="../css/hanoi.css" type="text/css" media="screen" title="no title" charset="utf-8">
-<div id="hanoi">
+<div id="right">
 <form>
   <div class="discs">
     <input id="one" type="text" tabindex="-1" readonly>
@@ -195,40 +190,60 @@ footer {
     <div class="separator bc"></div>
     <div class="spacer c"></div>
 
+    <!-- Appearing -->
+    <div id="quote">
+      <!-- Proverbs -->
+      </br></br>
+      </br></br>
+      <p class="p p1">Talk do not cook rice (chinese proverb)</p>
+      <p class="p p2">Do not wait to be perfect to start something good (Abbé Pierre)</p>
+      <p class="p p3">Hope is the last thing you lose (chilean proverb)</p>
+      <p class="p p4">The journey of a thousand miles begins with one step (Lao Tseu)</p>
+      <p class="p p5">He who knows that enough is enough will always have enough (Lao Tseu)<p>
+
+      <!-- Tinmarino -->
+      </br></br>
+      <p class="p p0">The essential is in the detail</p>
+      <p class="p p0">No matter the altitude, what counts is the slope</p>
+      <p class="p p0">Your strong treats you as you treat your weak</p>
+    </div>
+
+    <!-- Now abolute -->
     <div class="tower a"></div>
     <div class="tower b"></div>
     <div class="tower c"></div>
-
   </div>
+
   <div class="bottom"></div>
+
 </form>
 </div>
 
 
 <!-- Signature -->
-<footer id="id_sign"
-  style="line-height:150%;font-size: 8px;"
->
+<footer id="id_sign">
 
-v0.19
-<script charset="utf-8">
-
-var options = { year: 'numeric', month: 'long', day: 'numeric' };
-var d_date = new Date(document.lastModified)
-var s_date = d_date.toLocaleDateString("en-US", options);
-document.write(s_date);
-
-function main() {
-  // Set bg image 
-  var bg = document.getElementById('bg');
-  bg.src = "../img/bck/north_xx.svg";
-}
-
-window.onload = main;
-
-</script>
-</br>
-Tinmarino
+  v0.19
+  
+  <!-- ... and code -->
+  <script charset="utf-8">
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  var d_date = new Date(document.lastModified)
+  var s_date = d_date.toLocaleDateString("en-US", options);
+  document.write(s_date);
+  
+  function main() {
+    // Set bg image 
+    var bg = document.getElementById('bg');
+    bg.src = "../img/bck/north_xx.svg";
+  }
+  
+  window.onload = main;
+  
+  </script>
+  
+  </br>
+  Tinmarino
 
 </footer>
 
