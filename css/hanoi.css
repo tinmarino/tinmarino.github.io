@@ -24,25 +24,25 @@ input[name="one"]:nth-child(4):hover ~ div#quote p.p1 {
   opacity: 1;
 }
 /* ** survive */
-input[name="one"]:nth-child(3):checked ~ div#quote p.p1{
+input[name="one"]:nth-child(3):checked ~ div#quote p.p1 {
   opacity: 1;
 }
-input[name="one"]:nth-child(4):checked ~ div#quote p.p1{
+input[name="one"]:nth-child(4):checked ~ div#quote p.p1 {
   opacity: 1;
 }
 /* ** survive if any higher disc is out */
-input:nth-child(6n+2):not(:checked) ~ div#quote p.p1{
+input:nth-child(6n+2):not(:checked) ~ div#quote p.p1 {
   opacity: 1;
 }
 
 /* Win 1.1 : middle and right eternal */
-input[name="one"]:nth-child(3):checked ~ div#quote p.p2{
+input[name="one"]:nth-child(3):checked ~ div#quote p.p2 {
   opacity: 1;
 }
-input[name="one"]:nth-child(4):checked ~ div#quote p.p2{
+input[name="one"]:nth-child(4):checked ~ div#quote p.p2 {
   opacity: 1;
 }
-input:nth-child(6n+2):not(:checked) ~ div#quote p.p2{
+input:nth-child(6n+2):not(:checked) ~ div#quote p.p2 {
   opacity: 1;
 }
 
@@ -60,35 +60,172 @@ input[name="two"]:nth-child(6n + 4):hover ~ div#quote p.p3 {
   opacity: 1;
 }
 /* ** survive */
-input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p3{
+input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p3 {
   opacity: 1;
 }
-input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p3{
+input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p3 {
   opacity: 1;
 }
 /* ** survive if any higher disc is out */
-input:nth-child(6n + 8):not(:checked) ~ div#quote p.p3{
+input:nth-child(6n + 8):not(:checked) ~ div#quote p.p3 {
   opacity: 1;
 }
-
 
 /* Win 2.1 : middle and right eternal */
-input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p4{
+input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p4 {
   opacity: 1;
 }
-input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p4{
+input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p4 {
   opacity: 1;
 }
-input:nth-child(6n + 8):not(:checked) ~ div#quote p.p4{
+input:nth-child(6n + 8):not(:checked) ~ div#quote p.p4 {
   opacity: 1;
 }
 
 
 
+/* Win 3.0 Drag */
+/* ** lift */
+input#three:focus ~ div#quote p.p5 {
+  opacity: 1;
+}
+/* ** move (i.e lose focus) */
+input[name="three"]:nth-child(6n+ 3):hover ~ div#quote p.p5 {
+  opacity: 1;
+}
+input[name="three"]:nth-child(6n + 4):hover ~ div#quote p.p5 {
+  opacity: 1;
+}
+/* ** survive */
+input[name="three"]:nth-child(6n + 3):checked ~ div#quote p.p5 {
+  opacity: 1;
+}
+input[name="three"]:nth-child(6n + 4):checked ~ div#quote p.p5 {
+  opacity: 1;
+}
+/* ** survive if any higher disc is out */
+input:nth-child(6n + 14):not(:checked) ~ div#quote p.p5 {
+  opacity: 1;
+}
+
+/* Win 2.1 : middle and right eternal */
+input[name="three"]:nth-child(6n + 3):checked ~ div#quote p.p6 {
+  opacity: 1;
+}
+input[name="three"]:nth-child(6n + 4):checked ~ div#quote p.p6 {
+  opacity: 1;
+}
+input:nth-child(6n + 14):not(:checked) ~ div#quote p.p6 {
+  opacity: 1;
+}
 
 
+/* Win 4.0 Drag */
+/* ** lift */
+input#four:focus ~ div#quote p.p7 {
+  opacity: 1;
+}
+/* ** move (i.e lose focus) */
+input[name="four"]:nth-child(6n+ 3):hover ~ div#quote p.p7 {
+  opacity: 1;
+}
+input[name="four"]:nth-child(6n + 4):hover ~ div#quote p.p7 {
+  opacity: 1;
+}
+/* ** survive */
+input[name="four"]:nth-child(6n + 3):checked ~ div#quote p.p7 {
+  opacity: 1;
+}
+input[name="four"]:nth-child(6n + 4):checked ~ div#quote p.p7 {
+  opacity: 1;
+}
+/* ** survive if any higher disc is out */
+input:nth-child(6n + 20):not(:checked) ~ div#quote p.p7 {
+  opacity: 1;
+}
+
+/* Win 2.1 : middle and right eternal */
+input[name="four"]:nth-child(6n + 3):checked ~ div#quote p.p8 {
+  opacity: 1;
+}
+input[name="four"]:nth-child(6n + 4):checked ~ div#quote p.p8 {
+  opacity: 1;
+}
+input:nth-child(6n + 20):not(:checked) ~ div#quote p.p8 {
+  opacity: 1;
+}
 
 
+/* Win 5.0 Drag */
+/* ** lift */
+input#five:focus ~ div#quote p.p9 {
+  opacity: 1;
+}
+/* ** move (i.e lose focus) */
+input[name="five"]:nth-child(6n+ 3):hover ~ div#quote p.p9 {
+  opacity: 1;
+}
+input[name="five"]:nth-child(6n + 4):hover ~ div#quote p.p9 {
+  opacity: 1;
+}
+/* ** survive */
+input[name="five"]:nth-child(6n + 3):checked ~ div#quote p.p9 {
+  opacity: 1;
+}
+input[name="five"]:nth-child(6n + 4):checked ~ div#quote p.p9 {
+  opacity: 1;
+}
+/* ** survive if any higher disc is out */
+input:nth-child(6n + 26):not(:checked) ~ div#quote p.p9 {
+  opacity: 1;
+}
+
+/* Win 2.1 : middle and right eternal */
+input[name="five"]:nth-child(6n + 3):checked ~ div#quote p.p10 {
+  opacity: 1;
+}
+input[name="five"]:nth-child(6n + 4):checked ~ div#quote p.p10 {
+  opacity: 1;
+}
+input:nth-child(6n + 26):not(:checked) ~ div#quote p.p10 {
+  opacity: 1;
+}
+
+
+/* Win 6.0 Drag */
+/* ** lift */
+input#six:focus ~ div#quote p.p11 {
+  opacity: 1;
+}
+/* ** move (i.e lose focus) */
+input[name="six"]:nth-child(6n+ 3):hover ~ div#quote p.p11 {
+  opacity: 1;
+}
+input[name="six"]:nth-child(6n + 4):hover ~ div#quote p.p11 {
+  opacity: 1;
+}
+/* ** survive */
+input[name="six"]:nth-child(6n + 3):checked ~ div#quote p.p11 {
+  opacity: 1;
+}
+input[name="six"]:nth-child(6n + 4):checked ~ div#quote p.p11 {
+  opacity: 1;
+}
+/* ** survive if any higher disc is out */
+input:nth-child(6n + 32):not(:checked) ~ div#quote p.p11 {
+  opacity: 1;
+}
+
+/* Win 2.1 : middle and right eternal */
+input[name="six"]:nth-child(6n + 3):checked ~ div#quote p.p12 {
+  opacity: 1;
+}
+input[name="six"]:nth-child(6n + 4):checked ~ div#quote p.p12 {
+  opacity: 1;
+}
+input:nth-child(6n + 32):not(:checked) ~ div#quote p.p12 {
+  opacity: 1;
+}
 
 
 
