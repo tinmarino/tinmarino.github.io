@@ -14,7 +14,6 @@ html, body {
 
 /* Interactive */
 
-
 .sidebar {
   /* Set the width of the sidebar to 120px */
   width: var(--sidebar-width); height: 100%;
@@ -111,6 +110,7 @@ button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focu
 
 .w3-center { text-align: center; }
 .w3-hover-black:hover{color:#fff!important;background-color:#000!important}
+.w3-hover-black:focus{color:#fff!important;background-color:#000!important}
 .w3-small{font-size:12px!important}
 .w3-xxlarge{font-size:36px!important}
 .w3-padding-large{padding:12px 24px!important}
