@@ -118,7 +118,7 @@ function focusOtherElement(item, iDir) {
 
   var index = focussable.indexOf(document.activeElement);
   console.log(2);
-  if(index > (-1 * iDir)) {
+  if(index > -1) {
      var otherElement = focussable[index + iDir] || focussable[0];
      otherElement.focus();
   }
