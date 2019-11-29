@@ -13,10 +13,11 @@ body {
   font-family: Dejavu Sans, sans-serif;
   color: #fdf6e3;
   background-color: #002b36;
+  font-size: 18px;
   /* Position */
   height: 100%;
   overflow-x: hidden;
-  --left-neg-marg: 160px;
+  --left-neg-marg: 13.3vw;
 }
 
 img#bg {
@@ -43,7 +44,8 @@ footer {
   text-align: right;
   right: 5%;
   /* According to left */
-  bottom: calc(var(--left-neg-marg) - 70px);
+  bottom: 70px;
+  margin: 0;
 
   /* custom */
   line-height: 150%;
@@ -61,7 +63,7 @@ footer {
 
   /* For succersors (Hannoi) not to expand body */
   margin-bottom: calc( var(--left-neg-marg) * -1) ;
-  padding-bottom: 12px;
+  padding-bottom: 18px;
 }
 
 
@@ -69,7 +71,7 @@ footer {
   position: relative;
   left: 50%;
   /* According to left */
-  top: calc( var(--left-neg-marg) * -1) ;
+  bottom: 200px;
   /* 1:3 Aspect Ratio */
   width: 40vw;
   height: 13.3vw;
@@ -110,27 +112,30 @@ footer {
 
 <!-- Left Div -->
 <div id="left">
-  </br>
+  <br style="display: block; margin: 30px 0;">
   <h1>
     Martin Tourneboeuf
   </h1>
-  </br>
+  <br style="display: block; margin: 30px 0;">
+
   <p class="pdes">French pirates yes they rob I</p>
   <p class="pdes">Stole I from the chilean ship</p>
   <p class="pdes">Minutes after they sent I</p>
   <p class="pdes">To an uncertain trip</p>
-  </br>
+  <br style="display: block; margin: 10px 0;">
+
   <p class="pdes">But my OS was made strong</p>
   <p class="pdes">By the OS of Richard Stallman</p>
   <p class="pdes">We forward in this generation</p>
   <p class="pdes">Invoking 'man'</p>
-  </br>
-  </br>
+  <br style="display: block; margin: 30px 0;">
+
   <p class="pdes">Emancipate yourself from private company</p>
   <p class="pdes">None but ourself can sail our life</p>
   <p class="pdes">Have no fear for cheap technology</p>
   <p class="pdes">No kitchenware replace the knife</p>
-  </br>
+  <br style="display: block; margin: 10px 0;">
+
   <p class="pdes">How long shall they kill our process</p>
   <p class="pdes">While we sit aside and root</p>
   <p class="pdes">Some say clever the lazyness</p>
