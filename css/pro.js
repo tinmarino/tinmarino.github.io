@@ -40,7 +40,15 @@ function closeOne(id) {
 }
 
 function closeAll(b_keep_open) {
-  for (id of aNavId){ closeOne(id); }
+  for (id of aNavId){
+    // Close
+    closeOne(id);
+    // Uncolor
+    const buttonId = id.substring(3)
+    const elt = document.getElementById(buttonId);
+    if (null == elt) { continue; }
+    elt.classList.remove('js-black');
+  }
   if (!b_keep_open) {
     document.getElementById("id_main").style.marginLeft = "120px";
   }
@@ -132,19 +140,24 @@ function handleKeyDownNav(event) {
   switch (event.keyCode) {
     case Key.ENTER:
     case Key.RIGHT:
-      if (item.id == "home") {
+      // Click if on home or cv
+      if ("home" == item.id || "cv" == item.id) {
         item.click();
         return;
       }
+      // If want to open nav, open
       const s_open = 'id_' + item.id;
-      if (! aNavId.includes(s_open)) { return }
-      openOne(s_open);
-      const eltNav = document.getElementById(s_open);
-      if (null == eltNav){ return; }
-      const first = eltNav.firstElementChild;
-      if (null == first){ return; }
-      first.focus();
+      if (aNavId.includes(s_open)) {
+        openOne(s_open);
+        const eltNav = document.getElementById(s_open);
+        if (null == eltNav){ return; }
+        const first = eltNav.firstElementChild;
+        if (null == first){ return; }
+        first.focus();
+        item.classList.add("js-black");
+      }
       return;
+
     case Key.BACKSPACE:
     case Key.LEFT:
       closeAll(false);
@@ -155,9 +168,11 @@ function handleKeyDownNav(event) {
         }
       });
       return;
+
     case Key.UP:
       focusOtherElement(item, -1);
       return;
+
     case Key.DOWN:
       focusOtherElement(item, 1);
       return;
