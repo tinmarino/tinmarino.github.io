@@ -1,20 +1,26 @@
 // Declare globals (array of openable navigation ids)
-const aNavId = [
-  "id_cv",
-  "id_web",
-  "id_astro",
-  "id_cyber",
-  "id_contact",
-]
+function declareGlobal() {
+  window.aNavId = [
+    "id_cv",
+    "id_web",
+    "id_astro",
+    "id_cyber",
+    "id_contact",
+  ]
 
-const Key = {
-  BACKSPACE: 8,
-  TAB: 9,
-  ENTER: 13,
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40,
+  window.Key = {
+    BACKSPACE: 8,
+    TAB: 9,
+    ENTER: 13,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+  }
+
+  window.buttonSidebars = document.querySelectorAll('.sidebar > *');
+
+  window.buttonSidebar1s = document.querySelectorAll('.sidebar1 > *');
 }
 
 
@@ -28,9 +34,23 @@ function showHome(){
 }
 
 function openOne(id) {
+  // Restore
   closeAll(true);
-  document.getElementById(id).style.display = "flex";
   document.getElementById("id_main").style.marginLeft = "240px";
+
+  // Show
+  const nextNav = document.getElementById(id);
+  if (null == nextNav) { return; }
+  nextNav.style.display = "flex";
+
+  // Focus first child
+  const first = nextNav.firstElementChild;
+  if (null == first){ return; }
+  first.focus();
+
+  // Color me black
+  const elt  = document.getElementById(id.substring(3));
+  elt.classList.add("js-black");
 }
 
 function closeOne(id) {
@@ -75,8 +95,7 @@ function handleMouseOver(event) {
 // Add handler on mouse over sidebar element
 function addDescriptionHandler() {
   // whenever we hover over a menu item (TODO that has a description)
-  var buttons = document.querySelectorAll('.sidebar > *')
-  buttons.forEach(item => {
+  buttonSidebars.forEach(item => {
     item.addEventListener('mouseover', handleMouseOver);
   });
 }
@@ -149,20 +168,13 @@ function handleKeyDownNav(event) {
       const s_open = 'id_' + item.id;
       if (aNavId.includes(s_open)) {
         openOne(s_open);
-        const eltNav = document.getElementById(s_open);
-        if (null == eltNav){ return; }
-        const first = eltNav.firstElementChild;
-        if (null == first){ return; }
-        first.focus();
-        item.classList.add("js-black");
       }
       return;
 
     case Key.BACKSPACE:
     case Key.LEFT:
       closeAll(false);
-      const button1s = document.querySelectorAll('.sidebar1 > *');
-      button1s.forEach(item1 => {
+      buttonSidebar1s.forEach(item1 => {
         if( item1.id == item.parentElement.id.substring(3) ){
           item1.focus();
         }
@@ -204,8 +216,7 @@ function handleKeyDownNav(event) {
 }
 
 function addHandlerKeyboardArrow() {
-  const buttons = document.querySelectorAll('.sidebar > *');
-  buttons.forEach(item => {
+  buttonSidebars.forEach(item => {
     item.addEventListener('keydown', handleKeyDownNav);
   });
 
@@ -213,6 +224,7 @@ function addHandlerKeyboardArrow() {
 
 
 function main() {
+  declareGlobal();
   readUrlParameters();
   addDescriptionHandler();
   setImageSrc();
