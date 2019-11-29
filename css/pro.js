@@ -1,3 +1,21 @@
+// Declare globals (array of openable navigation ids)
+const aNavId = [
+  "id_cv",
+  "id_web",
+  "id_astro",
+  "id_cyber",
+  "id_contact",
+]
+
+const Key = {
+  TAB: 9,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40,
+}
+
+
 function hideHome(){
   document.getElementById("welcome").style.display = "none";
 }
@@ -20,18 +38,13 @@ function closeOne(id) {
 }
 
 function closeAll(b_keep_open) {
-  for (id of [
-    "id_cv",
-    "id_web",
-    "id_astro",
-    "id_cyber",
-    "id_contact",
-  ]){ closeOne(id); }
+  for (id of aNavId){ closeOne(id); }
   if (!b_keep_open) {
     document.getElementById("id_main").style.marginLeft = "120px";
   }
 }
 
+// Open description label on mouse over
 function handleMouseOver(event) {
   // Get item
   var item = event.target || event.srcElement;
@@ -39,19 +52,18 @@ function handleMouseOver(event) {
   // Get description (child)
   var descriptionItem = item.querySelector('.description');
   if (null == descriptionItem) { return; }
-  
+
   // grab the menu item's position relative to its positioned parent
   // var menuItemPos = descriptionItem.position();
-  
+
   // place the submenu in the correct position relevant to the menu item
   var i_top = item.getBoundingClientRect().top
   var s_top = Math.floor(i_top.toString()) + 'px';
   descriptionItem.style.top = s_top;
 }
 
-// Set description position <- https://css-tricks.com/popping-hidden-overflow/
-// Translated to js <- https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/ (awesome page)
-function setDescriptionSizeHandler() {
+// Add handler on mouse over sidebar element
+function addDescriptionHandler() {
   // whenever we hover over a menu item (TODO that has a description)
   var buttons = document.querySelectorAll('.sidebar > *')
   buttons.forEach(item => {
@@ -84,10 +96,75 @@ function readUrlParameters () {
   });
 }
 
+
+//////////////////////
+// Keybard arrow input
+//////////////////////
+
+
+// Helper: focus next Sibling
+function focusOtherElement(item, iDir) {
+  // Check
+  console.log(1);
+  if (!item || !(iDir == 1 || iDir == -1)) { return ; }
+
+  // Add all elements we want to include in our selection
+  var focussableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
+  var focussable = Array.prototype.filter.call(document.querySelectorAll(focussableElements),
+  function (element) {
+      //check for visibility while always include the current activeElement
+      return element.offsetWidth > 0 || element.offsetHeight > 0 || element === item
+  });
+
+  var index = focussable.indexOf(document.activeElement);
+  console.log(2);
+  if(index > (-1 * iDir)) {
+     var otherElement = focussable[index + iDir] || focussable[0];
+     otherElement.focus();
+  }
+}
+
+// Handle keyboard down on focused navigation item
+function handleKeyDownNav(event) {
+  // Get item
+  const item = event.target || event.srcElement;
+
+  // Log TODO Rem
+  console.log('I got presed on ' + item.id + ' with ' + event.keyCode);
+
+  switch (event.keyCode) {
+    case Key.RIGHT:
+      const s_open = 'id_' + item.id
+      if (! aNavId.includes(s_open)) { return }
+      openOne(s_open);
+      // TODO focus on first
+      return;
+    case Key.LEFT:
+      closeAll(false);
+      return;
+    case Key.UP:
+      focusOtherElement(item, -1);
+      return;
+    case Key.DOWN:
+      focusOtherElement(item, 1);
+      return;
+  }
+}
+
+function addHandlerKeyboardArrow() {
+  const buttons = document.querySelectorAll('.sidebar > *');
+  buttons.forEach(item => {
+    item.addEventListener('keydown', handleKeyDownNav);
+  });
+
+}
+
+
 function main() {
   readUrlParameters();
-  setDescriptionSizeHandler();
+  addDescriptionHandler();
   setImageSrc();
+  addHandlerKeyboardArrow();
 
 }
 
