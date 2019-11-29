@@ -8,7 +8,9 @@ const aNavId = [
 ]
 
 const Key = {
+  BACKSPACE: 8,
   TAB: 9,
+  ENTER: 13,
   LEFT: 37,
   UP: 38,
   RIGHT: 39,
@@ -128,7 +130,12 @@ function handleKeyDownNav(event) {
   const item = event.target || event.srcElement;
 
   switch (event.keyCode) {
+    case Key.ENTER:
     case Key.RIGHT:
+      if (item.id == "home") {
+        item.click();
+        return;
+      }
       const s_open = 'id_' + item.id;
       if (! aNavId.includes(s_open)) { return }
       openOne(s_open);
@@ -138,6 +145,7 @@ function handleKeyDownNav(event) {
       if (null == first){ return; }
       first.focus();
       return;
+    case Key.BACKSPACE:
     case Key.LEFT:
       closeAll(false);
       const button1s = document.querySelectorAll('.sidebar1 > *');
