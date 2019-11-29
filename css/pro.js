@@ -105,7 +105,6 @@ function readUrlParameters () {
 // Helper: focus next Sibling
 function focusOtherElement(item, iDir) {
   // Check
-  console.log(1);
   if (!item || !(iDir == 1 || iDir == -1)) { return ; }
 
   // Add all elements we want to include in our selection
@@ -117,7 +116,6 @@ function focusOtherElement(item, iDir) {
   });
 
   var index = focussable.indexOf(document.activeElement);
-  console.log(2);
   if(index > -1) {
      var otherElement = focussable[index + iDir] || focussable[0];
      otherElement.focus();
@@ -129,18 +127,25 @@ function handleKeyDownNav(event) {
   // Get item
   const item = event.target || event.srcElement;
 
-  // Log TODO Rem
-  console.log('I got presed on ' + item.id + ' with ' + event.keyCode);
-
   switch (event.keyCode) {
     case Key.RIGHT:
-      const s_open = 'id_' + item.id
+      const s_open = 'id_' + item.id;
       if (! aNavId.includes(s_open)) { return }
       openOne(s_open);
-      // TODO focus on first
+      const eltNav = document.getElementById(s_open);
+      if (null == eltNav){ return; }
+      const first = eltNav.firstElementChild;
+      if (null == first){ return; }
+      first.focus();
       return;
     case Key.LEFT:
       closeAll(false);
+      const button1s = document.querySelectorAll('.sidebar1 > *');
+      button1s.forEach(item1 => {
+        if( item1.id == item.parentElement.id.substring(3) ){
+          item1.focus();
+        }
+      });
       return;
     case Key.UP:
       focusOtherElement(item, -1);
