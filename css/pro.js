@@ -174,6 +174,18 @@ function handleKeyDownNav(event) {
       return;
 
     case Key.DOWN:
+      // Pass if last in childList
+      function doPass (){
+        const parent = item.parentElement;
+        if (null == parent) { return false; }
+        const lastChild = parent.lastElementChild;
+        if (null == lastChild) { return false; }
+        if (lastChild == item){ return true; }
+        return false;
+      }
+      if (doPass()) { return }
+
+      // Next
       focusOtherElement(item, 1);
       return;
   }
