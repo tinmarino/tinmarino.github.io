@@ -225,32 +225,27 @@ footer {
 
 
 <!-- Signature -->
-<footer id="id_sign">
+<footer id="id_sign"></footer>
 
-  v0.19
-  
-  <!-- ... and code -->
-  <script charset="utf-8">
-  var options = { year: 'numeric', month: 'long', day: 'numeric' };
-  var d_date = new Date(document.lastModified)
-  var s_date = d_date.toLocaleDateString("en-US", options);
-  document.write(s_date);
-  
-  function main() {
-    // Set bg image 
-    var bg = document.getElementById('bg');
-    bg.src = "../img/bck/north_xx.svg";
-  }
-  
-  window.onload = main;
-  
-  </script>
-  
-  </br>
-  Tinmarino
+<!-- Code -->
+<script charset="utf-8">
+function main() {
+  // Set bg image
+  var bg = document.getElementById('bg');
+  bg.src = "../img/bck/north_xx.svg";
 
-</footer>
+  // Write footer
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const d_date = new Date(document.lastModified)
+  const s_date = d_date.toLocaleDateString("en-US", options);
+  const s_foot = "v0.20 " + s_date + "</br>Tinmarino"
+  const footer = document.querySelector('footer');
+  footer.innerHTML = s_foot;
+}
 
+window.onload = main;
+
+</script>
 
 </body>
 </html>
