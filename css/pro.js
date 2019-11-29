@@ -178,7 +178,7 @@ function main() {
   addDescriptionHandler();
   setImageSrc();
   addHandlerKeyboardArrow();
-
+  document.getElementById("home").focus();
 }
 
 window.onload = main;

@@ -62,6 +62,9 @@ html, body {
 .sidebar > *:hover > .description {
   display: block;
 }
+.sidebar > *:focus > .description {
+  display: block;
+}
 
 
 #id_main {
