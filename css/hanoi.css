@@ -35,14 +35,22 @@ input:nth-child(6n+2):not(:checked) ~ div#quote p.p1 {
   opacity: 1;
 }
 
-/* Win 1.1 : middle and right eternal */
-input[name="one"]:nth-child(3):checked ~ div#quote p.p2 {
+/* Win 1.1 : disc 2 left: middle and right eternal */
+input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p2 {
   opacity: 1;
 }
-input[name="one"]:nth-child(4):checked ~ div#quote p.p2 {
+input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p2 {
   opacity: 1;
 }
-input:nth-child(6n+2):not(:checked) ~ div#quote p.p2 {
+input:nth-child(6n + 8):not(:checked) ~ div#quote p.p2 {
+  opacity: 1;
+}
+
+/* Win 1.2 : true alignement */
+input:nth-child(6n + 3):checked ~ div#quote p.p2 {
+  opacity: 1;
+}
+input:nth-child(6n + 4):checked ~ div#quote p.p2 {
   opacity: 1;
 }
 
@@ -71,17 +79,24 @@ input:nth-child(6n + 8):not(:checked) ~ div#quote p.p3 {
   opacity: 1;
 }
 
-/* Win 2.1 : middle and right eternal */
-input[name="two"]:nth-child(6n + 3):checked ~ div#quote p.p4 {
+/* Win 2.1 : disc3 left : middle and right eternal */
+input[name="three"]:nth-child(6n + 3):checked ~ div#quote p.p4 {
   opacity: 1;
 }
-input[name="two"]:nth-child(6n + 4):checked ~ div#quote p.p4 {
+input[name="three"]:nth-child(6n + 4):checked ~ div#quote p.p4 {
   opacity: 1;
 }
-input:nth-child(6n + 8):not(:checked) ~ div#quote p.p4 {
+input:nth-child(6n + 14):not(:checked) ~ div#quote p.p4 {
   opacity: 1;
 }
 
+/* Win 2.2 : true alignement */
+input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p4 {
+  opacity: 1;
+}
+input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p4 {
+  opacity: 1;
+}
 
 
 /* Win 3.0 Drag */
@@ -108,16 +123,26 @@ input:nth-child(6n + 14):not(:checked) ~ div#quote p.p5 {
   opacity: 1;
 }
 
-/* Win 2.1 : middle and right eternal */
-input[name="three"]:nth-child(6n + 3):checked ~ div#quote p.p6 {
+/* Win 3.1 : disc 4 left :  middle and right eternal */
+input[name="four"]:nth-child(6n + 3):checked ~ div#quote p.p6 {
   opacity: 1;
 }
-input[name="three"]:nth-child(6n + 4):checked ~ div#quote p.p6 {
+input[name="four"]:nth-child(6n + 4):checked ~ div#quote p.p8 {
   opacity: 1;
 }
-input:nth-child(6n + 14):not(:checked) ~ div#quote p.p6 {
+input:nth-child(6n + 20):not(:checked) ~ div#quote p.p6 {
   opacity: 1;
 }
+
+/* Win 3.2 : true alignement */
+input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p6 {
+  opacity: 1;
+}
+input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p6 {
+  opacity: 1;
+}
+
+
 
 
 /* Win 4.0 Drag */
@@ -144,14 +169,22 @@ input:nth-child(6n + 20):not(:checked) ~ div#quote p.p7 {
   opacity: 1;
 }
 
-/* Win 2.1 : middle and right eternal */
-input[name="four"]:nth-child(6n + 3):checked ~ div#quote p.p8 {
+/* Win 4.1 : disc 5 left : middle and right eternal */
+input[name="five"]:nth-child(6n + 3):checked ~ div#quote p.p8 {
   opacity: 1;
 }
-input[name="four"]:nth-child(6n + 4):checked ~ div#quote p.p8 {
+input[name="five"]:nth-child(6n + 4):checked ~ div#quote p.p8 {
   opacity: 1;
 }
-input:nth-child(6n + 20):not(:checked) ~ div#quote p.p8 {
+input:nth-child(6n + 26):not(:checked) ~ div#quote p.p8 {
+  opacity: 1;
+}
+
+/* Win 4.2 : true alignement */
+input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p8 {
+  opacity: 1;
+}
+input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p8 {
   opacity: 1;
 }
 
@@ -180,14 +213,22 @@ input:nth-child(6n + 26):not(:checked) ~ div#quote p.p9 {
   opacity: 1;
 }
 
-/* Win 2.1 : middle and right eternal */
-input[name="five"]:nth-child(6n + 3):checked ~ div#quote p.p10 {
+/* Win 5.1 : disc 6 left */
+input[name="six"]:nth-child(6n + 3):checked ~ div#quote p.p10 {
   opacity: 1;
 }
-input[name="five"]:nth-child(6n + 4):checked ~ div#quote p.p10 {
+input[name="six"]:nth-child(6n + 4):checked ~ div#quote p.p10 {
   opacity: 1;
 }
-input:nth-child(6n + 26):not(:checked) ~ div#quote p.p10 {
+input:nth-child(6n + 32):not(:checked) ~ div#quote p.p10 {
+  opacity: 1;
+}
+
+/* Win 5.2 : true alignement */
+input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p10 {
+  opacity: 1;
+}
+input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p10 {
   opacity: 1;
 }
 
@@ -216,22 +257,11 @@ input:nth-child(6n + 32):not(:checked) ~ div#quote p.p11 {
   opacity: 1;
 }
 
-/* Win 2.1 : middle and right eternal */
-input[name="six"]:nth-child(6n + 3):checked ~ div#quote p.p12 {
+/* Win 6.2 true alignement */
+input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p12 {
   opacity: 1;
 }
-input[name="six"]:nth-child(6n + 4):checked ~ div#quote p.p12 {
-  opacity: 1;
-}
-input:nth-child(6n + 32):not(:checked) ~ div#quote p.p12 {
-  opacity: 1;
-}
-
-/* Win 7 really Win -> p13 */
-input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ input:nth-child(6n + 3):checked ~ div#quote p.p13 {
-  opacity: 1;
-}
-input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p13 {
+input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ input:nth-child(6n + 4):checked ~ div#quote p.p12 {
   opacity: 1;
 }
 
