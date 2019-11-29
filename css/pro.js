@@ -170,12 +170,24 @@ function handleKeyDownNav(event) {
       return;
 
     case Key.UP:
+      // Pass if first in childList
+      function doPassFirst (){
+        const parent = item.parentElement;
+        if (null == parent) { return false; }
+        const firstElement = parent.firstElementChild;
+        if (null == firstElement) { return false; }
+        if (firstElement == item){ return true; }
+        return false;
+      }
+      if (doPassFirst()) { return }
+
+      // Prev
       focusOtherElement(item, -1);
       return;
 
     case Key.DOWN:
       // Pass if last in childList
-      function doPass (){
+      function doPassLast (){
         const parent = item.parentElement;
         if (null == parent) { return false; }
         const lastChild = parent.lastElementChild;
@@ -183,7 +195,7 @@ function handleKeyDownNav(event) {
         if (lastChild == item){ return true; }
         return false;
       }
-      if (doPass()) { return }
+      if (doPassLast()) { return }
 
       // Next
       focusOtherElement(item, 1);
