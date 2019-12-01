@@ -28,10 +28,12 @@ function hideHome(){
   document.getElementById("welcome").style.display = "none";
 }
 
+
 function showHome(){
   document.getElementById("welcome").style.display = "block";
   document.getElementById("id_iframe").src = "";
 }
+
 
 function openOne(id) {
   // Restore
@@ -43,15 +45,22 @@ function openOne(id) {
   if (null == nextNav) { return; }
   nextNav.style.display = "flex";
 
-  // Focus first child
-  const first = nextNav.firstElementChild;
-  if (null == first){ return; }
-  first.focus();
-
   // Color me black
   const elt  = document.getElementById(id.substring(3));
   elt.classList.add("js-black");
+
+  // Return opened nav
+  return nextNav;
 }
+
+
+// Focus first child: used for keyboard movement (but not mouse)
+function focusFirstChild(nextNav){
+  const first = nextNav.firstElementChild;
+  if (null == first){ return; }
+  first.focus();
+}
+
 
 function closeOne(id) {
   var elt = document.getElementById(id);
@@ -167,7 +176,8 @@ function handleKeyDownNav(event) {
       // If want to open nav, open
       const s_open = 'id_' + item.id;
       if (aNavId.includes(s_open)) {
-        openOne(s_open);
+        const nextNav = openOne(s_open);
+        focusFirstChild(nextNav);
       }
       return;
 
