@@ -1,19 +1,21 @@
 <head>
-<meta name="generator" content="pandoc" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+  <!-- Meta -->
+  <meta name="generator" content="pandoc" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="YaDiff: de l'Intelligence Artificielle pour comparer les codes binaires">
-	<meta name="keywords" content="Binaire,Assembleur,Retro-ingénierie,Intelligence Artificielle,Réseau de neurones,Malgiciel,Produit de sécurité">
-
-<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="keywords" content="Binaire, Assembleur, Retro-ingénierie, Intelligence Artificielle, Réseau de neurones, Malgiciel, Produit de sécurité">
 
 <style>
 
-body { background-color: #232629; margin: 15px; }
+body {
+  color: #eee;
+  background-color: #232629;
+  margin: 15px;
+}
 
 /* H1 */
 h1 { 
-	--color: #b81; color: #b81; font-family: 'Droid serif', serif; font-size: 36px; font-weight: 400; font-style: italic; line-height: 44px; margin: 50px -10px 20px; 
+	color: #b81; font-family: 'Droid serif', serif; font-size: 36px; font-weight: 400; font-style: italic; line-height: 44px; margin: 50px -10px 20px; 
   max-width: 900px;
 }
 h1:after {
@@ -22,14 +24,14 @@ h1:after {
     border:2px solid #b81;
     border-radius:4px;
     box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-		max-width: 900px;
+		max-width: 800px;
 }
 h1.title {
 	text-align: center;
 	font-size: 50px;
 	line-height: 60px;
 	color: #eee;
-  max-width: 900px;
+  max-width: 800px;
 }
 h1.title:before {
     content:' ';
@@ -50,13 +52,13 @@ h1.title:after {
 
 
 /* H2 */
-h2 { --color:#460 ; margin: 0 -10px 20px; color:#b81; 
+h2 { margin: 0 -10px 20px; color:#b81; 
     text-decoration: underline;
 		max-width: 800px;
 }
 
 /* H3 */
-h3 { --color:#230 ; margin: 0 -5px 10px; color:#b81; 
+h3 { margin: 0 -5px 10px; color:#b81; 
 		max-width: 800px;
 }
 
@@ -72,8 +74,18 @@ a:hover { color: #fff; background: var(--h0); }
 
 /* List */
 li {
-	color: #eee;
   max-width: 800px; /* or a suitable width*/
+}
+
+/* Table */
+table {
+    max-width: 800px;
+}
+
+/* Table heading */
+th {
+  color: #193;
+  text-align: left;
 }
 
 /* Blockquote */
@@ -170,9 +182,9 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-le
 div.sourceCode
   { color: #cfcfc2; background-color: #232629; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+  a.sourceLine::before { text-decoration: underline; }
 }
-code span. { color: #cfcfc2; } /* Normal */
+code span { color: #cfcfc2; } /* Normal */
 code span.al { color: #95da4c; } /* Alert */
 code span.an { color: #3f8058; } /* Annotation */
 code span.at { color: #2980b9; } /* Attribute */
@@ -259,8 +271,8 @@ code span.wa { color: #da4453; } /* Warning */
 </colgroup>
 <tbody>
 <tr class="odd">
-<td>Événement perturbateur</td>
-<td>Conséquence pour une fonction</td>
+<th>Événement perturbateur</th>
+<th>Conséquence pour une fonction</th>
 </tr>
 <tr class="even">
 <td>Nouvelle Compilation</td>
