@@ -39,7 +39,7 @@ function showHome(){
 function openOne(id) {
   // Restore
   closeAll(true);
-  document.getElementById("id_main").style.marginLeft = "calc( 2 * var(--sidebar-width) )";
+  // document.getElementById("id_main").style.marginLeft = "calc( 2 * var(--sidebar-width) )";
 
   // Show
   const nextNav = document.getElementById(id);
@@ -80,7 +80,7 @@ function closeAll(b_keep_open) {
     elt.classList.remove('js-black');
   }
   if (!b_keep_open) {
-    document.getElementById("id_main").style.marginLeft = "var(--sidebar-width)";
+    // document.getElementById("id_main").style.marginLeft = "var(--sidebar-width)";
   }
 }
 
