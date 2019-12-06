@@ -12,6 +12,7 @@ function declareGlobal() {
     BACKSPACE: 8,
     TAB: 9,
     ENTER: 13,
+    SPACE: 32,
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
@@ -229,7 +230,18 @@ function addHandlerKeyboardArrow() {
   buttonSidebars.forEach(item => {
     item.addEventListener('keydown', handleKeyDownNav);
   });
+}
 
+function addHandlerHider() {
+  function handleBar(e) {
+    if (e.keyCode == Key.ENTER
+      || e.keyCode == Key.RIGHT
+      || e.keyCode == Key.SPACE) {
+        e.srcElement.click();
+    }
+  }
+  const barOpener =  document.getElementById('bar_opener');
+  barOpener.addEventListener('keydown', handleBar);
 }
 
 
@@ -239,6 +251,7 @@ function main() {
   addDescriptionHandler();
   setImageSrc();
   addHandlerKeyboardArrow();
+  addHandlerHider();
   document.getElementById("home").focus();
 }
 
