@@ -242,7 +242,7 @@ function main() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const d_date = new Date(document.lastModified)
   const s_date = d_date.toLocaleDateString("en-US", options);
-  const s_foot = "v0.22 " + s_date + "</br>Tinmarino"
+  const s_foot = "v0.23 " + s_date + "</br>Tinmarino"
   const footer = document.querySelector('footer');
   footer.innerHTML = s_foot;
 }
