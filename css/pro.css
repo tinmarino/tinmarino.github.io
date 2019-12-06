@@ -4,19 +4,61 @@ html, body {
   font-family: Dejavu Sans, sans-serif;
   background: #002b36;
   color: #fdf6e3;
+  outline: none;
   /* Position */
   margin: 0;
   padding: 0;
   border: 0;
   height: 100%;
+  /* Not changing */
+  --block: 120px;
+  /* Changing */
   --sidebar-width: 120px;
 }
 
 /* Interactive */
+input[type=checkbox]:checked ~ .sidebar{
+    display: none;
+}
+input[type=checkbox]:checked ~ * {
+  --sidebar-width: 0px;
+}
+
+/* Show description when hover or focus */
+.sidebar > *:hover > .description {
+  display: block;
+}
+/*.sidebar > *:focus > .description {
+  display: block;
+}*/
+
+
+#bar_opener {
+  position: absolute;
+  color: white;
+  top: 0;
+  left: 0;
+  width: var(--block);
+  height: var(--block);
+  z-index: 5;
+  outline: none;
+}
+
+/* Alignment à l'ancienne */
+#bar_opener img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
 
 .sidebar {
-  /* Set the width of the sidebar to 120px */
-  width: var(--sidebar-width); height: 100%;
+  width: var(--sidebar-width);
+  height: calc( 100% - var(--block));
+  padding-top: var(--sidebar-width);
   /* Apparance */
   outline: 0;
   z-index: 1;
@@ -31,6 +73,10 @@ html, body {
   flex-direction: column;
 }
 
+.sidebar:target {
+  display: none;
+}
+
 .sidebar2 {
   display: none;
   /* Position */
@@ -42,6 +88,7 @@ html, body {
   height: auto;
 }
 
+/* Do not shrink item but expand div */
 .sidebar > * {
   flex-shrink: 0;
 }
@@ -58,14 +105,6 @@ html, body {
   z-index: 4;
   display: none;
 }
-
-/* Show description when hover or focus */
-.sidebar > *:hover > .description {
-  display: block;
-}
-/*.sidebar > *:focus > .description {
-  display: block;
-}*/
 
 
 #id_main {
@@ -112,9 +151,11 @@ html, body {
 }
 button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
 
-.w3-center { text-align: center; }
+/* Hover */
 .w3-hover-black:hover{color:#fff!important;background-color:#000!important}
 .w3-hover-black:focus{color:#fff!important;background-color:#000!important}
+
+.w3-center { text-align: center; }
 .js-black{color:#fff!important;background-color:#000!important}
 .w3-small{font-size:12px!important}
 .w3-xxlarge{font-size:36px!important}

@@ -24,13 +24,34 @@
 
 <body>
 
+<!-- --------------------- START --------------------- -->
+
+
+<!-- Bar Opener -->
+<input
+  type="checkbox"
+  id="input_opener"
+  role="button"
+  style= "display: none;"
+  unchecked
+>
+<!-- Label: fix opacity Vs hanoii TODO maybe change hannoi-->
+<label for="input_opener" id="bar_opener" class="w3-hover-black"
+  style="opacity: 1;"
+  tabindex=1;
+  >
+  <img src="./img/fa/bars-light-white.svg"
+    style="height:36px; width:auto;"
+    alt="Open nav" class="w3-xxlarge">
+</label>
+
 <!-- Icon Bar -->
 <nav id="side_main" tabindex="-1" class="sidebar sidebar1 w3-small w3-center">
 
   <!-- Home -->
   <button
     id="home"
-    tabindex="1"
+    tabindex=2;
     class="w3-button w3-padding-large w3-hover-black"
     onclick="closeAll(false); showHome()"
   >
@@ -43,7 +64,6 @@
   <!-- CV -->
   <button href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
     id="cv"
-    tabindex="2"
     class="w3-button w3-padding-large w3-hover-black"
     onclick="openOne('id_cv');
       document.getElementById('cv_en').click();"
@@ -515,7 +535,6 @@
   ></iframe>
 
 </div>
-
 
 
 </body>
