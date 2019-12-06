@@ -246,7 +246,7 @@ function mainWelcome() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const d_date = new Date(document.lastModified)
   const s_date = d_date.toLocaleDateString("en-US", options);
-  const s_foot = "v0.26 " + s_date + "</br>Tinmarino"
+  const s_foot = "v0.27 " + s_date + "</br>Tinmarino"
   const footer = document.createElement('footer');
   footer.id = "id_sign";
   footer.innerHTML = s_foot;
