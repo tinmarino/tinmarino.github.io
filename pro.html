@@ -182,10 +182,11 @@
 <script charset="utf-8">
   function dynamicallyLoadScript() {
       var script = document.createElement("script");
-      script.src = "./css/pro.js;
+      script.src = "./css/pro.js";
+      script.onload = function() { mainPro(); };
       document.head.appendChild(script);
   }
-  window.onload(dynamicallyLoadScript);
+  window.onload = dynamicallyLoadScript;
 </script>
 
 <!-- Icon -->

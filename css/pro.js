@@ -248,7 +248,7 @@ function addHandlerHider() {
 }
 
 
-function main() {
+function mainPro() {
   declareGlobal();
   readUrlParameters();
   addDescriptionHandler();
@@ -258,4 +258,4 @@ function main() {
   document.getElementById("home").focus();
 }
 
-window.onload = main;
+window.onload = mainPro;
