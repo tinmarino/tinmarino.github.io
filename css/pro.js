@@ -238,7 +238,9 @@ function addHandlerHider() {
     if (e.keyCode == Key.ENTER
       || e.keyCode == Key.RIGHT
       || e.keyCode == Key.SPACE) {
-        e.srcElement.click();
+        const elt = e.srcElement;
+        elt.click();
+        elt.blur();
     }
   }
   const barOpener =  document.getElementById('bar_opener');
