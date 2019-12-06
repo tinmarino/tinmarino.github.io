@@ -121,6 +121,7 @@ function setImageSrc () {
 
 
 // Read params from URL to show what I want
+//   If I give a link with ?show=....
 function readUrlParameters () {
   const url = window.location.href;
   const params = new URL(url).searchParams;
