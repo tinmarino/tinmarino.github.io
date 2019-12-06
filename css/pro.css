@@ -56,7 +56,6 @@ input[type=checkbox]:checked ~ * {
 
 .sidebar {
   width: var(--sidebar-width);
-  height: calc( 100% - var(--block));
   /* Apparance */
   outline: 0;
   z-index: 1;
@@ -77,12 +76,14 @@ input[type=checkbox]:checked ~ * {
 
 .sidebar1 {
   padding-top: var(--sidebar-width);
+  height: calc( 100% - var(--block));
 }
 
 .sidebar2 {
-  display: none;
   /* Position */
+  height: 100%;
   margin: 0;
+  display: none;
 }
 
 .sidebar img {
