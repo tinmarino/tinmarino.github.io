@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<!-- C1: Pro (C1 to grep like h1 tag) -->
+<url>
+  <loc>https://tinmarino.github.io/page/</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pro.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pro/welcome.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+
+
+<url>
+  <loc>https://tinmarino.github.io/vim.js/</loc>
+  <lastmod>2017-11-25T20:20:30+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/app/taran_fighters/</loc>
+  <lastmod>2019-11-20T22:46:56+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/app/my_grid_game/</loc>
+  <lastmod>2019-11-20T22:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2019_cosmondements_1_presentation.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2019_cosmondements_2_cheat.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2013_tesis_MartinTourneboeuf_Magister.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2013_gravlens_master_slide_30q.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2016_abism_paper_jgirard.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2012_abism_slide_jgirard.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2011_astro_hawaii_formation_stellaire.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2011_hawaii_cfht_sfr_50q.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2018_yadiff_du_sstic.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2018_yadiff_misc.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2018_retex_FID.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/w_sas.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2017_libgdx.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2018_re_crossword_for_seminar.pdf</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+  <loc>https://tinmarino.github.io/vim.js/web/vim.html</loc>
+  <lastmod>2017-11-25T20:20:30+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2017_kaspersky_SAS_2017.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/pdf/2018_kaspersky_SAS_2018.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+<!-- C1: SO top 100 -->
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/So.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Bash_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Git_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Js_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Python_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Numpy_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Perl_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Ruby_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Vim_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/C_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/C++_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Java_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Tex_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Css_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Html_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Sql_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Algorithm_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Linux_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Qt_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Windows_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Regex_top_100.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Ai_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Data_science_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Reverse_engineering_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Computer_graphics_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Cryptography_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Computer_science_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Software_quality_assurance_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Software_engineering_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Computer_science_theory_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Unix_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Tex_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Vim_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Physics_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Astronomy_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Engineering_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Geology_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Chemistry_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Biology_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Geography_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Math_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Electronics_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Dog_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Cat_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Philosophy_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Parenting_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Mythology_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Travel_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Puzzling_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:10+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Linguistics_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/wiki_html/So/Fitness_top_100_se.html</loc>
+  <lastmod>2019-12-03T15:36:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+
+
+
+<!-- C1: CV -->
+<url>
+  <loc>https://tinmarino.github.io/page/cv/martin_tourneboeuf_cv_english.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/cv/martin_tourneboeuf_cv_spanish.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/cv/martin_tourneboeuf_cv_french.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.3</priority>
+</url>
+
+
+<!-- C1: Perso -->
+<lastmod>2019-12-06T14:46:55+00:00</lastmod>
+<priority>1.00</priority>
+</url>
+<url>
+  <loc>
+    https://tinmarino.github.io/page/perso/w_bookmark.html
+  </loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/perso/w_pdf.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>
+    https://tinmarino.github.io/page/perso/w_favorite.html
+  </loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>
+    https://tinmarino.github.io/page/perso/w_rocio_2017_nov.html
+  </loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>
+    https://tinmarino.github.io/page/perso/w_first.html
+  </loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>
+    https://tinmarino.github.io/page/perso/w_2017_nov.html
+  </loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://tinmarino.github.io/page/perso/w_vim.html</loc>
+  <lastmod>2019-12-06T14:46:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
