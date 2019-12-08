@@ -1,1 +1,1 @@
-My web page is there: [https://tinmarino.github.io/page/](https://tinmarino.github.io/page/)
+My web page is there: [https://tinmarino.github.io](https://tinmarino.github.io)
