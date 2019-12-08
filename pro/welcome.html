@@ -61,7 +61,7 @@ footer {
   text-indent: -2vw;
   text-align: left;
 
-  /* For succersors (Hannoi) not to expand body */
+  /* For succersors (Hanoi) not to expand body */
   margin-bottom: calc( var(--left-neg-marg) * -1) ;
   padding-bottom: 18px;
 }
@@ -155,8 +155,8 @@ function mainWelcome() {
   var bg = document.getElementById('bg');
   bg.src = "../img/bck/north_xx.svg";
 
-  // Declare Hannoi
-  const s_hannoi = `
+  // Declare Hanoi
+  const s_hanoi = `
      <!-- Pure CSS Tower of Hanoi -->
      <link rel="stylesheet" href="../css/hanoi.css" type="text/css" media="screen" title="no title" charset="utf-8">
      <div id="right">
@@ -239,8 +239,8 @@ function mainWelcome() {
      </div>
   `
 
-  // Write Hannoi
-  document.body.innerHTML += s_hannoi;
+  // Write Hanoi
+  document.body.innerHTML += s_hanoi;
 
   // Write footer
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
