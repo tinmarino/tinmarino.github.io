@@ -11,7 +11,7 @@
 <link rel="alternate" hreflang="en" href="https://tinmarino.github.io/page/pro.html"/>
 
 <!-- Title -->
-<title>Martin Tourneboeuf</title>
+<title>Tinmarino</title>
 
 <!-- My Css -->
 <style type="text/css" media="screen">
@@ -120,6 +120,7 @@
     position: absolute;
     margin-left: var(--sidebar-width);
     /* Apperance */
+    text-align: left;
     background: #222;
     border: 10px;
     padding: 10px;
@@ -340,24 +341,29 @@
 </nav>
 
 
+
 <!-- 1. Web -->
 <nav id="id_web" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
-  <!-- Web.1 StackOverflow -->
-  <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
-    id="so_top_100"
+  <!-- Web.0 Python -->
+  <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="vim_js"
     hrefland="en"
     onclick="hideHome();"
   >
     <!-- Description -->
     <div class="description">
-      Html page in English</br></br>
-      StackOverflow top 100 post for certain tags
+      Html app in English</br></br>
+      Python.js: python on browser</br>
+      &nbsp&nbsp&nbsp Js: Brython</br>
+      &nbsp&nbsp&nbsp Wasm - C: Pyodide</br>
+      &nbsp&nbsp&nbsp Wasm - Rust: RustPython
     </div>
     <img src=""
-      data-src="./img/stackoverflow_xx.svg"
-      alt="StackOverflow" class="delayed w3-xxlarge">
-    <p>StackOverflow</br>Top 100</p>
+      data-src="./img/lang/python_xx.svg"
+      alt="Python" class="delayed w3-xxlarge">
+    <p>Python.js</p>
   </a>
+
 
   <!-- Web.2 Vim -->
   <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
@@ -376,6 +382,25 @@
     <p>Vim.js</p>
   </a>
 
+
+  <!-- Web.1 StackOverflow -->
+  <a href="https://tinmarino.github.io/wiki_html/So/So.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="so_top_100"
+    hrefland="en"
+    onclick="hideHome();"
+  >
+    <!-- Description -->
+    <div class="description">
+      Html page in English</br></br>
+      StackOverflow top 100 post for certain tags
+    </div>
+    <img src=""
+      data-src="./img/stackoverflow_xx.svg"
+      alt="StackOverflow" class="delayed w3-xxlarge">
+    <p>StackOverflow</br>Top 100</p>
+  </a>
+
+
   <!-- Web.3 Wiki -->
   <a href="https://tinmarino.github.io/wiki_html/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="wiki_html"
@@ -393,6 +418,7 @@
     <p>Notes</p>
   </a>
 
+
   <!-- Web.4 TaranFighters -->
   <a href="https://tinmarino.github.io/app/taran_fighters/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="taran_fighters"
@@ -409,6 +435,7 @@
       alt="familly game" class="delayed w3-xxlarge">
     <p>Taran Fighters</p>
   </a>
+
 
   <!-- Web.5 My Grid Game -->
   <a href="https://tinmarino.github.io/app/my_grid_game/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
