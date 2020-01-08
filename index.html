@@ -45,6 +45,15 @@
     display: block;
     overflow-wrap: break-word;
   }
+  /* Post description */
+  .sidebar > *:hover ~ .post {
+    display: block;
+    overflow-wrap: break-word;
+  }
+  .post:hover {
+    display: block;
+    overflow-wrap: break-word;
+  }
   /*.sidebar > *:focus > .description {
     display: block;
   }*/
@@ -350,19 +359,31 @@
     hrefland="en"
     onclick="hideHome();"
   >
-    <!-- Description -->
-    <div class="description">
-      Html app in English</br></br>
-      Python.js: python on browser</br>
-      &nbsp&nbsp&nbsp Js: Brython</br>
-      &nbsp&nbsp&nbsp Wasm - C: Pyodide</br>
-      &nbsp&nbsp&nbsp Wasm - Rust: RustPython
-    </div>
     <img src=""
       data-src="./img/lang/python_xx.svg"
       alt="Python" class="delayed w3-xxlarge">
     <p>Python.js</p>
   </a>
+  <!-- Post Description -->
+  <div class="post description"
+    style="left: var(--sidebar-width);"
+  >
+    Html app in English</br></br>
+    Python.js: python on browser</br>
+    &nbsp&nbsp&nbsp Js:
+    <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe"
+      onclick="hideHome();"
+    >
+      Brython</br>
+    </a>
+    &nbsp&nbsp&nbsp Wasm - C:
+    <a href="https://tinmarino.github.io/app/python/pyodide/console.html" target="main_iframe"
+      onclick="hideHome();"
+    >
+      Pyodide</br>
+    </a>
+    &nbsp&nbsp&nbsp Wasm - Rust: RustPython
+  </div>
 
 
   <!-- Web.2 Vim -->
