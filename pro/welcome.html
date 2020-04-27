@@ -58,7 +58,7 @@ footer {
   left: 15%;
   top: 13%;
   /* size */
-  width: 28vw;
+  width: 35vw;
   text-indent: -2vw;
   text-align: left;
 
@@ -66,29 +66,30 @@ footer {
   margin-bottom: calc( var(--left-neg-marg) * -1) ;
   padding-bottom: 18px;
 }
-/* Clear floats after the columns */
-.table:after {
+
+#chorus {
+  clear: both;
+  display: block;
+  position: absolute;
+  text-align: center;
+  float: left;
+  top: 5%;
+  left: 20vw;
+}
+#chorus:after {
   content: "";
   display: table;
   clear: both;
-}
-
-#chorus {
-  clear:both;
-  position: relative;
-  text-align:center
-  float: left;
-  left: 12vw;
 }
 
 
 
 #right {
   position: relative;
-  left: 50%;
+  left: 60%;
   /* According to left */
   margin-top: 70px;
-  bottom: 150px;
+  bottom: 100px;
   /* 1:3 Aspect Ratio */
   width: 30vw;
   height: 10vw;
@@ -101,12 +102,13 @@ footer {
 #quote {
   /* position */
   position: relative;
+  /* To avoid entering in the hanoi */
   top: -110%;
   /* 24 for indent and 95 because more prettty (centered) than 100 */
-  left: calc(24px - 95%);
+  left: calc(24px - 115%);
   order: 10;
   /* size */
-  width: 38vw;
+  width: 48vw;
   text-indent: -24px;
   text-align: left;
 }
@@ -117,7 +119,7 @@ footer {
 }
 
 .p1, .p2, .p3, .p4, .p5, .p6, .p7, .p8, .p9, .p10, .p11, .p12, .p13 {
-  opacity: 1;
+  opacity: 0;
 }
 
 
@@ -136,7 +138,15 @@ footer {
 </h1>
 
 <!-- Left Div -->
-<div id="left" class="table">
+<div id="left">
+
+<div id="chorus">
+  <p class="pdes">Won't you help to code</p>
+  <p class="pdes">These lines of freedom?</p>
+  <p class="pdes">No more money diode</p>
+  <p class="pdes">Open kingdom</p>
+</div>
+
   <p class="pdes">Cyber pirates yes they rob I</p>
   <p class="pdes">Stole I from the cosmic ship</p>
   <p class="pdes">Minutes after they sent I</p>
@@ -163,14 +173,7 @@ footer {
 
 </div>
 
-<!--
 
-  <p class="pdes">Won't you help to code</p>
-  <p class="pdes">These lines of freedom?</p>
-  <p class="pdes">No more money diode</p>
-  <p class="pdes">Open kingdom</p>
-
--->
 
 
 
@@ -276,7 +279,7 @@ function mainWelcome() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const d_date = new Date(document.lastModified)
   const s_date = d_date.toLocaleDateString("en-US", options);
-  const s_foot = "v0.28 " + s_date + "</br>Tinmarino"
+  const s_foot = "v0.29 " + s_date + "</br>Tinmarino"
   const footer = document.createElement('footer');
   footer.id = "id_sign";
   footer.innerHTML = s_foot;
