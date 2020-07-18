@@ -32,12 +32,18 @@
     --sidebar-width: 120px;
   }
   
-  /* Interactive */
-  input[type=checkbox]:checked ~ .sidebar{
+  /* Interactive hide */
+  input[type=checkbox]:checked ~ .sidebar {
       display: none;
   }
   input[type=checkbox]:checked ~ * {
     --sidebar-width: 0px;
+  }
+  input[type=checkbox]:checked ~ #bar_opener > img {
+      display: none;
+  }
+  input[type=checkbox]:checked ~ #bar_opener:hover > img {
+      display: block;
   }
   
   /* Show description when hover or focus */
