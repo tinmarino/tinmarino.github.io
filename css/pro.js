@@ -53,9 +53,14 @@ function showHome(){
 
   // Show home && Hide iframe
   welcome_elt.style.display = "block";
-  document.getElementById("id_iframe").src = "";
+  frame_elt.src = "";
 }
 
+// Change sidebar visibility
+// :param: <boolean> true: show
+function showBar(bol) {
+  document.getElementById("input_opener").checked = !bol;
+}
 
 function openOne(id) {
   // Restore
@@ -67,12 +72,19 @@ function openOne(id) {
   if (null == nextNav) { return; }
   nextNav.style.display = "flex";
 
-  // Color me black
+  // Color my parent button black (see main sidebar ids)
   const elt  = document.getElementById(id.substring(3));
   elt.classList.add("js-black");
 
   // Return opened nav
   return nextNav;
+}
+
+
+function closeOne(id) {
+  var elt = document.getElementById(id);
+  if (elt == null) { return; }
+  elt.style.display = "none";
 }
 
 
@@ -83,12 +95,6 @@ function focusFirstChild(nextNav){
   first.focus();
 }
 
-
-function closeOne(id) {
-  var elt = document.getElementById(id);
-  if (elt == null) { return; }
-  elt.style.display = "none";
-}
 
 function closeAll(b_keep_open) {
   for (id of aNavId){
@@ -104,6 +110,7 @@ function closeAll(b_keep_open) {
     // document.getElementById("id_main").style.marginLeft = "var(--sidebar-width)";
   }
 }
+
 
 // Open description label on mouse over
 function handleMouseOver(event) {
@@ -146,18 +153,27 @@ function setImageSrc () {
 function readUrlParameters () {
   const url = window.location.href;
   const params = new URL(url).searchParams;
+  var b_show = false;
+
+  // Loop parameters
   params.forEach(function(value, key) {
     // Check start with show
     if (key.startsWith('show')) {
+      b_show = true;
       // Click on value
       var elt = document.getElementById(value);
       if (null == elt) { return }
       elt.click();
-    // Or load welcome
-    } else {
-      showHome()
-    }
+      // Hide side bar
+      showBar(false);
+    };
   });
+  // Load welcome if there were no page to show
+  if (!b_show) {
+    showHome();
+    // Show side bar
+    showBar(true);
+  }
 }
 
 
@@ -186,6 +202,7 @@ function focusOtherElement(item, iDir) {
   }
 }
 
+
 // Handle keyboard down on focused navigation item
 function handleKeyDownNav(event) {
   // Get item
@@ -194,8 +211,8 @@ function handleKeyDownNav(event) {
   switch (event.keyCode) {
     case Key.ENTER:
     case Key.RIGHT:
-      // Click if on home or cv
-      if ("home" == item.id || "cv" == item.id) {
+      // Click if on home
+      if ("home" == item.id) {
         item.click();
         return;
       }
@@ -204,6 +221,10 @@ function handleKeyDownNav(event) {
       if (aNavId.includes(s_open)) {
         const nextNav = openOne(s_open);
         focusFirstChild(nextNav);
+      }
+      // If CV, load first
+      if ("cv" == item.id) {
+        document.getElementById('cv_en').click();
       }
       return;
 
@@ -251,6 +272,11 @@ function handleKeyDownNav(event) {
   }
 }
 
+function handleOnScroll(e) {
+  // TODO work better
+  console.log(e);
+}
+
 function addHandlerKeyboardArrow() {
   buttonSidebars.forEach(item => {
     item.addEventListener('keydown', handleKeyDownNav);
@@ -271,6 +297,13 @@ function addHandlerHider() {
   barOpener.addEventListener('keydown', handleBar);
 }
 
+function addHandlerOnScroll() {
+  var iframe_elt = document.getElementById("id_iframe");
+  var welcome_elt = document.getElementById("welcome")
+  iframe_elt.contentWindow.onscroll = console.log
+  welcome_elt.contentWindow.onscroll = console.log
+}
+
 
 function mainPro() {
   declareGlobal();
@@ -279,8 +312,9 @@ function mainPro() {
   setImageSrc();
   addHandlerKeyboardArrow();
   addHandlerHider();
+  addHandlerOnScroll();
   document.getElementById("home").focus();
 }
 
 window.onload = mainPro;
-// vim:sw=2:
+// vim:sw=2:ts=2:
