@@ -26,12 +26,33 @@ function declareGlobal() {
 
 
 function hideHome(){
-  document.getElementById("welcome").style.display = "none";
+  welcome_elt = document.getElementById("welcome")
+  if (welcome_elt != null) {
+    welcome_elt.style.display = "none";
+  }
 }
 
 
 function showHome(){
-  document.getElementById("welcome").style.display = "block";
+  // Create if not present
+  var frame_elt = document.getElementById("id_iframe");
+  var welcome_elt = document.getElementById("welcome")
+  if (welcome_elt == null) {
+    welcome_elt = document.createElement('iframe');
+    welcome_elt.id="welcome";
+    welcome_elt.src="./pro/welcome.html";
+    welcome_elt.rel="prefetch";
+    welcome_elt.height="100%";
+    welcome_elt.width="100%";
+    welcome_elt.tabindex="-1";
+    welcome_elt.allowfullscreen;
+    welcome_elt.style="z-index:3;";
+    welcome_elt.name="welcome_iframe";
+    document.getElementById("id_main").prepend(welcome_elt);
+  }
+
+  // Show home && Hide iframe
+  welcome_elt.style.display = "block";
   document.getElementById("id_iframe").src = "";
 }
 
@@ -132,6 +153,9 @@ function readUrlParameters () {
       var elt = document.getElementById(value);
       if (null == elt) { return }
       elt.click();
+    // Or load welcome
+    } else {
+      showHome()
     }
   });
 }
@@ -259,3 +283,4 @@ function mainPro() {
 }
 
 window.onload = mainPro;
+// vim:sw=2:
