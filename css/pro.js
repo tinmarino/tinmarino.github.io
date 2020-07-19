@@ -60,7 +60,7 @@ function hideHome(btn) {
   // Try change title <- Iframe title
   var iframe_elt = document.getElementById("id_iframe");
   if (iframe_elt && iframe_elt.contentDocument && iframe_elt.contentDocument.title) {
-    document.title = myIframe.contentDocument.title;
+    document.title = iframe_elt.contentDocument.title;
   }
 }
 
