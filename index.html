@@ -6,9 +6,9 @@
 <!-- Meta -->
 <meta charset="utf-8">
 <meta name="google-site-verification" content="gXi7KZ5VSzFhWj3DkqjQR4aMMERLKXq6z88MEu_J1As" />
-<meta name="keywords" content="Github, Tinmarino, Page, Astro, Cyber security, ComputerScience">
+<meta name="keywords" content="Github, Tinmarino, Page, Astro, Cyber security, Computing, Science">
 <meta name="description" content="Tinmarino's personal webpage. Showoff for astrophysics and computing.">
-<link rel="alternate" hreflang="en" href="https://tinmarino.github.io/page/pro.html"/>
+<link rel="alternate" hreflang="en" href="https://tinmarino.github.io"/>
 
 <!-- Title -->
 <title>Tinmarino</title>
@@ -46,29 +46,6 @@
   input[type=checkbox]:checked ~ #bar_opener:focus > img {
       display: block;
   }
-  
-  /* Show description when hover or focus */
-  .sidebar > *:hover > .description,
-  .sidebar > *:focus > .description
-    {
-    display: block;
-    overflow-wrap: break-word;
-  }
-  /* Post description */
-  .sidebar > *:hover ~ .post,
-  .sidebar > *:focus ~ .post
-    {
-    display: block;
-    overflow-wrap: break-word;
-  }
-  .post:hover, .post:focus {
-    display: block;
-    overflow-wrap: break-word;
-  }
-  /*.sidebar > *:focus > .description {
-    display: block;
-  }*/
-  
   
   #bar_opener {
     position: absolute;
@@ -134,6 +111,28 @@
     flex-shrink: 0;
   }
   
+  /* Show description when hover or focus */
+  .sidebar > *:hover > .description,
+  .sidebar > *:focus > .description
+    {
+    display: block;
+    overflow-wrap: break-word;
+  }
+  /* Post description */
+  .sidebar > *:hover ~ .post,
+  .sidebar > *:focus ~ .post
+    {
+    display: block;
+    overflow-wrap: break-word;
+  }
+  .post:hover, .post:focus {
+    display: block;
+    overflow-wrap: break-word;
+  }
+  /*.sidebar > *:focus > .description {
+    display: block;
+  }*/
+  
   /* Add overlay description */
   .description {
     /* Position */
@@ -147,7 +146,10 @@
     z-index: 4;
     display: none;
   }
-  
+
+  .post {
+    margin-left: calc(var(--sidebar-width) - 24px);
+  }
   
   #id_main {
     background: #002b36;
