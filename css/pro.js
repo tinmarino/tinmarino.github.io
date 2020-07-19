@@ -195,24 +195,26 @@ function readUrlParameters () {
 
   // Loop parameters
   params.forEach(function(value, key) {
-    // Check start with show
+    // Save show param
     if (key.startsWith('show')) {
-      // Click on value
+      s_show = value;
     };
-    // Get lang
+    // Save lang
     if (key.startsWith('lang')) {
+      s_lang = value;
     }
   });
 
   // Create id
   var s_id = s_show;
   if (s_lang != '') {
-    s_is += '_' + s_lang;
+    s_id += '_' + s_lang;
   }
+  console.log('Opening: ' + s_id)
 
   // Click on Id if exists
   if (s_id) {
-      var elt = document.getElementById(value);
+      var elt = document.getElementById(s_id);
       if (null == elt) { return }
       elt.click();
       // Hide side bar
