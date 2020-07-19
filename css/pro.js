@@ -25,6 +25,11 @@ function declareGlobal() {
     UP: 38,
     RIGHT: 39,
     DOWN: 40,
+    H: 72,
+    J: 74,
+    K: 75,
+    L: 76,
+    O: 79,
   }
 
   window.buttonSidebars = document.querySelectorAll('.sidebar > *');
@@ -239,7 +244,6 @@ function focusOtherElement(item, iDir) {
   );
 
   var index = focussable.indexOf(document.activeElement);
-  console.log(index);
   if(index > -1) {
      var otherElement = focussable[index + iDir] || focussable[0];
      otherElement.focus();
@@ -257,34 +261,26 @@ function handleKeyDownBody(event) {
 function handleKeyDownNav(event) {
   // Get item
   const item = event.target || event.srcElement;
-  console.log(event)
-  console.log(item)
-  console.log('===============')
 
   switch (event.keyCode) {
     case Key.ENTER:
     case Key.RIGHT:
+    case Key.L:
+    case Key.O:
+      // TODO bugm right key idk why, but defautl ssems to harass me
       if ("bar_opener" == item.id) {
-        event.keyCode = Key.LEFT;
+        item.click();
         document.getElementById('bar_opener').focus();
-        //handleKeyDownNav(event);
-        return;
-        //console.log("WTF right")
-        //event.preventDefault();
-        //item.click();
-        //return;
+        event.preventDefault();
+        event.stopPropagation();
+        showBar(true);
+        return false;
       }
       // If on bar_opener, show sidebar
       if ("bar_opener" == item.id || item == document.body) {
         event.preventDefault();
-        console.log('showing bar')
         showBar(true);
-        document.getElementById('bar_opener').focus();
         return;
-        //console.log('showing bar')
-        //item.click();
-        //item.focus();
-        //return;
       }
       // Click if on home
       if ("home" == item.id) {
@@ -298,7 +294,6 @@ function handleKeyDownNav(event) {
         focusFirstChild(nextNav);
       // Else click
       } else {
-        console.log('CLicking')
         item.click();
       }
       // If CV, load first
@@ -310,6 +305,7 @@ function handleKeyDownNav(event) {
 
     case Key.BACKSPACE:
     case Key.LEFT:
+    case Key.H:
       if ("bar_opener" == item.id) {
         item.click();
         return;
@@ -324,7 +320,6 @@ function handleKeyDownNav(event) {
       });
       // If on first bar or bar opener: hide bar
       if (i_sidebar_num == 1 || 'bar_opener' == item.id || document.body == item) {
-        console.log('Closing sidebar')
         showBar(false);
         document.body.focus();
         return;
@@ -332,6 +327,7 @@ function handleKeyDownNav(event) {
       return;
 
     case Key.UP:
+    case Key.K:
       if ("bar_opener" == item.id) {
         showBar(false);
         document.getElementById('bar_opener').focus();
@@ -359,6 +355,7 @@ function handleKeyDownNav(event) {
       return;
 
     case Key.DOWN:
+    case Key.J:
       // If on bar_opener: Focus home
       if ("bar_opener" == item.id) {
         showBar(true);
