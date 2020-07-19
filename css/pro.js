@@ -25,10 +25,22 @@ function declareGlobal() {
 }
 
 
-function hideHome(){
+// Hide home frame: callback for all iframe button
+// :param: <element> button calling me: used to set title
+function hideHome(btn) {
+  // Hide welcome element
   welcome_elt = document.getElementById("welcome")
   if (welcome_elt != null) {
     welcome_elt.style.display = "none";
+  }
+
+  // Change title <- Id
+  document.title = btn.id + ' @ Tin';
+
+  // Try change title <- Iframe title
+  var iframe_elt = document.getElementById("id_iframe");
+  if (iframe_elt && iframe_elt.contentDocument && iframe_elt.contentDocument.title) {
+    document.title = myIframe.contentDocument.title;
   }
 }
 
@@ -54,6 +66,9 @@ function showHome(){
   // Show home && Hide iframe
   welcome_elt.style.display = "block";
   frame_elt.src = "";
+
+  // Change title <- Tinmarino
+  document.title = 'Tinmarino';
 }
 
 // Change sidebar visibility
