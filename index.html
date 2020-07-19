@@ -42,21 +42,26 @@
   input[type=checkbox]:checked ~ #bar_opener > img {
       display: none;
   }
-  input[type=checkbox]:checked ~ #bar_opener:hover > img {
+  input[type=checkbox]:checked ~ #bar_opener:hover > img,
+  input[type=checkbox]:checked ~ #bar_opener:focus > img {
       display: block;
   }
   
   /* Show description when hover or focus */
-  .sidebar > *:hover > .description {
+  .sidebar > *:hover > .description,
+  .sidebar > *:focus > .description
+    {
     display: block;
     overflow-wrap: break-word;
   }
   /* Post description */
-  .sidebar > *:hover ~ .post {
+  .sidebar > *:hover ~ .post,
+  .sidebar > *:focus ~ .post
+    {
     display: block;
     overflow-wrap: break-word;
   }
-  .post:hover {
+  .post:hover, .post:focus {
     display: block;
     overflow-wrap: break-word;
   }
@@ -229,7 +234,6 @@
 <label for="input_opener" id="bar_opener" class="w3-hover-black"
   style="opacity: 1;"
   tabindex=1
-  onclick="this.blur()"
 >
   <img src="./img/fa/bars-light-white.svg"
     style="height:36px; width:auto;"
@@ -379,12 +383,14 @@
   <!-- Post Description -->
   <div class="post description"
     style="left: var(--sidebar-width);"
+    tabindex="-1"
   >
     Html app in English</br></br>
     Python.js: python on browser</br>
     &nbsp&nbsp&nbsp Js:
     <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe"
       id="brython"
+      tabindex="-1"
       onclick="hideHome(this);"
     >
       Brython</br>
@@ -392,6 +398,7 @@
     &nbsp&nbsp&nbsp Wasm - C:
     <a href="https://tinmarino.github.io/app/python/pyodide/console.html" target="main_iframe"
       id="pyodide"
+      tabindex="-1"
       onclick="hideHome(this);"
     >
       Pyodide</br>
@@ -399,6 +406,7 @@
     &nbsp&nbsp&nbsp Wasm - Rust:
     <a href="https://tinmarino.github.io/app/python/rustpython/index.html" target="main_iframe"
       id="rust_python"
+      tabindex="-1"
       onclick="hideHome(this);"
     >
       RustPython</br>
@@ -558,7 +566,7 @@
   </a>
 
   <!-- Astro.1 Cosmo Obs Cheat -->
-  <a href="./pdf/2020_10_command_en.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <a href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cosmo_obs_cheat"
     hrefland="fr"
     onclick="hideHome(this);"

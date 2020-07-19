@@ -1,3 +1,11 @@
+/* Javascript utitlities for main page, TODO:
+* Some document getter, get_iframe, get_welcome ...
+* Press right on righter => enter
+* Press left on lefter => hide and focus on bar_opener
+* remove focus when hidden: seems like a bug
+*/
+
+
 // Declare globals (array of openable navigation ids)
 function declareGlobal() {
   window.aNavId = [
@@ -96,6 +104,7 @@ function openOne(id) {
 }
 
 
+// Close one element: set its display to none
 function closeOne(id) {
   var elt = document.getElementById(id);
   if (elt == null) { return; }
@@ -111,6 +120,7 @@ function focusFirstChild(nextNav){
 }
 
 
+// Close all sidebar2
 function closeAll(b_keep_open) {
   for (id of aNavId){
     // Close
@@ -168,23 +178,36 @@ function setImageSrc () {
 function readUrlParameters () {
   const url = window.location.href;
   const params = new URL(url).searchParams;
-  var b_show = false;
+  var s_show = '';
+  var s_lang = '';
 
   // Loop parameters
   params.forEach(function(value, key) {
     // Check start with show
     if (key.startsWith('show')) {
-      b_show = true;
       // Click on value
+    };
+    // Get lang
+    if (key.startsWith('lang')) {
+    }
+  });
+
+  // Create id
+  var s_id = s_show;
+  if (s_lang != '') {
+    s_is += '_' + s_lang;
+  }
+
+  // Click on Id if exists
+  if (s_id) {
       var elt = document.getElementById(value);
       if (null == elt) { return }
       elt.click();
       // Hide side bar
       showBar(false);
-    };
-  });
-  // Load welcome if there were no page to show
-  if (!b_show) {
+
+  // Else: Load welcome <= there were no page to show
+  } else {
     showHome();
     // Show side bar
     showBar(true);
@@ -204,28 +227,65 @@ function focusOtherElement(item, iDir) {
 
   // Add all elements we want to include in our selection
   var focussableElements = 'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-  var focussable = Array.prototype.filter.call(document.querySelectorAll(focussableElements),
-  function (element) {
-      //check for visibility while always include the current activeElement
-      return element.offsetWidth > 0 || element.offsetHeight > 0 || element === item
-  });
+  var focussable = Array.prototype.filter.call(
+    document.querySelectorAll(focussableElements),
+    function (element) {
+      // Remove tabIndex programmatically <= bug in css selector
+      b_select = element.tabIndex != -1;
+      // Check for visibility while always include the current activeElement
+      b_select &= element.offsetWidth > 0 || element.offsetHeight > 0 || element === item;
+      return b_select;
+    }
+  );
 
   var index = focussable.indexOf(document.activeElement);
+  console.log(index);
   if(index > -1) {
      var otherElement = focussable[index + iDir] || focussable[0];
      otherElement.focus();
   }
 }
 
+function handleKeyDownBody(event) {
+  // Get item
+  const item = event.target || event.srcElement;
+  if (item != document.body) { return }
+  handleKeyDownNav(event);
+}
 
 // Handle keyboard down on focused navigation item
 function handleKeyDownNav(event) {
   // Get item
   const item = event.target || event.srcElement;
+  console.log(event)
+  console.log(item)
+  console.log('===============')
 
   switch (event.keyCode) {
     case Key.ENTER:
     case Key.RIGHT:
+      if ("bar_opener" == item.id) {
+        event.keyCode = Key.LEFT;
+        document.getElementById('bar_opener').focus();
+        //handleKeyDownNav(event);
+        return;
+        //console.log("WTF right")
+        //event.preventDefault();
+        //item.click();
+        //return;
+      }
+      // If on bar_opener, show sidebar
+      if ("bar_opener" == item.id || item == document.body) {
+        event.preventDefault();
+        console.log('showing bar')
+        showBar(true);
+        document.getElementById('bar_opener').focus();
+        return;
+        //console.log('showing bar')
+        //item.click();
+        //item.focus();
+        //return;
+      }
       // Click if on home
       if ("home" == item.id) {
         item.click();
@@ -236,24 +296,53 @@ function handleKeyDownNav(event) {
       if (aNavId.includes(s_open)) {
         const nextNav = openOne(s_open);
         focusFirstChild(nextNav);
+      // Else click
+      } else {
+        console.log('CLicking')
+        item.click();
       }
       // If CV, load first
       if ("cv" == item.id) {
         document.getElementById('cv_en').click();
+        return;
       }
       return;
 
     case Key.BACKSPACE:
     case Key.LEFT:
+      if ("bar_opener" == item.id) {
+        item.click();
+        return;
+      }
       closeAll(false);
+      var i_sidebar_num = 1
       buttonSidebar1s.forEach(item1 => {
         if( item1.id == item.parentElement.id.substring(3) ){
           item1.focus();
+          i_sidebar_num = 2
         }
       });
+      // If on first bar or bar opener: hide bar
+      if (i_sidebar_num == 1 || 'bar_opener' == item.id || document.body == item) {
+        console.log('Closing sidebar')
+        showBar(false);
+        document.body.focus();
+        return;
+      }
       return;
 
     case Key.UP:
+      if ("bar_opener" == item.id) {
+        showBar(false);
+        document.getElementById('bar_opener').focus();
+        //document.body.focus();
+        return;
+      }
+      // If on home: Focus bar_opener
+      if ("home" == item.id) {
+        document.getElementById('bar_opener').focus();
+        return;
+      }
       // Pass if first in childList
       function doPassFirst (){
         const parent = item.parentElement;
@@ -270,6 +359,12 @@ function handleKeyDownNav(event) {
       return;
 
     case Key.DOWN:
+      // If on bar_opener: Focus home
+      if ("bar_opener" == item.id) {
+        showBar(true);
+        document.getElementById('home').focus();
+        return;
+      }
       // Pass if last in childList
       function doPassLast (){
         const parent = item.parentElement;
@@ -293,9 +388,14 @@ function handleOnScroll(e) {
 }
 
 function addHandlerKeyboardArrow() {
-  buttonSidebars.forEach(item => {
+  var buttons = [].concat(
+    Array.from(buttonSidebars),
+    document.getElementById('bar_opener'),
+  );
+  buttons.forEach(item => {
     item.addEventListener('keydown', handleKeyDownNav);
   });
+  document.body.addEventListener('keydown', handleKeyDownBody);
 }
 
 function addHandlerHider() {
@@ -314,9 +414,9 @@ function addHandlerHider() {
 
 function addHandlerOnScroll() {
   var iframe_elt = document.getElementById("id_iframe");
-  var welcome_elt = document.getElementById("welcome")
-  iframe_elt.contentWindow.onscroll = console.log
-  welcome_elt.contentWindow.onscroll = console.log
+  var welcome_elt = document.getElementById("welcome");
+  iframe_elt.contentWindow.onscroll = console.log;
+  welcome_elt.contentWindow.onscroll = console.log;
 }
 
 
@@ -327,7 +427,7 @@ function mainPro() {
   setImageSrc();
   addHandlerKeyboardArrow();
   addHandlerHider();
-  addHandlerOnScroll();
+  // addHandlerOnScroll();
   document.getElementById("home").focus();
 }
 
