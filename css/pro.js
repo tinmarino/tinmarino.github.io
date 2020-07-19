@@ -210,7 +210,6 @@ function readUrlParameters () {
   if (s_lang != '') {
     s_id += '_' + s_lang;
   }
-  console.log('Opening: ' + s_id)
 
   // Click on Id if exists
   if (s_id) {
@@ -390,7 +389,6 @@ function handleKeyDownNav(event) {
 
 function handleOnScroll(e) {
   // TODO work better
-  console.log(e);
 }
 
 function addHandlerKeyboardArrow() {
@@ -421,8 +419,6 @@ function addHandlerHider() {
 function addHandlerOnScroll() {
   var iframe_elt = document.getElementById("id_iframe");
   var welcome_elt = document.getElementById("welcome");
-  iframe_elt.contentWindow.onscroll = console.log;
-  welcome_elt.contentWindow.onscroll = console.log;
 }
 
 
