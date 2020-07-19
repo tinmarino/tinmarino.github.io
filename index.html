@@ -118,9 +118,13 @@
     display: block;
     overflow-wrap: break-word;
   }
-  /* Post description */
-  .sidebar > *:hover ~ .post,
-  .sidebar > *:focus ~ .post
+  /* Post description: '+' = adjacent sibling selector = just after */
+  .sidebar > *:hover + * > .post,
+  .sidebar > *:focus + * > .post,
+  /*
+  .sidebar > *:hover + .post,
+  .sidebar > *:focus + .post
+  */
     {
     display: block;
     overflow-wrap: break-word;
@@ -149,6 +153,7 @@
 
   .post {
     margin-left: calc(var(--sidebar-width) - 24px);
+    left: var(--sidebar-width);
   }
   
   #id_main {
@@ -372,16 +377,19 @@
 <!-- 1. Web -->
 <nav id="id_web" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
   <!-- Web.0 Python -->
-  <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <button href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="python_js"
     hrefland="en"
-    onclick="hideHome(this);"
+    onclick="
+      document.getElementById('id_iframe').src = 'https://tinmarino.github.io/app/python/brython/console.html';
+      hideHome(this);
+    "
   >
     <img src=""
       data-src="./img/lang/python_xx.svg"
       alt="Python" class="delayed w3-xxlarge">
     <p>Python.js</p>
-  </a>
+
   <!-- Post Description -->
   <div class="post description"
     style="left: var(--sidebar-width);"
@@ -416,6 +424,7 @@
 
     Dislaimer: None of these if my work
   </div>
+  </button>
 
 
   <!-- Web.1 Raku -->
@@ -550,6 +559,7 @@
     <p>Aperture</br>Synthesis</p>
   </a>
 
+
   <!-- Astro.1.1 Cosmo Obs Slide -->
   <a href="./pdf/2019_cosmondements_1_presentation.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cosmo_obs_slide"
@@ -567,22 +577,51 @@
     <p>Cosmo Obs</br>Slide</p>
   </a>
 
+
   <!-- Astro.1 Cosmo Obs Cheat -->
-  <a href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <button href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cosmo_obs_cheat"
     hrefland="fr"
-    onclick="hideHome(this);"
+    onclick="
+      document.getElementById('id_iframe').src = './pdf/2019_cosmondements_2_cheat_en.pdf';
+      hideHome(this);
+    "
   >
-    <!-- Description -->
-    <div class="description">
-      Pdf cheatsheet in English</br></br>
-      CosmObs: Introduction to observational cosmology tools and practices
-    </div>
     <img src=""
       data-src="./img/cosmo_cheat_xx.svg"
       alt="Cosmologie observationelle résumé" class="delayed w3-xxlarge">
     <p>Cosmo Obs</br>Cheat</p>
-  </a>
+
+  <!-- Post Description -->
+  <div class="post description"
+    tabindex="-1"
+  >
+    Pdf cheatsheet in:</br>
+
+    &nbsp&nbsp&nbsp
+    <a href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe"
+      id="cosmo_obs_cheat_en"
+      tabindex="-1"
+      onclick="hideHome(this);"
+    >
+      English</br>
+    </a>
+
+    &nbsp&nbsp&nbsp
+    <a href="./pdf/2019_cosmondements_2_cheat_fr.pdf" target="main_iframe"
+      id="cosmo_obs_cheat_fr"
+      tabindex="-1"
+      onclick="hideHome(this);"
+    >
+      French</br>
+    </a>
+
+    CosmObs: Introduction to observational cosmology tools and practices
+  </div>
+
+  </button>
+
+
 
   <!-- Astro.2.1 Grav Lens Book -->
   <a href="./pdf/2013_tesis_MartinTourneboeuf_Magister.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
@@ -637,6 +676,7 @@
     <p>Abism</br>Paper</p>
   </a>
 
+
   <!-- Astro.3.2 Abism Slide -->
   <a href="./pdf/2012_abism_slide_jgirard.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="abism_slide"
@@ -653,6 +693,7 @@
       alt="" class="delayed w3-xxlarge">
     <p>Abism</br>Slide</p>
   </a>
+
 
   <!-- Astro.4.1 Hawai Book -->
   <a href="./pdf/2011_astro_hawaii_formation_stellaire.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
@@ -671,6 +712,7 @@
       alt="CFHT stellar formation scenario" class="delayed w3-xxlarge">
     <p>Stellar formation</br>Book</p>
   </a>
+
 
   <!-- Astro.4.2 Hawai Slide -->
   <a href="./pdf/2011_hawaii_cfht_sfr_50q.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
@@ -801,6 +843,7 @@
 </nav>
 
 
+<!-- -------------------------------------------------------------------------------- -->
 <!-- 9. Contact -->
 <nav id="id_contact" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
   <!-- 9.1 Github -->
@@ -814,6 +857,7 @@
     <p>Github</p>
   </a>
 
+
   <!-- 9.2 Gmail -->
   <a href="mailto:martin.tourneboeuf@gmail.com" class="w3-button w3-padding-large w3-hover-black"
   >
@@ -823,6 +867,7 @@
       alt="" class="delayed w3-xxlarge">
     <p>Contact</p>
   </a>
+
 
   <!-- 9.3 LinkedIn -->
   <a href="https://www.linkedin.com/in/martin-tourneboeuf-713b5696/" class="w3-button w3-padding-large w3-hover-black"
@@ -835,6 +880,7 @@
     <p>LinkedIn</p>
   </a>
 </nav>
+
 
 <!-- Page content
   Js: prepending the welcome iframe if show key not present in URL

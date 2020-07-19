@@ -32,6 +32,13 @@ function declareGlobal() {
     O: 79,
   }
 
+  // Multilanguage pages
+  window.International = {
+    cv: ['fr', 'en', 'es'],
+    cosmo_obs_cheat: ['fr', 'en', 'es'],
+    aperture_guide: ['fr', 'en', 'es'],
+  }
+
   window.buttonSidebars = document.querySelectorAll('.sidebar > *');
 
   window.buttonSidebar1s = document.querySelectorAll('.sidebar1 > *');
