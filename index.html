@@ -532,7 +532,10 @@
   <button href="./pdf/2020_aperture_synthesis_fr.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="aperture_guide"
     hrefland="fr"
-    onclick="hideHome(this);"
+    onclick="
+      document.getElementById('id_iframe').src = './pdf/2020_aperture_synthesis_fr.html';
+      hideHome(this);
+    "
   >
     <img src=""
       data-src="./img/aperture_xx.svg"
