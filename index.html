@@ -42,8 +42,11 @@
   input[type=checkbox]:checked ~ #bar_opener > img {
       display: none;
   }
-  input[type=checkbox]:checked ~ #bar_opener:hover > img,
-  input[type=checkbox]:checked ~ #bar_opener:focus > img {
+  input[type=checkbox]:checked ~ #bar_opener:hover > img
+  /* Anoying when using mouse : the descirption remains
+  input[type=checkbox]:checked ~ #bar_opener:focus > img
+  */
+    {
       display: block;
   }
   
@@ -112,31 +115,14 @@
   }
   
   /* Show description when hover or focus */
-  .sidebar > *:hover > .description,
+  .sidebar > *:hover > .description
+  /* Anoying when using mouse : the description remains
   .sidebar > *:focus > .description
-    {
-    display: block;
-    overflow-wrap: break-word;
-  }
-  /* Post description: '+' = adjacent sibling selector = just after */
-  .sidebar > *:hover + * > .post,
-  .sidebar > *:focus + * > .post,
-  /*
-  .sidebar > *:hover + .post,
-  .sidebar > *:focus + .post
   */
     {
     display: block;
     overflow-wrap: break-word;
   }
-  .post:hover, .post:focus {
-    display: block;
-    overflow-wrap: break-word;
-  }
-  /*.sidebar > *:focus > .description {
-    display: block;
-  }*/
-  
   /* Add overlay description */
   .description {
     /* Position */
