@@ -1,0 +1,122 @@
+# dot -Tsvg dot_doc.dot -o dot_doc.svg
+digraph Astrogod_architecture {
+
+rankdir=TD
+
+node[
+  shape=box
+  border=0
+  fixedsize=true
+  width=2
+  height=2
+  imagescale=true
+]
+
+subgraph cluster2 {
+  fontsize=20
+  labeljust=c
+  label="client.any.machine"
+
+firefox [
+label="
+  Internet browser
+
+  Binary: Client GUI
+  for every person
+  "
+]
+
+}  # End of my machine
+
+subgraph cluster1 {
+  fontsize=20
+  labeljust=c
+  label="astrogod.alma.cl"
+
+subgraph clusterastro {
+  fontsize=30
+  penwidth=5
+  labeljust=c
+  label="AstroGod"
+
+serv [
+  label="
+    AstroServ
+
+    Binary: HTTP service
+    for anything
+  "
+]
+shell [
+  label="
+    AstroShell
+
+    Binary: CLI
+    for true ninjas
+    (or testers)
+  "
+]
+lib [
+  label="
+    AstroLib.so
+
+    Library: astronomy
+    for binaries
+  "
+]
+}  # End of Astrogod
+
+term [
+  label="
+    Terminal emulator
+
+    Binary: client GUI
+    for people
+    on this computer
+  "
+]
+
+crypto [
+  label="
+    libcrypto.so
+
+    Library: cryptography
+    (hash)
+    for binaries
+  "
+]
+
+math [
+  label="
+    libm.so
+
+    Library: mathematics 
+    (atan)
+    for binaries
+  "
+]
+
+libc [
+  label="
+    libc.so
+
+    Library: standanrd utils
+    (malloc)
+    for binaries
+  "
+]
+}  # End of alma computer
+
+#firefox -> term [style=invis];
+
+term -> shell [label="Fork\n+\nStdIn", constraint=false, nodesep=0,  weight=10]
+firefox -> serv [label="HTTP"]
+
+shell -> lib [label="DlOpen"]
+serv -> lib [label="DlOpen"]
+
+lib -> crypto [label="Load"]
+lib -> math [label="Load"]
+lib -> libc [label="Load"]
+
+}

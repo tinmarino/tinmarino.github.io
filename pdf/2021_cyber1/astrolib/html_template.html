@@ -1,0 +1,127 @@
+R"=====(<!DOCTYPE html><html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  <title>Astro services</title>
+  <link rel="icon" href="data:;base64,iVBORwOKGO=" /> <!--Makes the favicon nothing to prevent a console error-->
+<style>
+body {
+  font-size: 130%;
+}
+textarea {
+  font-size: 110%;
+}
+.float_left {
+  width: 31%;
+  float: left;
+}
+.text {
+  width: 90%;
+  height: 90%;
+  margin-right: 10%;
+}
+.full {
+  width: 100%;
+  height: 100%;
+}
+textarea { resize: both; }
+</style>
+</head>
+<body>
+
+<!-- New file -->
+<h1>Astrogod</h1>
+
+The swiss army knife for astronomers (in quest of collaboration and excelence).<br/>
+
+Returns: circular coordinates from cartesians (in an innovative manner).<br/>
+
+
+<a href="./doc" target="_blank">(see doc)</a>
+
+
+<!-- In -->
+
+<div class="full">
+<div class="float_left">
+  <h3>Function</h3>
+  <form name="method">
+    <input type="radio" onclick="keyDownHandler()" name="fct" value="astro_hi0" checked>astro_hi0</input><br/>
+    <input type="radio" onclick="keyDownHandler()" name="fct" value="astro_hi1">astro_hi1</input><br/>
+    <input type="radio" onclick="keyDownHandler()" name="fct" value="astro_hi2">astro_hi2</input><br/>
+    <input type="radio" onclick="keyDownHandler()" name="fct" value="astro_msg">astro_msg</input><br/>
+    <input type="radio" onclick="keyDownHandler()" name="fct" value="astro_print_all_points">astro_print_all_points</input><br/>
+    <input type="radio" onclick="keyDownHandler()" name="fct" value="astro_usage">astro_usage</input><br/>
+  <form>
+</div>
+
+<div class="float_left">
+  <h3>Argument 1</h3>
+  <textarea id="arg1" class="text" rows="7" name="arg1"></textarea>
+</div>
+<div class="float_left"> 
+  <h3>Argument 2</h3>
+  <textarea id="arg2" class="text" rows="7" name="arg2"></textarea>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+
+<!-- Out -->
+<div class="full">
+  <h3>Output</h3>
+  <textarea class="text" id="out" rows="16" name="out"></textarea>
+</div>
+
+
+<!-- New file -->
+
+
+<script>
+function httpGet(theUrl) {
+  // https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+  console.log("Get: " + s_url);
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function (e) {
+    console.log("OK: " + xhr.responseText);
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+        document.getElementById('out').value += xhr.responseText;
+      } else {
+        console.error(xhr.statusText);
+      }
+    }
+  };
+  xhr.open("GET", theUrl, true); // false for synchronous request
+  xhr.send( null );
+}
+
+function keyDownHandler(_){
+  s_base = 'http://localhost:8000/';
+  s_base = '/';
+  s_fct = document.querySelector('input[name="fct"]:checked').value;
+  s_arg1 = document.getElementById('arg1').value;
+  s_arg2 = document.getElementById('arg2').value;
+
+  s_url = s_base + s_fct;
+  if (s_arg1.length > 0) {
+    s_url += '?arg1=' + encodeURI(s_arg1);
+  }
+  if (s_arg2.length > 0) {
+    s_url += '&arg2=' + encodeURI(s_arg2);
+  }
+
+  // Clear out
+  document.getElementById('out').value = "";
+
+  // Fill out <- URI
+  httpGet(s_url);
+}
+document.onkeyup = keyDownHandler;
+</script>
+
+
+</body>
+</html>
+)====="
