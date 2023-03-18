@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<!-- From: https://github.com/showdownjs/showdown/wiki/Tutorial:-Markdown-editor-using-Showdown -->
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <!-- <link rel="stylesheet" href="css/style.css"/> -->
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+
+<script>
+function run() {
+  var text = document.getElementById('sourceTA').value,
+      target = document.getElementById('targetDiv'),
+      converter = new showdown.Converter(),
+      html = converter.makeHtml(text);
+    
+  target.innerHTML = html;
+}
+</script>
+
+<body>
+
+<div id=main style="width: 100%;">
+
+<div id="sourceDiv" style="float:left; width: 50%;">
+  <textarea id="sourceTA" rows="30" cols="82"></textarea>
+  <button id="runBtn" onClick="run()">Convert</button>
+</div>
+<div id="targetDiv" style="float:right;"></div>
+
+</div>
+
+</body>
+</html>
