@@ -1,15 +1,41 @@
 /*
+TOREAD:
+ * Discussion marked vs showdown
+   * https://github.com/pioul/Minimalist-Online-Markdown-Editor/issues/8
 
-Ref:
+# Ref
   * Marked plus prism to highlight: https://gist.github.com/lightpohl/f7786afa86ff2901ef40b1b1febf14e0
-  * Code: Marked: https://github.com/markedjs/marked
-    * a Markdown parser
-    * <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  * Code: Showdown:
-    * <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.0.0/showdown.min.js"></script>
 
+### RequireJs
+  * Git: 
+  <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+
+### Marked
+  * Site: https://marked.js.org/
+  * Git: https://github.com/markedjs/marked
+  * a Markdown parser
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+### Showdown:
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.0.0/showdown.min.js"></script>
+
+### Prism
+  * Site: https://prismjs.com/
+  * Git: https://github.com/PrismJS/prism
+  * <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/themes/prism-dark.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js"></script>
 */
 
+//require.config({
+//  paths: {
+//      "prism": "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min",
+//      "marked": "https://cdn.jsdelivr.net/npm/marked/marked.min",
+//  },
+//  waitSeconds: 5,
+//});
+
+//let prism;
+//let marked;
 
 async function onLoad() {
   console.log('Loading is called');
@@ -18,88 +44,37 @@ async function onLoad() {
 }
 
 
-function convertShowdown() {
+async function loadDep() {
+  // Load
+  //prism = require(['prism']);
+  //marked = require(['marked']);
+}
+
+async function convertShowdown() {
   console.log('Showdown is converting page')
-
-  var converter = new showdown.Converter({extensions: ['codetagsearchline']});
-
   var source = document.body.innerHTML;
-  console.log(source);
-  var target = document.body;
 
-  var html = converter.makeHtml(source);
-    
-  target.innerHTML = html;
+  //await loadDep();
+
+  console.log(marked);
+  marked.setOptions({
+    highlight: function(code, lang) {
+      console.log(lang);
+      if (Prism.languages[lang]) {
+        return Prism.highlight(code, Prism.languages[lang], lang);
+      } else {
+        return code;
+      }
+    }
+  });
+
+
+  var destination = marked.parse(source);
+  //var destination = Prism.highlight(destination, Prism.languages["bash"], "bash");
+  document.body.innerHTML = destination;
 }
 
 
-/*
-showdown.extension('codetagsearchline', function() {
-  var myext = {
-    type: 'listener',
-    listeners: {
-      'makehtml.codeBlocks.after': function(event, text, converter, options, globals) {
-        console.log('test: ' + text); // doesnt work
 
-        text = text.replace(/Memory/g, 'jbsgfjfdhbg');
-        return text;
-      }
-    }
-  };
-  return [myext];
-});
-*/
-
-showdown.extension('codetagsearchline', function() {
-  return [{
-    type: 'output',
-    filter: function (text, converter, options) {
-      text = text.replace(/<pre><code>([\s\S]+?)<\/code><\/pre>/g, function (fullMatch, inCode) {
-        // first split by newline, so we have an array of code lines
-        var codeLines = inCode.split('\n');
-        
-        // pop the last element since it's an empty line
-        if (codeLines[codeLines.length - 1] === '') {
-          codeLines.pop();
-        }
-        
-        codeLines = codeLines
-          // then loop through the array of lines of code and wrap it in code tags
-          .map(function(line) {
-            return '<code>' + line + '</code>';
-          })
-          
-          // then rejoin the array into a string
-          .join('\n');
-        
-        // lastly wrap everything in pre tags again
-        return '<pre>' + codeLines + '</pre>';
-      });
-      text = text.replace(/<pre><code class=\"([\s\S]+?)\">([\s\S]+?)?<\/code><\/pre>/g, function (fullMatch, codeClass, inCode) {
-        // first split by newline, so we have an array of code lines
-        var codeLines = inCode.split('\n');
-        
-        // pop the last element since it's an empty line
-        if (codeLines[codeLines.length - 1] === '') {
-          codeLines.pop();
-        }
-        
-        codeLines = codeLines
-          // then loop through the array of lines of code and wrap it in code tags
-          .map(function(line) {
-            return '<code class="' + codeClass + '">' + line + '</code>';
-          })
-          
-          // then rejoin the array into a string
-          .join('\n');
-        
-        // lastly wrap everything in pre tags again
-        return '<pre>' + codeLines + '</pre>';
-      });
-      return text;
-    }
-  }];
-});
-
-
+console.log(window.onload)
 window.onload = onLoad;
