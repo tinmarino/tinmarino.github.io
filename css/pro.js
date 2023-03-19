@@ -3,16 +3,20 @@
 * Press right on righter => enter
 * Press left on lefter => hide and focus on bar_opener
 * remove focus when hidden: seems like a bug
+*
+* IDEA:
+*   * Handle onScroll event
 */
 
 
-// Declare globals (array of openable navigation ids)
 function declareGlobal() {
+  // Declare globals (array of openable navigation ids)
   window.aNavId = [
     "id_cv",
     "id_web",
     "id_astro",
     "id_cyber",
+    "id_blog",
     "id_contact",
   ]
 
@@ -45,9 +49,9 @@ function declareGlobal() {
 }
 
 
-// Hide home frame: callback for all iframe button
-// :param: <element> button calling me: used to set title
 function hideHome(btn) {
+  // Hide home frame: callback for all iframe button
+  // :param: <element> button calling me: used to set title
   // Hide welcome element
   welcome_elt = document.getElementById("welcome")
   if (welcome_elt != null) {
@@ -91,9 +95,9 @@ function showHome(){
   document.title = 'Tinmarino';
 }
 
-// Change sidebar visibility
-// :param: <boolean> true: show
 function showBar(bol) {
+  // Change sidebar visibility
+  // :param: <boolean> true: show
   document.getElementById("input_opener").checked = !bol;
 }
 
@@ -116,24 +120,24 @@ function openOne(id) {
 }
 
 
-// Close one element: set its display to none
 function closeOne(id) {
+  // Close one element: set its display to none
   var elt = document.getElementById(id);
   if (elt == null) { return; }
   elt.style.display = "none";
 }
 
 
-// Focus first child: used for keyboard movement (but not mouse)
 function focusFirstChild(nextNav){
+  // Focus first child: used for keyboard movement (but not mouse)
   const first = nextNav.firstElementChild;
   if (null == first){ return; }
   first.focus();
 }
 
 
-// Close all sidebar2
 function closeAll(b_keep_open) {
+  // Close all sidebar2
   for (id of aNavId){
     // Close
     closeOne(id);
@@ -149,8 +153,8 @@ function closeAll(b_keep_open) {
 }
 
 
-// Open description label on mouse over
 function handleMouseOver(event) {
+  // Open description label on mouse over
   // Get item
   var item = event.target || event.srcElement;
 
@@ -167,16 +171,16 @@ function handleMouseOver(event) {
   descriptionItem.style.top = s_top;
 }
 
-// Add handler on mouse over sidebar element
 function addDescriptionHandler() {
+  // Add handler on mouse over sidebar element
   // whenever we hover over a menu item (TODO that has a description)
   buttonSidebars.forEach(item => {
     item.addEventListener('mouseover', handleMouseOver);
   });
 }
 
-// Set delayed image src
 function setImageSrc () {
+  // Set delayed image src
   var imgs = document.getElementsByClassName('delayed');
   for (let img of imgs){
     if (null == img.dataset) { continue }
@@ -185,9 +189,9 @@ function setImageSrc () {
 }
 
 
-// Read params from URL to show what I want
-//   If I give a link with ?show=....
 function readUrlParameters () {
+  // Read params from URL to show what I want
+  //   If I give a link with ?show=....
   const url = window.location.href;
   const params = new URL(url).searchParams;
   var s_show = '';
@@ -233,8 +237,8 @@ function readUrlParameters () {
 //////////////////////
 
 
-// Helper: focus next Sibling
 function focusOtherElement(item, iDir) {
+  // Helper: focus next Sibling
   // Check
   if (!item || !(iDir == 1 || iDir == -1)) { return ; }
 
@@ -265,8 +269,8 @@ function handleKeyDownBody(event) {
   handleKeyDownNav(event);
 }
 
-// Handle keyboard down on focused navigation item
 function handleKeyDownNav(event) {
+  // Handle keyboard down on focused navigation item
   // Get item
   const item = event.target || event.srcElement;
 
@@ -387,10 +391,6 @@ function handleKeyDownNav(event) {
   }
 }
 
-function handleOnScroll(e) {
-  // TODO work better
-}
-
 function addHandlerKeyboardArrow() {
   var buttons = [].concat(
     Array.from(buttonSidebars),
@@ -416,12 +416,6 @@ function addHandlerHider() {
   barOpener.addEventListener('keydown', handleBar);
 }
 
-function addHandlerOnScroll() {
-  var iframe_elt = document.getElementById("id_iframe");
-  var welcome_elt = document.getElementById("welcome");
-}
-
-
 function mainPro() {
   declareGlobal();
   readUrlParameters();
@@ -429,9 +423,9 @@ function mainPro() {
   setImageSrc();
   addHandlerKeyboardArrow();
   addHandlerHider();
-  // addHandlerOnScroll();
   document.getElementById("home").focus();
 }
 
 window.onload = mainPro;
+
 // vim:sw=2:ts=2:
