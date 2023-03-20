@@ -199,6 +199,10 @@ async function convertShowdown() {
       border: 0;
       height: 100%;
     }
+
+    pre {
+      line-height: 15px;
+    }
     .toc {
       font-family: var(--font-family-headings);
       text-align: left;
