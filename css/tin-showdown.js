@@ -36,21 +36,42 @@ async function convertShowdown() {
   console.log('Showdown is converting page')
 
   // Read markdown content
-  var markdown = document.body.innerHTML;
+  // WARNING: innerHTML is trasnforming > in &gt;
+  var markdown = document.body.textContent;
+  console.log(markdown);
 
   //await loadDep();
 
   console.log(marked);
   marked.setOptions({
+    sanitizer: null,
+    sanitize: false,
     highlight: function(code, lang) {
-      console.log(lang);
+      console.log(code);
       if (Prism.languages[lang]) {
         return Prism.highlight(code, Prism.languages[lang], lang);
       } else {
         return code;
       }
+    },
+  });
+
+  // Let marked do its normal token generation.
+  var tokens = marked.lexer( markdown );
+  
+  // Mark all code blocks as already being escaped.
+  // This prevents the parser from encoding anything inside code blocks
+  tokens.forEach(function( token ) {
+    console.log(token.type);
+    if ( token.type === "code" ) {
+      token.escaped = true;
+      token.sanitize = false;
+      console.log(token);
     }
   });
+
+  // Convert
+  var html = marked.parser(tokens);
 
   // Create div text (left)
   var div_main = document.createElement("div")
@@ -76,8 +97,7 @@ async function convertShowdown() {
     overflow-y: auto;
   `;
 
-  // Convert
-  var html = marked.parse(markdown);
+  // var html = markdown;
   div_text.innerHTML = html;
 
 
@@ -230,7 +250,6 @@ async function convertShowdown() {
   div_text.addEventListener('scroll', (event) => {
     if (typeof(headings) != 'undefined' && headings != null && typeof(links) != 'undefined' && links != null) {
       let scrollTop = div_text.scrollTop;
-      console.log(links);
       
       // highlight the last scrolled-to: set everything inactive first
       links.forEach((link, index) => {
@@ -239,7 +258,6 @@ async function convertShowdown() {
       
       // then iterate backwards, on the first match highlight it and break
       for (var i = headings.length-1; i >= 0; i--) {
-        console.log(scrollTop, headings[i].offsetTop);
         if (scrollTop > headings[i].offsetTop - 80) {
           links[i].classList.add('active');
           break;
@@ -256,5 +274,4 @@ function addCss(css){
   document.head.append(style);
 }
 
-console.log(window.onload)
 window.onload = onLoad;
