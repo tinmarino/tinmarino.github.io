@@ -87,22 +87,37 @@ async function convertShowdown() {
 
   // Create div text (left)
   div_text = document.createElement("div")
-  div_text.style = `
-    position:absolute;
-    left:0;
-    width:70%;
-    height:90%;
-    padding-left:3%;
-    overflow-x: hidden;
-    overflow-y: auto;
-  `;
+  div_text.id = "div_text"
 
   // var html = markdown;
   div_text.innerHTML = html;
+ 
 
+  // Add the toc opener
+  var html_toc_opener = `<input
+    type="checkbox"
+    id="input_toc_opener"
+    role="button"
+    style= "display: none;"
+    checked
+    >
+
+    <!-- Label: fix opacity Vs hanoi TODO maybe change hanoi.css -->
+    <label for="input_toc_opener" id="toc_opener" class="w3-hover-black"
+      style="opacity: 1;"
+      tabindex=1
+    >
+      <img src="/img/fa/bars-light-white.svg"
+        style="height:36px; width:auto;"
+        alt="Open nav" class="w3-xxlarge">
+    </label>
+  `
+
+  div_main.innerHTML += html_toc_opener;
 
   // Create div toc (right)
-  div_toc = document.createElement("div")
+  div_toc = document.createElement("div");
+  div_toc.id = "div_toc";
   div_toc.style = `
     position:absolute;
     left:70%;
@@ -175,6 +190,15 @@ async function convertShowdown() {
   div_main.appendChild(div_toc);
 
   addCss(`
+    body {
+      /* Not changing */
+      --block: 120px;
+      /* Position */
+      margin: 0;
+      padding: 0;
+      border: 0;
+      height: 100%;
+    }
     .toc {
       font-family: var(--font-family-headings);
       text-align: left;
@@ -234,6 +258,59 @@ async function convertShowdown() {
       margin-left: 5.1rem;
       margin-bottom: 0;
       padding-top: 0.1rem;
+    }
+
+    #div_text {
+      position:absolute;
+      left: 0;
+      height: 100%;
+      padding-left: 3%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    /* Interactive hide */
+    input[type=checkbox]:checked ~ #div_toc {
+        display: none;
+    }
+    input[type=checkbox] ~ #div_text {
+        width: 70%;
+    }
+    input[type=checkbox]:checked ~ #div_text {
+        width: 100%;
+    }
+    input[type=checkbox]:checked ~ * {
+      --sidebar-width: 0px;
+    }
+    input[type=checkbox]:checked ~ #toc_opener > img {
+        display: none;
+    }
+    input[type=checkbox]:checked ~ #toc_opener:hover > img
+    /* Anoying when using mouse : the descirption remains
+    input[type=checkbox]:checked ~ #toc_opener:focus > img
+    */
+      {
+        display: block;
+    }
+    
+    #toc_opener {
+      position: absolute;
+      color: white;
+      top: 0;
+      right: 0;
+      width: var(--block);
+      height: var(--block);
+      z-index: 5;
+      outline: none;
+    }
+    
+    /* Center the old way */
+    #toc_opener img {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
     }
   `);
 
