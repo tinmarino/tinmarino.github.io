@@ -6,6 +6,13 @@ TODO: v0.001
 
 Link:
 https://enzedonline.com/en/tech-blog/use-javascript-to-add-a-dynamic-table-of-contents-to-your-pages/
+https://github.com/showdownjs/showdown/wiki/Tutorial:-Markdown-editor-using-Showdown
+* Better Yaml header parsing: https://github.com/jxson/front-matter/blob/master/index.js
+* https://github.com/nodeca/js-yaml/blob/master/dist/js-yaml.min.js
+* My parsing is from https://github.com/markedjs/marked/issues/485#issuecomment-497492664
+* List of meta: https://gist.github.com/whitingx/3840905
+
+
 */
 
 //require.config({
@@ -19,28 +26,56 @@ https://enzedonline.com/en/tech-blog/use-javascript-to-add-a-dynamic-table-of-co
 //let prism;
 //let marked;
 
+let title = ""  // Maybe change title according to yaml header
+let description = ""  // Maybe change title according to yaml header
+let keywords = ""
+
 async function onLoad() {
-  console.log('Loading is called');
+  // Hi
+  console.log('Markdown viewer is loading');
 
-  convertShowdown()
-}
+  // Init variable in this scope (not in try)
+  var inputUrl = "Error"  // The input url to read the markdown file
+  var markdown = "Error"  // The input markdown content to convert
+  var html = "Error"  // The output html converted text
 
-
-async function loadDep() {
-  // Load
-  //prism = require(['prism']);
-  //marked = require(['marked']);
-}
-
-async function convertShowdown() {
-  console.log('Showdown is converting page')
+  // Get input markdown url
+  const rootUrl = new URL(window.location);
+  inputUrl = rootUrl.searchParams.get("page");
+  if (null == inputUrl) {
+    var message = (
+      "Error: You must set a 'page' url parameter!\n"
+      + "Tip: https://tinmarino.github.io/markdown_viewer.html?page=/blog/bash_pipe.md"
+    )
+    alert(message)
+    throw new Error(message)
+  }
 
   // Read markdown content
-  // WARNING: innerHTML is trasnforming > in &gt;
-  var markdown = document.body.textContent;
-  console.log(markdown);
+  try {
+    markdown = await getHttp(inputUrl)
+  } catch (exception) {
+    var message = (
+      "Error: Cannot open file!\n"
+      + "Tip: Verify the input URL below, set from the window location parameter\n"
+      + "url: " + inputUrl + "\n"
+      + "error: " + exception
+    )
+    alert(message)
+    throw new Error(message)
+  }
 
-  //await loadDep();
+  // Convert markdown
+  html = convertShowdown(markdown)
+
+  // Set page
+  setPageBody(html);
+}
+
+
+function convertShowdown(markdown) {
+  // Hi
+  console.log('Markdown viewer is converting the page')
 
   console.log(marked);
   marked.setOptions({
@@ -56,6 +91,16 @@ async function convertShowdown() {
     },
   });
 
+  // Clean markdown input
+  // TODO set title
+  // -- Remove yaml header
+  //markdown = markdown.replace(/^---$.*^---$/ms, '')
+  // safe is deprecated, so must force unsafe
+  var yaml_extractor = extractor(markdown, {allowUnsafe: true})
+  title = yaml_extractor.attributes.title
+  description = yaml_extractor.attributes.description
+  markdown = yaml_extractor.body
+
   // Let marked do its normal token generation.
   var tokens = marked.lexer( markdown );
   
@@ -66,12 +111,38 @@ async function convertShowdown() {
     if ( token.type === "code" ) {
       token.escaped = true;
       token.sanitize = false;
-      console.log(token);
     }
   });
 
   // Convert
   var html = marked.parser(tokens);
+
+  return html
+}
+
+async function setPageBody(html) {
+  // Set title
+  if (title){
+    document.title = title
+  }
+
+  // Set description
+  if (description){
+    var meta = document.createElement('meta');
+    // meta.httpEquiv = "X-UA-Compatible";
+    meta.name = "description";
+    meta.content = description
+    document.getElementsByTagName('head')[0].appendChild(meta);
+  }
+
+  // Set keywords
+  if (keywords){
+    var meta = document.createElement('meta');
+    // meta.httpEquiv = "X-UA-Compatible";
+    meta.name = "keywords";
+    meta.content = keywords
+    document.getElementsByTagName('head')[0].appendChild(meta);
+  }
 
   // Create div text (left)
   var div_main = document.createElement("div")
@@ -91,6 +162,7 @@ async function convertShowdown() {
 
   // var html = markdown;
   div_text.innerHTML = html;
+  console.log(html);
  
 
   // Add the toc opener
@@ -353,6 +425,38 @@ function addCss(css){
   const style = document.createElement('style');
   style.textContent = css;
   document.head.append(style);
+}
+
+
+async function getHttp(url) {
+  // Helper for HTTP GET content
+  // The sync version
+  // var xmlHttp = new XMLHttpRequest();
+  // xmlHttp.open("GET", theUrl, false); // false for synchronous request
+  // xmlHttp.send(null);
+  // return xmlHttp.responseText;
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.onload = function () {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.responseText);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+}
+
+
+function getPageLocation(){
+  const url = new URL(window.location);
+  const page = url.searchParams.get("page");
+  console.log("Page");
+  console.log(page);
+  return page
 }
 
 window.onload = onLoad;
