@@ -27,8 +27,7 @@ https://github.com/showdownjs/showdown/wiki/Tutorial:-Markdown-editor-using-Show
 //let marked;
 
 let title = ""  // Maybe change title according to yaml header
-let description = ""  // Maybe change title according to yaml header
-let keywords = ""
+var meta_attribute = {}  // All meta key and content
 
 async function onLoad() {
   // Hi
@@ -92,13 +91,12 @@ function convertShowdown(markdown) {
   });
 
   // Clean markdown input
-  // TODO set title
   // -- Remove yaml header
-  //markdown = markdown.replace(/^---$.*^---$/ms, '')
+  // markdown = markdown.replace(/^---$.*^---$/ms, '')
   // safe is deprecated, so must force unsafe
   var yaml_extractor = extractor(markdown, {allowUnsafe: true})
-  title = yaml_extractor.attributes.title
-  description = yaml_extractor.attributes.description
+  meta_attribute = yaml_extractor.attributes
+  title = meta_attribute.title
   markdown = yaml_extractor.body
 
   // Let marked do its normal token generation.
@@ -126,21 +124,11 @@ async function setPageBody(html) {
     document.title = title
   }
 
-  // Set description
-  if (description){
+  // Set all meta attributes: description, keywords, authors, etc
+  for (meta_key in meta_attribute) {
     var meta = document.createElement('meta');
-    // meta.httpEquiv = "X-UA-Compatible";
-    meta.name = "description";
-    meta.content = description
-    document.getElementsByTagName('head')[0].appendChild(meta);
-  }
-
-  // Set keywords
-  if (keywords){
-    var meta = document.createElement('meta');
-    // meta.httpEquiv = "X-UA-Compatible";
-    meta.name = "keywords";
-    meta.content = keywords
+    meta.name = meta_key;
+    meta.content = meta_attribute[meta_key];
     document.getElementsByTagName('head')[0].appendChild(meta);
   }
 
@@ -243,20 +231,6 @@ async function setPageBody(html) {
     link.appendChild(document.createTextNode(headings[i].innerText));
     link.href = `#${headings[i].id}`;
   }
-
-  //// Create a list for the ToC entries
-  //tocList = document.createElement("ul");
-
-  //$('h3').each(function () {
-  //    tocListItem = document.createElement("li");
-  //    // a link for the h3
-  //    tocEntry = document.createElement("a");
-  //    tocEntry.setAttribute("href", "#" + $(this).attr('id'));
-  //    tocEntry.innerText = $(this).text();
-  //    tocListItem.appendChild(tocEntry);
-  //    tocList.appendChild(tocListItem);
-  //});
-  //div_toc.appendChild(tocList);
 
   div_main.appendChild(div_text);
   div_main.appendChild(div_toc);
