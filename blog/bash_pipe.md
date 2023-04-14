@@ -45,13 +45,208 @@ There is some advanced content on redirections, but it is spread between the [Ad
 * 1994: [Bash process substitution](https://en.wikipedia.org/wiki/Process_substitution#History)
 
 Ref: For later changes, see [bash feature, version and changes at Greg's wiki](https://mywiki.wooledge.org/BashFAQ/061) or the more verbose [bash/CHANGES in the GNU source code inspector](https://git.savannah.gnu.org/cgit/bash.git/tree/CHANGES)
+## Debug
 
-# Single pipe
+TODO
 
-
-# Forking pipe
+If you want to go futher, inspect the current state of your shell while running the examples:
 
 ```bash
+ls -l /proc/self/fd  # or /proc/$$/fd/
+```
+
+# Single pipeline
+
+## Manual
+
+From: __man bash / SHELL GRAMMAR / Pipeline__
+
+A pipeline is a sequence of one or more commands separated by one of the control operators | or |&.  The format for a pipeline is:
+
+```text
+[time [-p]] [ ! ] command [ [|⎪|&] command2 ... ]
+```
+
+The standard output of command is connected via a pipe to the standard input of command2. This connection is performed before any redirections specified by the command (see REDIRECTION below). If |& is used, command's standard error, in addition to its standard output, is connected to command2's standard input through the pipe; it is shorthand for 2>&1 |. This implicit redirection of the standard error to the standard output is performed after any redirections specified by the command.
+
+
+## Examples
+
+```bash
+# Replace recursive
+find . -type f -print0 | xargs -0 sed -i -e 's/foo/bar/g'
+
+# Sed colorize match
+echo "color test" | sed 's,color,\x1b[31m&\x1b[0m,'
+
+# Remove duplicate lines while keeping the order of the lines
+cat -n out.txt | sort -k2 -k1n  | uniq -f1 | sort -nk1,1 | cut -f2-
+```
+
+
+## Helpfull commands
+
+
+### 1/ Produce
+
+* find
+  * `find . -type f -print0 | xargs -0 sed -i -e 's/\bart\b/dispatch/g'`
+* ls
+  * `ls -1 | xargs -l echo`
+* cat, tac
+* yes
+* seq
+  * `seq 10 | xargs -l echo "hello"`
+* for
+
+### 2/ Filter
+
+* grep
+* sed
+* awk
+* head
+* tail
+* cut
+* sort
+* uniq
+
+### 3/ Consume
+
+* xargs
+* bash
+* tee
+* while
+* od
+* mv, cp
+
+
+# Forking pipeline
+
+In order to have multiple consumers, it can be usefull to fork the pipeline with, at your choice:
+
+1. embeded redirections
+2. command substitution
+3. command 'tee'
+3. internal 'exec'
+
+Let's define simple producer and cosumer
+
+```bash
+producer(){ echo "Producer ${*:-0}!"; }
+consumer(){ sed "s/.*/Consumer ${*:-0}: &/"; }
+```
+
+## Left fork
+
+Serves to redirect the input from multiple commands
+
+```text
++------------+
+| Producer 1 |
++------------+
+              \     +----------+
+               |--> | Consumer |
+              /     +----------+
++------------+
+| Producer 2 |
++------------+
+```
+
+__Simply__: use curly braces `{}` to join them
+
+```bash
+{ producer 1; producer 2; } | consumer
+```
+
+__Permanently__: use exec and process substitution
+(if you want an open shell with the consumer in background)
+
+```bash
+exec > >(consumer)
+producer 1
+producer 2
+```
+
+Note: the consumer is writting to stdout and the stdout was overwritten by the consumer. But this is OK because the consumer copied the initial stdout which was, at this moment, pointing to the tty.
+
+Note: the consumer is in a process substitution, so in a child process. modifying the consumer function in the parent shell (your terminal) have no effect anymore, you would have to create a new redirection to see the change applied.
+
+The terminal lost its normal stdout. It would be nice to see it in parallel. For that, we must spawn multiple consumer => see next section: right fork.
+
+
+## Right fork
+
+Serves to redirect the output to multiple commands
+
+```text
+                +------------+
+                | Consumer 1 |
+                +------------+
++----------+   /                          
+| Producer |--|
++----------+   \                         
+                +------------+
+                | Consumer 2 |
+                +------------+
+```
+
+__Simply__: use tee and process substitution
+
+```bash
+producer | tee >(consumer 1) >(consumer 2) >/dev/null
+```
+
+__Permanently__: use exec and process substitution
+
+```bash
+exec > >(tee >(consumer 1) >(consumer 2) >/dev/null)
+producer
+```
+
+## Complex fork
+
+This real world example is using forked redirection to permit Inter-Process Communication between Child and Parent.
+This old technique is often used with named pipes (aka fifo), but I find anonymous pipes more elegants.
+
+```text
+                +---------+
+               -| Child 1 |
+              / +---------+
+             /
++--------+  /   +---------+
+| Parent |------| Child 2 |
++--------+  \   +---------+
+             \
+              \ +---------+
+               -| Child 3 |
+                +---------+
+
+
+
+```
+
+```bash
+```
+
+
+```bash
+# TODO
+child(){
+  echo "Child ${*:-0} working"
+  [[ -v fd_msg ]] && echo "Child ${*:-0}: messaging parent" >&"$fd_msg"
+}
+slurp_fd(){
+  IFS= read -r -t 0.001 -d '' msg <&"$1"
+  echo "${msg%$'\n'}"
+}
+
+exec {fd_msg}<> >(:)     # Create dummy fd for special message
+#exec {fd_stdout}<> >(:)  # Create dummy fd for all
+exec {fd_stdout}<> ~/Test/test
+exec > >(tee >(cat >&"$fd_stdout"))
+child 1& child 2& child 3& wait # Fork them and wait
+echo -e "Stdout grabbed:\n$(slurp_fd "$fd_stdout")" # Read from children
+echo -e "Stdout grabbed:\n$(slurp_fd "$fd_msg")"
 ```
 
 
@@ -225,6 +420,7 @@ cmd1 | cmd2 | cmd3 | cmd; echo ${PIPESTATUS[@]}  # Find out the exit codes of al
 
 # Links
 
-* [Redirections in Bash Manual](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
+* [GNU: Redirections in Bash Manual](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
+* [Tinmarino: bash wiki](https://tinmarino.github.io/markdown_viewer.html?page=https://raw.githubusercontent.com/tinmarino/wiki/master/Bash.md)
 
 
