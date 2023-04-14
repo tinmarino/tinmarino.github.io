@@ -209,28 +209,23 @@ This real world example is using forked redirection to permit Inter-Process Comm
 This old technique is often used with named pipes (aka fifo), but I find anonymous pipes more elegants.
 
 ```text
-                +---------+
-               -| Child 1 |
-              / +---------+
-             /
-+--------+  /   +---------+
-| Parent |------| Child 2 |
-+--------+  \   +---------+
-             \
-              \ +---------+
-               -| Child 3 |
-                +---------+
-
-
-
+         Child space        '         Parent space
+----------------------------'----------------------------
++---------+                 '
+| Child 1 |                 '
++---------+                 '
+           \    +--------+  '   +--------+
++---------+ \   | fd_msg | -'-> | fd_msg |     +--------+
+| Child 2 | --> +--------+  '   +--------+ --> | Parent |
++---------+ /   | Stdout | -'-> | fd_out |     +--------+
+           /    +--------+  '   +--------+
++---------+                 '
+| Child 3 |                 '
++---------+                 '
 ```
 
 ```bash
-```
-
-
-```bash
-# TODO
+# Declare used function
 child(){
   echo "Child ${*:-0} working"
   [[ -v fd_msg ]] && echo "Child ${*:-0}: messaging parent" >&"$fd_msg"
@@ -240,13 +235,20 @@ slurp_fd(){
   echo "${msg%$'\n'}"
 }
 
-exec {fd_msg}<> >(:)     # Create dummy fd for special message
-#exec {fd_stdout}<> >(:)  # Create dummy fd for all
-exec {fd_stdout}<> ~/Test/test
-exec > >(tee >(cat >&"$fd_stdout"))
-child 1& child 2& child 3& wait # Fork them and wait
-echo -e "Stdout grabbed:\n$(slurp_fd "$fd_stdout")" # Read from children
-echo -e "Stdout grabbed:\n$(slurp_fd "$fd_msg")"
+exec {fd_save_stdout}>&1 # Backup standard output fd
+exec {fd_msg}<> >(:)  # Create dummy fd for special message
+exec {fd_stdout}<> >(:)  # Create dummy fd for all
+
+exec > >(tee >(cat >&"$fd_stdout"))  # Redirect stdout
+
+child 1& child 2& child 3 # Fork them
+
+exec >&"$fd_save_stdout"  # Restore stdout (before wait or wait blocks)
+
+wait  # Wait for children
+
+echo -e "Stdout grabbed:\n$(slurp_fd "$fd_stdout")"  # Read stdout from children
+echo -e "Message grabbed:\n$(slurp_fd "$fd_msg")"  # Read message from children
 ```
 
 
