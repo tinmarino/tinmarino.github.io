@@ -60,6 +60,7 @@ ls -l /proc/self/fd  # or /proc/$$/fd/
 ## Manual
 
 From: __man bash / SHELL GRAMMAR / Pipeline__
+From: __man 7 pipe__
 
 A pipeline is a sequence of one or more commands separated by one of the control operators | or |&.  The format for a pipeline is:
 
@@ -102,22 +103,38 @@ cat -n out.txt | sort -k2 -k1n  | uniq -f1 | sort -nk1,1 | cut -f2-
 ### 2/ Filter
 
 * grep
+  * -o: print only match
+  * -nri: prefix with line number, recurse, ignore case
 * sed
 * awk
+  * `awk '$2 ~ /[-.0-9]*/ {n++;sum+=$2} END {print n?sum/n:0}'  # Get column 2 average`
 * head
+  * `head -n 20  # Line`
 * tail
+  * `tail -n +1 file1.txt file2.txt file3.txt  # Cat all files, including filename`
 * cut
+  * `cut -f1,3 -d":" /etc/passwd`
 * sort
+  * `sort -nr -t '|' -k 2`
+  * -h: human: read k as kilo
+  * -n: numeric: put 4 before 10
+  * -k -t: specify column and delimiter
 * uniq
+* tr
+  * `tr '()' '[]'`
 
 ### 3/ Consume
 
 * xargs
+  * -l: one command per line (usually what you want)
+  * -0: from null terminated (use with find -print0)
 * bash
 * tee
 * while
 * od
 * mv, cp
+* read, readarray
+  * `read -r -t 0.001 -d '' msg < <(echo -e "toto\ntiti")  # Slurp to whole file`
 
 
 # Forking pipeline
@@ -182,9 +199,9 @@ Serves to redirect the output to multiple commands
                 +------------+
                 | Consumer 1 |
                 +------------+
-+----------+   /                          
++----------+   /
 | Producer |--|
-+----------+   \                         
++----------+   \
                 +------------+
                 | Consumer 2 |
                 +------------+
@@ -193,15 +210,24 @@ Serves to redirect the output to multiple commands
 __Simply__: use tee and process substitution
 
 ```bash
-producer | tee >(consumer 1) >(consumer 2) >/dev/null
+producer | tee >(consumer 1) >(consumer 2) > /dev/null
 ```
 
-__Permanently__: use exec and process substitution
+__Permanently__: use exec, tee and process substitution
 
 ```bash
-exec > >(tee >(consumer 1) >(consumer 2) >/dev/null)
+exec > >(tee >(consumer 1) >(consumer 2) > /dev/null)
 producer
 ```
+
+__Canonically__:
+
+```bash
+exec {fd}> >(:)  # Open fd to avoid redirection failure
+exec > >(tee >(cat >&"$fd"))  # Writing to 1 will also write to 3
+producer
+```
+
 
 ## Complex fork
 
@@ -253,6 +279,12 @@ echo -e "Message grabbed:\n$(slurp_fd "$fd_msg")"  # Read message from children
 
 
 # SubProcess control
+
+## Capture output
+
+TODO
+
+## Fork join
 
 ```bash
 # Define a worker function
@@ -389,7 +421,7 @@ cmd <<- EOL
 EOL
 
 exec &> >(tee -a log.out)  # Redirect stdout and stderr to file
-exec &> /dev/tty           # Reset stdout and stderr 
+exec &> /dev/tty           # Reset stdout and stderr
 
 cmd <<< "string"  # Redirect a single line of text to the stdin ofcmd. This is called a here-string.
 exec 2> file      # Redirect stderr of all commands to a file forever.
