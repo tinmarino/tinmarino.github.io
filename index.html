@@ -227,7 +227,7 @@
 <!-- Label: fix opacity Vs hanoi TODO maybe change hanoi.css -->
 <label for="input_opener" id="bar_opener" class="w3-hover-black"
   style="opacity: 1;"
-  tabindex=1
+  tabindex="1"
 >
   <img src="./img/fa/bars-light-white.svg"
     style="height:36px; width:auto;"
@@ -243,7 +243,7 @@
   <!-- Home -->
   <button
     id="home"
-    tabindex=2;
+    tabindex="2"
     class="w3-button w3-padding-large w3-hover-black"
     onclick="closeAll(false); showHome()"
   >
@@ -257,9 +257,7 @@
   <button href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
     id="cv"
     class="w3-button w3-padding-large w3-hover-black"
-    onclick="openOne('id_cv');
-             document.getElementById('cv_en').click();
-            "
+    onclick="openOne('id_cv'); document.getElementById('cv_en').click();"
   >
     <img src="./img/fa/address-card-light-white.svg"
     style="height:36px; width:auto;"
@@ -271,8 +269,9 @@
   <div style="flex-grow:1;"></div>
 
   <!-- Web -->
-  <button class="w3-button w3-padding-large w3-hover-black"
+  <button
     id="web"
+    class="w3-button w3-padding-large w3-hover-black"
     onclick="openOne('id_web');"
   >
     <img src="./img/fa/globe-light-white.svg"
@@ -337,7 +336,7 @@
     id="cv_en"
     onclick="hideHome(this);"
   >
-    <img src=""
+    <img src="./img/flag/gb.svg"
       data-src="./img/flag/gb.svg"
       alt="GB" class="delayed w3-xxlarge">
     <p>CV English</p>
@@ -349,7 +348,7 @@
     hrefland="es"
     onclick="hideHome(this);"
   >
-    <img src=""
+    <img src="./img/flag/es.svg"
       data-src="./img/flag/es.svg"
       alt="ES" class="delayed w3-xxlarge">
     <p>CV Spanish</p>
@@ -361,7 +360,7 @@
     id="cv_fr"
     onclick="hideHome(this);"
   >
-    <img src=""
+    <img src="./img/flag/fr.svg"
       data-src="./img/flag/fr.svg"
       alt="FR" class="delayed w3-xxlarge">
     <p>CV French</p>
@@ -374,15 +373,15 @@
 <!-- 1. Web -->
 <nav id="id_web" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
   <!-- Web.0 Python -->
-  <button href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <button href="https://tinmarino.github.io/app/pythonbr/ython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="python_js"
     hrefland="en"
     onclick="
-      document.getElementById('id_iframe').src = 'https://tinmarino.github.io/app/python/brython/console.html';
+      document.getElementById('id_iframe').src = 'https://tinmarino.github.io/app/pythonbr/ython/console.html';
       hideHome(this);
     "
   >
-    <img src=""
+    <img src="./img/lang/python_xx.svg"
       data-src="./img/lang/python_xx.svg"
       alt="Python" class="delayed w3-xxlarge">
     <p>Python.js</p>
@@ -392,15 +391,15 @@
     style="left: var(--sidebar-width);"
     tabindex="-1"
   >
-    Html app in English</br></br>
-    Python.js: python on browser</br>
+    Html app in English<br/><br/>
+    Python.js: python on browser<br/>
     &nbsp&nbsp&nbsp Js:
-    <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe"
+    <a href="https://tinmarino.github.io/app/pythonbr/ython/console.html" target="main_iframe"
       id="brython"
       tabindex="-1"
       onclick="hideHome(this);"
     >
-      Brython</br>
+      Brython<br/>
     </a>
     &nbsp&nbsp&nbsp Wasm - C:
     <a href="https://tinmarino.github.io/app/python/pyodide/console.html" target="main_iframe"
@@ -408,7 +407,7 @@
       tabindex="-1"
       onclick="hideHome(this);"
     >
-      Pyodide</br>
+      Pyodide<br/>
     </a>
     &nbsp&nbsp&nbsp Wasm - Rust:
     <a href="https://tinmarino.github.io/app/python/rustpython/index.html" target="main_iframe"
@@ -416,7 +415,7 @@
       tabindex="-1"
       onclick="hideHome(this);"
     >
-      RustPython</br>
+      RustPython<br/>
     </a>
 
     Dislaimer: None of these if my work
@@ -432,10 +431,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Html app</br></br>
+      Html app<br/><br/>
       Perlito.js: Raku interpreter compiled in javascript
     </div>
-    <img src=""
+    <img src="./img/lang/raku_square_xx.svg"
       data-src="./img/lang/raku_square_xx.svg"
       alt="Raku" class="delayed w3-xxlarge">
     <p>Raku</p>
@@ -450,10 +449,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Html app in English</br></br>
+      Html app in English<br/><br/>
       Vim.js: vim compiled as js with emscirpten, to use in navigator
     </div>
-    <img src=""
+    <img src="./img/vim_xx.svg"
       data-src="./img/vim_xx.svg"
       alt="Vim" class="delayed w3-xxlarge">
     <p>Vim.js</p>
@@ -468,13 +467,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Html page in English</br></br>
+      Html page in English<br/><br/>
       StackOverflow top 100 post for certain tags
     </div>
-    <img src=""
+    <img src="./img/stackoverflow_xx.svg"
       data-src="./img/stackoverflow_xx.svg"
       alt="StackOverflow" class="delayed w3-xxlarge">
-    <p>StackOverflow</br>Top 100</p>
+    <p>StackOverflow<br/>Top 100</p>
   </a>
 
 
@@ -486,10 +485,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Html pages in English</br></br>
+      Html pages in English<br/><br/>
       Wiki: reference sheets with (shareable) personal notes
     </div>
-    <img src=""
+    <img src="./img/wiki_logo_xx.svg"
       data-src="./img/wiki_logo_xx.svg"
       alt="Wiki" class="delayed w3-xxlarge">
     <p>Notes</p>
@@ -504,10 +503,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Html app in English</br></br>
+      Html app in English<br/><br/>
       TaranFighters: a game with some Tourneboeuf figthing zombies
     </div>
-    <img src=""
+    <img src="./img/taran_xx.svg"
       data-src="./img/taran_xx.svg"
       alt="familly game" class="delayed w3-xxlarge">
     <p>Taran Fighters</p>
@@ -522,11 +521,11 @@
   >
     <!-- Description -->
     <div class="description">
-      Html app in English</br></br>
-      My Grid Game: some easy arcade game,</br>
+      Html app in English<br/><br/>
+      My Grid Game: some easy arcade game,<br/>
       getting difficult if playing 2 at a time
     </div>
-    <img src=""
+    <img src="./img/thor_xx.svg"
       data-src="./img/thor_xx.svg"
       alt="My Grid Game" class="delayed w3-xxlarge">
     <p>Grid Game</p>
@@ -547,13 +546,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf presentation in Spanish</br></br>
+      Pdf presentation in Spanish<br/><br/>
       Band1: Software integration and use of a new band (filter) for ALMA
     </div>
-    <img src=""
+    <img src="./img/b1.png"
       data-src="./img/b1.png"
       alt="Banda 1 software" class="delayed w3-xxlarge">
-    <p>Band 1</br>Slide</p>
+    <p>Band 1<br/>Slide</p>
   </a>
 
 
@@ -566,27 +565,27 @@
       hideHome(this);
     "
   >
-    <img src=""
+    <img src="./img/aperture_xx.svg"
       data-src="./img/aperture_xx.svg"
       alt="ApertureSynthesis" class="delayed w3-xxlarge">
-    <p>Aperture</br>Synthesis</p>
+    <p>Aperture<br/>Synthesis</p>
 
   <!-- Post Description -->
   <div class="post description"
     tabindex="-1"
   >
-    Html guide in:</br>
+    Html guide in:<br/>
 
     &nbsp&nbsp&nbsp
     <a href="./pdf/2020_aperture_synthesis_es.html" target="main_iframe"
       id="aperture_guide_es" tabindex="-1" onclick="hideHome(this);" >
-      Spanish</br>
+      Spanish<br/>
     </a>
 
     &nbsp&nbsp&nbsp
     <a href="./pdf/2020_aperture_synthesis_fr.html" target="main_iframe"
       id="aperture_guide_fr" tabindex="-1" onclick="hideHome(this);" >
-      French</br>
+      French<br/>
     </a>
 
       Aperture Synthesis: Practical guide
@@ -603,13 +602,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf presentation in French</br></br>
+      Pdf presentation in French<br/><br/>
       CosmObs: Introduction to observational cosmology tools and practices
     </div>
-    <img src=""
+    <img src="./img/cosmo_obs_small_xx.svg"
       data-src="./img/cosmo_obs_small_xx.svg"
       alt="Introduction à la Cosmologie observationelle" class="delayed w3-xxlarge">
-    <p>Cosmo Obs</br>Slide</p>
+    <p>Cosmo Obs<br/>Slide</p>
   </a>
 
 
@@ -622,16 +621,16 @@
       hideHome(this);
     "
   >
-    <img src=""
+    <img src="./img/cosmo_cheat_xx.svg"
       data-src="./img/cosmo_cheat_xx.svg"
       alt="Cosmologie observationelle résumé" class="delayed w3-xxlarge">
-    <p>Cosmo Obs</br>Cheat</p>
+    <p>Cosmo Obs<br/>Cheat</p>
 
   <!-- Post Description -->
   <div class="post description"
     tabindex="-1"
   >
-    Pdf cheatsheet in:</br>
+    Pdf cheatsheet in:<br/>
 
     &nbsp&nbsp&nbsp
     <a href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe"
@@ -639,7 +638,7 @@
       tabindex="-1"
       onclick="hideHome(this);"
     >
-      English</br>
+      English<br/>
     </a>
 
     &nbsp&nbsp&nbsp
@@ -648,7 +647,7 @@
       tabindex="-1"
       onclick="hideHome(this);"
     >
-      French</br>
+      French<br/>
     </a>
 
     CosmObs: Introduction to observational cosmology tools and practices
@@ -666,14 +665,14 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf book in Spanish</br></br>
-      Master tesis:</br>
+      Pdf book in Spanish<br/><br/>
+      Master tesis:<br/>
       Searching for i-band dropout galaxies lensed by galaxy clusters
     </div>
-    <img src=""
+    <img src="./img/grav_len_xx.svg"
       data-src="./img/grav_len_xx.svg"
       alt="Gravitational leses for high redshift galaxies thesis" class="delayed w3-xxlarge">
-    <p>Gravitational Lenses</br>Book</p>
+    <p>Gravitational Lenses<br/>Book</p>
   </a>
 
   <!-- Astro.2.2 Gav Lens Slides -->
@@ -684,14 +683,14 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf slide in English</br></br>
-      Master tesis:</br>
+      Pdf slide in English<br/><br/>
+      Master tesis:<br/>
       Searching for i-band dropout galaxies lensed by galaxy clusters
     </div>
     <img src="Gravitational leses for high redshift galaxies presentation slides"
       data-src="./img/grav_len_slide_xx.svg"
       alt="" class="delayed w3-xxlarge">
-    <p>Gravitational Lenses</br>Slide</p>
+    <p>Gravitational Lenses<br/>Slide</p>
   </a>
 
   <!-- Astro.3.1 Abism Paper -->
@@ -702,13 +701,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf article in English</br></br>
+      Pdf article in English<br/><br/>
       ABISM: an interactive image quality assessment toolfor adaptive optics instruments
     </div>
-    <img src=""
+    <img src="./img/abism_xx.svg"
       data-src="./img/abism_xx.svg"
       alt="Strehl Meter software python" class="delayed w3-xxlarge">
-    <p>Abism</br>Paper</p>
+    <p>Abism<br/>Paper</p>
   </a>
 
 
@@ -720,13 +719,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf slide in English</br></br>
+      Pdf slide in English<br/><br/>
       ABISM: an interactive image quality assessment toolfor adaptive optics instruments
     </div>
     <img src="Strehl Meter software python slide"
       data-src="./img/abism_slide_xx.svg"
       alt="" class="delayed w3-xxlarge">
-    <p>Abism</br>Slide</p>
+    <p>Abism<br/>Slide</p>
   </a>
 
 
@@ -738,14 +737,14 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf book in French</br></br>
+      Pdf book in French<br/><br/>
       Internship report:
       Low mass galaxies and the star forming scenario
     </div>
-    <img src=""
+    <img src="./img/cfht_xx.svg"
       data-src="./img/cfht_xx.svg"
       alt="CFHT stellar formation scenario" class="delayed w3-xxlarge">
-    <p>Stellar formation</br>Book</p>
+    <p>Stellar formation<br/>Book</p>
   </a>
 
 
@@ -757,14 +756,14 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf book in English</br></br>
+      Pdf book in English<br/><br/>
       Internship report:
       Low mass galaxies and the star forming scenario
     </div>
-    <img src=""
+    <img src="./img/cfht_sfr_slide_xx.svg"
       data-src="./img/cfht_sfr_slide_xx.svg"
       alt="Star formation rate scenario presentation slide" class="delayed w3-xxlarge">
-    <p>Stellar formation</br>Slide</p>
+    <p>Stellar formation<br/>Slide</p>
   </a>
 </nav>
 
@@ -782,13 +781,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Html cheatsheet in English</br></br>
+      Html cheatsheet in English<br/><br/>
       Bash: Cheatsheet
     </div>
-    <img src=""
+    <img src="./img/bash_cheat.png"
       data-src="./img/bash_cheat.png"
       alt="Bash sheet" class="delayed w3-xxlarge">
-    <p>BaSh</br>Cheatsheet</p>
+    <p>BaSh<br/>Cheatsheet</p>
   </a>
 
 
@@ -800,7 +799,7 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf presentation in Spanish</br></br>
+      Pdf presentation in Spanish<br/><br/>
       Cyber1: Introduction to a cyberattack
     </div>
     <pre>
@@ -810,10 +809,10 @@
 +----+ |  +-----+
   v    v    v
 +-------+ +-----+
-| Decod |>| ALU |
+| Decod |&gt;| ALU |
 +-------+ +-----+
     </pre>
-    <p>Cyber1</br>Slide</p>
+    <p>Cyber1<br/>Slide</p>
   </a>
 
 
@@ -825,13 +824,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Html presentation in Spanish</br></br>
+      Html presentation in Spanish<br/><br/>
       Dotfile: An overview on sharpening the saw
     </div>
-    <img src=""
+    <img src="./img/butcher_xx.svg"
       data-src="./img/butcher_xx.svg"
       alt="Dotfile slide" class="delayed w3-xxlarge">
-    <p>Dotfile</br>Slide</p>
+    <p>Dotfile<br/>Slide</p>
   </a>
 
 
@@ -843,7 +842,7 @@
   >
     <!-- Description -->
     <div class="description">
-      Html class in Spanish</br></br>
+      Html class in Spanish<br/><br/>
       Lin4Jim: Linux class for my friend Jim
     </div>
     <pre>
@@ -855,7 +854,7 @@
   \  ==  /
    `|--|`
     </pre>
-    <p>Linux</br>Class</p>
+    <p>Linux<br/>Class</p>
   </a>
 
 
@@ -867,13 +866,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf slide in French</br></br>
+      Pdf slide in French<br/><br/>
       YaDiff: Yet Another Diffing software to propagate reverse analysis symbols between Ida databases
     </div>
-    <img src=""
+    <img src="./img/yadiff_xx.svg"
       data-src="./img/yadiff_xx.svg"
       alt="YaDiff slide" class="delayed w3-xxlarge">
-    <p>YaDiff</br>Slide</p>
+    <p>YaDiff<br/>Slide</p>
   </a>
 
   <!-- Cyber.1.2 YaDiff Article -->
@@ -884,13 +883,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Html article in French</br></br>
+      Html article in French<br/><br/>
       YaDiff: Yet Another Diffing software to propagate reverse analysis symbols between Ida databases
     </div>
-    <img src=""
+    <img src="./img/yadiff_misc_xx.svg"
       data-src="./img/yadiff_misc_xx.svg"
       alt="YaDiff article" class="delayed w3-xxlarge">
-    <p>YaDiff</br>Article</p>
+    <p>YaDiff<br/>Article</p>
   </a>
 
   <!-- Cyber.2 FID -->
@@ -901,10 +900,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Html report in French</br></br>
+      Html report in French<br/><br/>
       Retour d'Expérience du Forum d'Innovation de la Défense
     </div>
-    <img src=""
+    <img src="./img/fid_xx.svg"
       data-src="./img/fid_xx.svg"
       alt="Compte rendu du forum innovation défense 2018" class="delayed w3-xxlarge">
     <p>Fid</p>
@@ -918,10 +917,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Txt report in French</br></br>
+      Txt report in French<br/><br/>
       Two annual kaspersky conferences (SAS)
     </div>
-    <img src=""
+    <img src="./img/sas2018_xx.svg"
       data-src="./img/sas2018_xx.svg"
       alt="Compte rendu du SaS de kaspersky, Eugène on t'aime !" class="delayed w3-xxlarge">
     <p>SAS</p>
@@ -935,10 +934,10 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf presentation in English</br></br>
+      Pdf presentation in English<br/><br/>
       LibGdx: Cross platform Java game development framework (Desktop/Android/BlackBerry/iOS/HTML5)
     </div>
-    <img src=""
+    <img src="./img/libgdx_xx.svg"
       data-src="./img/libgdx_xx.svg"
       alt="LibGdx slide" class="delayed w3-xxlarge">
     <p>LibGdx</p>
@@ -952,13 +951,13 @@
   >
     <!-- Description -->
     <div class="description">
-      Pdf Sheet in French</br></br>
+      Pdf Sheet in French<br/><br/>
       Regex crossword: game done for an internal conference
     </div>
-    <img src=""
+    <img src="./img/re_cross_xx.svg"
       data-src="./img/re_cross_xx.svg"
       alt="Mots croisés pour expression régulière" class="delayed w3-xxlarge">
-    <p>Regex</br>Crossword</p>
+    <p>Regex<br/>Crossword</p>
   </a>
 </nav>
 
@@ -1013,7 +1012,7 @@
   <a href="https://www.github.com/tinmarino" class="w3-button w3-padding-large w3-hover-black"
     target="_blank"
   >
-    <img src=""
+    <img src="./img/fa/github-brands-white.svg"
       data-src="./img/fa/github-brands-white.svg"
       style="height:36px; width:auto;"
       alt="" class="delayed w3-xxlarge">
@@ -1024,7 +1023,7 @@
   <!-- 9.2 Gmail -->
   <a href="mailto:martin.tourneboeuf@gmail.com" class="w3-button w3-padding-large w3-hover-black"
   >
-    <img src=""
+    <img src="./img/fa/envelope-light-white.svg"
       data-src="./img/fa/envelope-light-white.svg"
       style="height:36px; width:auto;"
       alt="" class="delayed w3-xxlarge">
@@ -1036,7 +1035,7 @@
   <a href="https://www.linkedin.com/in/martin-tourneboeuf-713b5696/" class="w3-button w3-padding-large w3-hover-black"
     target="_blank"
   >
-    <img src=""
+    <img src="./img/fa/linkedin-in-brands-white.svg"
       data-src="./img/fa/linkedin-in-brands-white.svg"
       style="height:36px; width:auto;"
       alt="" class="delayed w3-xxlarge">
@@ -1051,7 +1050,6 @@
 <div id="id_main">
   <iframe
     id="id_iframe"
-    src=""
     height="100%" width="100%"
     tabindex="0"
     allowfullscreen
