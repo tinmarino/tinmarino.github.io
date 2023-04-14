@@ -12,6 +12,7 @@ https://github.com/showdownjs/showdown/wiki/Tutorial:-Markdown-editor-using-Show
 * My parsing is from https://github.com/markedjs/marked/issues/485#issuecomment-497492664
 * List of meta: https://gist.github.com/whitingx/3840905
 
+* TOC nested: https://stackoverflow.com/questions/187619/is-there-a-javascript-solution-to-generating-a-table-of-contents-for-a-page
 
 */
 
@@ -76,12 +77,10 @@ function convertShowdown(markdown) {
   // Hi
   console.log('Markdown viewer is converting the page')
 
-  console.log(marked);
   marked.setOptions({
     sanitizer: null,
     sanitize: false,
     highlight: function(code, lang) {
-      console.log(code);
       if (Prism.languages[lang]) {
         return Prism.highlight(code, Prism.languages[lang], lang);
       } else {
@@ -101,11 +100,10 @@ function convertShowdown(markdown) {
 
   // Let marked do its normal token generation.
   var tokens = marked.lexer( markdown );
-  
+
   // Mark all code blocks as already being escaped.
   // This prevents the parser from encoding anything inside code blocks
   tokens.forEach(function( token ) {
-    console.log(token.type);
     if ( token.type === "code" ) {
       token.escaped = true;
       token.sanitize = false;
@@ -134,7 +132,7 @@ async function setPageBody(html) {
 
   // Create div text (left)
   var div_main = document.createElement("div")
-  div_main.style = ` 
+  div_main.style = `
     position:absolute;
     left:0;
     margin:0;
@@ -150,8 +148,7 @@ async function setPageBody(html) {
 
   // var html = markdown;
   div_text.innerHTML = html;
-  console.log(html);
- 
+
 
   // Add the toc opener
   var html_toc_opener = `<input
@@ -195,13 +192,15 @@ async function setPageBody(html) {
   `
   div_toc.appendChild(tocHeader); // Get the h3 tags — ToC entries
 
-  // nest ToC inside nav element 
-  div_toc.appendChild(document.createElement("NAV"));
+  // nest ToC inside nav element
+  div_toc.appendChild(document.createElement("nav"));
 
   // add ToC list to nav, add css classes
-  const list = div_toc.appendChild(document.createElement("UL"));
-  list.classList.add("div_toc", "toc-list");
-  list.setAttribute('role', 'list')
+  //const list = div_toc.appendChild(document.createElement("ul"));
+  //const list = document.createElement("ul");
+  //list.classList.add("div_toc", "toc-list");
+  //list.setAttribute('role', 'list')
+  var toc = `<ol class="div_toc toc-list toc-ul" role="list" type="1">`
 
 
   // determine which heading tags to search by slicing list 'levels' deep
@@ -212,9 +211,17 @@ async function setPageBody(html) {
   const headings = div_text.querySelectorAll(tags);
 
   // loop through headings in order
+  var openLevel = 0
   for (let i = 0; i < headings.length; i++) {
     // determine nesting level (h2->1, h3->2 etc)
     const level = Number(headings[i].nodeName[1]) - 1;
+
+    if (openLevel < level) {
+      toc += (new Array(level - openLevel + 1)).join("<ul class=\"toc-ul\">");
+    } else if (openLevel > level) {
+      toc += (new Array(openLevel - level + 1)).join("</ul>");
+    }
+    openLevel = level
 
     // if heading has no id, create one from slugified title and assign to heading
     // pre-fix id with index to avoid duplicate id's
@@ -223,14 +230,23 @@ async function setPageBody(html) {
     }
 
     // create element to hold link, add css including level specific css class
-    const linkLine = list.appendChild(document.createElement("LI"));
-    linkLine.classList.add(`toc`, `toc-item-l${level}`);
+    //if (0 == i){ list.innerHTML += '<ol type="1">' }
+    //const linkLine = list.appendChild(document.createElement("li"));
+    //if (0 == i){ list.innerHTML += '</ol>' }
 
-    // create link to point to ID of heading
-    const link = linkLine.appendChild(document.createElement("A"));
-    link.appendChild(document.createTextNode(headings[i].innerText));
-    link.href = `#${headings[i].id}`;
+    toc += `
+      <li class="toc toc-item-l${level}">
+        <a href="#${headings[i]}">${headings[i].innerText}</a>
+      </li>
+    `
+    //linkLine.classList.add(`toc`, `toc-item-l${level}`);
+    //// create link to point to ID of heading
+    //const link = linkLine.appendChild(document.createElement("a"));
+    //link.appendChild(document.createTextNode(headings[i].innerText));
+    //link.href = `#${headings[i].id}`;
   }
+  toc += `</ol>`
+  div_toc.innerHTML += toc
 
   div_main.appendChild(div_text);
   div_main.appendChild(div_toc);
@@ -264,24 +280,28 @@ async function setPageBody(html) {
     .toc-list {
       padding-bottom: 1rem;
       padding-left: 10px;
-      list-style: none;
+      //list-style: none;
     }
-    ul > li > a.active {
+
+    .toc-ul {
+      padding: 0
+    }
+    .toc-ul > li > a.active {
       box-shadow: 2px 2px 5px #fc894d;
       color: 'red';
     }
+
     .toc-item-l0::marker {
-      content: '•';
-      letter-spacing: 0.5em;
+      // content: '▪ ';
     }
+
     .toc-item-l0 {
       font-size: clamp( 1.25rem, 1.2232rem + 0.1127vw, 1.35rem );
       margin-left: 1.8rem;
       margin-bottom: 0;
     }
     .toc-item-l1::marker {
-      content: '◦';
-      letter-spacing: 0.5em;
+      content: '• ';
     }
     .toc-item-l1 {
       font-size: clamp( 1.15rem, 1.1099rem + 0.169vw, 1.3rem );
@@ -290,8 +310,7 @@ async function setPageBody(html) {
       padding-top: 0.15rem;
     }
     .toc-item-l2::marker {
-      content: '▪';
-      letter-spacing: 0.5em;
+      content: '◦ ';
     }
     .toc-item-l2 {
       font-size: clamp( 1.05rem, 1.0099rem + 0.169vw, 1.2rem );
@@ -300,8 +319,7 @@ async function setPageBody(html) {
       padding-top: 0.125rem;
     }
     .toc-item-l3::marker {
-      content: '−';
-      letter-spacing: 0.5em;
+      content: '− ';
     }
     .toc-item-l3 {
       font-size: clamp( 1rem, 0.9732rem + 0.1127vw, 1.1rem );
@@ -341,7 +359,7 @@ async function setPageBody(html) {
       {
         display: block;
     }
-    
+
     #toc_opener {
       position: absolute;
       color: white;
@@ -352,7 +370,7 @@ async function setPageBody(html) {
       z-index: 5;
       outline: none;
     }
-    
+
     /* Center the old way */
     #toc_opener img {
       position: absolute;
@@ -369,22 +387,24 @@ async function setPageBody(html) {
   document.body.appendChild(div_main);
 
 
+  // TODO
   // Show active heading
   // From: https://stackoverflow.com/questions/65954297/highlighting-item-in-table-of-contents-when-section-is-active-on-page-as-scrolli
   //const links = document.querySelectorAll('nav > ul > li > a');
-  const links = div_toc.querySelectorAll('ul > li > a');
-  
+  const links = div_toc.querySelectorAll('.toc-ul > li > a');
+
   div_text.addEventListener('scroll', (event) => {
     if (typeof(headings) != 'undefined' && headings != null && typeof(links) != 'undefined' && links != null) {
       let scrollTop = div_text.scrollTop;
-      
+
       // highlight the last scrolled-to: set everything inactive first
       links.forEach((link, index) => {
         link.classList.remove("active");
       });
-      
+
       // then iterate backwards, on the first match highlight it and break
       for (var i = headings.length-1; i >= 0; i--) {
+        console.log(i)
         if (scrollTop > headings[i].offsetTop - 80) {
           links[i].classList.add('active');
           break;
@@ -392,6 +412,7 @@ async function setPageBody(html) {
       }
     }
   });
+
 }
 
 
@@ -428,8 +449,6 @@ async function getHttp(url) {
 function getPageLocation(){
   const url = new URL(window.location);
   const page = url.searchParams.get("page");
-  console.log("Page");
-  console.log(page);
   return page
 }
 
