@@ -14,6 +14,18 @@ There must be a markdown genric loader, with customisable:
 
 Good luck!
 
+# Static
+
+To convert markdown to static HTML, tou can use:
+
+* pandoc
+* jekyll
+
+# Dynamic
+
+To convert dynamically markdown content to html, I use the file markdown_viewer.html
+
+
 # Link
 
 ### TOREAD:

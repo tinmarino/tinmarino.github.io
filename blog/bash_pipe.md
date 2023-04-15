@@ -9,22 +9,23 @@ Advanced reference on BaSh pipes and redirections.
 
 # Introduction
 
-> **Disclaimer**  Work in progress
-
-Goal: after reading this page, you should be able to:
+After reading this page, you should be able to:
 
 * Fork and join subprocesses
 * Redirect to multiple streams
 * Capture outputs to variable without blocking nor afecting the standard output
 
-
-There are many tutorials on shell pipes on the net but most use the very basic syntax like the following [useless use of cat](https://en.wikipedia.org/wiki/Cat_%28Unix%29#Useless_use_of_cat).
+There are many tutorials on shell pipes on the net but most use the very basic syntax
+like the following [useless use of cat](https://en.wikipedia.org/wiki/Cat_%28Unix%29#Useless_use_of_cat).
 
 ```bash
 cat file.txt | sed -i s/country/state/g'
 ```
 
-There is some advanced content on redirections, but it is spread between the [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/) and [stackoverflow](https://stackoverflow.com/search?q=%5Bbash%5D+pipe), see for example:
+There is some advanced content on redirections, but it is spread between
+the [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)
+and [stackoverflow](https://stackoverflow.com/search?q=%5Bbash%5D+pipe),
+see for example:
 
 * [How to get the output of a shell function without forking a sub shell?](https://stackoverflow.com/questions/7502981/how-to-get-the-output-of-a-shell-function-without-forking-a-sub-shell/75065137#75065137)
 * [Bash: Capture output of command run in background]()
@@ -45,6 +46,7 @@ There is some advanced content on redirections, but it is spread between the [Ad
 * 1994: [Bash process substitution](https://en.wikipedia.org/wiki/Process_substitution#History)
 
 Ref: For later changes, see [bash feature, version and changes at Greg's wiki](https://mywiki.wooledge.org/BashFAQ/061) or the more verbose [bash/CHANGES in the GNU source code inspector](https://git.savannah.gnu.org/cgit/bash.git/tree/CHANGES)
+
 ## Debug
 
 TODO
@@ -53,6 +55,8 @@ If you want to go futher, inspect the current state of your shell while running 
 
 ```bash
 ls -l /proc/self/fd  # or /proc/$$/fd/
+for fd in $(ls /proc/$$/fd| grep -v [012]); do exec {fd}>&-; done  # Close fd except std streams
+exec bash  # Renew, shell but fd are kept
 ```
 
 # Single pipeline
