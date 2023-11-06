@@ -236,7 +236,7 @@ async function setPageBody(html) {
 
     toc += `
       <li class="toc toc-item-l${level}">
-        <a href="#${headings[i]}">${headings[i].innerText}</a>
+        <a href="#${headings[i].id}">${headings[i].innerText}</a>
       </li>
     `
     //linkLine.classList.add(`toc`, `toc-item-l${level}`);
