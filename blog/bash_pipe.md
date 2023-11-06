@@ -49,14 +49,15 @@ Ref: For later changes, see [bash feature, version and changes at Greg's wiki](h
 
 ## Debug
 
-TODO
 
 If you want to go futher, inspect the current state of your shell while running the examples:
 
 ```bash
 ls -l /proc/self/fd  # or /proc/$$/fd/
+lsof -a -p $$  # See offset too
 for fd in $(ls /proc/$$/fd| grep -v [012]); do exec {fd}>&-; done  # Close fd except std streams
 exec bash  # Renew, shell but fd are kept
+exec &> /dev/tty  # Reset stdout and stderr
 ```
 
 # Single pipeline
@@ -103,6 +104,8 @@ cat -n out.txt | sort -k2 -k1n  | uniq -f1 | sort -nk1,1 | cut -f2-
 * seq
   * `seq 10 | xargs -l echo "hello"`
 * for
+* xxd
+* objdump
 
 ### 2/ Filter
 
@@ -400,59 +403,11 @@ while true; do date; sleep 1; done | stdbuf --output=0 tr '\n' '\r'
 
 ```bash
 # :from: https://catonmat.net/bash-redirections-cheat-sheet
-cmd > file        # Redirect the standard output (stdout) ofcmdto a file.
-cmd 1> file       # Same ascmd > file. 1 is the default file descriptor (fd) for stdout.
-cmd 2> file       # Redirect the standard error (stderr) ofcmdto a file. 2 is the default fd for stderr.
-cmd >> file       # Append stdout ofcmdto a file.
-cmd 2>> file      # Append stderr ofcmdto a file.
-cmd &> file       # Redirect stdout and stderr ofcmdto a file.
-cmd > file 2>&1   # Another way to redirect both stdout and stderr ofascmd 2>&1 > file. Redirection order matters! cmdto a file. This is notthe same
-cmd > /dev/null   # Discard stdout ofcmd.
-cmd 2> /dev/null  # Discard stderr ofcmd.
-cmd &> /dev/null  # Discard stdout and stderr ofcmd.
-cmd < file        # Redirect the contents of the file to the standard input (stdin) ofcmd.
-
-# Redirect a bunch of lines to the stdin. If'EOL'is quoted, text is treated literally. This is called a here-document.
-cmd << EOL
-line
-line
-EOL
-
-# Redirect a bunch of lines to the stdin and strip the leading tabs.
-cmd <<- EOL
-<tab>foo
-<tab><tab>bar
-EOL
-
-exec &> >(tee -a log.out)  # Redirect stdout and stderr to file
-exec &> /dev/tty           # Reset stdout and stderr
-
-cmd <<< "string"  # Redirect a single line of text to the stdin ofcmd. This is called a here-string.
-exec 2> file      # Redirect stderr of all commands to a file forever.
-exec 3< file      # Open a file for reading using a custom file descriptor.
-exec 3> file      # Open a file for writing using a custom file descriptor.
-exec 3<> file     # Open a file for reading and writing using a custom file descriptor.
-exec 3>&-         # Close a file descriptor.
-exec 4>&3         # Make file descriptor 4 to be a copy of file descriptor 3. (Copy fd 3 to 4 .)
-exec 4>&3-        # Copy file descriptor 3 to 4 and close file descriptor 3.
-echo "foo" >&3    # Write to a custom file descriptor.
-cat <&3           # Read from a custom file descriptor.
-(cmd1; cmd2) > file  # Redirect stdout from multiple commands to a file (using a sub-shell).
-{ cmd1; cmd2; } > file  # Redirect stdout from multiple commands to a file (faster; not using a sub-shell).
+cmd1 | cmd2 | cmd3 | cmd; echo ${PIPESTATUS[@]}  # Find out the exit codes of all piped commands.
 exec 3<> /dev/tcp/host/port  # Open a TCP connection tohost:port. (This is a bash feature, not Linux feature).
 exec 3<> /dev/udp/host/port  # Open a UDP connection tohost:port. (This is a bash feature, not Linux feature).
-cmd <(cmd1)       # Redirect stdout ofUseful whencmddoesn’t read from stdin directly.cmd1to an anonymous fifo, then pass the fifo tocmdas an argument.
-cmd < <(cmd1)     # Redirect stdout ofBest example:diff <(find /path1 | sort) <(find /path2 | sort)cmd1to an anonymous fifo, then redirect the fifo to stdin of. cmd.
-cmd <(cmd1) <(cmd2)  # Redirect stdout ofarguments tocmd. cmd1andcmd2to two anonymous fifos, then pass both fifos as
-cmd1 >(cmd2)      # Runpipe as an argument tocmd2with its stdin connected to an anonymous fifo, and pass the filename of thecmd1.
-cmd1 > >(cmd2)    # Runto this anonymous pipe.cmd2with its stdin connected to an anonymous fifo, then redirect stdout ofcmd
-cmd1 | cmd2       # Redirect stdout ofsame ascmd2 < <(cmd1)cmd1to stdin of, same ascmd2> >(cmd2) cmd1. Pro-tip: This is the same as, same as< <(cmd1) cmd2cmd1 > >(cmd2). ,
-cmd1 |& cmd2      #  Redirect stdout and stderr ofcmd1 2>&1 | cmd2for older bashes.cmd1 to stdin of cmd2 (bash 4.0+ only). Use
-cmd | tee file    # Redirect stdout ofcmdto a file and print it to screen.
-exec {filew}> file  # Open a file for writing using a named file descriptor called{filew}(bash 4.1+).
-cmd 3>&1 1>&2 2>&3  # Swap stdout and stderr ofcmd.
-cmd > >(cmd1) 2> >(cmd2)  # Send stdout ofcmdtocmd1and stderr ofcmdtocmd2.
-cmd1 | cmd2 | cmd3 | cmd; echo ${PIPESTATUS[@]}  # Find out the exit codes of all piped commands.
+
+cmd <<< "string"  # Redirect a single line of text to the stdin ofcmd. This is called a here-string.
 ```
 
 
@@ -460,5 +415,3 @@ cmd1 | cmd2 | cmd3 | cmd; echo ${PIPESTATUS[@]}  # Find out the exit codes of al
 
 * [GNU: Redirections in Bash Manual](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
 * [Tinmarino: bash wiki](https://tinmarino.github.io/markdown_viewer.html?page=https://raw.githubusercontent.com/tinmarino/wiki/master/Bash.md)
-
-
