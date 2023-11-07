@@ -134,12 +134,12 @@ async function setPageBody(html) {
   var div_main = document.createElement("div")
   div_main.style = `
     position:absolute;
-    left:0;
-    margin:0;
-    padding:0;
-    border:0;
-    width:100%;
-    height:100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
   `
 
   // Create div text (left)
@@ -176,10 +176,11 @@ async function setPageBody(html) {
   div_toc = document.createElement("div");
   div_toc.id = "div_toc";
   div_toc.style = `
-    position:absolute;
-    left:70%;
-    width:20%;
-    padding-left:3%;
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    left: 70%;
+    padding-left: 3%;
     overflow-x: hidden;
     overflow-y: auto;
   `
