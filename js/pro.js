@@ -53,13 +53,18 @@ function hideHome(btn) {
   // Hide home frame: callback for all iframe button
   // :param: <element> button calling me: used to set title
   // Hide welcome element
-  welcome_elt = document.getElementById("welcome")
+  var welcome_elt = document.getElementById("welcome")
   if (welcome_elt != null) {
     welcome_elt.style.display = "none";
   }
 
   // Change title <- Id
-  document.title = btn.id + ' @ Tin';
+  var title = btn.id.replace(/_/g,' ');
+  document.title = toTitleCase(title) + ' @ Tin';
+
+  // Change URL <= id
+  window.history.pushState(document.title, "",
+    "?show=" + btn.id);  // + "&lang=" + btn.hreflang);
 
   // Try change title <- Iframe title
   var iframe_elt = document.getElementById("id_iframe");
@@ -171,6 +176,7 @@ function handleMouseOver(event) {
   descriptionItem.style.top = s_top;
 }
 
+
 function addDescriptionHandler() {
   // Add handler on mouse over sidebar element
   // whenever we hover over a menu item (TODO that has a description)
@@ -178,6 +184,7 @@ function addDescriptionHandler() {
     item.addEventListener('mouseover', handleMouseOver);
   });
 }
+
 
 function setImageSrc () {
   // Set delayed image src
@@ -229,6 +236,20 @@ function readUrlParameters () {
     // Show side bar
     showBar(true);
   }
+}
+
+
+//////////////////////
+// Helpers
+//////////////////////
+function toTitleCase(str) {
+  // From: https://stackoverflow.com/a/196991/2544873
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
 }
 
 
