@@ -192,6 +192,20 @@
   .w3-small{font-size:12px!important}
   .w3-xxlarge{font-size:36px!important}
   .w3-padding-large{padding:12px 24px!important}
+
+  /* Inner Link */
+  /* See: https://stackoverflow.com/a/46707009/2544873 */
+  /*
+  .inner {
+    position:relative;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .inner a {
+    pointer-events: all;
+  }
+  */
 </style>
 
 <!-- My Js -->
@@ -332,7 +346,7 @@
 <nav id="id_cv" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
   <!-- CV.1 English -->
   <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
-    hrefland="en"
+    hreflang="en"
     id="cv_en"
     onclick="hideHome(this);"
   >
@@ -345,7 +359,7 @@
   <!-- CV.2 Spanish -->
   <a href="./cv/martin_tourneboeuf_cv_spanish.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cv_es"
-    hrefland="es"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <img src="./img/flag/es.svg"
@@ -356,7 +370,7 @@
 
   <!-- CV.3 French -->
   <a href="./cv/martin_tourneboeuf_cv_french.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
-    hrefland="fr"
+    hreflang="fr"
     id="cv_fr"
     onclick="hideHome(this);"
   >
@@ -375,7 +389,7 @@
   <!-- Web.0 Python -->
   <button href="https://tinmarino.github.io/app/pythonbr/ython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="python_js"
-    hrefland="en"
+    hreflang="en"
     onclick="
       document.getElementById('id_iframe').src = 'https://tinmarino.github.io/app/pythonbr/ython/console.html';
       hideHome(this);
@@ -426,7 +440,7 @@
   <!-- Web.1 Raku -->
     <a href="https://tinmarino.github.io/app/raku/perlito/perlito6.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="raku_js"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -444,7 +458,7 @@
   <!-- Web.2 Vim -->
   <a href="https://tinmarino.github.io/vim.js/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="vim_js"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -462,7 +476,7 @@
   <!-- Web.1 StackOverflow -->
   <a href="https://tinmarino.github.io/stackoverflow_html/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="so_top_100"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -480,7 +494,7 @@
   <!-- Web.3 Wiki -->
   <a href="https://tinmarino.github.io/wiki_html/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="wiki_html"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -498,7 +512,7 @@
   <!-- Web.4 TaranFighters -->
   <a href="https://tinmarino.github.io/app/taran_fighters/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="taran_fighters"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -516,7 +530,7 @@
   <!-- Web.5 My Grid Game -->
   <a href="https://tinmarino.github.io/app/my_grid_game/" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="my_grid_game"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -538,16 +552,18 @@
 <!-- -------------------------------------------------------------------------------- -->
 <!-- 2. Astro -->
 <nav id="id_astro" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
+
   <!-- Astro.2 ALMA Capturing -->
-  <a href="./pdf/2024_alma_capturing_presentation.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <a href="./pdf/2024_alma_capturing_presentation.pdf" target="main_iframe" class="overlay w3-button w3-padding-large w3-hover-black"
     id="alma_capturing_slide"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
-    <div class="description">
+    <div class="post description">
       Pdf presentation in English<br/><br/>
       How does the Atacama Large Millimeter Array telescope capture photons?
+      <!-- <a href="?show=alma_capturing_slide">alma_capturing_slide</a> -->
     </div>
     <img src="./img/alma_pipeline_snapshot-logo.svg"
       data-src="./img/alma_pipeline_snapshot-logo.svg"
@@ -559,7 +575,7 @@
   <!-- Astro.1 Band1 -->
   <a href="./pdf/2021_band1.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="band1_slide"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -577,7 +593,7 @@
   <!-- Astro.0 Aperture Guide -->
   <button href="./pdf/2020_aperture_synthesis_fr.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="aperture_guide"
-    hrefland="fr"
+    hreflang="fr"
     onclick="
       document.getElementById('id_iframe').src = './pdf/2020_aperture_synthesis_fr.html';
       hideHome(this);
@@ -615,7 +631,7 @@
   <!-- Astro.1.1 Cosmo Obs Slide -->
   <a href="./pdf/2019_cosmondements_1_presentation.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cosmo_obs_slide"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -633,7 +649,7 @@
   <!-- Astro.1 Cosmo Obs Cheat -->
   <button href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cosmo_obs_cheat"
-    hrefland="fr"
+    hreflang="fr"
     onclick="
       document.getElementById('id_iframe').src = './pdf/2019_cosmondements_2_cheat_en.pdf';
       hideHome(this);
@@ -678,7 +694,7 @@
   <!-- Astro.2.1 Grav Lens Book -->
   <a href="./pdf/2013_tesis_MartinTourneboeuf_Magister.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="grav_lens_book"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -696,7 +712,7 @@
   <!-- Astro.2.2 Gav Lens Slides -->
   <a href="./pdf/2013_gravlens_master_slide_30q.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="grav_lens_slide"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -714,7 +730,7 @@
   <!-- Astro.3.1 Abism Paper -->
   <a href="./pdf/2016_abism_paper_jgirard.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="abism_paper"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -732,7 +748,7 @@
   <!-- Astro.3.2 Abism Slide -->
   <a href="./pdf/2012_abism_slide_jgirard.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="abism_slide"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -750,7 +766,7 @@
   <!-- Astro.4.1 Hawai Book -->
   <a href="./pdf/2011_astro_hawaii_formation_stellaire.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="sfr_book"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -768,7 +784,7 @@
 
   <!-- Astro.4.2 Hawai Slide -->
   <a href="./pdf/2011_hawaii_cfht_sfr_50q.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
-    hrefland="en"
+    hreflang="en"
     id="sfr_slide"
     onclick="hideHome(this);"
   >
@@ -794,7 +810,7 @@
   <!-- Cyber 4 Bash  Cheat -->
   <a href="./pdf/2022_bash_cheat.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="bash_cheat"
-    hrefland="es"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -812,7 +828,7 @@
   <!-- Cyber 3 Intro to Cyber defense Alma Software group -->
   <a href="./pdf/2021_cyber1/cyber.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="cyber1_slide"
-    hrefland="es"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -837,7 +853,7 @@
   <!-- Cyber.-2 Dotfile presentation -->
   <a href="./pdf/2020_dotfile_es.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="dotfile_slide"
-    hrefland="es"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -855,7 +871,7 @@
   <!-- Cyber.-1 Linux class -->
   <a href="./pdf/2020_class_linux_es.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="class_linux_es"
-    hrefland="es"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -879,7 +895,7 @@
   <!-- Cyber.1 YaDiff Slide -->
   <a href="./pdf/2018_yadiff_du_sstic.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="yadiff_slide"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -896,7 +912,7 @@
   <!-- Cyber.1.2 YaDiff Article -->
   <a href="./pdf/2018_yadiff_misc.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="yadiff_misc"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -913,7 +929,7 @@
   <!-- Cyber.2 FID -->
   <a href="./pdf/2018_retex_FID.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="fid_2018_report"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -930,7 +946,7 @@
   <!-- Cyber 3 SaS -->
   <a href="w_sas.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="sas_2018_report"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -947,7 +963,7 @@
   <!-- Cyber 4 LibGdx -->
   <a href="./pdf/2017_libgdx.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="libgdx_api_slide"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -964,7 +980,7 @@
   <!-- Cyber 5 Regex Cross word -->
   <a href="./pdf/2018_re_crossword_for_seminar.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="re_cross"
-    hrefland="fr"
+    hreflang="fr"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -986,7 +1002,7 @@
   <!-- 1. Bash pipe advanced usage -->
   <a href="/markdown_viewer.html?page=/blog/bash_pipe.md" target="main_iframe" class="w2-button w3-padding-large w3-hover-black"
     id="bash_pipe"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -1005,7 +1021,7 @@
   <!-- 0. Write HTML Page blog how to -->
   <a href="/markdown_viewer.html?page=/blog/page_write.md" target="main_iframe" class="w2-button w3-padding-large w3-hover-black"
     id="page_write"
-    hrefland="en"
+    hreflang="en"
     onclick="hideHome(this);"
   >
     <!-- Description -->
