@@ -18,8 +18,8 @@ https://github.com/showdownjs/showdown/wiki/Tutorial:-Markdown-editor-using-Show
 
 //require.config({
 //  paths: {
-//      "prism": "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min",
-//      "marked": "https://cdn.jsdelivr.net/npm/marked/marked.min",
+//      "prism": "https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js",
+//      "marked": "https://cdn.jsdelivr.net/npm/marked/marked.min.js",
 //  },
 //  waitSeconds: 5,
 //});
@@ -81,11 +81,11 @@ function convertShowdown(markdown) {
     sanitizer: null,
     sanitize: false,
     highlight: function(code, lang) {
-      if (Prism.languages[lang]) {
+      //if (Prism.languages[lang]) {
         return Prism.highlight(code, Prism.languages[lang], lang);
-      } else {
-        return code;
-      }
+      //} else {
+        //return code;
+      //}
     },
   });
 
