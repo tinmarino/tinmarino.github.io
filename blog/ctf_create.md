@@ -1,15 +1,14 @@
 ---
-title: Como crear un nuevo desafío CTF?
+title: CTF creación
 description: Tutorial para crear un template de CTF que se pueda utilisar como base
 keywords: php, docker, ctf, pentest, web
-author: tinmarino
+author: Tinmarino
 ---
 
-Como crear un desafío CTF de pentest web con un servicio PHP en un contenedor docker.
 
-## Introdución
+# Introdución
 
-Esta página explica como crear un desafío CTF.
+Esta página detalla los pasos para crear un desafío CTF de Pentest web mediante un servicio PHP en un contenedor Docker.
 
 Los archivos están en el template que utilizo para copiar pegar antes de crear un nuevo desafio. El contenido de todo los archivos se ha extraido mediante el siguiente comando para enviarselas en texto claro mientras que mediante un tarball.
  
@@ -17,7 +16,11 @@ Los archivos están en el template que utilizo para copiar pegar antes de crear 
 find . -type f -exec tail -n +1 {} +
 ```
 
-## Archivos
+Posteriormente a eso, es posible crear servidores en la nube con IP pública mediante [AWS](https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#) y, opcionalmente, asignar un nombre de dominio público a través de [GoDaddy](https://dcc.godaddy.com/).
+
+Además, se recomienda utilizar el programa [CTFd](https://github.com/CTFd/CTFd) de código fuente abierto para servir la interfase de monitoreo de los puntajes.
+
+# Archivos
 
 
 ### web/index.php
@@ -53,29 +56,29 @@ php -S localhost:8000  # S like «Serve»
 La pagina del template utilizada por PHP.
 
 ```html
-<!DOCTYPE html>
-<html lang='es'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Desafío CTF</title>
-    <style>
+&lt;!DOCTYPE html&gt;
+&lt;html lang='es'&gt;
+&lt;head&gt;
+    &lt;meta charset='UTF-8'&gt;
+    &lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
+    &lt;title&gt;Desafío CTF&lt;/title&gt;
+    &lt;style&gt;
         body { font-family: Arial, sans-serif; }
         .flag { display: none; }  /* Eso es lo que hace que no se vea en en la pantalla por defecto del navedador */
-    </style>
-</head>
-<body>
-    <h1>Bienvenido al desafío CTF</h1>
-    <p>Para completar este desafío, necesitas encontrar la flag oculta en el código fuente de esta página.</p>
-    <p>Para ver el código fuente, se pueden seguir estos pasos:</p>
-    <ol>
-        <li>Hacer clic derecho en cualquier parte de la página.</li>
-        <li>Seleccionar "Ver código fuente" o "Inspeccionar" (dependiendo del navegador).</li>
-        <li>Buscar la flag en el código fuente.</li>
-    </ol>
-    <p class='flag'>Felicitación la flag es la siguiente (sin la comillas): «$flag»</p>
-</body>
-</html>
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bienvenido al desafío CTF&lt;/h1&gt;
+    &lt;p&gt;Para completar este desafío, necesitas encontrar la flag oculta en el código fuente de esta página.&lt;/p&gt;
+    &lt;p&gt;Para ver el código fuente, se pueden seguir estos pasos:&lt;/p&gt;
+    &lt;ol&gt;
+        &lt;li&gt;Hacer clic derecho en cualquier parte de la página.&lt;/li&gt;
+        &lt;li&gt;Seleccionar "Ver código fuente" o "Inspeccionar" (dependiendo del navegador).&lt;/li&gt;
+        &lt;li&gt;Buscar la flag en el código fuente.&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;p class='flag'&gt;Felicitación la flag es la siguiente (sin la comillas): «$flag»&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 ```
 
 
@@ -126,7 +129,7 @@ Para beneficiarse de la herramienta [CTFCLI](https://github.com/CTFd/ctfcli) y p
 ```yaml
 ---
 name: "Template-TODO"
-author: Dreamlab
+author: Tinmarino
 category: Web
 description: "TODO\r\n\r\n* La _flag_ será revelada en la página web para a los que saben inspectar el código fuente HTML y tiene el siguiente formato: «CTF{flag-XXXXXX}», donde «XXXXXX» es una cadena de caracteres arbitraria.\r\n\r\n![](https://github.com/TODO/static/blob/main/512/TODO.jpg?raw=true)"
 value: 1

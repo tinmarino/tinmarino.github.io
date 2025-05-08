@@ -82,7 +82,10 @@ function convertShowdown(markdown) {
     sanitize: false,
     highlight: function(code, lang) {
       //if (Prism.languages[lang]) {
-        return Prism.highlight(code, Prism.languages[lang], lang);
+        res = '<script type="text/plain" class="language-markup">'
+        res += Prism.highlight(code, Prism.languages[lang], lang);
+        res += '</script>'
+        return res
       //} else {
         //return code;
       //}
@@ -381,6 +384,13 @@ async function setPageBody(html) {
       bottom: 0;
       margin: auto;
     }
+
+    /* Wrap code line
+     * With white-space: pre-wrap;
+     * in css/prism_dark_twilight.css
+     * Ugly patch but works
+     * https://github.com/PrismJS/prism/issues/1247
+     */
   `);
 
   //var destination = Prism.highlight(destination, Prism.languages["bash"], "bash");
