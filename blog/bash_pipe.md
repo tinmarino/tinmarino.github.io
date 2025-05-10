@@ -2,7 +2,7 @@
 title: Bash pipes
 description: Advanced reference on Bash pipes and redirections
 keywords: shell, bash, pipe, redirection, tutorial, cheatsheet
-author: tinmarino
+author: Tinmarino
 ---
 
 Advanced reference on BaSh pipes and redirections.
