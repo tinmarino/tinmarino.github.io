@@ -161,3 +161,26 @@ blockquote p {
     margin: 0 auto;
 }
 
+
+/* Title Styles */
+.title-box {
+    /* background-color: rgba(255, 255, 0, 0.3);  Light yellow background */
+    border: 5px solid #fabd2f; /* Darker yellow border */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    text-align: center; /* Center the text */
+    /* margin: 20px auto; /* Center the box horizontally */
+    max-width: 800px; /* Maximum width of the box */
+}
+
+/* Title Text */
+.title-box h1 {
+    font-size: 40px; /* Title font size */
+    font-weight: 400; /* Title font weight */
+    color: #fabd2f; /* Dark text color for contrast */
+    margin: 0; /* Remove default margin */
+}
+
+.title-box h1:after {
+  border:0px;
+}

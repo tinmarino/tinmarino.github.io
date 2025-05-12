@@ -1,5 +1,5 @@
 /*
-TODO: v0.001
+TODO: v0.02
   Get interactive ToC, can fold
   Load with require
   Create a loader taking a md file in input (whose path is defined in URL)
@@ -24,10 +24,8 @@ https://github.com/showdownjs/showdown/wiki/Tutorial:-Markdown-editor-using-Show
 //  waitSeconds: 5,
 //});
 
-//let prism;
-//let marked;
-
 let title = ""  // Maybe change title according to yaml header
+let subtitle = ""  // A small description to see what there is there
 var meta_attribute = {}  // All meta key and content
 
 async function onLoad() {
@@ -66,58 +64,74 @@ async function onLoad() {
   }
 
   // Convert markdown
-  html = convertShowdown(markdown)
+  html = convertMarkdown(markdown)
 
   // Set page
   setPageBody(html);
 }
 
 
-function convertShowdown(markdown) {
+function convertMarkdown(markdown) {
   // Hi
   console.log('Markdown viewer is converting the page')
 
-  marked.setOptions({
+  // New at markd v9, simplified
+  const markedRenderer = new marked.Marked(
+    markedHighlight.markedHighlight({
+      emptyLangClass: 'hljs',
+      langPrefix: 'language-',
+      highlight(code, lang) {
+        console.log(`Highlight ${lang}: ${code}`);
+        if (Prism.languages[lang]) {
+          //res = '<script type="text/plain" class="language-markup">'
+
+          console.log(`Prism converting as ${lang}: ${code}`)
+          res = Prism.highlight(code, Prism.languages[lang], lang);
+          //res += '</script>'
+          return res
+        } else {
+          console.log(`Warning: lang ${lang} is unknown to Prism`)
+          return code;
+        }
+      }
+    })
+  );
+
+  markedRenderer.setOptions({
     sanitizer: null,
     sanitize: false,
-    highlight: function(code, lang) {
-      //if (Prism.languages[lang]) {
-        res = '<script type="text/plain" class="language-markup">'
-        res += Prism.highlight(code, Prism.languages[lang], lang);
-        res += '</script>'
-        return res
-      //} else {
-        //return code;
-      //}
-    },
   });
 
-  // Clean markdown input
-  // -- Remove yaml header
-  // markdown = markdown.replace(/^---$.*^---$/ms, '')
-  // safe is deprecated, so must force unsafe
+  // // Clean markdown input
+  // // -- Remove yaml header
+  // // markdown = markdown.replace(/^---$.*^---$/ms, '')
+  // // safe is deprecated, so must force unsafe
   var yaml_extractor = extractor(markdown, {allowUnsafe: true})
   meta_attribute = yaml_extractor.attributes
   title = meta_attribute.title
+  subtitle = meta_attribute.subtitle
   markdown = yaml_extractor.body
 
-  // Let marked do its normal token generation.
-  var tokens = marked.lexer( markdown );
+  // // Let marked do its normal token generation.
+  // var tokens = markedRenderer.lexer( markdown );
 
-  // Mark all code blocks as already being escaped.
-  // This prevents the parser from encoding anything inside code blocks
-  tokens.forEach(function( token ) {
-    if ( token.type === "code" ) {
-      token.escaped = true;
-      token.sanitize = false;
-    }
-  });
+  // // Mark all code blocks as already being escaped.
+  // // This prevents the parser from encoding anything inside code blocks
+  // tokens.forEach(function( token ) {
+  //   if ( token.type === "code" ) {
+  //     token.escaped = true;
+  //     token.sanitize = false;
+  //   }
+  // });
 
-  // Convert
-  var html = marked.parser(tokens);
+  // // Convert
+  //var html = markedRenderer.parser(tokens);
+  var html = markedRenderer.parse(markdown);
+
 
   return html
 }
+
 
 async function setPageBody(html) {
   // Set title
@@ -149,8 +163,34 @@ async function setPageBody(html) {
   div_text = document.createElement("div")
   div_text.id = "div_text"
 
-  // var html = markdown;
-  div_text.innerHTML = html;
+  // Init void
+  div_text.innerHTML = '';
+
+  // Add title
+  if (title){
+    // Title head
+    var style = '';
+    if (subtitle) { style = ' style="margin-bottom: 5pt;"'} 
+    var titlebox = `
+      <div class="title-box">
+          <h1${style}>${title}</h1>
+    `
+    // Add subtitle
+    if (subtitle){
+      titlebox += `<div class="subtitle-box">
+          ${subtitle}
+        </div>
+      `
+    }
+
+    // Title tail
+    titlebox+= `
+      </div>
+    `
+    div_text.innerHTML += titlebox;
+  }
+
+  div_text.innerHTML += html;
 
 
   // Add the toc opener
@@ -415,7 +455,6 @@ async function setPageBody(html) {
 
       // then iterate backwards, on the first match highlight it and break
       for (var i = headings.length-1; i >= 0; i--) {
-        console.log(i)
         if (scrollTop > headings[i].offsetTop - 80) {
           links[i].classList.add('active');
           break;
@@ -423,7 +462,6 @@ async function setPageBody(html) {
       }
     }
   });
-
 }
 
 

@@ -1,11 +1,11 @@
 ---
 title: Bash pipes
+subtitle: Advanced reference on Bash pipes and redirections
 description: Advanced reference on Bash pipes and redirections
 keywords: shell, bash, pipe, redirection, tutorial, cheatsheet
 author: Tinmarino
 ---
 
-Advanced reference on BaSh pipes and redirections.
 
 # Introduction
 
