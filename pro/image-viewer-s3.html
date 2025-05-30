@@ -8,6 +8,28 @@
 <title>AI Images Album</title>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1692.0.min.js"></script>
 
+<style>
+  body {
+    background-color: #1d2021;
+    color: #fbf1c7;
+  }
+  #lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  #lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+</style>
+
 </head>
 
 <body style='display: flex; justify-content: center; flex-direction: column; align-items: center; background-color: #1d2021; color: #fbf1c7' >
@@ -15,6 +37,10 @@
 <h1>AI Images by Tinmarino</h1>
 
 <div id="viewer" style='display: flex; flex-wrap: wrap; justify-content: center; align-items: center;'></div>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImage" src="https://s3.amazonaws.com/tin-public-images/AI%2Fsingle-levi-ratatack.jpg" alt="Full Screen Image"/>
+</div>
 
 <script>
 // Declare bucket name (unique for my identify pool)
@@ -31,6 +57,10 @@ var s3 = new AWS.S3({
   apiVersion: "2006-03-01",
   params: { Bucket: albumBucketName },
 });
+
+// Intenal globals
+var photos = []; // Array to hold photo URLs
+var currentPhotoIndex = 0; // Index of the currently displayed photo
 
 // A utility function to create HTML.
 function getHtml(template) {
@@ -87,14 +117,14 @@ function viewAlbum(albumName) {
     var href = this.request.httpRequest.endpoint.href;
     var bucketUrl = href + albumBucketName + "/";
 
-    var photos = data.Contents.map(function (photo) {
+    var photos = data.Contents.map(function (photo, index) {
       var photoKey = photo.Key;
       var photoUrl = bucketUrl + encodeURIComponent(photoKey);
       return getHtml([
         "<span>",
         "<div>",
         "<br/>",
-        '<img style="height:512px;" src="' + photoUrl + '"/>',
+        '<img style="height:512px; cursor: pointer;" src="' + photoUrl + '" onclick="openLightbox(' + index + ')" />',
         "</div>",
         "<div>",
         "<span>",
@@ -104,6 +134,7 @@ function viewAlbum(albumName) {
         "</span>",
       ]);
     });
+    //displayPhotos();
     var message = photos.length
       ? "<p>The following photos are present.</p>"
       : "<p>There are no photos in this album.</p>";
@@ -134,6 +165,48 @@ function viewAlbum(albumName) {
       .getElementsByTagName("img")[0]
       .setAttribute("style", "display:none;");
   });
+}
+
+// Display photos in the viewer
+function displayPhotos() {
+  var photoElements = photos.map(function (photoUrl, index) {
+    return getHtml([
+      "<span>",
+      "<div>",
+      "<br/>",
+      '<img style="height:512px; cursor: pointer;" src="' + photoUrl + '" onclick="openLightbox(' + index + ')" />',
+      "</div>",
+      "</span>",
+    ]);
+  });
+  document.getElementById("viewer").innerHTML = getHtml(photoElements);
+}
+
+
+// Open lightbox with the selected image
+function openLightbox(index) {
+  currentPhotoIndex = index;
+  document.getElementById("lightboxImage").src = photos[index];
+  document.getElementById("lightbox").style.display = "flex";
+  document.addEventListener("keydown", handleKeyPress);
+}
+
+// Close lightbox
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+  document.removeEventListener("keydown", handleKeyPress);
+}
+
+// Handle keyboard navigation
+function handleKeyPress(event) {
+  if (event.key === "ArrowRight") {
+    currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+    document.getElementById("lightboxImage").src = photos[currentPhotoIndex];
+  } else if (event.key === "Enter") {
+    closeLightbox();
+  } else if (event.key === "Escape") { // Check for the Esc key
+    closeLightbox();
+  }
 }
 
 window.onload = viewAlbum("AI");
