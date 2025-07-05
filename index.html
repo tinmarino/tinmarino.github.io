@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" tabindex="-1">
+<html lang="en" tabindex="-1"> <!-- {{{1 -->
 
 <head>
 
@@ -252,9 +252,9 @@
 
 
 <!-- -------------------------------------------------------------------------------- -->
-<!-- Icon Bar -->
+  <!-- Icon Bar {{{1 -->
 <nav id="side_main" tabindex="-1" class="sidebar sidebar1 w3-small w3-center">
-  <!-- Home -->
+<!-- Home {{{2 -->
   <button
     id="home"
     tabindex="2"
@@ -267,7 +267,7 @@
     <p>Home</p>
   </button>
 
-  <!-- CV -->
+  <!-- CV {{{2 -->
   <button href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
     id="cv"
     class="w3-button w3-padding-large w3-hover-black"
@@ -279,10 +279,10 @@
     <p>CV</p>
   </button>
 
-  <!-- Fill -->
+  <!-- Fill {{{2 -->
   <div style="flex-grow:1;"></div>
 
-  <!-- Web -->
+  <!-- Web {{{2 -->
   <button
     id="web"
     class="w3-button w3-padding-large w3-hover-black"
@@ -294,7 +294,7 @@
     <p>Web</p>
   </button>
 
-  <!-- Astro -->
+  <!-- Astro {{{2 -->
   <button class="w3-button w3-padding-large w3-hover-black"
     id="astro"
     onclick="openOne('id_astro');"
@@ -305,7 +305,7 @@
     <p>Astro</p>
   </button>
 
-  <!-- Cyber -->
+  <!-- Cyber {{{2 -->
   <button class="w3-button w3-padding-large w3-hover-black"
     id="cyber"
     onclick="openOne('id_cyber');"
@@ -316,7 +316,7 @@
     <p>Cyber</p>
   </button>
 
-  <!-- Blog -->
+  <!-- Blog {{{2 -->
   <button class="w3-button w3-padding-large w3-hover-black"
     id="blog"
     onclick="openOne('id_blog');"
@@ -326,10 +326,10 @@
     alt="" class="w3-xxlarge">
     <p>Blog</p>
   </button>
-  <!-- Fill -->
+  <!-- Fill {{{2 -->
   <div style="flex-grow:10;"></div>
 
-  <!-- Contact -->
+  <!-- Contact {{{2 -->
   <button class="w3-button w3-padding-large w3-hover-black"
     id="contact"
     onclick="openOne('id_contact')"
@@ -342,7 +342,7 @@
 </nav>
 
 
-<!-- 0. CV -->
+<!-- 0. CV {{{1 -->
 <nav id="id_cv" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
   <!-- CV.1 English -->
   <a href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
@@ -384,7 +384,7 @@
 
 
 <!-- -------------------------------------------------------------------------------- -->
-<!-- 1. Web -->
+  <!-- 1. Web {{{1 -->
 <nav id="id_web" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
   <!-- Web.-1 AI Images on AWS -->
   <a href="./pro/image-viewer-s3.html " target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
@@ -568,9 +568,8 @@
 
 
 <!-- -------------------------------------------------------------------------------- -->
-<!-- 2. Astro -->
+  <!-- 2. Astro {{{1 -->
 <nav id="id_astro" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
-
   <!-- Astro.2 ALMA Capturing -->
   <a href="./pdf/2024_alma_capturing_presentation.pdf" target="main_iframe" class="overlay w3-button w3-padding-large w3-hover-black"
     id="alma_capturing_slide"
@@ -823,12 +822,31 @@
 
 
 <!-- -------------------------------------------------------------------------------- -->
-<!-- 3. Cyber -->
+  <!-- 3. Cyber {{{1 -->
 <nav id="id_cyber" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
+<!-- Cyber 7: Crypto 0x00: Presented 05 July 2025 to Dreamlab, after giving it at PUC class too (but will upload the first latter {{{1 -->
+  <a href="./pdf/2025_crypto_0x00_slide.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="crypto_0x00"
+    hreflang="es"
+    onclick="hideHome(this);"
+  >
+    <!-- Description -->
+    <div class="description">
+      PDF presentation in Spanish<br/><br/>
+      Criptografía 0x00<br/><br/>
+      No desarolles tu propia criptografía.
+    </div>
+    <img src="./img/crypto_0x00_256.jpg"
+      data-src="./img/crypto_0x00_256.jpg"
+      alt="Crypto 0x00" class="delayed w3-xxlarge">
+    <p>Crypto 0x00<br/>Slide</p>
+  </a>
+
+
   <!-- Cyber 6: El terreno ciber: Presented 26 Nov 2024 at DUOC university, San Joaquim -->
   <a href="./pdf/2024_slide_ciber1_dreamlab_v2.00.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="el_terreno_ciber"
-    hreflang="en"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -846,7 +864,7 @@
   <!-- Cyber 5: Shell GPT: Presented 13 September 2024 at dreamlab -->
   <a href="./pdf/2024_shell_gpt.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="shell_gpt_presentation"
-    hreflang="en"
+    hreflang="es"
     onclick="hideHome(this);"
   >
     <!-- Description -->
@@ -1187,5 +1205,5 @@
 
 </body>
 </html>
-<!-- vim:sw=2:
+<!-- vim:sw=2:foldmethod=marker
 -->
