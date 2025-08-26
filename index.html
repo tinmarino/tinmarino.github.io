@@ -426,6 +426,7 @@
   >
     Html app in English<br/><br/>
     Python.js: python on browser<br/>
+
     &nbsp&nbsp&nbsp Js:
     <a href="https://tinmarino.github.io/app/pythonbr/ython/console.html" target="main_iframe"
       id="brython"
@@ -434,6 +435,7 @@
     >
       Brython<br/>
     </a>
+
     &nbsp&nbsp&nbsp Wasm - C:
     <a href="https://tinmarino.github.io/app/python/pyodide/console.html" target="main_iframe"
       id="pyodide"
@@ -442,6 +444,7 @@
     >
       Pyodide<br/>
     </a>
+
     &nbsp&nbsp&nbsp Wasm - Rust:
     <a href="https://tinmarino.github.io/app/python/rustpython/index.html" target="main_iframe"
       id="rust_python"
@@ -825,7 +828,7 @@
 <!-- -------------------------------------------------------------------------------- -->
 <!-- 3. Cyber {{{1 -->
 <nav id="id_cyber" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
-  <!-- Cyber 13: Crypto 0x00: Presented 05 July 2025 to Dreamlab, after giving it at PUC class too (but will upload the first latter {{{2 -->
+  <!-- Cyber 14: Crypto 0x00: Presented 05 July 2025 to Dreamlab, after giving it at PUC class too (but will upload the first latter {{{2 -->
   <a href="./pdf/2025_crypto_0x00_slide.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="crypto_0x00"
     hreflang="es"
@@ -842,6 +845,104 @@
       alt="Crypto 0x00" class="delayed w3-xxlarge">
     <p>Crypto 0x00<br/>Slide</p>
   </a>
+
+  <!-- Cyber 13: Pentest Web: Class given at PUC May 2025 -->
+  <button href="./pdf/2025_class_pentest_web_01_intro.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="class_pentest_web"
+    h reflang="es"
+    onclick="
+      document.getElementById('main_iframe').src = './pdf/2025_class_pentest_web_01_intro.pdf';
+      hideHome(this);
+    "
+  >
+    <!-- Image -->
+    <img src="./img/http_wiki_256.jpg"
+      data-src="./img/http_wiki_256.jpg"
+      alt="Crypto 0x00" class="delayed w3-xxlarge">
+    <p>Pentest Web<br/>Slide</p>
+
+    <!-- Post Description -->
+    <div class="post description"
+      style="left: var(--sidebar-width);"
+      tabindex="-1"
+    >
+      PDF class in Spanish<br/><br/>
+
+      &nbsp&nbsp&nbsp 01:
+      <a href="/pdf/2025_class_pentest_web_01_intro.pdf" target="main_iframe"
+        id="class_pentest_web_01_intro"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Introdución<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 02:
+      <a href="/pdf/2025_class_pentest_web_02_recon.pdf" target="main_iframe"
+        id="class_pentest_web_02_recon"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Reconocimiento<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 03:
+      <a href="/pdf/2025_class_pentest_web_03_access.pdf" target="main_iframe"
+        id="class_pentest_web_03_access"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Control de acceso<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 04:
+      <a href="/pdf/2025_class_pentest_web_04_intrusion.pdf" target="main_iframe"
+        id="class_pentest_web_04_intrusion"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Incursión<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 05:
+      <a href="/pdf/2025_class_pentest_web_05_logic.pdf" target="main_iframe"
+        id="class_pentest_web_05_logic"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Lógica<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 06:
+      <a href="/pdf/2025_class_pentest_web_06_injection.pdf" target="main_iframe"
+        id="class_pentest_web_06_injection"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Inyección<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 08:
+      <a href="/pdf/2025_class_pentest_web_08_question.pdf" target="main_iframe"
+        id="class_pentest_web_08_question"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Cuestionario<br/>
+      </a>
+
+      &nbsp&nbsp&nbsp 00:
+      <a href="/pdf/2025_class_pentest_web_00_syllabus.md" target="main_iframe"
+        id="class_pentest_web_00_syllabus"
+        tabindex="-1"
+        onclick="hideHome(this);"
+      >
+        Plan docente<br/>
+      </a>
+
+
+    </div>
+  </button>
 
 
   <!-- Cyber 12: El terreno ciber: Presented 26 Nov 2024 at DUOC university, San Joaquim {{{2 -->
@@ -1206,4 +1307,5 @@
 
 </body>
 </html>
-<!-- vim:sw=2:foldmethod=marker -->
+<!-- vim:sw=2:foldmethod=marker
+-->
