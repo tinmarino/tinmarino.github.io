@@ -184,8 +184,11 @@
   button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
 
   /* Hover */
+  /* Comented out as prefer a transparent bakcground */
+  /*
   .w3-hover-black:hover{color:#fff!important;background-color:#000!important}
   .w3-hover-black:focus{color:#fff!important;background-color:#000!important}
+  */
 
   .w3-center { text-align: center; }
   .js-black{color:#fff!important;background-color:#000!important}
@@ -251,12 +254,13 @@
   checked
 >
 
-<!-- Label: fix opacity Vs hanoi TODO maybe change hanoi.css -->
+<!-- Label: fix opacity Vs hanoi, (PS: maybe I should change hanoi.css) -->
 <label for="input_opener" id="bar_opener" class="w3-hover-black"
   style="opacity: 1;"
   tabindex="1"
 >
-  <img src="./img/fa/bars-light-white.svg"
+  <img id="id_image_nav_opener"
+    src="./img/fa/bars-light-white.svg"
     style="height:36px; width:auto;"
     alt="Open nav" class="w3-xxlarge">
 </label>

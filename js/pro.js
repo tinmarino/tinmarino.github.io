@@ -76,7 +76,7 @@ function hideHome(btn) {
 
 function showHome(){
   // Create if not present
-  var frame_elt = document.getElementById("id_iframe");
+  var frame_elt = document.getElementById("main_iframe");
   var welcome_elt = document.getElementById("welcome")
   if (welcome_elt == null) {
     welcome_elt = document.createElement('iframe');
