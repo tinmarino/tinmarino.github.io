@@ -4,7 +4,7 @@ Estimada vecina,
 
 Aquí encontrarás mis humildes recomendaciones de visitas en **París**. Me imagino que verás que son consistentes con guías más profesionales. La verdad es que toda la ciudad es histórica: es difícil perderse algo.
 
-Lo que importa es ver el **Sena**, recorrer sus **muelles** y levantar la vista; cada muro tiene su historia. **También** te diría que no te molestes en sacar muchas fotos de los muros: ya están en internet. Mejor saca fotos de las **personas** hermosas que te rodean, porque ellos serán el recuerdo más que estos viejos muros y su pueblo gruñon.
+Lo que importa es ver el Sena, recorrer sus muelles y levantar la vista; cada muro tiene su historia. También te diría que no te molestes en sacar muchas fotos de los muros: ya están en internet. Mejor saca fotos de las personas hermosas que te rodean, porque ellos serán el recuerdo más que estos viejos muros y su pueblo gruñon.
 
 Que lo pasen bien,  
 Tinmarino.
@@ -49,21 +49,31 @@ Un viaje en París es, ante todo, un viaje hacia adentro; ojalá sepan hallar la
 
 # Visitas recomendadas
 
-| N  | A  | Lugar                                                                       | Descripción |
-| -  | -- | ---                                                                         | --- |
-| 1  | 1  | [Cathédrale Notre-Dame de Paris](https://maps.app.goo.gl/jnJ6urfaQWgp79ot9) | El centro de Francia, reodeado de La Seine y de historias milenarias. |
-| 2  | 1  | [Palacio del Louvre](https://maps.app.goo.gl/9xq21nGbp94P8Rpc8)             | La casa del rey, al norte de La Seine. Del otro lado esta el Musée d'Orsay |
-| 3  | 18 | [Montmartre](https://maps.app.goo.gl/qHs1D4hdtedSUNtD6)                     | Bario bohemio, poeta, con Le Moulin Rouge, artistas callejeros y parque bonito. Desde arriba hay una hermosa vista sobrbe Paris. El bario 18, y hacia el este 19 y 20 son muy populares, trabajadores, de izquierda. Tienen más extranjeros, diversidad y eventos. En comparación los 15 y 16 son de derecha y no pasan muchas cosas. |
-| 4  | 7  | [Tour Effeil](https://maps.app.goo.gl/xmLjMT8qcfwm3yJ89)                    | Hablando de vista, no hay mejor que desde ahí. |
-| 5  | 6  | [Jardin du Luxembourg](https://maps.app.goo.gl/mcFdKoGAu1DpASi47)           | Parque anodino, pero al este esta  el arrondissement 5, con todas las universidades hitoricas. Se dice del Jarin du Luxembourg que es el lugar donde pasean los alumnos soñando con el día que serán remunerados y los porfesionales soñando del día cuando eran alumnos. Concuerdo y soñe ambos ahí. |
-| 6  | 7  | [Les Invalides](https://maps.app.goo.gl/ZvqLDvMrtew7d7HJ6)                  | Desde la  Tour Effeil hacía el norte, estan los museos militares, que si bien ya no son academias (por deslocalisación), todavía son utilizados para juntar las fuerzas de todo el pais (pero principalmente Paris) durante ceremonias. Nota que el Consulado de Chile está ahí mismo, [64 Bd de la Tour-Maubourg](https://maps.app.goo.gl/TKUxzS3r4TCwJ3ci7). Al cruzar La Seina, hay más edificios militares, y Les Cahmps Elysées |
-| 7  | 15 | [Gare Montparnasse](https://maps.app.goo.gl/PCeaxCCECFsiSe82A)              | Visita la estación de tren! Es el transporte nacional, centralisado en Paris, con sus 7 estaciones de trenes donde hay que hacer combinaciones con el metro. |
-| 8  | 2  | [Rue de la Paix](https://maps.app.goo.gl/pfXUa1bFcmfGfZPK6)                 | La calle más cara del país, venden joya, todo es lujo. |
-| 9  | 8  | [Arc de Tromphe](https://maps.app.goo.gl/62SJvj9bksrCraA5A)                 | Donde acaban las ceremonias militares, no soy muy fan, es medio humilde el arco pero, está al final des Champs Elysées la avenidad más ancha del pais y está perfectamente ubicado para hacer un largo tur por arrondissemnt: 1, 8, 16, 15. Anectoticamente, siempre lo ponene en el top 10. Pero no para el arco en si, sino por su ubicación en el medio de "la gran linea". |
-| 10 | 9  | [Bd Saint Germain](https://maps.app.goo.gl/apYu9Yfx3JDNTjFG6)               | Esta avenida tiene los cafés los más cliché, algo como una referncia para los franceses. Fuimos a tomar una vez, 8 lucas el café, bueno fue solo una vez, pero no me arepiento, porque lo hice. Tomé un café en Saint Germain. |
-| 11 | 5  | [PLace de la Contrescarpe](https://maps.app.goo.gl/NKzFAuko86pLzT6t5)       | Más referido como "Rue Mouffetard", es el contrario del Boulevard Saint Germain, porque es donde el café es más barato en el "centro historico", de hecho no son café sino litros de cervezas que vienen a tomar los estudiantes. Lo unico más barato es comprar en el supermercado e ir a beber en Montmartre o Pont des Arts (nota que en francias es legal consulmir alcohol en la calle, pero no estar hebrio). Pero eso solo tienen impacto despues de las 1am donde la ciudad se llena de zombies. |
 
+| N  | A  | Lugar | Descripción |
+|---:|---:|---|---|
+| 1 | 1 | [Cathédrale Notre-Dame de Paris](https://maps.app.goo.gl/jnJ6urfaQWgp79ot9) | El corazón histórico de París, rodeado por el Sena y por historias milenarias. |
+| 2 | 1 | [Palacio del Louvre](https://maps.app.goo.gl/9xq21nGbp94P8Rpc8) | Antiguo palacio real, al norte del Sena. Al otro lado del río está el **Musée d’Orsay**. |
+| 3 | 18 | [Montmartre](https://maps.app.goo.gl/qHs1D4hdtedSUNtD6) | Barrio bohemio y artístico, con el Moulin Rouge, artistas callejeros y rincones bonitos. Desde arriba hay una gran vista de París. El 18 y, hacia el este, el 19 y 20 son más populares (más obreros), diversos y con más vida de barrio. En comparación, el 15 y 16 son más residenciales y tranquilos. |
+| 4 | 7 | [Tour Eiffel](https://maps.app.goo.gl/xmLjMT8qcfwm3yJ89) | Si hablamos de vistas, pocas le ganan a la de la Torre Eiffel. |
+| 5 | 6 | [Jardin du Luxembourg](https://maps.app.goo.gl/mcFdKoGAu1DpASi47) | Parque agradable. Muy cerca está el 5.º, con varias universidades históricas. Se dice que aquí pasean estudiantes soñando con el día en que serán remunerados, y profesionales soñando con cuando eran estudiantes. Yo soñé ambas cosas ahí. |
+| 6 | 7 | [Les Invalides](https://maps.app.goo.gl/ZvqLDvMrtew7d7HJ6) | Desde la Torre Eiffel hacia el norte están los museos y edificios militares. Aunque muchas funciones se han deslocalizado, el lugar sigue siendo importante para ceremonias. Nota: el Consulado de Chile está cerca, en [64 Bd de la Tour-Maubourg](https://maps.app.goo.gl/TKUxzS3r4TCwJ3ci7). Al cruzar el Sena, sigues hacia los Campos Elíseos. |
+| 7 | 15 | [Gare Montparnasse](https://maps.app.goo.gl/PCeaxCCECFsiSe82A) | Vale la pena ver una gran estación: el transporte nacional está muy centralizado en París, con varias estaciones principales y combinaciones con el metro. |
+| 8 | 2 | [Rue de la Paix](https://maps.app.goo.gl/pfXUa1bFcmfGfZPK6) | De las calles más caras del país: joyerías y lujo por todos lados. |
+| 9 | 8 | [Arc de Triomphe](https://maps.app.goo.gl/62SJvj9bksrCraA5A) | Punto final de ceremonias y del eje de los Campos Elíseos. No es mi monumento favorito, pero su ubicación es perfecta para un paseo largo (1, 8, 16, 15) y para entender “la gran línea” de la ciudad. |
+| 10 | 6 | [Boulevard Saint-Germain](https://maps.app.goo.gl/apYu9Yfx3JDNTjFG6) | Avenida de cafés muy “cliché” (en el buen sentido): un clásico francés. Una vez pagué carísimo un café, pero no me arrepiento: tomé un café en Saint‑Germain. |
+| 11 | 5 | [Place de la Contrescarpe](https://maps.app.goo.gl/NKzFAuko86pLzT6t5) | Más conocida por la zona de **Rue Mouffetard**: el “contrapunto” de Saint‑Germain, con opciones más baratas en el centro histórico. Aquí lo típico es cerveza para estudiantes. En Francia es legal beber en la calle, pero no estar ebrio. |
 
 # Referencias
 
+### Puntos recomendados
 
+![](/img/blog/paris/paris-circle-30.jpg)
+
+### Arrondissements
+
+![](/img/blog/paris/paris-arrondissements.jpg)
+
+### Métro
+
+* https://metromap.fr/assets/img/Paris_Metro_map_12000.png
