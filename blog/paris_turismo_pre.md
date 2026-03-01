@@ -10,7 +10,7 @@ Que lo pasen bien,
 Tinmarino.
 
 
-# Ejes principales (texto corregido)
+# Ejes principales
 
 1. **El Sena**: el Sena es el eje principal de la ciudad. Cuanto más cerca del Sena, más antiguo suele ser el edificio.
 2. **Louvre ↔ Arco de Triunfo**: Luis XIV impulsó un gran eje urbano (hoy llamado *eje histórico*) que atraviesa las **Tullerías**, la **Plaza de la Concordia** y los **Campos Elíseos** hasta el **Arco de Triunfo** (y continúa hacia **La Défense**).
