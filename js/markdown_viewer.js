@@ -73,7 +73,7 @@ async function onLoad() {
 
 function convertMarkdown(markdown) {
   // Hi
-  console.log('Markdown viewer is converting the page')
+  console.log('Markdown viewer is converting the page (v0.01)')
 
   // New at markd v9, simplified
   const markedRenderer = new marked.Marked(
@@ -292,9 +292,20 @@ async function setPageBody(html) {
   toc += `</ol>`
   div_toc.innerHTML += toc
 
+  console.log("Markdown viewer is converting equations");
+  renderMathInElement(div_text, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    // This helps prevent KaTeX from re-processing already rendered elements
+    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "option"],
+    throwOnError: false
+  });
+
   div_main.appendChild(div_text);
   div_main.appendChild(div_toc);
-
+  
   addCss(`
     body {
       /* Not changing */

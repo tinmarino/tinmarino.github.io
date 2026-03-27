@@ -28,7 +28,9 @@ table, th, td {
   border-collapse: collapse;
 }
 th, td {
-  border: none;
+  border: 1px solid #657b83;
+  padding-left: 8pt;
+  padding-right: 5pt;
 }
 th { color: var(--col-h1) }
 tr:hover {background-color: var(--col-h1);} 
