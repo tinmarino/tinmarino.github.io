@@ -188,8 +188,46 @@ TODO
 | Neutral | 0     |   |
 | Sell    | < 0   | Bears are strong |
 
-## Support and Resistance
+## Pivot Point, Support and Resistance
 
+**Pivot Point**: The center line.
+
+$$
+PP = (High + Low + Close) ÷ 3
+$$
+
+
+**Clasic Resistance Levels** — Above the pivot.
+
+$$
+R1 = (2 × PP) − Low
+R2 = PP + (High − Low)
+R3 = High + 2(PP − Low)
+$$
+
+**Clasic Support Levels** — Below the pivot.
+
+$$
+S1 = (2 × PP) − High
+S2 = PP − (High − Low)
+S3 = Low − 2(High − PP)
+$$
+
+**Fibonacci Resistance Levels** — Above the pivot.
+
+$$
+R1 = PP + 0.382 × (High − Low)
+R2 = PP + 0.618 × (High − Low)
+R3 = PP + 1.618 × (High − Low)
+$$
+
+__Support Levels__ — Below the pivot.
+
+$$
+S1 = PP − 0.382 × (High − Low)
+S2 = PP − 0.618 × (High − Low)
+S3 = PP − 1.618 × (High − Low)
+$$
 
 ## Candlestick Current Patterns
 
