@@ -28,8 +28,8 @@ let title = ""  // Maybe change title according to yaml header
 let subtitle = ""  // A small description to see what there is there
 var meta_attribute = {}  // All meta key and content
 
+// Load, fetch and render the markdown page from the ?page= URL parameter
 async function onLoad() {
-  // Hi
   console.log('Markdown viewer is loading');
 
   // Init variable in this scope (not in try)
@@ -67,12 +67,12 @@ async function onLoad() {
   html = convertMarkdown(markdown)
 
   // Set page
-  setPageBody(html);
+  await setPageBody(html);
 }
 
 
+// Convert markdown string to HTML, extracting YAML front matter into globals
 function convertMarkdown(markdown) {
-  // Hi
   console.log('Markdown viewer is converting the page (v0.01)')
 
   // New at markd v9, simplified
@@ -86,8 +86,7 @@ function convertMarkdown(markdown) {
           //res = '<script type="text/plain" class="language-markup">'
 
           console.log(`Prism converting as ${lang}: ${code}`)
-          res = Prism.highlight(code, Prism.languages[lang], lang);
-          //res += '</script>'
+          const res = Prism.highlight(code, Prism.languages[lang], lang);
           return res
         } else {
           console.log(`Warning: lang ${lang} is unknown to Prism`)
@@ -97,35 +96,20 @@ function convertMarkdown(markdown) {
     })
   );
 
+  // Allow raw HTML passthrough in markdown
   markedRenderer.setOptions({
     sanitizer: null,
     sanitize: false,
   });
 
-  // // Clean markdown input
-  // // -- Remove yaml header
-  // // markdown = markdown.replace(/^---$.*^---$/ms, '')
-  // // safe is deprecated, so must force unsafe
+  // Extract yaml header and body
   var yaml_extractor = extractor(markdown, {allowUnsafe: true})
   meta_attribute = yaml_extractor.attributes
   title = meta_attribute.title
   subtitle = meta_attribute.subtitle
   markdown = yaml_extractor.body
 
-  // // Let marked do its normal token generation.
-  // var tokens = markedRenderer.lexer( markdown );
-
-  // // Mark all code blocks as already being escaped.
-  // // This prevents the parser from encoding anything inside code blocks
-  // tokens.forEach(function( token ) {
-  //   if ( token.type === "code" ) {
-  //     token.escaped = true;
-  //     token.sanitize = false;
-  //   }
-  // });
-
-  // // Convert
-  //var html = markedRenderer.parser(tokens);
+  // Parse markdown body to HTML
   var html = markedRenderer.parse(markdown);
 
 
@@ -133,6 +117,7 @@ function convertMarkdown(markdown) {
 }
 
 
+// Build and inject the full page DOM: title, content, ToC, styles and scroll spy
 async function setPageBody(html) {
   // Set title
   if (title){
@@ -140,14 +125,14 @@ async function setPageBody(html) {
   }
 
   // Set all meta attributes: description, keywords, authors, etc
-  for (meta_key in meta_attribute) {
+  for (const meta_key in meta_attribute) {
     var meta = document.createElement('meta');
     meta.name = meta_key;
     meta.content = meta_attribute[meta_key];
     document.getElementsByTagName('head')[0].appendChild(meta);
   }
 
-  // Create div text (left)
+  // Create main container (full viewport)
   var div_main = document.createElement("div")
   div_main.style = `
     position:absolute;
@@ -160,10 +145,10 @@ async function setPageBody(html) {
   `
 
   // Create div text (left)
-  div_text = document.createElement("div")
+  const div_text = document.createElement("div")
   div_text.id = "div_text"
 
-  // Init void
+  // Clear content before writing
   div_text.innerHTML = '';
 
   // Add title
@@ -216,7 +201,7 @@ async function setPageBody(html) {
   div_main.innerHTML += html_toc_opener;
 
   // Create div toc (right)
-  div_toc = document.createElement("div");
+  const div_toc = document.createElement("div");
   div_toc.id = "div_toc";
   div_toc.style = `
     position: absolute;
@@ -229,7 +214,7 @@ async function setPageBody(html) {
   `
 
   // Add title
-  tocHeader = document.createElement("h2");
+  const tocHeader = document.createElement("h2");
   tocHeader.innerText = "Table of contents";
   tocHeader.style = `
     padding-left:30px;
@@ -292,6 +277,7 @@ async function setPageBody(html) {
   toc += `</ol>`
   div_toc.innerHTML += toc
 
+  // Render LaTeX equations with KaTeX
   console.log("Markdown viewer is converting equations");
   renderMathInElement(div_text, {
     delimiters: [
@@ -305,7 +291,8 @@ async function setPageBody(html) {
 
   div_main.appendChild(div_text);
   div_main.appendChild(div_toc);
-  
+
+  // Inject page styles
   addCss(`
     body {
       /* Not changing */
@@ -335,7 +322,7 @@ async function setPageBody(html) {
     .toc-list {
       padding-bottom: 1rem;
       padding-left: 10px;
-      //list-style: none;
+      /* list-style: none; */
     }
 
     .toc-ul {
@@ -347,7 +334,7 @@ async function setPageBody(html) {
     }
 
     .toc-item-l0::marker {
-      // content: '▪ ';
+      /* content: '▪ '; */
     }
 
     .toc-item-l0 {
@@ -445,37 +432,34 @@ async function setPageBody(html) {
   `);
 
   //var destination = Prism.highlight(destination, Prism.languages["bash"], "bash");
-  document.body.innerHTML = "",
+  document.body.innerHTML = "";
   document.body.appendChild(div_main);
 
 
-  // TODO
-  // Show active heading
-  // From: https://stackoverflow.com/questions/65954297/highlighting-item-in-table-of-contents-when-section-is-active-on-page-as-scrolli
-  //const links = document.querySelectorAll('nav > ul > li > a');
+  // Collect ToC links for scroll-spy highlighting
   const links = div_toc.querySelectorAll('.toc-ul > li > a');
 
-  div_text.addEventListener('scroll', (event) => {
-    if (typeof(headings) != 'undefined' && headings != null && typeof(links) != 'undefined' && links != null) {
-      let scrollTop = div_text.scrollTop;
+  // Highlight the active ToC entry on scroll
+  div_text.addEventListener('scroll', () => {
+    const scrollTop = div_text.scrollTop;
 
-      // highlight the last scrolled-to: set everything inactive first
-      links.forEach((link, index) => {
-        link.classList.remove("active");
-      });
+    // highlight the last scrolled-to: set everything inactive first
+    links.forEach((link) => {
+      link.classList.remove("active");
+    });
 
-      // then iterate backwards, on the first match highlight it and break
-      for (var i = headings.length-1; i >= 0; i--) {
-        if (scrollTop > headings[i].offsetTop - 80) {
-          links[i].classList.add('active');
-          break;
-        }
+    // then iterate backwards, on the first match highlight it and break
+    for (let i = headings.length - 1; i >= 0; i--) {
+      if (scrollTop > headings[i].offsetTop - 80) {
+        links[i].classList.add('active');
+        break;
       }
     }
   });
 }
 
 
+// Inject a CSS string into a new <style> element appended to <head>
 function addCss(css){
   const style = document.createElement('style');
   style.textContent = css;
@@ -483,13 +467,8 @@ function addCss(css){
 }
 
 
+// Fetch URL content via async XHR GET, resolve with text or reject with status
 async function getHttp(url) {
-  // Helper for HTTP GET content
-  // The sync version
-  // var xmlHttp = new XMLHttpRequest();
-  // xmlHttp.open("GET", theUrl, false); // false for synchronous request
-  // xmlHttp.send(null);
-  // return xmlHttp.responseText;
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
@@ -506,6 +485,7 @@ async function getHttp(url) {
 }
 
 
+// Read the ?page= query parameter from the current window URL
 function getPageLocation(){
   const url = new URL(window.location);
   const page = url.searchParams.get("page");
@@ -513,6 +493,7 @@ function getPageLocation(){
 }
 
 
+// Convert text to a lowercase, hyphen-separated, URL-safe slug
 function slugify(text){
   return text
     .toString()

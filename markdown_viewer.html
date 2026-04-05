@@ -12,7 +12,7 @@
   function require(url){
     const require_prefix = "https://unpkg.com/"
     //if (url.toLowerCase().substr(-3)!=='.js') url+='.js'; // to allow loading without js suffix;
-    if (url.toLowerCase().substr(-3) =='.js') url = url.slice(0, -3); // to allow loading without js suffix;
+    if (url.toLowerCase().slice(-3) === '.js') url = url.slice(0, -3); // to allow loading without js suffix;
     url = require_prefix + url
     if (!require.cache) require.cache=[]; //init cache
     var exports=require.cache[url]; //get from cache
