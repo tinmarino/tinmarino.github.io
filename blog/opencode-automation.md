@@ -17,9 +17,13 @@ with __files__ as rendez-vous points and only the `/work` instruction in the pro
 
 # 0. Why does that matter to me?
 
-## Summary
+## Problem
 
-I thought I was losing a lot of time copy-pasting between the prompt ([ShellGPT](https://github.com/ther1d/shell_gpt) TUI) and my documents (files in Vim).
+I was losing a lot of time copy-pasting between the prompt ([ShellGPT](https://github.com/ther1d/shell_gpt) TUI) and my documents (files in Vim).
+
+## Solution
+
+[OpenCode](https://github.com/anomalyco/opencode) harnest the power of [Model Context Protocol](https://en.wikipedia.org/wiki/Model_Context_Protocol) and gives acces to the LLM to the Shell and, in this case ths files, as output and input. Also the LLM got better to do that since 2024.
 
 ## Why documenting it?
 
@@ -68,7 +72,7 @@ in Spanish; commit messages and code comments in English.
 
 # 2. Permissions: stop the "allow?" prompts
 
-By default OpenCode prompts before running any `bash` command, any `edit`, any file read outside the workspace. Great for a first session, painful after the tenth `git status` or `cat test > /tmp/long-filename.py`.
+By default OpenCode prompts before running any `bash` command, any `edit`, any file read outside the workspace. Let's automatize it.
 
 Path:
 
@@ -127,14 +131,14 @@ The rules are glob-matched, last-match-wins. My mental model:
 
 After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
 
-![Permissive config in action, no prompts between the run and the commit](../res/opencode-interface-03.png)
+![Permissive config in action, no prompts between the run and the commit](/img/blog/opencode/opencode-interface-03-public-02.png)
 
 
 # 3. A tmux layout in one command
 
 I work with four tmux windows:
 
-![The four-window tmux layout, window "prompt" focused on the todo split](/img/blog/opencode/opencode-interface-14-four-windows.png)
+![The four-window tmux layout, window "prompt" focused on the todo split]
 
 1. **shell**: git, make, docker compose.
 2. **vim**: ad-hoc editing.
