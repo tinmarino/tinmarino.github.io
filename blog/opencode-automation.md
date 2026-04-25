@@ -19,11 +19,11 @@ with __files__ as rendez-vous points and only the `/work` instruction in the pro
 
 ## Summary
 
-I thought I was losing a lot of time copy-pasting between the prompt (ShellGPT) and my documents (files in Vim).
+I thought I was losing a lot of time copy-pasting between the prompt ([ShellGPT](https://github.com/ther1d/shell_gpt) TUI) and my documents (files in Vim).
 
 ## Why documenting it?
 
-I write this blog for my coworkers at SEK Chile, to share the implementation details in a place they can find again. It may seem "easy", but it is even easier to just say it. In short, it took me time and friends to gather the info and find the best implementation, so ... "explicit is better than implicit".
+I write this blog for my coworkers at SEK Chile, to share the implementation details in a place they can find again. Ona may say it this configuration is "easy", but it is even easier to just say it. In short, it took me time and friends to gather the info and find the best implementation, so ... "explicit is better than implicit".
 
 
 ## History
@@ -50,25 +50,23 @@ Content:
 
 ```markdown
 ---
-description: "Work through every [ ] task in doc/ia-todo.md § # AI, treating the file as a live stream"
+description: "Work through every [ ] task in doc/ai-todo.md § # AI, treating the file as a live stream"
 ---
-Work through every `[ ]` item in the `# AI` section of `@doc/ia-todo.md`,
-one at a time, following `@CLAUDE.md` (which overrides this prompt on
-any conflict). For each task:
+Work through every `[ ]` item in `@doc/ai-todo.md`, one at a time, following `@CLAUDE.md` (which overrides this prompt on any conflict). For each task:
 
-1. Re-read `@doc/ia-todo.md` FIRST — the file is a live stream, not a snapshot: I may append new tasks while you work.
+1. Re-read `@doc/ai-todo.md` FIRST — the file is a live stream, not a snapshot: I may append new tasks while you work. Any new `[ ]` after the last one you did is fair game and must be processed before stopping.
 2. Execute the task, run the test suite when code changes.
-3. Mark it `* [X]`, cut the line, fix spelling, and move it to `@doc/ia-done.md`.
-4. Commit with `Claude: <one-line summary>`. Never `git push`.
-5. If blocked by a question only I can answer, write it as `[ ]` in `@doc/ia-pending.md` and move on.
+3. Mark it `* [X]`, cut the line and move it to `@doc/ai-done.md`.
+4. Commit with a message prefixed by your assistant name, e.g.  `Claude: <one-line summary>`. Never `git push`.
+5. If the task is blocked by a question only I can answer, write it as `[ ] <question>` in `@doc/ai-pending.md` and move on.
 6. After committing, go back to step 1. Only stop when `# AI` is empty across TWO consecutive reads.
 
-Append any product / process insight to `@doc/ia-feedback.md`.
-Respond in Spanish; code, commit messages and code comments in English.
+Append any product / process insight to `@doc/ai-feedback.md`. Respond
+in Spanish; commit messages and code comments in English.
 ```
 
 
-# 2. Permissions — stop the "allow?" prompts
+# 2. Permissions: stop the "allow?" prompts
 
 By default OpenCode prompts before running any `bash` command, any `edit`, any file read outside the workspace. Great for a first session, painful after the tenth `git status` or `cat test > /tmp/long-filename.py`.
 
@@ -124,12 +122,12 @@ The rules are glob-matched, last-match-wins. My mental model:
 
 - `"*": "ask"` at the top is the safety net.
 - Allow-list the ~20 commands I actually run. Anything outside still prompts.
-- Explicit `"deny"` on destructive commands — even if I fat-finger a `rm -rf`, nothing runs.
+- Explicit `"deny"` on destructive commands, even if I fat-finger a `rm -rf`, nothing runs.
 - `external_directory` is for `/tmp/` scratch writes; without it every `cp foo /tmp/bar` prompts.
 
 After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
 
-![Permissive config in action — no prompts between the run and the commit](../res/opencode-interface-03.png)
+![Permissive config in action, no prompts between the run and the commit](../res/opencode-interface-03.png)
 
 
 # 3. A tmux layout in one command
@@ -138,10 +136,10 @@ I work with four tmux windows:
 
 ![The four-window tmux layout, window "prompt" focused on the todo split](/img/blog/opencode/opencode-interface-14-four-windows.png)
 
-1. **shell** — git, make, docker compose.
-2. **vim** — ad-hoc editing.
-3. **opencode** — the AI agent.
-4. **prompt** — a vim session with three vim-tabs for the tracking
+1. **shell**: git, make, docker compose.
+2. **vim**: ad-hoc editing.
+3. **opencode**: the AI agent.
+4. **prompt**: a vim session with three vim-tabs for the tracking
    files (`doc/ia-todo.md`, `doc/ia-done.md`, `doc/ia-feedback.md`).
 
 A single bash script rebuilds the whole layout:
@@ -170,7 +168,7 @@ PROMPT_VIM="vim \
     -c 'tabnew doc/ia-feedback.md' \
     -c 'tabfirst'"
 
-# Rename the current window (index 0) to SHELL — rename-window with the same
+# Rename the current window (index 0) to SHELL. rename-window with the same
 # name is a silent no-op, so this is idempotent by itself.
 tmux rename-window -t 1 SHELL
 
@@ -214,7 +212,7 @@ the todo file within Vim, save, and the agent picks it up at the next iteration 
 What I get out of this loop:
 
 - **Feel at home**: I can work with tmux, Vim and `doc/ia-todo.md` as I used to do.
-- **No boilerplate** — `/work` replaces an 80-word prompt.
-- **No prompts** — unless I try something interactive.
-- **No context-switching** — tracking files live in a vim pane I can glance at without leaving the terminal.
-- **Audit trail** — every task is its own git commit prefixed `Claude:`, so `git log --grep '^Claude:'` tells me what the agent did today and when.
+- **No boilerplate**: `/work` replaces an 80-word prompt.
+- **No prompts**: unless I try something interactive.
+- **No context-switching**: tracking files live in a vim pane I can glance at without leaving the terminal.
+- **Audit trail**: every task is its own git commit prefixed `Claude:`, so `git log --grep '^Claude:'` tells me what the agent did today and when.
