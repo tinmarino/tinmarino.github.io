@@ -309,6 +309,7 @@ async function setPageBody(html) {
     pre {
       position: relative;
       padding-top: 2rem;
+      width: min(100%, 1000px);
       line-height: 15px;
     }
     .code-copy-button {
@@ -317,11 +318,12 @@ async function setPageBody(html) {
       right: 0.4rem;
       z-index: 1;
       border: 0;
-      padding: 0.25rem 0.5rem;
+      padding: 0.15rem 0.4rem;
       border-radius: 0.25rem;
       cursor: pointer;
       font: inherit;
       opacity: 0.8;
+      line-height: 1;
     }
     .code-copy-button:hover {
       opacity: 1;
@@ -504,7 +506,9 @@ function addCopyButtons(root) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'code-copy-button';
-    button.textContent = 'Copy';
+    button.textContent = '📋';
+    button.setAttribute('aria-label', 'Copy code');
+    button.title = 'Copy code';
 
     button.addEventListener('click', async () => {
       const text = codeBlock.textContent || '';
@@ -523,9 +527,9 @@ function addCopyButtons(root) {
         document.body.removeChild(textarea);
       }
 
-      button.textContent = 'Copied';
+      button.textContent = '✓';
       window.setTimeout(() => {
-        button.textContent = 'Copy';
+        button.textContent = '📋';
       }, 1500);
     });
 
