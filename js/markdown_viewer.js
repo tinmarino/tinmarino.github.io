@@ -177,6 +177,8 @@ async function setPageBody(html) {
 
   div_text.innerHTML += html;
 
+  addCopyButtons(div_text);
+
 
   // Add the toc opener
   var html_toc_opener = `<input
@@ -305,7 +307,24 @@ async function setPageBody(html) {
     }
 
     pre {
+      position: relative;
+      padding-top: 2rem;
       line-height: 15px;
+    }
+    .code-copy-button {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      z-index: 1;
+      border: 0;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font: inherit;
+      opacity: 0.8;
+    }
+    .code-copy-button:hover {
+      opacity: 1;
     }
     .toc {
       font-family: var(--font-family-headings);
@@ -377,6 +396,12 @@ async function setPageBody(html) {
       padding-left: 3%;
       overflow-x: hidden;
       overflow-y: auto;
+    }
+    #div_text img {
+      display: block;
+      max-width: 800px;
+      width: 100%;
+      height: auto;
     }
     /* Interactive hide */
     input[type=checkbox]:checked ~ #div_toc {
@@ -464,6 +489,48 @@ function addCss(css){
   const style = document.createElement('style');
   style.textContent = css;
   document.head.append(style);
+}
+
+
+function addCopyButtons(root) {
+  const codeBlocks = root.querySelectorAll('pre > code');
+
+  codeBlocks.forEach((codeBlock) => {
+    const pre = codeBlock.parentElement;
+    if (!pre || pre.querySelector('.code-copy-button')) {
+      return;
+    }
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'code-copy-button';
+    button.textContent = 'Copy';
+
+    button.addEventListener('click', async () => {
+      const text = codeBlock.textContent || '';
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      button.textContent = 'Copied';
+      window.setTimeout(() => {
+        button.textContent = 'Copy';
+      }, 1500);
+    });
+
+    pre.appendChild(button);
+  });
 }
 
 

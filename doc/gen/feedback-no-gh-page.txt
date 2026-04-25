@@ -1,0 +1,10 @@
+GitHub Pages cannot selectively hide committed files from a `.nojekyll` branch root.
+
+With the current setup, everything committed in the publish tree is served as-is. The practical way to keep `doc/ia-*` in git for history but out of the site is to deploy from a build output, not from the source tree:
+
+1. Keep the task files committed in the repo.
+2. Build a publish directory that copies only public assets.
+3. Exclude `doc/ia-*` from that copy step.
+4. Publish the build output to `gh-pages` (or GitHub Pages via Actions).
+
+I did not change the deployment in this repo because there is no existing publish pipeline to hook into, and removing `.nojekyll` would likely break the raw `.md` URLs that the markdown viewer reads.
