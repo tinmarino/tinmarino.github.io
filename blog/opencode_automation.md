@@ -26,7 +26,8 @@ recipe should work on any OpenCode-supported provider.
 - [3. Skills: teach the agent your house rules](#3-skills-teach-the-agent-your-house-rules)
 - [4. A tmux layout in one command](#4-a-tmux-layout-in-one-command)
 - [5. The combined loop](#5-the-combined-loop)
-- [6. See it live](#6-see-it-live)
+- [6. Advantages](#6-advantages)
+- [7. See it live](#7-see-it-live)
 
 
 # 0. Why does that matter to me?
@@ -246,6 +247,10 @@ next iteration because of the "live stream" rule.
 
 
 # 7. See it live
+
+A Stock exchange monitoring terminal interface could be developped in less than a day with the `rich` Python module I did not even know about (I asked for `ncurses`). The interfase has a menu to choose and sort on 30 columns for each stock.
+
+![Santiago Stock](/img/blog/opencode/opencode-stock-dashboard-01.png)
 
 A one-minute asciinema cast of `/work` processing a tiny
 `ai-todo.md` that asks the agent to build a curses plane shooter:

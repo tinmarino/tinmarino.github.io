@@ -71,6 +71,104 @@ async function onLoad() {
 }
 
 
+// Convert a github.com/<user>/<repo>/blob/<ref>/<path> URL into the
+// matching raw.githubusercontent.com URL that serves the plain text.
+function githubBlobToRaw(url) {
+  return url
+    .replace(/^https?:\/\/github\.com\//, 'https://raw.githubusercontent.com/')
+    .replace(/\/blob\//, '/');
+}
+
+
+// Guess a Prism/marked language tag from the file extension.
+function languageFromExtension(url) {
+  const path = url.split('?')[0].split('#')[0];
+  const ext = path.substring(path.lastIndexOf('.') + 1).toLowerCase();
+  const map = {
+    py: 'python', sh: 'bash', bash: 'bash', zsh: 'bash',
+    js: 'javascript', mjs: 'javascript', cjs: 'javascript',
+    ts: 'typescript', tsx: 'typescript', jsx: 'jsx',
+    md: 'markdown', markdown: 'markdown',
+    json: 'json', jsonc: 'json',
+    yaml: 'yaml', yml: 'yaml',
+    html: 'html', htm: 'html',
+    css: 'css', scss: 'scss',
+    c: 'c', h: 'c', cpp: 'cpp', cc: 'cpp', hpp: 'cpp',
+    go: 'go', rs: 'rust', rb: 'ruby', php: 'php',
+    vim: 'vim', lua: 'lua', pl: 'perl',
+    dockerfile: 'dockerfile', makefile: 'makefile',
+    sql: 'sql', diff: 'diff', patch: 'diff',
+    toml: 'toml', ini: 'ini',
+  };
+  return map[ext] || ext || 'plaintext';
+}
+
+
+// Extract a [start, end] inclusive line range from a GitHub-style
+// fragment (#L10, #L10-L30, #L10-L30:). Returns null for no range.
+function parseLineRange(fragment) {
+  if (!fragment) return null;
+  const m = fragment.match(/^L(\d+)(?:-L?(\d+))?/);
+  if (!m) return null;
+  const start = parseInt(m[1], 10);
+  const end = m[2] ? parseInt(m[2], 10) : start;
+  return [start, end];
+}
+
+
+// Walk `root` for `<pre><code class="language-embed">` blocks whose
+// content is a GitHub URL, fetch the file (honouring #Lstart-Lend),
+// replace the block with the actual code, and syntax-highlight it.
+async function expandGithubEmbeds(root) {
+  const blocks = root.querySelectorAll('pre > code.language-embed');
+  for (const block of blocks) {
+    const raw_text = block.textContent.trim();
+    const url = raw_text.split(/\s+/)[0];
+    if (!url) continue;
+
+    // Split URL and optional #L10-L30 fragment.
+    const hash_idx = url.indexOf('#');
+    const base_url = hash_idx >= 0 ? url.slice(0, hash_idx) : url;
+    const fragment = hash_idx >= 0 ? url.slice(hash_idx + 1) : '';
+    const range = parseLineRange(fragment);
+    const raw_url = githubBlobToRaw(base_url);
+
+    // Prepend a tiny header linking back to the source on GitHub.
+    const source_link = document.createElement('a');
+    source_link.href = url;
+    source_link.target = '_blank';
+    source_link.rel = 'noopener';
+    source_link.className = 'github-embed-source';
+    source_link.textContent =
+      'source: ' + base_url.replace(/^https?:\/\/github\.com\//, '') +
+      (range ? ' L' + range[0] + '-L' + range[1] : '');
+    block.parentElement.insertAdjacentElement('beforebegin', source_link);
+
+    // Fire the fetch; swap placeholder text for real content on arrival.
+    block.textContent = 'Loading ' + url + ' ...';
+    try {
+      const response = await fetch(raw_url);
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+      let code = await response.text();
+      if (range) {
+        const lines = code.split('\n');
+        code = lines.slice(range[0] - 1, range[1]).join('\n');
+      }
+      const lang = languageFromExtension(base_url);
+      block.className = 'language-' + lang;
+      block.textContent = code;
+      if (window.Prism && Prism.languages[lang]) {
+        Prism.highlightElement(block);
+      }
+    } catch (err) {
+      block.textContent = 'Error embedding ' + url + ': ' + err.message;
+    }
+  }
+}
+
+
 // Convert markdown string to HTML, extracting YAML front matter into globals
 function convertMarkdown(markdown) {
   console.log('Markdown viewer is converting the page (v0.01)')
@@ -178,6 +276,11 @@ async function setPageBody(html) {
   div_text.innerHTML += html;
 
   addCopyButtons(div_text);
+
+  // Replace ```embed ... ``` fenced blocks with the actual file content
+  // fetched from GitHub (or any raw-accessible URL). Runs async; each
+  // block updates in place when the fetch resolves.
+  expandGithubEmbeds(div_text);
 
 
   // Add the toc opener
@@ -311,6 +414,21 @@ async function setPageBody(html) {
       padding-top: 2rem;
       width: min(100%, 1000px);
       line-height: 15px;
+    }
+    .github-embed-source {
+      display: block;
+      width: min(100%, 1000px);
+      margin: 0.8rem 0 -0.3rem 0;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.85em;
+      font-family: monospace;
+      color: #888;
+      text-decoration: none;
+      border-left: 3px solid #555;
+    }
+    .github-embed-source:hover {
+      color: #fff;
+      border-left-color: #5fa;
     }
     .code-copy-button {
       position: absolute;
