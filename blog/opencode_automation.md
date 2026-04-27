@@ -93,15 +93,8 @@ is the canonical name for project-level rules ([docs](https://opencode.ai/docs/r
 
 By default OpenCode prompts before running any `bash` command, any `edit`, any file read outside the workspace. Let's automate it.
 
-Path:
-
-```bash
-~/.config/opencode/opencode.json
-```
-
-Content (my daily driver — permissive but guarded):
-
 ```json
+cat > ~/.config/opencode/opencode.json <<'JSON'
 {
   "$schema": "https://opencode.ai/config.json",
   "permission": {
@@ -132,15 +125,8 @@ Content (my daily driver — permissive but guarded):
     }
   }
 }
+JSON
 ```
-
-The rules are glob-matched, last-match-wins. My mental model:
-
-- Tools default to `allow` (read, edit, bash) so the agent runs without prompts.
-- Explicit `deny` on destructive commands, even if I fat-finger a `rm -rf`, nothing runs.
-- `external_directory` is for paths outside the working directory; whitelist only what you trust (`/tmp/**` for scratch, `~/Software/**` for peer projects).
-
-If you prefer a conservative config (`"*": "ask"` safety net, allow-list ~20 commands), see the [permissions docs](https://opencode.ai/docs/permissions/) — the shape is the same, just inverted.
 
 After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
 
@@ -149,11 +135,8 @@ After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
 
 # 2.b Skills: teach the agent your house rules
 
-OpenCode auto-loads skills from `~/.config/opencode/skills/<name>/SKILL.md`
-([docs](https://opencode.ai/docs/skills/)). A skill is a frontmatter
-with `name` and `description` plus a Markdown body; when the agent
-is about to do something that matches the description, it pulls the
-skill in.
+OpenCode auto-loads skills from `~/.config/opencode/skills/<name>/SKILL.md` ([docs](https://opencode.ai/docs/skills/)).
+A skill is a frontmatter with `name` and `description` plus a Markdown body; when the agent is about to do something that matches the description, it pulls the skill in.
 
 I keep two on this machine:
 
@@ -164,41 +147,10 @@ Skills are cheap: ~200 lines of Markdown each, versioned in git
 next to the project-specific `AGENTS.md`.
 
 
-# 2.c Dispatching across several projects
-
-When you coordinate more than one codebase, a single "master"
-workspace + slash-commands is simpler than cd-ing around:
-
-```
-~/Software/Python/AI/OpenClaudeMaster/
-├── AGENTS.md                  # dispatcher instructions
-├── opencode.json              # external_directory allow-list
-├── .opencode/
-│   └── commands/
-│       ├── stock.md           # /stock  → work on ~/Software/Python/Stock
-│       ├── lctf.md            # /lctf   → work on ~/Software/Pentest/libreriactf
-│       ├── page.md            # /page   → this blog
-│       ├── fair.md            # /fair   → Django FAIR risk app
-│       ├── vim.md             # /vim    → ~/.vim config
-│       └── ocfg.md            # /ocfg   → ~/.config/opencode
-└── doc/
-    ├── ai-todo.md             # live stream
-    ├── ai-done.md
-    ├── ai-pending.md
-    ├── ai-feedback.md
-    └── idea.md
-```
-
-Each command file is a tiny Markdown prompt that anchors the task
-in the target directory. The master `opencode.json` grants
-`external_directory` access to every allowed project, so the agent
-can read / edit / `git commit` across all of them without leaving
-the dispatcher session.
-
 
 # 3. A tmux layout in one command
 
-I work with four tmux windows:
+I work with four Tmux windows.
 
 ![The four-window tmux layout, window "prompt" focused on the todo split](/img/blog/opencode/opencode-interface-14-four-windows.png)
 
@@ -208,7 +160,7 @@ I work with four tmux windows:
 4. **PROMPT**: a vim session with three vim-tabs for the tracking
    files (`doc/ai-todo.md`, `doc/ai-done.md`, `doc/ai-feedback.md`).
 
-A single bash script rebuilds the whole layout:
+A single Bash script rebuilds the whole layout:
 
 ```bash
 #!/usr/bin/env bash
@@ -267,34 +219,6 @@ bind-key I run-shell "bash ~/.vim/bin/ocinit"
 Now `prefix + I` spawns the whole layout, keyed by the current directory's basename.
 
 
-# 3.b Tearing the session down
-
-Two companion scripts close the session cleanly:
-
-- **`~/.vim/bin/tmuxstop`**: walks every pane of the current tmux
-  session and sends the right shutdown keys based on the foreground
-  program (`pane_current_command`). `vim` gets `:q<CR>`; `ipython`,
-  `python`, and `opencode` get `Ctrl-D` twice (leave the TUI) plus a
-  third one (close the wrapping `bash -ic`); plain shells get a single
-  `Ctrl-D`. The pane hosting `tmuxstop` itself (detected via
-  `$TMUX_PANE`) is skipped so you don't kill the script that is
-  running.
-- **`~/.vim/bin/ocstop`**: counterpart of `ocinit`. Kills the three
-  windows `ocinit` created (`VIM`, `IA`, `PROMPT`) and lands you back
-  on `SHELL`. Useful when you want to rebuild the layout without
-  exiting tmux.
-
-Rough call order at the end of a session:
-
-```bash
-~/.vim/bin/tmuxstop      # graceful: let vim save, ipython/opencode exit clean
-sleep 1
-~/.vim/bin/ocstop        # hard: drop the windows that are left
-```
-
-Both scripts are ~30 LOC and live in the same vimfiles repo.
-
-
 # 4. The combined loop
 
 With those pieces in place, a session looks like:
@@ -323,38 +247,3 @@ What I get out of this loop:
 - **Audit trail**: every task is its own git commit prefixed `Claude:`, so `git log --grep '^Claude:'` tells me what the agent did today and when.
 
 
-# 5. Recording a zero-prompt demo
-
-For an asciinema cast (or any unattended run), the permissions above
-are already close to enough. The extra steps are:
-
-```bash
-mkdir -p ~/demo/sandbox && cd ~/demo/sandbox
-git init -b main
-mkdir -p doc
-cat > opencode.json <<'JSON'
-{ "$schema": "https://opencode.ai/config.json", "permission": "allow" }
-JSON
-
-asciinema rec --overwrite demo.cast -c \
-  "opencode run --dangerously-skip-permissions /work"
-```
-
-- `"permission": "allow"` blankets every tool — fine inside a
-  throwaway sandbox, never in a real project.
-- `--dangerously-skip-permissions` auto-approves anything not
-  explicitly denied, which makes the recording resilient even if
-  `opencode.json` is missing.
-- `asciinema rec -c` starts / stops the cast with the agent run.
-
-Two environment variables worth exporting before recording:
-
-```bash
-export OPENCODE_DISABLE_AUTOUPDATE=1       # no "new version" banner
-export OPENCODE_DISABLE_TERMINAL_TITLE=1   # no title juggling
-```
-
-That's the full recipe. Clone the [vimfiles repo](https://github.com/tinmarino/vimfiles)
-for `ocinit` / `ocstop` / `tmuxstop`, drop the two Markdown files
-above in their place, and you have a reproducible unattended OpenCode
-loop in under a minute.
