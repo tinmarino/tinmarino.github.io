@@ -23,12 +23,9 @@ recipe should work on any OpenCode-supported provider.
 - [0. Why does that matter to me?](#0-why-does-that-matter-to-me)
 - [1. A custom `/work` slash-command](#1-a-custom-work-slash-command)
 - [2. Permissions: stop the "allow?" prompts](#2-permissions-stop-the-allow-prompts)
-- [2.b Skills: teach the agent your house rules](#2b-skills-teach-the-agent-your-house-rules)
-- [2.c Dispatching across several projects](#2c-dispatching-across-several-projects)
-- [3. A tmux layout in one command](#3-a-tmux-layout-in-one-command)
-- [3.b Tearing the session down](#3b-tearing-the-session-down)
-- [4. The combined loop](#4-the-combined-loop)
-- [5. Recording a zero-prompt demo](#5-recording-a-zero-prompt-demo)
+- [3 Skills: teach the agent your house rules](#2b-skills-teach-the-agent-your-house-rules)
+- [4. A tmux layout in one command](#3-a-tmux-layout-in-one-command)
+- [5. The combined loop](#4-the-combined-loop)
 
 
 # 0. Why does that matter to me?
@@ -133,7 +130,7 @@ After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
 ![Permissive config in action, no prompts between the run and the commit](/img/blog/opencode/opencode-interface-03-public-02.png)
 
 
-# 2.b Skills: teach the agent your house rules
+# 3 Skills: teach the agent your house rules
 
 OpenCode auto-loads skills from `~/.config/opencode/skills/<name>/SKILL.md` ([docs](https://opencode.ai/docs/skills/)).
 A skill is a frontmatter with `name` and `description` plus a Markdown body; when the agent is about to do something that matches the description, it pulls the skill in.
@@ -148,7 +145,7 @@ next to the project-specific `AGENTS.md`.
 
 
 
-# 3. A tmux layout in one command
+# 4. A tmux layout in one command
 
 I work with four Tmux windows.
 
@@ -219,7 +216,7 @@ bind-key I run-shell "bash ~/.vim/bin/ocinit"
 Now `prefix + I` spawns the whole layout, keyed by the current directory's basename.
 
 
-# 4. The combined loop
+# 5. The combined loop
 
 With those pieces in place, a session looks like:
 
@@ -245,5 +242,3 @@ What I get out of this loop:
 - **No prompts**: unless I try something interactive.
 - **No context-switching**: tracking files live in a vim pane I can glance at without leaving the terminal.
 - **Audit trail**: every task is its own git commit prefixed `Claude:`, so `git log --grep '^Claude:'` tells me what the agent did today and when.
-
-
