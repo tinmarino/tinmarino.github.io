@@ -116,6 +116,41 @@ function parseLineRange(fragment) {
 }
 
 
+// Instantiate an asciinema-player inside every
+// `<div data-asciinema-cast="URL">` placeholder. Optionally reads a
+// JSON options blob from `data-asciinema-opts`. Safe to call even if
+// the global `AsciinemaPlayer` has not loaded yet: the function
+// retries on the window.load event when the player script finishes
+// downloading (it is declared `defer` in markdown_viewer.html).
+function renderAsciinemaPlayers(root) {
+  const divs = root.querySelectorAll('div[data-asciinema-cast]');
+  if (divs.length === 0) return;
+
+  const spawn = () => {
+    if (typeof AsciinemaPlayer === 'undefined') return false;
+    divs.forEach((div) => {
+      if (div.dataset.asciinemaRendered === '1') return;
+      const url = div.dataset.asciinemaCast;
+      let opts = {};
+      try {
+        if (div.dataset.asciinemaOpts) {
+          opts = JSON.parse(div.dataset.asciinemaOpts);
+        }
+      } catch (err) {
+        console.warn('Bad data-asciinema-opts on', div, err);
+      }
+      AsciinemaPlayer.create(url, div, opts);
+      div.dataset.asciinemaRendered = '1';
+    });
+    return true;
+  };
+
+  if (!spawn()) {
+    window.addEventListener('load', spawn, { once: true });
+  }
+}
+
+
 // Walk `root` for `<pre><code class="language-embed">` blocks whose
 // content is a GitHub URL, fetch the file (honouring #Lstart-Lend),
 // replace the block with the actual code, and syntax-highlight it.
@@ -281,6 +316,11 @@ async function setPageBody(html) {
   // fetched from GitHub (or any raw-accessible URL). Runs async; each
   // block updates in place when the fetch resolves.
   expandGithubEmbeds(div_text);
+
+  // Turn every <div data-asciinema-cast="…"> placeholder into a real
+  // asciinema-player instance using the self-hosted JS loaded from
+  // /res/ascinema/asciinema-player.min.js (see markdown_viewer.html).
+  renderAsciinemaPlayers(div_text);
 
 
   // Add the toc opener

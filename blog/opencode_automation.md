@@ -56,18 +56,10 @@ But before that, as usual, sharpen the saw, or better connect it to the tools I 
 
 # 1. A custom `/work` slash-command
 
-OpenCode lets you save a prompt as a reusable slash-command in `~/.config/opencode/commands/`.
-
-Path:
-
-```bash
-~/.config/opencode/commands/work.md   # Global /work command
-.opencode/commands/work.md            # Per-repo /work command
-```
-
-Content:
+OpenCode lets you save a prompt as a reusable slash-command, globally in `~/.config/opencode/commands/` and locally in `./.opencode/commands/work.md`.
 
 ```markdown
+cat > ~/.config/opencode/commands/ <<'MARKDOWN'
 ---
 description: "Work through every [ ] task in doc/ai-todo.md, treating the file as a live stream"
 ---
@@ -81,11 +73,8 @@ Work through every `[ ]` item in `@doc/ai-todo.md`, one at a time, following `@A
 6. After committing, go back to step 1. Only stop when the file is empty across TWO consecutive reads.
 
 Append generic product / process insight to `@doc/ai-feedback.md`, or to `@doc/ref/feedback-<slug>.md` when I ask for a dedicated report. Respond in Spanish; commit messages and code comments in English.
+MARKDOWN
 ```
-
-Note the `@AGENTS.md` reference. Since OpenCode ≥ 1.1, `AGENTS.md`
-is the canonical name for project-level rules ([docs](https://opencode.ai/docs/rules/));
-`CLAUDE.md` still works as a fallback for Claude Code compatibility.
 
 
 # 2. Permissions: stop the "allow?" prompts
@@ -127,7 +116,7 @@ cat > ~/.config/opencode/opencode.json <<'JSON'
 JSON
 ```
 
-After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
+After this, a typical "write a test, code, run the test, commit" cycle goes zero-prompt.
 
 ![Permissive config in action, no prompts between the run and the commit](/img/blog/opencode/opencode-interface-03-public-02.png)
 
@@ -252,14 +241,11 @@ A Stock exchange monitoring terminal interface could be developped in less than 
 
 ![Santiago Stock](/img/blog/opencode/opencode-stock-dashboard-01.png)
 
-A one-minute asciinema cast of `/work` processing a tiny
-`ai-todo.md` that asks the agent to build a curses plane shooter:
+A one-minute asciinema cast of `/work` processing a tiny `ai-todo.md` that asks the agent to build a curses plane shooter.
 
+<div data-asciinema-cast="/res/ascinema/opencode_shooter_demo.cast"
+     data-asciinema-opts='{"autoPlay":false,"loop":false,"idleTimeLimit":1,"speed":1,"fit":"width"}'
+     style="max-width: 1000px; margin: 1rem 0;"></div>
+
+Fallback (opens on asciinema.org):
 [![asciicast](https://asciinema.org/a/978408.svg)](https://asciinema.org/a/978408)
-
-<script async id="asciicast-978408" src="https://asciinema.org/a/978408.js"></script>
-
-Original recording was 31 minutes; I trimmed the dead air with the
-`scripts/shorten_asciinema.py` helper (keep-windows +
-gap-clamp + event collapse) from my OpenClaudeMaster workspace to
-land at 58 s / 0.9 MB.
