@@ -246,6 +246,3 @@ A one-minute asciinema cast of `/work` processing a tiny `ai-todo.md` that asks 
 <div data-asciinema-cast="/res/ascinema/opencode_shooter_demo.cast"
      data-asciinema-opts='{"autoPlay":false,"loop":false,"idleTimeLimit":1,"speed":1,"fit":"width"}'
      style="max-width: 1000px; margin: 1rem 0;"></div>
-
-Fallback (opens on asciinema.org):
-[![asciicast](https://asciinema.org/a/978408.svg)](https://asciinema.org/a/978408)
