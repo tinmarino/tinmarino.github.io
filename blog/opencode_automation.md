@@ -23,9 +23,10 @@ recipe should work on any OpenCode-supported provider.
 - [0. Why does that matter to me?](#0-why-does-that-matter-to-me)
 - [1. A custom `/work` slash-command](#1-a-custom-work-slash-command)
 - [2. Permissions: stop the "allow?" prompts](#2-permissions-stop-the-allow-prompts)
-- [3 Skills: teach the agent your house rules](#2b-skills-teach-the-agent-your-house-rules)
-- [4. A tmux layout in one command](#3-a-tmux-layout-in-one-command)
-- [5. The combined loop](#4-the-combined-loop)
+- [3. Skills: teach the agent your house rules](#3-skills-teach-the-agent-your-house-rules)
+- [4. A tmux layout in one command](#4-a-tmux-layout-in-one-command)
+- [5. The combined loop](#5-the-combined-loop)
+- [6. See it live](#6-see-it-live)
 
 
 # 0. Why does that matter to me?
@@ -130,7 +131,7 @@ After this, a typical "write a test, run it, commit" cycle goes zero-prompt.
 ![Permissive config in action, no prompts between the run and the commit](/img/blog/opencode/opencode-interface-03-public-02.png)
 
 
-# 3 Skills: teach the agent your house rules
+# 3. Skills: teach the agent your house rules
 
 OpenCode auto-loads skills from `~/.config/opencode/skills/<name>/SKILL.md` ([docs](https://opencode.ai/docs/skills/)).
 A skill is a frontmatter with `name` and `description` plus a Markdown body; when the agent is about to do something that matches the description, it pulls the skill in.
@@ -235,10 +236,25 @@ next iteration because of the "live stream" rule.
 
 ![Two tasks processed back-to-back, commits visible in git log](/img/blog/opencode/opencode-interface-15-public-done.png)
 
-What I get out of this loop:
+# 6. Advantages
 
 - **Feel at home**: I can work with tmux, Vim and `doc/ai-todo.md` as I used to do.
 - **No boilerplate**: `/work` replaces an 80-word prompt.
 - **No prompts**: unless I try something interactive.
 - **No context-switching**: tracking files live in a vim pane I can glance at without leaving the terminal.
 - **Audit trail**: every task is its own git commit prefixed `Claude:`, so `git log --grep '^Claude:'` tells me what the agent did today and when.
+
+
+# 7. See it live
+
+A one-minute asciinema cast of `/work` processing a tiny
+`ai-todo.md` that asks the agent to build a curses plane shooter:
+
+[![asciicast](https://asciinema.org/a/978408.svg)](https://asciinema.org/a/978408)
+
+<script async id="asciicast-978408" src="https://asciinema.org/a/978408.js"></script>
+
+Original recording was 31 minutes; I trimmed the dead air with the
+`scripts/shorten_asciinema.py` helper (keep-windows +
+gap-clamp + event collapse) from my OpenClaudeMaster workspace to
+land at 58 s / 0.9 MB.
