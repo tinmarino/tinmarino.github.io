@@ -554,6 +554,9 @@ async function setPageBody(html) {
       left: 0;
       height: 100%;
       padding-left: 3%;
+      /* Include padding in the width so 70%/100% don't overflow the
+         parent (the 3% padding was adding horizontal scroll). */
+      box-sizing: border-box;
       overflow-x: hidden;
       overflow-y: auto;
     }
