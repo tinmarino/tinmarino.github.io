@@ -844,7 +844,7 @@
 <!-- -------------------------------------------------------------------------------- -->
 <!-- 3. Cyber {{{1 -->
 <nav id="id_cyber" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
-  <!-- Cyber 15: Lógica decimal en un mundo binario: Presented 17 Oct 2025 to BSides, DUOC Concepcion {{{2 -->
+  <!-- Cyber 16: Lógica decimal en un mundo binario: Presented 17 Oct 2025 to BSides, DUOC Concepcion {{{2 -->
   <a href="./pdf/2025-logica-decimal-en-un-mundo-binario_slide_gruvbox.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="logica-decimal"
     hreflang="es"
@@ -863,7 +863,7 @@
   </a>
 
 
-  <!-- Cyber 14: Crypto 0x00: Presented 05 July 2025 to Dreamlab, after giving it at PUC class too (but will upload the first latter {{{2 -->
+  <!-- Cyber 15: Crypto 0x00: Presented 05 July 2025 to Dreamlab, after giving it at PUC class too (but will upload the first latter {{{2 -->
   <a href="./pdf/2025_crypto_0x00_slide.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="crypto_0x00"
     hreflang="es"
@@ -882,6 +882,51 @@
   </a>
 
 
+  <!-- Cyber 14: Priviledge Escalation: Class given at PUC May 2025 -->
+  <button href="./pdf/2025_class_privesc_01_process.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="class_privesc"
+    h reflang="es"
+    onclick="
+      document.getElementById('main_iframe').src = './pdf/2025_class_privesc_01_process.pdf';
+      hideHome(this);
+    "
+  >
+    <!-- Image -->
+    <img src="./img/function_sudo_overload_256.png"
+      data-src="./img/function_sudo_overload_256.png"
+      alt="PrivEsc" class="delayed w3-xxlarge">
+    <p>PrivEsc<br/>Slide</p>
+
+    <!-- Post Description -->
+    <div class="post description"
+      style="left: var(--sidebar-width);"
+      tabindex="-1"
+    >
+      PDF class in Spanish<br/><br/>
+
+      Priviledge escalation<br/>
+      From user to root.<br/><br/>
+
+      &nbsp;&nbsp;&nbsp; 01:
+      <a href="/pdf/2025_class_privesc_01_process.pdf" target="main_iframe"
+        id="class_privesc_01_process"
+        tabindex="-1"
+        onclick="event.stopPropagation(); hideHome(this);"
+      >
+        Procesos<br/>
+      </a>
+
+      &nbsp;&nbsp;&nbsp; 02:
+      <a href="/pdf/2025_class_privesc_02_service.pdf" target="main_iframe"
+        id="class_privesc_02_service"
+        tabindex="-1"
+        onclick="event.stopPropagation(); hideHome(this);"
+      >
+        Servicios<br/>
+      </a>
+    </div>
+  </button>
+
   <!-- Cyber 13: Pentest Web: Class given at PUC May 2025 -->
   <button href="./pdf/2025_class_pentest_web_01_intro.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="class_pentest_web"
@@ -894,7 +939,7 @@
     <!-- Image -->
     <img src="./img/http_wiki_256.jpg"
       data-src="./img/http_wiki_256.jpg"
-      alt="Crypto 0x00" class="delayed w3-xxlarge">
+      alt="Web" class="delayed w3-xxlarge">
     <p>Pentest Web<br/>Slide</p>
 
     <!-- Post Description -->
@@ -908,7 +953,7 @@
       From recon to exploit with<br/>
       access, logic and injections.<br/><br/>
 
-      &nbsp&nbsp&nbsp 01:
+      &nbsp;&nbsp;&nbsp; 01:
       <a href="/pdf/2025_class_pentest_web_01_intro.pdf" target="main_iframe"
         id="class_pentest_web_01_intro"
         tabindex="-1"
@@ -917,7 +962,7 @@
         Introdución<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 02:
+      &nbsp;&nbsp;&nbsp; 02:
       <a href="/pdf/2025_class_pentest_web_02_recon.pdf" target="main_iframe"
         id="class_pentest_web_02_recon"
         tabindex="-1"
@@ -926,7 +971,7 @@
         Reconocimiento<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 03:
+      &nbsp;&nbsp;&nbsp; 03:
       <a href="/pdf/2025_class_pentest_web_03_access.pdf" target="main_iframe"
         id="class_pentest_web_03_access"
         tabindex="-1"
@@ -935,7 +980,7 @@
         Control de acceso<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 04:
+      &nbsp;&nbsp;&nbsp; 04:
       <a href="/pdf/2025_class_pentest_web_04_intrusion.pdf" target="main_iframe"
         id="class_pentest_web_04_intrusion"
         tabindex="-1"
@@ -944,7 +989,7 @@
         Incursión<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 05:
+      &nbsp;&nbsp;&nbsp; 05:
       <a href="/pdf/2025_class_pentest_web_05_logic.pdf" target="main_iframe"
         id="class_pentest_web_05_logic"
         tabindex="-1"
@@ -953,7 +998,7 @@
         Lógica<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 06:
+      &nbsp;&nbsp;&nbsp; 06:
       <a href="/pdf/2025_class_pentest_web_06_injection.pdf" target="main_iframe"
         id="class_pentest_web_06_injection"
         tabindex="-1"
@@ -962,7 +1007,7 @@
         Inyección<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 08:
+      &nbsp;&nbsp;&nbsp; 08:
       <a href="/pdf/2025_class_pentest_web_08_question.pdf" target="main_iframe"
         id="class_pentest_web_08_question"
         tabindex="-1"
@@ -971,7 +1016,7 @@
         Cuestionario<br/>
       </a>
 
-      &nbsp&nbsp&nbsp 00:
+      &nbsp;&nbsp;&nbsp; 00:
       <a href="/pdf/2025_class_pentest_web_00_syllabus.md" target="main_iframe"
         id="class_pentest_web_00_syllabus"
         tabindex="-1"
