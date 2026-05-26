@@ -200,3 +200,124 @@ A grab-bag of things that broke at least once, in roughly the order you'll hit t
       });
   });
   ```
+
+### Field Notes From Real APK Work
+
+The workflow above covers the classic Gadget path. In practice, modern Android targets are a mix of Java/Kotlin, Flutter/Dart AOT, WebView, Cronet, OkHttp, native TLS, app-specific crypto, App Bundle splits, anti-tamper checks, rooted emulators and physical phones. The useful lesson is not one magic bypass; it is choosing the cheapest observation layer that gives you plaintext without destabilizing the app.
+
+Use this decision tree:
+
+- If the app uses OkHttp, hook OkHttp first. You observe plaintext before TLS and after TLS without touching certificate pinning.
+- If the app uses WebView, hook WebView navigation and `addJavascriptInterface` before guessing at bridges or deep links.
+- If the app ignores Android proxy settings or pins TLS, hook `SSL_read` / `SSL_write` inside the process if symbols are exported.
+- If the app is Flutter and `SSL_read` / `SSL_write` are stripped, expect per-build work: reFlutter, rooted DNAT + trusted CA, or a known `libflutter.so` offset.
+- If the app stores secrets through Android Keystore or Flutter Secure Storage, filesystem access usually gives encrypted blobs, not plaintext. Hook runtime crypto sinks.
+- If the emulator itself is unstable, fix the lab first: `systemd-run --user`, SDK `adb`, software GPU and clean proxy teardown save hours.
+
+### Stable Emulator Launcher
+
+Use `systemd-run --user` for long-lived emulator sessions. Avoid `nohup ... &` for overnight work; emulator processes often die with the shell session. `swiftshader_indirect` is a useful first fallback on hosts with flaky GPU passthrough.
+
+```embed
+/res/code/android_hacking_0x00/android_bash_01_stable_avd_systemd.sh
+```
+
+### Rooted Burp Capture With Per-App DNAT
+
+The cleanest rooted-emulator Burp setup is not a permanent `-http-proxy` flag. Start the emulator normally, install Burp's CA in the rooted test image, set Android's proxy, then add an owner-scoped `iptables` DNAT rule for the target app UID. This limits breakage from Google/Firebase/SDK traffic and gives you a fast `disable` command when an SDK refuses to work under interception.
+
+Android 14 can validate through the Conscrypt APEX certificate store, so the snippet mirrors the CA into both the legacy store and the APEX store on disposable rooted images.
+
+```embed
+/res/code/android_hacking_0x00/android_bash_02_rooted_burp_dnat.sh
+```
+
+### Sensor Motion Loop
+
+Some SDKs treat a perfectly frozen emulator sensor stream as suspicious. A simple accelerometer/gyroscope loop is not an exploit by itself; it just makes the lab device less physically impossible while you observe behavior.
+
+```embed
+/res/code/android_hacking_0x00/android_bash_03_sensor_motion_loop.sh
+```
+
+### Generic Frida Gadget Rebuild
+
+For non-root devices, Gadget is still the workhorse. The generic pipeline is: decode with `apktool`, work on a copy, relax split/native-lib manifest flags, copy Gadget as `lib<name>.so`, insert `System.loadLibrary("<name>")`, rebuild, zipalign, sign, uninstall the original and install the patched APK. The uninstall is usually required because your debug signature does not match the developer signature.
+
+```embed
+/res/code/android_hacking_0x00/android_bash_04_frida_gadget_rebuild.sh
+```
+
+### The OkHttp Plaintext Trick
+
+If the app uses OkHttp, do not start by fighting SSL pinning. Hook OkHttp in-process. The request object exists before TLS encryption; the response object exists after TLS decryption. `Response.peekBody()` lets you copy response text without consuming the stream the app still needs.
+
+This is especially useful on a physical phone with `frida-server` or a Gadget APK: no CA install, no proxy, no pinning bypass, and no network routing changes. The limitation is clear: it only sees traffic that goes through OkHttp.
+
+```embed
+/res/code/android_hacking_0x00/android_frida_01_okhttp_plaintext_logger.js
+```
+
+### WebView URL And Bridge Logger
+
+Before testing a WebView bug, enumerate what the app actually exposes. Log `loadUrl`, `loadDataWithBaseURL`, subresource interception, console messages and `addJavascriptInterface` bridge names/classes.
+
+```embed
+/res/code/android_hacking_0x00/android_frida_02_webview_url_logger.js
+```
+
+### SSL Read/Write Burp Logger
+
+When OkHttp is not enough and the SSL provider exports symbols, hook `SSL_write` and `SSL_read`. Pair streams by the `SSL*` pointer and write request/response blocks in a format Burp Repeater accepts. This is a read-only capture path: you are observing plaintext at the encryption boundary, not modifying traffic.
+
+Known sharp edges: HTTP/2 multiplexing is not handled by the simple HTTP/1 parser; Flutter often strips BoringSSL symbols; native hooks do not see ARM guest code normally when the app runs through some translation layers on x86 emulators.
+
+```embed
+/res/code/android_hacking_0x00/android_frida_03_ssl_burp_logger.js
+```
+
+### Host Runner For Frida Burp Logs
+
+Keep file writing on the host when you can. The Frida script should `send()` structured events; a Python runner can attach, load the JS, render Burp-paste files, write `_all.md`, and keep JSONL telemetry for later indexing.
+
+```embed
+/res/code/android_hacking_0x00/android_py_01_frida_burp_runner.py
+```
+
+### Mitmproxy To Burp-Paste
+
+When MITM does work, keep the evidence format boring. One raw request/response file per flow is easy to paste into Burp Repeater, easy to diff, and easy to redact later.
+
+```embed
+/res/code/android_hacking_0x00/android_py_02_mitm_live_burp.py
+```
+
+```embed
+/res/code/android_hacking_0x00/android_py_03_mitm_to_burp.py
+```
+
+### Flutter/Dart AOT Runtime Helpers
+
+Flutter apps are different. `jadx` usually shows the Android wrapper, while business logic lives in `libapp.so` as Dart AOT code. Once you have a per-build offset from backtraces or reverse engineering, small helpers for tagged pointers, Dart strings and `Uint8List` make hooks much more useful.
+
+Never present Dart class IDs or offsets as universal. Treat them as per-runtime/per-build configuration.
+
+```embed
+/res/code/android_hacking_0x00/android_frida_04_flutter_aot_helpers.js
+```
+
+### Getting Runtime Keys Without Leaking Them
+
+For app-layer crypto, first map the envelope statically: certificates, algorithms, AES/RSA/HMAC libraries, request wrappers and storage keys. Then assume secrets are not recoverable from disk if Android Keystore is involved. The reliable path is runtime capture at the sink:
+
+- `javax.crypto.Cipher.init/update/doFinal` for Java crypto.
+- `javax.crypto.Mac.init/update/doFinal` for Java HMAC.
+- BouncyCastle/PointyCastle constructors or HMAC update/final methods for Dart/Flutter stacks.
+- HTTP write hooks for headers, tokens and signed bodies.
+- Structured heap scans only after you know the object layout and can validate candidates offline.
+
+Do not publish live keys, tokens, phone numbers, national identifiers, request bodies, endpoint paths or offsets from a real target. Public snippets should use `com.example.app`, `api.example.test`, `<serial>`, `<offset>` and `<cid>` placeholders.
+
+```embed
+/res/code/android_hacking_0x00/android_frida_05_java_crypto_sinks.js
+```
