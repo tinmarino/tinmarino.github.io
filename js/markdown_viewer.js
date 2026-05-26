@@ -275,6 +275,8 @@ async function setPageBody(html) {
     border: 0;
     width: 100%;
     height: 100%;
+    --toc-handle-width: 8px;
+    --text-width: 70%;
   `
 
   // Create div text (left)
@@ -345,15 +347,20 @@ async function setPageBody(html) {
 
   div_main.innerHTML += html_toc_opener;
 
+  // Create draggable divider on the right edge of the content pane
+  const div_text_resizer = document.createElement("div");
+  div_text_resizer.id = "div_text_resizer";
+
   // Create div toc (right)
   const div_toc = document.createElement("div");
   div_toc.id = "div_toc";
   div_toc.style = `
     position: absolute;
-    width: 20%;
+    width: calc(100% - var(--text-width));
     height: 100%;
-    left: 70%;
+    left: var(--text-width);
     padding-left: 3%;
+    padding-right: 3%;
     overflow-x: hidden;
     overflow-y: auto;
   `
@@ -435,6 +442,7 @@ async function setPageBody(html) {
   });
 
   div_main.appendChild(div_text);
+  div_main.appendChild(div_text_resizer);
   div_main.appendChild(div_toc);
 
   // Inject page styles
@@ -559,6 +567,7 @@ async function setPageBody(html) {
       box-sizing: border-box;
       overflow-x: hidden;
       overflow-y: auto;
+      transition: width 220ms ease;
     }
     #div_text img {
       display: block;
@@ -566,12 +575,23 @@ async function setPageBody(html) {
       width: 100%;
       height: auto;
     }
-    /* Interactive hide */
+    #div_toc {
+      box-sizing: border-box;
+      transition: left 220ms ease, width 220ms ease, transform 220ms ease, opacity 220ms ease;
+      will-change: transform;
+    }
+    /* Interactive slide */
     input[type=checkbox]:checked ~ #div_toc {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(120%);
+    }
+    input[type=checkbox]:checked ~ #div_text_resizer {
+        opacity: 0;
+        pointer-events: none;
     }
     input[type=checkbox] ~ #div_text {
-        width: 70%;
+        width: var(--text-width);
     }
     input[type=checkbox]:checked ~ #div_text {
         width: 100%;
@@ -579,15 +599,45 @@ async function setPageBody(html) {
     input[type=checkbox]:checked ~ * {
       --sidebar-width: 0px;
     }
-    input[type=checkbox]:checked ~ #toc_opener > img {
-        display: none;
+    input[type=checkbox] ~ #toc_opener {
+        right: 0;
     }
-    input[type=checkbox]:checked ~ #toc_opener:hover > img
-    /* Anoying when using mouse : the descirption remains
-    input[type=checkbox]:checked ~ #toc_opener:focus > img
-    */
-      {
-        display: block;
+    input[type=checkbox]:checked ~ #toc_opener {
+        right: 0;
+    }
+
+    #div_text_resizer {
+      position: absolute;
+      top: 0;
+      left: calc(var(--text-width) - var(--toc-handle-width));
+      width: var(--toc-handle-width);
+      height: 100%;
+      cursor: col-resize;
+      z-index: 4;
+      transition: left 220ms ease, opacity 220ms ease;
+    }
+    #div_text_resizer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 3px;
+      width: 2px;
+      background: currentColor;
+      opacity: 0.25;
+    }
+    #div_text_resizer:hover::before,
+    #div_text_resizer.is-dragging::before {
+      opacity: 0.75;
+    }
+    body.is-resizing-text {
+      cursor: col-resize;
+      user-select: none;
+    }
+    body.is-resizing-text #div_text,
+    body.is-resizing-text #div_toc,
+    body.is-resizing-text #div_text_resizer {
+      transition: none;
     }
 
     #toc_opener {
@@ -599,6 +649,7 @@ async function setPageBody(html) {
       height: var(--block);
       z-index: 5;
       outline: none;
+      transition: right 220ms ease;
     }
 
     /* Center the old way */
@@ -622,6 +673,37 @@ async function setPageBody(html) {
   //var destination = Prism.highlight(destination, Prism.languages["bash"], "bash");
   document.body.innerHTML = "";
   document.body.appendChild(div_main);
+
+  div_text_resizer.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    div_text_resizer.setPointerCapture(event.pointerId);
+    div_text_resizer.classList.add("is-dragging");
+    document.body.classList.add("is-resizing-text");
+  });
+
+  div_text_resizer.addEventListener("pointermove", (event) => {
+    if (!div_text_resizer.classList.contains("is-dragging")) {
+      return;
+    }
+
+    const rect = div_main.getBoundingClientRect();
+    const textWidth = event.clientX - rect.left;
+    const minWidth = Math.min(360, rect.width * 0.45);
+    const maxWidth = rect.width * 0.7;
+    const clampedWidth = Math.min(Math.max(textWidth, minWidth), maxWidth);
+    div_main.style.setProperty("--text-width", `${clampedWidth}px`);
+  });
+
+  const stopTextResize = (event) => {
+    if (div_text_resizer.hasPointerCapture(event.pointerId)) {
+      div_text_resizer.releasePointerCapture(event.pointerId);
+    }
+    div_text_resizer.classList.remove("is-dragging");
+    document.body.classList.remove("is-resizing-text");
+  };
+
+  div_text_resizer.addEventListener("pointerup", stopTextResize);
+  div_text_resizer.addEventListener("pointercancel", stopTextResize);
 
 
   // Collect ToC links for scroll-spy highlighting
