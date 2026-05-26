@@ -1,9 +1,23 @@
+# Android Hacking Field Guide
+
+This is a practical field guide for authorized Android application testing. The fake target package used throughout is `target.cl`; replace it with the package you are allowed to test. The goal is to avoid losing hard-earned lab recipes: APK pull and patching, Frida Gadget, rooted emulators, user-level systemd services, Burp capture, OkHttp plaintext logging, WebView tracing, Flutter/Dart runtime hooks and crypto sink discovery.
+
+How to read this file:
+
+- Start with **Download and patch** when you only have a device and need to pull, decode, patch or rebuild an APK.
+- Jump to **Emulator work** when your blocker is lab reliability: AVD startup, root, Burp CA, per-app DNAT, Frida services, mock GPS or sensors.
+- Jump to **All to Burp** when you need plaintext HTTP: proxy, mitmproxy, OkHttp, WebView, SSL hooks or Burp-paste files.
+- Jump to **Flutter and keys** when `jadx` is not enough, secrets are encrypted on disk, or the interesting logic lives in Dart AOT/native code.
+- Treat every snippet as a template. Keep real client names, domains, tokens, phone numbers, national IDs, vehicle identifiers, request bodies and offsets out of public commits.
+
+# Download and patch
+
 ### Permit ADB TCP
 
 ```bash
 # Permit via TCIP (WiFi) instead of custom USB
 # -- So troubleshoot is wireless
-adb connect 192.168.1.85:5555
+adb connect 192.0.2.10:5555
 adb tcpip 5555
 ```
 
@@ -13,33 +27,45 @@ adb tcpip 5555
 # Get apk path -- it may list more than one entry (App Bundle splits):
 #   base.apk, split_config.arm64_v8a.apk, split_config.xxhdpi.apk, split_config.en.apk, ...
 adb shell pm list packages
-adb shell pm path cl.target
+adb shell pm path target.cl
 
-adb pull /data/app/~~h_jVfrLCcLsWYsEkyDDdkA==/cl.target-4gIe4Vxvk314zP1kCOFVcw==/base.apk
-mv base.apk cl.target.apk
+adb pull /data/app/~~example==/target.cl-example/base.apk
+mv base.apk target.cl.apk
 ```
 
 If `pm path` shows split APKs, pull them all — base.apk alone usually has no native libs:
 
 ```bash
 mkdir -p splits
-for p in $(adb shell pm path cl.target | sed 's/^package://'); do
+for p in $(adb shell pm path target.cl | sed 's/^package://'); do
     adb pull "$p" splits/
 done
 ```
 
-### Path APK
+### Manifest triage with Python
+
+After `apktool d`, the first repeated command is usually: list exported components, deep links and intent filters. The helper below parses `AndroidManifest.xml` and prints tab-separated rows that are easy to grep or paste into notes.
+
+```bash
+python3 res/code/android_hacking_0x00/android_py_04_manifest_exports.py Source_v1.00/AndroidManifest.xml
+```
+
+```embed
+/res/code/android_hacking_0x00/android_py_04_manifest_exports.py
+```
+
+### Patch APK
 
 #### Disassemble
 
 ```bash
-apktool d -o Source_v1.00/ cl.target.apk 
+apktool d -o Source_v1.00/ target.cl.apk 
 cd Source_v1.00
 ```
 
 #### Patch code
 
-File: cl/target/MainActivity.smali
+File: target/cl/MainActivity.smali
 
 ```diff
 -.method public constructor <init>()V
@@ -47,8 +73,8 @@ File: cl/target/MainActivity.smali
 +.method public constructor <init>()V
 +    .locals 1
 +    # Variables start with index 0
-+    const-string v0, "fg"   # Tinmarino: Line added
-+    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V   # Tinmarino: Line added
++    const-string v0, "fg"   # Line added
++    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V   # Line added
 ```
 
 #### Copy library binary
@@ -94,10 +120,10 @@ Edit `Source_v1.00/AndroidManifest.xml` on the root `<manifest>` / `<application
 
 ```bash
 # 1. Rebuild
-apktool b Source_v1.00 -o cl.target_mod.apk
+apktool b Source_v1.00 -o target.cl_mod.apk
 
 # 2. Zipalign (must come BEFORE signing; -p page-aligns .so files)
-zipalign -p -f 4 cl.target_mod.apk cl.target_aligned.apk
+zipalign -p -f 4 target.cl_mod.apk target.cl_aligned.apk
 
 # 3. One-time: generate a debug keystore
 keytool -genkey -v -keystore ~/.android/debug.keystore \
@@ -109,17 +135,19 @@ keytool -genkey -v -keystore ~/.android/debug.keystore \
 apksigner sign --ks ~/.android/debug.keystore \
   --ks-pass pass:android --key-pass pass:android \
   --ks-key-alias androiddebugkey \
-  --out cl.target_signed.apk cl.target_aligned.apk
+  --out target.cl_signed.apk target.cl_aligned.apk
 
 # 5. Verify
-apksigner verify --verbose cl.target_signed.apk
+apksigner verify --verbose target.cl_signed.apk
 
 # 6. Uninstall the original (signatures won't match) and install the modified one
-adb uninstall cl.target
-adb install cl.target_signed.apk
+adb uninstall target.cl
+adb install target.cl_signed.apk
 ```
 
 `zipalign` and `apksigner` ship with the Android SDK build-tools; on Debian/Ubuntu they're also available as the `zipalign` and `apksigner` apt packages.
+
+# Frida Gadget Burp baseline
 
 ### Intercept HTTPS with Burp Suite (via Frida Gadget)
 
@@ -201,6 +229,8 @@ A grab-bag of things that broke at least once, in roughly the order you'll hit t
   });
   ```
 
+# Emulator work
+
 ### Field Notes From Real APK Work
 
 The workflow above covers the classic Gadget path. In practice, modern Android targets are a mix of Java/Kotlin, Flutter/Dart AOT, WebView, Cronet, OkHttp, native TLS, app-specific crypto, App Bundle splits, anti-tamper checks, rooted emulators and physical phones. The useful lesson is not one magic bypass; it is choosing the cheapest observation layer that gives you plaintext without destabilizing the app.
@@ -218,8 +248,18 @@ Use this decision tree:
 
 Use `systemd-run --user` for long-lived emulator sessions. Avoid `nohup ... &` for overnight work; emulator processes often die with the shell session. `swiftshader_indirect` is a useful first fallback on hosts with flaky GPU passthrough.
 
+The important trick here is that `systemd-run --user` creates a user-level transient service. You do not need root for the host service, and you can later inspect or stop it with `systemctl --user status <unit>.service` and `systemctl --user stop <unit>.service`. This is much more reliable than leaving emulator, Frida and loggers attached to a fragile terminal session.
+
 ```embed
 /res/code/android_hacking_0x00/android_bash_01_stable_avd_systemd.sh
+```
+
+### Generic app lab controller
+
+For longer work, a single local controller script is worth it. The generic script below is modeled after the kind of helper that gets reused constantly: start an AVD as a user service, wait for boot, install Burp CA on a rooted test image, route only `target.cl` through Burp, set test GPS, start `frida-server`, and keep a Frida hook running as another user service.
+
+```embed
+/res/code/android_hacking_0x00/android_bash_05_generic_app_lab.sh
 ```
 
 ### Rooted Burp Capture With Per-App DNAT
@@ -247,6 +287,8 @@ For non-root devices, Gadget is still the workhorse. The generic pipeline is: de
 ```embed
 /res/code/android_hacking_0x00/android_bash_04_frida_gadget_rebuild.sh
 ```
+
+# All to Burp
 
 ### The OkHttp Plaintext Trick
 
@@ -296,6 +338,32 @@ When MITM does work, keep the evidence format boring. One raw request/response f
 /res/code/android_hacking_0x00/android_py_03_mitm_to_burp.py
 ```
 
+### Python commands I keep rerunning
+
+These commands are the small loop that repeatedly paid off during Android work. Keep them generic, point them at `target.cl`, and commit only sanitized outputs.
+
+```bash
+# Exported components and deep links from an apktool tree
+python3 res/code/android_hacking_0x00/android_py_04_manifest_exports.py Source_v1.00/AndroidManifest.xml
+
+# Run a Frida logger and write Burp-paste files on the host
+python3 res/code/android_hacking_0x00/android_py_01_frida_burp_runner.py \
+  --device usb \
+  --target target.cl \
+  --script res/code/android_hacking_0x00/android_frida_01_okhttp_plaintext_logger.js \
+  --out-dir burp-frida-target-cl
+
+# Convert a mitmproxy dump into one Burp-paste file per flow
+python3 res/code/android_hacking_0x00/android_py_03_mitm_to_burp.py capture.mitm \
+  --host-filter 'target\.cl|api\.' \
+  --out-dir burp-from-mitm
+
+# Syntax sanity before committing snippets
+python3 -m py_compile res/code/android_hacking_0x00/android_py_*.py
+```
+
+# Flutter and keys
+
 ### Flutter/Dart AOT Runtime Helpers
 
 Flutter apps are different. `jadx` usually shows the Android wrapper, while business logic lives in `libapp.so` as Dart AOT code. Once you have a per-build offset from backtraces or reverse engineering, small helpers for tagged pointers, Dart strings and `Uint8List` make hooks much more useful.
@@ -316,7 +384,7 @@ For app-layer crypto, first map the envelope statically: certificates, algorithm
 - HTTP write hooks for headers, tokens and signed bodies.
 - Structured heap scans only after you know the object layout and can validate candidates offline.
 
-Do not publish live keys, tokens, phone numbers, national identifiers, request bodies, endpoint paths or offsets from a real target. Public snippets should use `com.example.app`, `api.example.test`, `<serial>`, `<offset>` and `<cid>` placeholders.
+Do not publish live keys, tokens, phone numbers, national identifiers, request bodies, endpoint paths or offsets from a real target. Public snippets should use the fake app package `target.cl` plus placeholders such as `<serial>`, `<offset>` and `<cid>`.
 
 ```embed
 /res/code/android_hacking_0x00/android_frida_05_java_crypto_sinks.js
