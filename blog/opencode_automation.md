@@ -21,13 +21,15 @@ recipe should work on any OpenCode-supported provider.
 ## Contents
 
 - [0. Why does that matter to me?](#0-why-does-that-matter-to-me)
-- [1. A custom `/work` slash-command](#1-a-custom-work-slash-command)
-- [2. Permissions: stop the "allow?" prompts](#2-permissions-stop-the-allow-prompts)
-- [3. Skills: teach the agent your house rules](#3-skills-teach-the-agent-your-house-rules)
-- [4. A tmux layout in one command](#4-a-tmux-layout-in-one-command)
-- [5. The combined loop](#5-the-combined-loop)
-- [6. Advantages](#6-advantages)
-- [7. See it live](#7-see-it-live)
+- [1. Shortcuts](#1-shortcuts)
+- [2. A custom `/work` slash-command](#2-a-custom-work-slash-command)
+- [3. Permissions: stop the "allow?" prompts](#3-permissions-stop-the-allow-prompts)
+- [4. Skills: teach the agent your house rules](#4-skills-teach-the-agent-your-house-rules)
+- [5. A tmux layout in one command](#5-a-tmux-layout-in-one-command)
+- [6. The combined loop](#6-the-combined-loop)
+- [7. More tips](#6-more-tips)
+- [8. Advantages](#8-advantages)
+- [9. See it live](#9-see-it-live)
 
 
 # 0. Why does that matter to me?
@@ -53,8 +55,33 @@ The tool lets me read and write files, which is enough for me. Furthermore, it a
 
 But before that, as usual, sharpen the saw, or better connect it to the tools I have been sharpening for 15 years: Vim (with its companions Git, Bash and tmux). They are all available on Windows even without the Linux subsystem.
 
+# 1. Shortcuts
 
-# 1. A custom `/work` slash-command
+More at: https://opencode.ai/docs/keybinds/
+
+| Shortcut  | Command |
+| ---       | --- |
+| `<C-p>`   | Print help for shortcuts and commands. |
+| `<C-Tab>` | Switch between plan and build mode. |
+| `<C-t>`   | Thinking: toogle thinking level from low to Ultrathink. |
+| `<C-x>u`  | /undo = Rewind history one step backward. |
+| `<C-x>r`  | /redo = Restore rewinded step. |
+| `<C-x>c`  | /compact |
+| `<C-x>x`  | /export = eXport to Markdown the conversation. |
+| `<C-x>m`  | /models = Choose model at init. |
+| `<C-g>`   | Scroll to top of the buffer. |
+| `<C-A-g>` | Scroll to bottom of the buffer. |
+| `<C-j>`   | Newline in prompt (`<S-Enter`) do not work on my computer. But `\<Enter>` also works. |
+| `<C-r>`   | Rename the current section |
+|           |   |
+
+## Claude
+
+| Shortcut     | Command |
+| ---          | --- |
+| `<Esc><Esc>` | Rewind history to remove noise |
+
+# 2. A custom `/work` slash-command
 
 OpenCode lets you save a prompt as a reusable slash-command, globally in `~/.config/opencode/commands/` and locally in `./.opencode/commands/work.md`.
 
@@ -77,7 +104,7 @@ MARKDOWN
 ```
 
 
-# 2. Permissions: stop the "allow?" prompts
+# 3. Permissions: stop the "allow?" prompts
 
 By default OpenCode prompts before running any `bash` command, any `edit`, any file read outside the workspace. Let's automate it.
 
@@ -121,7 +148,7 @@ After this, a typical "write a test, code, run the test, commit" cycle goes zero
 ![Permissive config in action, no prompts between the run and the commit](/img/blog/opencode/opencode-interface-03-public-02.png)
 
 
-# 3. Skills: teach the agent your house rules
+# 4. Skills: teach the agent your house rules
 
 OpenCode auto-loads skills from `~/.config/opencode/skills/<name>/SKILL.md` ([docs](https://opencode.ai/docs/skills/)).
 A skill is a frontmatter with `name` and `description` plus a Markdown body; when the agent is about to do something that matches the description, it pulls the skill in.
@@ -136,7 +163,7 @@ next to the project-specific `AGENTS.md`.
 
 
 
-# 4. A tmux layout in one command
+# 5. A tmux layout in one command
 
 I work with four Tmux windows.
 
@@ -207,7 +234,7 @@ bind-key I run-shell "bash ~/.vim/bin/ocinit"
 Now `prefix + I` spawns the whole layout, keyed by the current directory's basename.
 
 
-# 5. The combined loop
+# 6. The combined loop
 
 With those pieces in place, a session looks like:
 
@@ -226,7 +253,43 @@ next iteration because of the "live stream" rule.
 
 ![Two tasks processed back-to-back, commits visible in git log](/img/blog/opencode/opencode-interface-15-public-done.png)
 
-# 6. Advantages
+# 7. More tips
+
+Some more tips to keep all in one place.
+
+## Hook
+
+### Hook prevent .env Read
+
+A hook to preven the .env reading
+
+```bash
+mkdir -p .opencode/plugins
+cat > .opencode/plugins/env-protection.js << 'EOF'
+export const EnvProtection = async () => {
+  return {
+    "tool.execute.before": async (input, output) => {
+      if (input.tool === "read" && output.args.filePath.includes(".env")) {
+        throw new Error("Do not read .env files")
+      }
+    },
+  }
+}
+EOF
+```
+
+But note that it may be better to edit opencode permissions.
+
+```bash
+mkdir -p .opencode
+(cat .opencode/permissions.json 2>/dev/null || echo '{}') \
+  | jq '. * {"read":{"*.env":"deny","*.env.*":"deny"}}' > .opencode/permissions.json.tmp
+mv .opencode/permissions.json.tmp .opencode/permissions.json
+```
+
+
+
+# 8. Advantages
 
 - **Feel at home**: I can work with tmux, Vim and `doc/ai-todo.md` as I used to do.
 - **No boilerplate**: `/work` replaces an 80-word prompt.
@@ -235,7 +298,7 @@ next iteration because of the "live stream" rule.
 - **Audit trail**: every task is its own git commit prefixed `Claude:`, so `git log --grep '^Claude:'` tells me what the agent did today and when.
 
 
-# 7. See it live
+# 9. See it live
 
 A Stock exchange monitoring terminal interface could be developped in less than a day with the `rich` Python module I did not even know about (I asked for `ncurses`). The interfase has a menu to choose and sort on 30 columns for each stock.
 
@@ -245,4 +308,4 @@ A one-minute asciinema cast of `/work` processing a tiny `ai-todo.md` that asks 
 
 <div data-asciinema-cast="/res/ascinema/opencode_shooter_demo.cast"
      data-asciinema-opts='{"autoPlay":false,"loop":false,"idleTimeLimit":1,"speed":1,"fit":"width"}'
-     style="max-width: 1000px; margin: 1rem 0;"></div>
+     style="max-width: 1001px; margin: 1rem 0;"></div>
