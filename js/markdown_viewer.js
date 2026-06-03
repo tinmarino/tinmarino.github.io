@@ -236,7 +236,7 @@ function convertMarkdown(markdown) {
   });
 
   // Extract yaml header and body
-  var yaml_extractor = extractor(markdown, {allowUnsafe: true})
+  var yaml_extractor = extractFrontMatter(markdown)
   meta_attribute = yaml_extractor.attributes
   title = meta_attribute.title
   subtitle = meta_attribute.subtitle
@@ -247,6 +247,35 @@ function convertMarkdown(markdown) {
 
 
   return html
+}
+
+
+// Extract a simple YAML front matter block from the start of a markdown file.
+// This avoids loading front-matter/js-yaml through the browser require shim.
+function extractFrontMatter(markdown) {
+  const result = { attributes: {}, body: markdown };
+  const match = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!match) return result;
+
+  const attributes = {};
+  for (const line of match[1].split(/\r?\n/)) {
+    const separator = line.indexOf(':');
+    if (separator < 0) continue;
+
+    const key = line.slice(0, separator).trim();
+    let value = line.slice(separator + 1).trim();
+    if (!key) continue;
+
+    if ((value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    attributes[key] = value;
+  }
+
+  result.attributes = attributes;
+  result.body = markdown.slice(match[0].length);
+  return result;
 }
 
 
@@ -430,16 +459,20 @@ async function setPageBody(html) {
   div_toc.innerHTML += toc
 
   // Render LaTeX equations with KaTeX
-  console.log("Markdown viewer is converting equations");
-  renderMathInElement(div_text, {
-    delimiters: [
-      {left: '$$', right: '$$', display: true},
-      {left: '$', right: '$', display: false}
-    ],
-    // This helps prevent KaTeX from re-processing already rendered elements
-    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "option"],
-    throwOnError: false
-  });
+  if (typeof renderMathInElement === 'function') {
+    console.log("Markdown viewer is converting equations");
+    renderMathInElement(div_text, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      // This helps prevent KaTeX from re-processing already rendered elements
+      ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "option"],
+      throwOnError: false
+    });
+  } else {
+    console.warn("Markdown viewer skipped equations: KaTeX auto-render is unavailable");
+  }
 
   div_main.appendChild(div_text);
   div_main.appendChild(div_text_resizer);
