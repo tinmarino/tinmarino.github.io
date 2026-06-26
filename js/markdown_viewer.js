@@ -80,6 +80,25 @@ function githubBlobToRaw(url) {
 }
 
 
+// Resolve `lang` to a grammar Prism actually has loaded, falling back to a
+// close cousin when the precise component is missing from the bundle.
+// `tin-prism-dark.js` only ships markup/css/clike/javascript, so e.g.
+// typescript/jsx degrade gracefully to javascript instead of rendering plain.
+function resolvePrismLang(lang) {
+  if (!window.Prism) return null;
+  if (Prism.languages[lang]) return lang;
+  const fallback = {
+    typescript: 'javascript', tsx: 'javascript', jsx: 'javascript',
+    json: 'javascript', jsonc: 'javascript',
+    scss: 'css',
+    cpp: 'clike', c: 'clike', go: 'clike', rust: 'clike',
+    java: 'clike', php: 'clike',
+  };
+  const alt = fallback[lang];
+  return alt && Prism.languages[alt] ? alt : null;
+}
+
+
 // Guess a Prism/marked language tag from the file extension.
 function languageFromExtension(url) {
   const path = url.split('?')[0].split('#')[0];
@@ -174,8 +193,9 @@ async function expandGithubEmbeds(root) {
     source_link.target = '_blank';
     source_link.rel = 'noopener';
     source_link.className = 'github-embed-source';
+    const base_name = base_url.split('?')[0].split('/').pop() || base_url;
     source_link.textContent =
-      'source: ' + base_url.replace(/^https?:\/\/github\.com\//, '') +
+      'source: ' + base_name +
       (range ? ' L' + range[0] + '-L' + range[1] : '');
     block.parentElement.insertAdjacentElement('beforebegin', source_link);
 
@@ -192,9 +212,10 @@ async function expandGithubEmbeds(root) {
         code = lines.slice(range[0] - 1, range[1]).join('\n');
       }
       const lang = languageFromExtension(base_url);
-      block.className = 'language-' + lang;
+      const prismLang = resolvePrismLang(lang);
+      block.className = 'language-' + (prismLang || lang);
       block.textContent = code;
-      if (window.Prism && Prism.languages[lang]) {
+      if (prismLang) {
         Prism.highlightElement(block);
       }
     } catch (err) {
@@ -215,11 +236,12 @@ function convertMarkdown(markdown) {
       langPrefix: 'language-',
       highlight(code, lang) {
         console.log(`Highlight ${lang}: ${code}`);
-        if (Prism.languages[lang]) {
+        const prismLang = resolvePrismLang(lang);
+        if (prismLang) {
           //res = '<script type="text/plain" class="language-markup">'
 
-          console.log(`Prism converting as ${lang}: ${code}`)
-          const res = Prism.highlight(code, Prism.languages[lang], lang);
+          console.log(`Prism converting as ${prismLang}: ${code}`)
+          const res = Prism.highlight(code, Prism.languages[prismLang], prismLang);
           return res
         } else {
           console.log(`Warning: lang ${lang} is unknown to Prism`)
