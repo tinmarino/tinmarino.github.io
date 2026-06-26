@@ -68,8 +68,6 @@ Problem: Claude uses CLAUDE.md, the convension is AGENTS.md.
 Solution: Keep one master and one dependant with symlink or update script.
 
 
-
-
 # Log my IP
 
 Log my public IP every minute with Cron. Yes preofesionals use Cron.
