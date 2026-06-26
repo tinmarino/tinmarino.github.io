@@ -696,7 +696,10 @@ async function setPageBody(html) {
     }
 
     #toc_opener {
-      position: absolute;
+      /* fixed (not absolute) so the opener stays glued to the viewport
+         corner even when the page is zoomed in or the text pane is
+         scrolled — otherwise it can drift out of sight. */
+      position: fixed;
       color: white;
       top: 0;
       right: 0;
@@ -717,6 +720,49 @@ async function setPageBody(html) {
       margin: auto;
     }
 
+    /* Per-block collapse toggle, sits just left of the copy button */
+    .code-collapse-button {
+      position: absolute;
+      top: 0.4rem;
+      right: 2.4rem;
+      z-index: 1;
+      border: 0;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font: inherit;
+      opacity: 0.8;
+      line-height: 1;
+      background: transparent;
+      color: inherit;
+    }
+    .code-collapse-button:hover { opacity: 1; }
+    pre.code-collapsed { padding-bottom: 0.4rem; }
+    pre.code-collapsed > code { display: none; }
+
+    /* Global expand/collapse-all dropdown, pinned just below the TOC
+       opener and shown only while the TOC pane is open. */
+    #code_toggle_all {
+      position: fixed;
+      top: var(--block);
+      right: 0;
+      width: var(--block);
+      box-sizing: border-box;
+      z-index: 5;
+      display: none;
+      border: 0;
+      background: rgba(0,0,0,0.35);
+      color: white;
+      cursor: pointer;
+      font-family: var(--font-family-headings);
+      font-size: 0.85rem;
+      padding: 0.35rem 0.4rem;
+      opacity: 0.85;
+      text-align: center;
+    }
+    #code_toggle_all:hover { opacity: 1; }
+    input[type=checkbox]:not(:checked) ~ #code_toggle_all { display: block; }
+
     /* Wrap code line
      * With white-space: pre-wrap;
      * in css/prism_dark_twilight.css
@@ -724,6 +770,45 @@ async function setPageBody(html) {
      * https://github.com/PrismJS/prism/issues/1247
      */
   `);
+
+  // Global "collapse / expand all code" dropdown. Lives right under the
+  // TOC opener and (via CSS) only shows while the TOC pane is open.
+  const code_toggle_all = document.createElement("button");
+  code_toggle_all.type = "button";
+  code_toggle_all.id = "code_toggle_all";
+  code_toggle_all.textContent = "▾ code";
+  code_toggle_all.title = "Collapse / expand all code blocks";
+  let all_collapsed = false;
+  code_toggle_all.addEventListener("click", () => {
+    all_collapsed = !all_collapsed;
+    div_text.querySelectorAll("pre").forEach((pre) => {
+      pre.classList.toggle("code-collapsed", all_collapsed);
+      const btn = pre.querySelector(".code-collapse-button");
+      if (btn) {
+        btn.textContent = all_collapsed ? "▸" : "▾";
+      }
+    });
+    code_toggle_all.textContent = all_collapsed ? "▸ code" : "▾ code";
+  });
+  div_main.appendChild(code_toggle_all);
+
+  // On copy of a multi-block selection, rewrite the clipboard as Markdown:
+  // wrap each <pre><code> in a fenced block tagged with its language so a
+  // "select all → copy" yields paste-ready Markdown (```js … ```).
+  document.addEventListener("copy", (event) => {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
+      return;
+    }
+    const fragment = selection.getRangeAt(0).cloneContents();
+    // Only take over the copy when the selection actually spans code.
+    if (!fragment.querySelector("pre")) {
+      return;
+    }
+    const md = fragmentToMarkdown(fragment).replace(/\n{3,}/g, "\n\n").trim();
+    event.clipboardData.setData("text/plain", md + "\n");
+    event.preventDefault();
+  });
 
   //var destination = Prism.highlight(destination, Prism.languages["bash"], "bash");
   document.body.innerHTML = "";
@@ -801,6 +886,20 @@ function addCopyButtons(root) {
       return;
     }
 
+    // Collapse / expand toggle for this single block.
+    const collapse = document.createElement('button');
+    collapse.type = 'button';
+    collapse.className = 'code-collapse-button';
+    collapse.textContent = '▾';
+    collapse.setAttribute('aria-label', 'Collapse code');
+    collapse.title = 'Collapse / expand code';
+    collapse.addEventListener('click', () => {
+      const collapsed = pre.classList.toggle('code-collapsed');
+      collapse.textContent = collapsed ? '▸' : '▾';
+      collapse.setAttribute('aria-label', collapsed ? 'Expand code' : 'Collapse code');
+    });
+    pre.appendChild(collapse);
+
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'code-copy-button';
@@ -833,6 +932,50 @@ function addCopyButtons(root) {
 
     pre.appendChild(button);
   });
+}
+
+
+// Serialize a cloned selection fragment to Markdown. Code blocks become
+// fenced ```lang … ``` blocks; headings get '#' prefixes; everything else
+// falls back to its text content. Injected copy/collapse buttons are skipped.
+function fragmentToMarkdown(node) {
+  let out = '';
+  node.childNodes.forEach((child) => {
+    if (child.nodeType === Node.TEXT_NODE) {
+      out += child.textContent;
+      return;
+    }
+    if (child.nodeType !== Node.ELEMENT_NODE) {
+      return;
+    }
+    const cls = child.classList;
+    if (cls && (cls.contains('code-copy-button') || cls.contains('code-collapse-button'))) {
+      return;
+    }
+    if (child.tagName === 'PRE') {
+      const code = child.querySelector('code') || child;
+      const match = (code.className || '').match(/language-([\w-]+)/);
+      let lang = match ? match[1] : '';
+      if (lang === 'embed') { lang = ''; }
+      const text = (code.textContent || '').replace(/\n+$/, '');
+      out += '\n```' + lang + '\n' + text + '\n```\n';
+      return;
+    }
+    if (/^H[1-6]$/.test(child.tagName)) {
+      out += '\n' + '#'.repeat(Number(child.tagName[1])) + ' ' + child.textContent.trim() + '\n';
+      return;
+    }
+    if (child.tagName === 'LI') {
+      out += '- ' + child.textContent.trim() + '\n';
+      return;
+    }
+    if (['P', 'DIV', 'SECTION', 'BLOCKQUOTE', 'UL', 'OL'].includes(child.tagName)) {
+      out += fragmentToMarkdown(child) + '\n';
+      return;
+    }
+    out += fragmentToMarkdown(child);
+  });
+  return out;
 }
 
 
