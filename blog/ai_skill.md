@@ -21,6 +21,26 @@ This page collects the **skills** and **helper scripts** I built to monitor and 
 
 # Prompt tips
 
+## Prompt Snippet
+
+These are the prompts I actually reuse the most. Each one ends with a *so that* on purpose: tell the model the goal, not only the order.
+
+1. Add this rule to AGENTS.md ... (so that I don't have to repeat it to my other LLM instances)
+2. Add this rule to the async http skill ... (accept a `--file` argument to read inputs one per line)
+3. When you are done, prove it works ... (run it, and if it needs root or network spin a throwaway Docker, then show me the output)
+4. Create regression test ...
+5. Read all my prompts from ` ~/.local/share/opencode/opencode.db` ...
+
+## Enter the loop
+
+1. [/work](https://www.tinmarino.com/markdown_viewer.html?page=/blog/opencode_automation.md)
+    1. Search and explore the codebase first ... (tell me where things live, then change anything)
+    2. Write everything to files and read your tasks from input files ... (read `doc/ai-todo.md`, write results to `doc/ref/feedback-<topic>.md` so that I can queue work and walk away instead of babysitting the TUI — see the `work` command below).
+    3. Make the minimal edit ... (if it goes wrong, `git checkout` the file and retry smaller)
+    4. Commit each step with a message prefixed by your name ... (e.g. `Claude:` or `opencode:`, and never `git push`* so that the history is clean and I keep control of the remote).
+    5. Before publishing, scrub any client name, secret or personal data and keep only my public handle ... (so that I can open-source my config without a leak).
+
+
 ## Master
 
 ```bash
@@ -46,6 +66,9 @@ ln -s ~/.config/opencode/skills ~/.claude/skills
 
 Problem: Claude uses CLAUDE.md, the convension is AGENTS.md.  
 Solution: Keep one master and one dependant with symlink or update script.
+
+
+
 
 # Log my IP
 
@@ -91,8 +114,44 @@ PROMPT_COMMAND+='fc -ln -1 | trim_space >> ~/.bash_history_save;'
 
 Log every command run by LLM to avoid surprises.
 
+
+### Opencode
+
 ```embed
 https://raw.githubusercontent.com/tinmarino/vimfiles/refs/heads/master/dotfile/opencode/plugins/command-logger.ts
+```
+
+### Claude
+
+File: ~/.claude/hooks/log-bash-command.sh
+
+```bash
+mkdir -p ~/Log
+cmd=$(jq -r '.tool_input.command // empty')
+[ -n "$cmd" ] && printf '###### Command %s\n%s\n\n' \
+  "$(date +%Y-%m-%dT%H:%M:%S)" "$cmd" >> ~/Log/claude-command-"$(date +%F).log"
+exit 0
+```
+
+
+File:  ~/.claude/settings.json
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/log-bash-command.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
 ```
 
 
