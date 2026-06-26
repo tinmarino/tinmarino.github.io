@@ -171,6 +171,7 @@ blockquote p {
     text-align: center; /* Center the text */
     /* margin: 20px auto; /* Center the box horizontally */
     max-width: 800px; /* Maximum width of the box */
+    margin-bottom: 20px;  /* Add some air below */
 }
 
 /* Title Text */
