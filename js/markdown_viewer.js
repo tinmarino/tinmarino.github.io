@@ -723,40 +723,51 @@ async function setPageBody(html) {
     /* Per-block collapse toggle, sits just left of the copy button */
     .code-collapse-button {
       position: absolute;
-      top: 0.4rem;
-      right: 2.4rem;
+      top: 0.1rem;
+      right: 2.6rem;
       z-index: 1;
       border: 0;
       padding: 0.15rem 0.4rem;
       border-radius: 0.25rem;
       cursor: pointer;
-      font: inherit;
+      font-size: 1.5em;
       opacity: 0.8;
-      line-height: 1;
+      line-height: 1.1;
       background: transparent;
       color: inherit;
     }
     .code-collapse-button:hover { opacity: 1; }
-    pre.code-collapsed { padding-bottom: 0.4rem; }
+    /* Collapsed: hide the code, leave just a thin grey rule + the buttons. */
+    pre.code-collapsed {
+      background: transparent !important;
+      padding: 0;
+      height: 1.8rem;
+      min-height: 0;
+      overflow: hidden;
+      border-top: 1px solid #666;
+      box-shadow: none;
+    }
     pre.code-collapsed > code { display: none; }
+    pre.code-collapsed .code-copy-button,
+    pre.code-collapsed .code-collapse-button { top: 0.2rem; }
 
-    /* Global expand/collapse-all dropdown, pinned just below the TOC
-       opener and shown only while the TOC pane is open. */
+    /* Global expand/collapse-all dropdown: a bare emoji the size of the
+       TOC opener, pinned just below it, shown only while the TOC is open. */
     #code_toggle_all {
       position: fixed;
-      top: var(--block);
+      top: 5rem;
       right: 0;
       width: var(--block);
       box-sizing: border-box;
       z-index: 5;
       display: none;
       border: 0;
-      background: rgba(0,0,0,0.35);
+      background: transparent;
       color: white;
       cursor: pointer;
-      font-family: var(--font-family-headings);
-      font-size: 0.85rem;
-      padding: 0.35rem 0.4rem;
+      font-size: 30px;
+      line-height: 1;
+      padding: 0;
       opacity: 0.85;
       text-align: center;
     }
@@ -776,7 +787,7 @@ async function setPageBody(html) {
   const code_toggle_all = document.createElement("button");
   code_toggle_all.type = "button";
   code_toggle_all.id = "code_toggle_all";
-  code_toggle_all.textContent = "▾ code";
+  code_toggle_all.textContent = "▲";
   code_toggle_all.title = "Collapse / expand all code blocks";
   let all_collapsed = false;
   code_toggle_all.addEventListener("click", () => {
@@ -785,10 +796,10 @@ async function setPageBody(html) {
       pre.classList.toggle("code-collapsed", all_collapsed);
       const btn = pre.querySelector(".code-collapse-button");
       if (btn) {
-        btn.textContent = all_collapsed ? "▸" : "▾";
+        btn.textContent = all_collapsed ? "▼" : "▲";
       }
     });
-    code_toggle_all.textContent = all_collapsed ? "▸ code" : "▾ code";
+    code_toggle_all.textContent = all_collapsed ? "▼" : "▲";
   });
   div_main.appendChild(code_toggle_all);
 
@@ -890,12 +901,12 @@ function addCopyButtons(root) {
     const collapse = document.createElement('button');
     collapse.type = 'button';
     collapse.className = 'code-collapse-button';
-    collapse.textContent = '▾';
+    collapse.textContent = '▲';
     collapse.setAttribute('aria-label', 'Collapse code');
     collapse.title = 'Collapse / expand code';
     collapse.addEventListener('click', () => {
       const collapsed = pre.classList.toggle('code-collapsed');
-      collapse.textContent = collapsed ? '▸' : '▾';
+      collapse.textContent = collapsed ? '▼' : '▲';
       collapse.setAttribute('aria-label', collapsed ? 'Expand code' : 'Collapse code');
     });
     pre.appendChild(collapse);
@@ -949,7 +960,7 @@ function fragmentToMarkdown(node) {
       return;
     }
     const cls = child.classList;
-    if (cls && (cls.contains('code-copy-button') || cls.contains('code-collapse-button'))) {
+    if (cls && (cls.contains('code-copy-button') || cls.contains('code-collapse-button') || cls.contains('github-embed-source'))) {
       return;
     }
     if (child.tagName === 'PRE') {
