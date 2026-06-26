@@ -7,12 +7,7 @@ author: Tinmarino
 date: 25 june 2026
 ---
 
-> **TEMPLATE — work in progress.** Sections are stubbed out; I will fill them in.
-
-This page collects the **skills** and **helper scripts** I built on top of my [OpenCode automation workflow]({% post_url opencode_automation %}). Where the previous post explained *how* I talk to the agent, this one shows *what* I taught it to do.
-
-<!-- TODO: intro paragraph -->
-
+This page collects the **skills** and **helper scripts** I built to monitor and code faster with [Opencode](https://opencode.ai/).
 
 ## Contents
 
@@ -24,148 +19,102 @@ This page collects the **skills** and **helper scripts** I built on top of my [O
 - [5. An async IP-rotating HTTP skill](#5-an-async-ip-rotating-http-skill)
 
 
-# 0. Prompt tips
+# Prompt tips
 
-<!-- TODO: fill in. Generic prompt tips that apply to every skill below. -->
-
-
-# 1. Log my IP
-
-<!-- TODO: explain why (audit trail, knowing which IP hit a target during an engagement). -->
-
-A small installer drops a `cron.d` entry that records the public + local IP every minute into `~/Log`.
-
-> **Note to self:** this script is too long and not split per step. I want to reformat it, maybe move it to `.vim/script`.
+## Master
 
 ```bash
-#!/usr/bin/env bash
-#
-# install-ip-logger.sh -- Install the per-minute IP logger cron job.
-#
-# Run this AS ROOT. It installs a /etc/cron.d entry that runs
-# iplogger.sh once a minute as the target (unprivileged) user, so the
-# log lands in that user's ~/Log directory.
-#
-# Usage:
-#     sudo ./install-ip-logger.sh [target-user]
-#
-# If no target-user is given, the user who invoked sudo ($SUDO_USER) is
-# used, falling back to the directory owner of this script.
-#
-# To remove the job later:
-#     sudo rm /etc/cron.d/iplogger
-
-set -euo pipefail
-
-# --- Must be root -------------------------------------------------------------
-
-if [[ "${EUID}" -ne 0 ]]; then
-    echo "Error: this installer must be run as root (try: sudo $0)" >&2
-    exit 1
-fi
-
-# --- Resolve paths and target user --------------------------------------------
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOGGER_SCRIPT="${SCRIPT_DIR}/iplogger.sh"
-
-if [[ ! -f "${LOGGER_SCRIPT}" ]]; then
-    echo "Error: cannot find iplogger.sh next to this installer (${LOGGER_SCRIPT})" >&2
-    exit 1
-fi
-
-# Target user: argument, else the sudo invoker, else owner of the script.
-if [[ -n "${1:-}" ]]; then
-    target_user="${1}"
-elif [[ -n "${SUDO_USER:-}" ]]; then
-    target_user="${SUDO_USER}"
-else
-    target_user="$(stat -c '%U' "${LOGGER_SCRIPT}")"
-fi
-
-if ! id "${target_user}" >/dev/null 2>&1; then
-    echo "Error: target user '${target_user}' does not exist" >&2
-    exit 1
-fi
-
-if [[ "${target_user}" == "root" ]]; then
-    echo "Warning: target user is root; logs will go to /root/Log" >&2
-fi
-
-# --- Make sure the logger is executable ---------------------------------------
-
-chmod 0755 "${LOGGER_SCRIPT}"
-
-# --- Write the cron.d entry ---------------------------------------------------
-
-CRON_FILE="/etc/cron.d/iplogger"
-
-cat > "${CRON_FILE}" <<EOF
-# Installed by install-ip-logger.sh on $(date '+%Y-%m-%d %H:%M:%S %z')
-# Logs public + local IP every minute as user ${target_user} into ~${target_user}/Log
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-* * * * * ${target_user} ${LOGGER_SCRIPT}
-EOF
-
-# cron.d files must be root-owned and not group/world writable.
-chown root:root "${CRON_FILE}"
-chmod 0644 "${CRON_FILE}"
-
-echo "Installed cron job at ${CRON_FILE}"
-echo "  -> runs ${LOGGER_SCRIPT} every minute as user '${target_user}'"
-echo "  -> log file: $(eval echo "~${target_user}")/Log/iplogger.log"
-echo
-echo "Remove later with: sudo rm ${CRON_FILE}"
+alias master="cd ~/Software/Python/AI/OpenCodeMaster/"
 ```
 
+Problem: Work with LLM across directory and projects.  
+Solution: Create a master LLM project.
 
-# 2. Log my shell commands
 
-<!-- TODO: explain the goal — a persistent, timestamped history of every command I type. -->
+## (Open|Claude)Code
 
-The relevant `history` and prompt configuration lives in my `~/.bashrc`:
 
 ```bash
-# TODO: paste the history + PROMPT_COMMAND snippet from ~/.bashrc here
+# Fast
+ln -s AGENTS.md CLAUDE.md
+
+# Global
+ln -s ~/.config/opencode/AGENTS.md ~/.claude/CLAUDE.md
+ln -s ~/.config/opencode/commands ~/.claude/commands
+ln -s ~/.config/opencode/skills ~/.claude/skills
+```
+
+Problem: Claude uses CLAUDE.md, the convension is AGENTS.md.  
+Solution: Keep one master and one dependant with symlink or update script.
+
+# Log my IP
+
+Log my public IP every minute with Cron. Yes preofesionals use Cron.
+
+```embed
+https://raw.githubusercontent.com/tinmarino/vimfiles/refs/heads/master/scripts/pentest/install-ip-logger.sh
 ```
 
 
-# 3. Log the LLM shell commands
+# Log my shell commands
 
-<!-- TODO: explain — capture every command the agent runs, not just the ones I type. -->
+Append `history` imediatly and not at gracefull close of shell. Moreover, append by hand to another backup file.
 
-This is an OpenCode plugin that lives in `.vim/opencode` and is published to my [vimfiles repo](https://github.com/Tinmarino/vimfiles).
+```bash
+# History
+# Append instead of overwrite
+export HISTSIZE=1000000
+export HISTFILESIZE=2000000
+export HISTTIMEFORMAT='%Y-%m-%dT%H:%M:%S '
+shopt -s histappend
 
-<!-- TODO: replace with the plugin source once it is committed to github/vimfiles -->
+# Helper Trim Spaces
+trim_space(){  # {{{2
+  ### Usage: echo "   example   string    " | trim_space
+  ### From: https://github.com/dylanaraps/pure-bash-bible
+  local s=${1:-$(</dev/stdin)}
+  s=${s#"${s%%[![:space:]]*}"}
+  s=${s%"${s##*[![:space:]]}"}
+  printf '%s\n' "$s"
+}
+export -f trim_space
 
-```javascript
-// TODO: include from .vim/opencode (vimfiles repo)
+# PROMPT
+# Save history after each executed line
+[[ -n "$PROMPT_COMMAND" ]] && [[ "${PROMPT_COMMAND: -1}" != ";" ]] && PROMPT_COMMAND+=";" # Alma fix
+export PROMPT_COMMAND+='history -a;'
+PROMPT_COMMAND+='fc -ln -1 | trim_space >> ~/.bash_history_save;'
 ```
 
 
-# 4. A Python writer skill
+# Plugin: Log the LLM shell commands
 
-<!-- TODO: explain — a skill that writes Python in my personal style. -->
+Log every command run by LLM to avoid surprises.
 
-The skill definition is published to [vimfiles](https://github.com/Tinmarino/vimfiles).
-
-<!-- TODO: replace with the SKILL.md content -->
-
-```markdown
-<!-- TODO: include python-writer SKILL.md -->
+```embed
+https://raw.githubusercontent.com/tinmarino/vimfiles/refs/heads/master/dotfile/opencode/plugins/command-logger.ts
 ```
 
 
-# 5. An async IP-rotating HTTP skill
+# Skill: Write Python code
 
-<!-- TODO: explain — a skill that writes mass-enumeration scripts with a bounded worker pool and AWS API Gateway IP rotation. -->
+Write Python code like self.
 
-The skill definition is published to [vimfiles](https://github.com/Tinmarino/vimfiles).
+```embed
+https://github.com/tinmarino/vimfiles/blob/master/dotfile/opencode/skills/python-writer/SKILL.md
+```
 
-<!-- TODO: replace with the SKILL.md content -->
 
-```markdown
-<!-- TODO: include http-async-rotate SKILL.md -->
+# Skill: HTTP parallel canon
+
+```embed
+https://github.com/tinmarino/vimfiles/blob/master/dotfile/opencode/skills/python-writer/SKILL.md
+```
+
+```embed
+https://github.com/tinmarino/vimfiles/blob/master/dotfile/opencode/skills/http-async-rotate/reference.py
+```
+
+```embed
+https://github.com/tinmarino/vimfiles/blob/master/dotfile/opencode/skills/http-async-rotate/rut.py
 ```
