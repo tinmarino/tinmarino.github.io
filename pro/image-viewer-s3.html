@@ -92,6 +92,38 @@
     font-size: 0.8rem;
     min-height: 1rem;
   }
+
+  /* Progress bar: framed in the foreground colour, filled gruvbox yellow.
+     Hidden until a colour measuring pass is actually running. */
+  #sort_progress {
+    display: none;
+    position: relative;
+    height: 0.9rem;
+    margin-bottom: 0.3rem;
+    border: 1px solid #fbf1c7;
+    border-radius: 0.15rem;
+    background: #1d2021;
+    overflow: hidden;
+  }
+  #sort_progress.is-running { display: block; }
+  #sort_progress_fill {
+    height: 100%;
+    width: 0;
+    background: #fabd2f;
+    transition: width 120ms linear;
+  }
+  #sort_progress_text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 0.7rem;
+    line-height: 0.9rem;
+    text-align: center;
+    color: #fbf1c7;
+    mix-blend-mode: difference;
+  }
 </style>
 
 </head>
@@ -120,6 +152,10 @@
     <label><input type="radio" name="sort_dir" value="asc"> Ascending</label>
   </fieldset>
 
+  <div id="sort_progress">
+    <div id="sort_progress_fill"></div>
+    <div id="sort_progress_text"></div>
+  </div>
   <div id="sort_status"></div>
 </div>
 
@@ -152,6 +188,7 @@ var photos = [];
 var currentPhotoIndex = 0; // Index of the currently displayed photo
 var sortKey = "date"; // Newest first by default
 var sortDir = "desc";
+var isMeasuring = false; // True while the colour pass runs
 
 // A utility function to create HTML.
 function getHtml(template) {
@@ -363,8 +400,17 @@ function ensureColors() {
   }
 
   var status = document.getElementById("sort_status");
+  var bar = document.getElementById("sort_progress");
+  var fill = document.getElementById("sort_progress_fill");
+  var text = document.getElementById("sort_progress_text");
   var done = 0;
   var next = 0;
+
+  function paint() {
+    var ratio = done / pending.length;
+    fill.style.width = (100 * ratio).toFixed(1) + "%";
+    text.textContent = done + " / " + pending.length;
+  }
 
   function pump() {
     if (next >= pending.length) {
@@ -373,18 +419,24 @@ function ensureColors() {
     var photo = pending[next++];
     return measureColor(photo).then(function () {
       done += 1;
-      status.textContent = "Reading colours " + done + " / " + pending.length;
+      paint();
       return pump();
     });
   }
 
-  status.textContent = "Reading colours 0 / " + pending.length;
+  status.textContent = "Reading colours…";
+  isMeasuring = true;
+  bar.classList.add("is-running");
+  paint();
+
   var pool = [];
   for (var i = 0; i < 8; i++) {
     pool.push(pump());
   }
   return Promise.all(pool).then(function () {
     status.textContent = "";
+    isMeasuring = false;
+    bar.classList.remove("is-running");
   });
 }
 
@@ -398,8 +450,12 @@ sortOpener.addEventListener("click", function (event) {
   sortPanel.classList.toggle("is-open");
 });
 
-// Click outside closes the panel; clicks inside must not bubble up to that
+// Click outside closes the panel; clicks inside must not bubble up to that.
+// Keep it open while colours are being read, else the bar becomes invisible.
 document.addEventListener("click", function () {
+  if (isMeasuring) {
+    return;
+  }
   sortPanel.classList.remove("is-open");
 });
 sortPanel.addEventListener("click", function (event) {
