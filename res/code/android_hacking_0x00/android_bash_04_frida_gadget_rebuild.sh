@@ -45,6 +45,21 @@ PY
 mkdir -p "$WORK_DIR/lib/$ABI"
 cp "$GADGET_SO" "$WORK_DIR/lib/$ABI/lib${LOAD_NAME}.so"
 
+# Gadget config MUST be named after the library: lib<LOAD_NAME>.config.so.
+# on_load:wait blocks the process in JNI_OnLoad until Frida attaches, so hooks
+# install before the app (and any anti-tamper) runs. Without it the Gadget
+# defaults to resume and early calls are missed.
+cat > "$WORK_DIR/lib/$ABI/lib${LOAD_NAME}.config.so" <<'JSON'
+{
+  "interaction": {
+    "type": "listen",
+    "address": "127.0.0.1",
+    "port": 27042,
+    "on_load": "wait"
+  }
+}
+JSON
+
 # Patch the first zero-arg constructor in the chosen smali file. If the app has
 # a custom Application class, loading there may be even earlier than Activity.
 python3 - "$WORK_DIR/$MAIN_ACTIVITY_SMALI" "$LOAD_NAME" <<'PY'

@@ -77,6 +77,31 @@ mkdir -p lib/arm64-v8a/
 cp ~/Iso/Jar/libfg.so lib/arm64-v8a/
 ```
 
+#### Configure the Gadget (the file everyone forgets)
+
+`System.loadLibrary("fg")` alone gives you a Gadget in its *default* mode: it listens on `127.0.0.1:27042` but **resumes the app immediately** (`on_load: resume`). That means the app's `Application`/first `Activity` — and any anti-tamper or Flutter/native engine init — runs *before* you ever attach. Your hooks then miss the earliest calls, and RASP has already had its chance to fire. For a "full hook" you want the process to **block until Frida connects**.
+
+The Gadget reads a JSON config from a file sitting next to it, named `<gadget-lib>.config.so`. Since we renamed the library `libfg.so`, the config must be `libfg.config.so` (despite the `.so` suffix, its contents are plain JSON, not an ELF):
+
+```bash
+cat > lib/arm64-v8a/libfg.config.so <<'JSON'
+{
+  "interaction": {
+    "type": "listen",
+    "address": "127.0.0.1",
+    "port": 27042,
+    "on_load": "wait"
+  }
+}
+JSON
+```
+
+- `type: listen` — the Gadget opens a socket and waits for a Frida client (`frida -H 127.0.0.1:27042 -n Gadget`).
+- `on_load: wait` — the loading thread **blocks inside `JNI_OnLoad` until a session attaches and resumes it**. This is the key line: it lets you load your scripts (unpinning, connect-redirect, crypto sinks) before the app does anything observable. Without it, `on_load` defaults to `resume` and early traffic escapes.
+- Because it blocks, every launch of the patched app appears to "hang" on the splash until you attach — that is expected, not a crash.
+
+Filename mismatch is the classic failure: if the config is not named *exactly* after the library (`libfg.so` → `libfg.config.so`), the Gadget silently ignores it and falls back to the default mode, and you will spend an hour wondering why your hooks miss the first requests.
+
 #### Bring in native libs from the ABI split
 
 If the app was distributed as an App Bundle, all the original `.so` files live in `split_config.arm64_v8a.apk` (not in `base.apk`). If you skip this step and rebuild, the app will crash at launch with something like:
@@ -90,7 +115,7 @@ Extract every `.so` from the ABI split into the decoded `lib/arm64-v8a/` next to
 ```bash
 # From inside Source_v1.00/
 unzip -j -o ../splits/split_config.arm64_v8a.apk 'lib/arm64-v8a/*.so' -d lib/arm64-v8a/
-ls lib/arm64-v8a/   # should now include libreactnative.so, libhermes.so, ..., libfg.so
+ls lib/arm64-v8a/   # should now include libreactnative.so, libhermes.so, ..., libfg.so, libfg.config.so
 ```
 
 #### Patch manifest (if installed from Play Store as App Bundle)
