@@ -23,11 +23,74 @@
     background-color: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
+    z-index: 10;
   }
   #lightbox img {
     width: 90%;
     max-width: 90%;
     max-height: 90%;
+  }
+
+  /* Sort opener: bare emoji glued to the viewport corner, like the
+     markdown viewer's ToC opener. */
+  #sort_opener {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    z-index: 6;
+    border: 0;
+    background: transparent;
+    color: #fbf1c7;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.85;
+  }
+  #sort_opener:hover { opacity: 1; }
+
+  /* Sort panel: drops down just under the opener */
+  #sort_panel {
+    position: fixed;
+    top: 3rem;
+    right: 0;
+    z-index: 6;
+    display: none;
+    background: #282828;
+    border: 1px solid #504945;
+    border-radius: 0.3rem 0 0 0.3rem;
+    padding: 0.6rem 0.9rem;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.5);
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  #sort_panel.is-open { display: block; }
+  #sort_panel fieldset {
+    border: 0;
+    margin: 0 0 0.6rem 0;
+    padding: 0;
+  }
+  #sort_panel legend {
+    padding: 0;
+    margin-bottom: 0.25rem;
+    color: #fabd2f;
+    font-weight: bold;
+  }
+  #sort_panel label {
+    display: block;
+    cursor: pointer;
+    padding: 0.1rem 0;
+    white-space: nowrap;
+  }
+  #sort_panel label:hover { color: #fabd2f; }
+  #sort_status {
+    color: #928374;
+    font-size: 0.8rem;
+    min-height: 1rem;
   }
 </style>
 
@@ -36,6 +99,29 @@
 <body style='background-color: #1d2021; color: #fbf1c7' >
 
 <h1>AI Images by Tinmarino</h1>
+
+<button id="sort_opener" type="button" title="Sort images">&#8645;</button>
+
+<div id="sort_panel">
+  <fieldset id="sort_key_set">
+    <legend>Sort by</legend>
+    <label><input type="radio" name="sort_key" value="date" checked> Date</label>
+    <label><input type="radio" name="sort_key" value="name"> Name</label>
+    <label><input type="radio" name="sort_key" value="size"> Size (bytes)</label>
+    <label><input type="radio" name="sort_key" value="luma"> Brightness (dark &rarr; light)</label>
+    <label><input type="radio" name="sort_key" value="hue"> Color (rainbow hue)</label>
+    <label><input type="radio" name="sort_key" value="saturation"> Saturation (grey &rarr; vivid)</label>
+    <label><input type="radio" name="sort_key" value="rand"> Random</label>
+  </fieldset>
+
+  <fieldset id="sort_dir_set">
+    <legend>Order</legend>
+    <label><input type="radio" name="sort_dir" value="desc" checked> Descending (new / big / light first)</label>
+    <label><input type="radio" name="sort_dir" value="asc"> Ascending</label>
+  </fieldset>
+
+  <div id="sort_status"></div>
+</div>
 
 <div id="viewer" style='display: flex; flex-wrap: wrap; justify-content: center; align-items: center;'></div>
 
@@ -60,8 +146,12 @@ var s3 = new AWS.S3({
 });
 
 // Intenal globals
-var photos = []; // Array to hold photo URLs
+// photos: array of {key, url, name, date, size, rand, luma, hue, saturation}
+// The colour fields stay undefined until a colour sort asks for them.
+var photos = [];
 var currentPhotoIndex = 0; // Index of the currently displayed photo
+var sortKey = "date"; // Newest first by default
+var sortDir = "desc";
 
 // A utility function to create HTML.
 function getHtml(template) {
@@ -103,46 +193,90 @@ function listAlbums() {
 }
 
 // Show the photos that exist in an album.
+// S3 caps listObjects at 1000 keys per answer, so keep following the marker
+// until the listing is no longer truncated, else the tail is invisible.
 function viewAlbum(albumName) {
   // Craft path
   var albumPhotosKey = encodeURIComponent(albumName) + "/";
+  photos = [];
 
-  // For all images in my bucket
-  s3.listObjects({ Prefix: albumPhotosKey }, function (err, data) {
-    // Clause: do not work if fetch error
-    if (err) {
-      return alert("There was an error viewing your album: " + err.message);
+  function fetchPage(marker) {
+    var params = { Prefix: albumPhotosKey };
+    if (marker) {
+      params.Marker = marker;
     }
 
-    // 'this' references the AWS.Request instance that represents the response
-    var href = this.request.httpRequest.endpoint.href;
-    var bucketUrl = href + albumBucketName + "/";
-
-    photos = data.Contents.map(function (photo) {
-      var photoKey = photo.Key;
-      // Check if photoKey is set; if not, return null
-      console.log(photoKey);
-      if (photoKey.endsWith('/')) {
-        return null; // or return undefined;
+    s3.listObjects(params, function (err, data) {
+      // Clause: do not work if fetch error
+      if (err) {
+        return alert("There was an error viewing your album: " + err.message);
       }
-      return bucketUrl + encodeURIComponent(photoKey);
-    }).filter(function (url) {
-      // Filter out any null or undefined values
-      return url !== null; // or return url !== undefined;
-    });
 
-    displayPhotos();
+      // 'this' references the AWS.Request instance that represents the response
+      var href = this.request.httpRequest.endpoint.href;
+      var bucketUrl = href + albumBucketName + "/";
+
+      data.Contents.forEach(function (photo) {
+        var photoKey = photo.Key;
+        // Skip the folder placeholder keys
+        if (photoKey.endsWith("/")) {
+          return;
+        }
+        photos.push({
+          key: photoKey,
+          url: bucketUrl + encodeURIComponent(photoKey),
+          name: photoKey.slice(photoKey.lastIndexOf("/") + 1),
+          date: photo.LastModified ? new Date(photo.LastModified).getTime() : 0,
+          size: photo.Size || 0,
+          rand: Math.random(),
+        });
+      });
+
+      // Recurse while S3 says there is more
+      if (data.IsTruncated) {
+        var next = data.NextMarker
+          || (data.Contents.length && data.Contents[data.Contents.length - 1].Key);
+        if (next) {
+          return fetchPage(next);
+        }
+      }
+
+      applySort();
+    });
+  }
+
+  fetchPage(null);
+}
+
+// Sort `photos` in place following the current key + direction, then redraw.
+function applySort() {
+  var factor = sortDir === "asc" ? 1 : -1;
+
+  photos.sort(function (a, b) {
+    var va = a[sortKey];
+    var vb = b[sortKey];
+    if (sortKey === "name") {
+      return factor * va.localeCompare(vb, undefined, { numeric: true });
+    }
+    // Photos whose colour could not be read sink to the end
+    if (va === undefined || va === null) return 1;
+    if (vb === undefined || vb === null) return -1;
+    return factor * (va - vb);
   });
+
+  displayPhotos();
 }
 
 // Display photos in the viewer
 function displayPhotos() {
-  var photoElements = photos.map(function (photoUrl, index) {
+  var photoElements = photos.map(function (photo, index) {
     return getHtml([
       "<span>",
       "<div>",
       "<br/>",
-      '<img style="height:512px; cursor: pointer;" src="' + photoUrl + '" onclick="openLightbox(' + index + ')" />',
+      '<img style="height:512px; cursor: pointer;" src="' + photo.url + '"'
+        + ' title="' + photo.name + '"'
+        + ' onclick="openLightbox(' + index + ')" />',
       "</div>",
       "</span>",
     ]);
@@ -151,10 +285,153 @@ function displayPhotos() {
 }
 
 
+// -- Average colour ------------------------------------------------------
+// Draw each image tiny (16x16) on a canvas and average its pixels. The
+// bucket answers with Access-Control-Allow-Origin: *, so an anonymous
+// crossOrigin load keeps the canvas untainted and getImageData readable.
+function measureColor(photo) {
+  return new Promise(function (resolve) {
+    var img = new Image();
+    img.crossOrigin = "anonymous";
+
+    img.onload = function () {
+      var side = 16;
+      var canvas = document.createElement("canvas");
+      canvas.width = side;
+      canvas.height = side;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, side, side);
+
+      var data;
+      try {
+        data = ctx.getImageData(0, 0, side, side).data;
+      } catch (e) {
+        // Tainted canvas: leave the colour fields null so it sorts last
+        photo.luma = null;
+        return resolve();
+      }
+
+      var r = 0, g = 0, b = 0, n = 0;
+      for (var i = 0; i < data.length; i += 4) {
+        // Skip fully transparent pixels
+        if (data[i + 3] === 0) continue;
+        r += data[i];
+        g += data[i + 1];
+        b += data[i + 2];
+        n += 1;
+      }
+      if (!n) {
+        photo.luma = null;
+        return resolve();
+      }
+      r /= n; g /= n; b /= n;
+
+      photo.luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+      var max = Math.max(r, g, b);
+      var min = Math.min(r, g, b);
+      var delta = max - min;
+      photo.saturation = max === 0 ? 0 : delta / max;
+
+      var hue = 0;
+      if (delta !== 0) {
+        if (max === r) {
+          hue = 60 * (((g - b) / delta) % 6);
+        } else if (max === g) {
+          hue = 60 * ((b - r) / delta + 2);
+        } else {
+          hue = 60 * ((r - g) / delta + 4);
+        }
+      }
+      photo.hue = (hue + 360) % 360;
+      resolve();
+    };
+
+    img.onerror = function () {
+      photo.luma = null;
+      resolve();
+    };
+    img.src = photo.url;
+  });
+}
+
+// Measure every not-yet-measured photo, 8 at a time, reporting progress.
+function ensureColors() {
+  var pending = photos.filter(function (p) { return p.luma === undefined; });
+  if (!pending.length) {
+    return Promise.resolve();
+  }
+
+  var status = document.getElementById("sort_status");
+  var done = 0;
+  var next = 0;
+
+  function pump() {
+    if (next >= pending.length) {
+      return Promise.resolve();
+    }
+    var photo = pending[next++];
+    return measureColor(photo).then(function () {
+      done += 1;
+      status.textContent = "Reading colours " + done + " / " + pending.length;
+      return pump();
+    });
+  }
+
+  status.textContent = "Reading colours 0 / " + pending.length;
+  var pool = [];
+  for (var i = 0; i < 8; i++) {
+    pool.push(pump());
+  }
+  return Promise.all(pool).then(function () {
+    status.textContent = "";
+  });
+}
+
+
+// -- Sort UI -------------------------------------------------------------
+var sortOpener = document.getElementById("sort_opener");
+var sortPanel = document.getElementById("sort_panel");
+
+sortOpener.addEventListener("click", function (event) {
+  event.stopPropagation();
+  sortPanel.classList.toggle("is-open");
+});
+
+// Click outside closes the panel; clicks inside must not bubble up to that
+document.addEventListener("click", function () {
+  sortPanel.classList.remove("is-open");
+});
+sortPanel.addEventListener("click", function (event) {
+  event.stopPropagation();
+});
+
+function onSortChange() {
+  sortKey = sortPanel.querySelector('input[name="sort_key"]:checked').value;
+  sortDir = sortPanel.querySelector('input[name="sort_dir"]:checked').value;
+
+  // Reshuffle on every random pick, else re-picking it is a no-op
+  if (sortKey === "rand") {
+    photos.forEach(function (p) { p.rand = Math.random(); });
+    return applySort();
+  }
+
+  if (["luma", "hue", "saturation"].indexOf(sortKey) !== -1) {
+    return ensureColors().then(applySort);
+  }
+
+  applySort();
+}
+
+sortPanel.querySelectorAll('input[type="radio"]').forEach(function (input) {
+  input.addEventListener("change", onSortChange);
+});
+
+
 // Open lightbox with the selected image
 function openLightbox(index) {
   currentPhotoIndex = index;
-  document.getElementById("lightboxImage").src = photos[index];
+  document.getElementById("lightboxImage").src = photos[index].url;
   document.getElementById("lightbox").style.display = "flex";
   document.addEventListener("keydown", handleKeyPress);
 }
@@ -169,16 +446,16 @@ function closeLightbox() {
 function handleKeyPress(event) {
   if (event.ctrlKey && event.key === "ArrowLeft") {
     currentPhotoIndex = (currentPhotoIndex - 10 + photos.length) % photos.length;
-    document.getElementById("lightboxImage").src = photos[currentPhotoIndex];
+    document.getElementById("lightboxImage").src = photos[currentPhotoIndex].url;
   } else if (event.ctrlKey && event.key === "ArrowRight") {
     currentPhotoIndex = (currentPhotoIndex + 10 + photos.length) % photos.length;
-    document.getElementById("lightboxImage").src = photos[currentPhotoIndex];
+    document.getElementById("lightboxImage").src = photos[currentPhotoIndex].url;
   } else if (event.key === "ArrowRight") {
     currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-    document.getElementById("lightboxImage").src = photos[currentPhotoIndex];
+    document.getElementById("lightboxImage").src = photos[currentPhotoIndex].url;
   } else if (event.key === "ArrowLeft") {
-    currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-    document.getElementById("lightboxImage").src = photos[currentPhotoIndex];
+    currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+    document.getElementById("lightboxImage").src = photos[currentPhotoIndex].url;
   } else if (event.key === "Enter") {
     closeLightbox();
   } else if (event.key === "Escape") { // Check for the Esc key
