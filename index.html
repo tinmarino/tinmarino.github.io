@@ -422,11 +422,11 @@
 
 
   <!-- Web.0 Python -->
-  <button href="https://tinmarino.github.io/app/pythonbr/ython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <button href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
     id="python_js"
     hreflang="en"
     onclick="
-      document.getElementById('main_iframe').src = 'https://tinmarino.github.io/app/pythonbr/ython/console.html';
+      document.getElementById('main_iframe').src = 'https://tinmarino.github.io/app/python/brython/console.html';
       hideHome(this);
     "
   >
@@ -444,7 +444,7 @@
     Python.js: python on browser<br/>
 
     &nbsp&nbsp&nbsp Js:
-    <a href="https://tinmarino.github.io/app/pythonbr/ython/console.html" target="main_iframe"
+    <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe"
       id="brython"
       tabindex="-1"
       onclick="hideHome(this);"
@@ -844,7 +844,66 @@
 <!-- -------------------------------------------------------------------------------- -->
 <!-- 3. Cyber {{{1 -->
 <nav id="id_cyber" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
-<!-- Cyber 16: Lógica decimal en un mundo binario {{{2
+<!-- Cyber 17: Git para operaciones {{{2
+    -- Presented Aug 2026 to SEK, in two classes
+    -- Class 1: iniciar, capitalizar, historiar, recuperar
+    -- Class 2: mutualizar, ramificar, entregar, reparar
+    -- Script: gg, the teacher companion (cards + commit candy)
+  -->
+  <button href="./pdf/2026-git-para-operaciones-01_slide_sek.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="git-para-operaciones"
+    hreflang="es"
+    onclick="
+      document.getElementById('main_iframe').src = './pdf/2026-git-para-operaciones-01_slide_sek.pdf';
+      hideHome(this);
+    "
+  >
+    <!-- Image -->
+    <img src="./img/git_para_operaciones_xx.svg"
+      data-src="./img/git_para_operaciones_xx.svg"
+      alt="Git para operaciones" class="delayed w3-xxlarge">
+    <p>Git para<br/>operaciones</p>
+
+    <!-- Post Description -->
+    <div class="post description"
+      style="left: var(--sidebar-width);"
+      tabindex="-1"
+    >
+      PDF presentation in Spanish<br/><br/>
+      Git para operaciones<br/><br/>
+      Del `git init` al `git revert`.<br/><br/>
+
+      &nbsp;&nbsp;&nbsp; 01:
+      <a href="./pdf/2026_git_para_operaciones_01.pdf" target="main_iframe"
+        id="git-para-operaciones-01"
+        tabindex="-1"
+        onclick="event.stopPropagation(); hideHome(this);"
+      >
+        Clase 1 (iniciar, capitalizar)<br/>
+      </a>
+
+      &nbsp;&nbsp;&nbsp; 02:
+      <a href="./pdf/2026_git_para_operaciones_02.pdf" target="main_iframe"
+        id="git-para-operaciones-02"
+        tabindex="-1"
+        onclick="event.stopPropagation(); hideHome(this);"
+      >
+        Clase 2 (mutualizar, entregar)<br/>
+      </a>
+
+      &nbsp;&nbsp;&nbsp; 03:
+      <a href="/markdown_viewer.html?page=/res/code/git_para_operaciones/README.md" target="main_iframe"
+        id="git-para-operaciones-script"
+        tabindex="-1"
+        onclick="event.stopPropagation(); hideHome(this);"
+      >
+        Script gg (fichas + demo)<br/>
+      </a>
+    </div>
+  </button>
+
+
+  <!-- Cyber 16: Lógica decimal en un mundo binario {{{2
     -- Presented 17 Oct 2025 to BSides, DUOC Concepcion
     -- Presented 2025 to ABIF
     -- Presented 2026 to SEK
