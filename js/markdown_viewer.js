@@ -170,6 +170,50 @@ function renderAsciinemaPlayers(root) {
 }
 
 
+// Every file pulled in by a ```embed block, so the download button and the
+// Ctrl-S shortcut can hand it back verbatim.
+const embedded_file_list = [];
+
+
+// Trigger a browser download of `code` under `name`.
+function downloadEmbeddedFile(name, code) {
+  const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = name;
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+
+// The embed the reader is looking at: the one closest to the top of the
+// viewport, so Ctrl-S saves what is on screen when a page holds several.
+function currentEmbeddedFile() {
+  if (embedded_file_list.length <= 1) { return embedded_file_list[0]; }
+  let best = embedded_file_list[0];
+  let best_distance = Infinity;
+  for (const entry of embedded_file_list) {
+    const top = entry.element.getBoundingClientRect().top;
+    const distance = top >= 0 ? top : Math.abs(top) * 1.5;
+    if (distance < best_distance) { best_distance = distance; best = entry; }
+  }
+  return best;
+}
+
+
+// Ctrl-S saves the script itself, not the rendered HTML page.
+window.addEventListener('keydown', (event) => {
+  if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 's') { return; }
+  const entry = currentEmbeddedFile();
+  if (!entry) { return; }
+  event.preventDefault();
+  downloadEmbeddedFile(entry.name, entry.code);
+});
+
+
 // Walk `root` for `<pre><code class="language-embed">` blocks whose
 // content is a GitHub URL, fetch the file (honouring #Lstart-Lend),
 // replace the block with the actual code, and syntax-highlight it.
@@ -199,6 +243,14 @@ async function expandGithubEmbeds(root) {
       (range ? ' L' + range[0] + '-L' + range[1] : '');
     block.parentElement.insertAdjacentElement('beforebegin', source_link);
 
+    // Download button, on the right of the same line
+    const download_button = document.createElement('button');
+    download_button.type = 'button';
+    download_button.className = 'embed-download-button';
+    download_button.textContent = '\u2913 Download script';
+    download_button.title = 'Download ' + base_name + '  (Ctrl-S)';
+    source_link.appendChild(download_button);
+
     // Fire the fetch; swap placeholder text for real content on arrival.
     block.textContent = 'Loading ' + url + ' ...';
     try {
@@ -218,8 +270,18 @@ async function expandGithubEmbeds(root) {
       if (prismLang) {
         Prism.highlightElement(block);
       }
+
+      // Remember the raw text: that is what the button and Ctrl-S hand back
+      const entry = { name: base_name, code: code, element: block.parentElement };
+      embedded_file_list.push(entry);
+      download_button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        downloadEmbeddedFile(entry.name, entry.code);
+      });
     } catch (err) {
       block.textContent = 'Error embedding ' + url + ': ' + err.message;
+      download_button.remove();
     }
   }
 }
@@ -522,12 +584,30 @@ async function setPageBody(html) {
       display: block;
       width: min(100%, 1000px);
       margin: 0.8rem 0 -0.3rem 0;
-      padding: 0.15rem 0.5rem;
+      padding: 0.25rem 0.5rem;
+      overflow: hidden;
       font-size: 0.85em;
       font-family: monospace;
       color: #888;
       text-decoration: none;
       border-left: 3px solid #555;
+    }
+    .embed-download-button {
+      float: right;
+      margin: 0 0 0 0.5rem;
+      border: 1px solid #555;
+      border-radius: 0.25rem;
+      padding: 0.05rem 0.5rem;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.95em;
+      line-height: 1.4;
+    }
+    .embed-download-button:hover {
+      color: #fff;
+      border-color: #5fa;
     }
     .github-embed-source:hover {
       color: #fff;
@@ -752,7 +832,8 @@ async function setPageBody(html) {
     pre.code-collapsed .code-collapse-button { top: 0.2rem; }
 
     /* Global expand/collapse-all dropdown: a bare emoji the size of the
-       TOC opener, pinned just below it, shown only while the TOC is open. */
+       TOC opener, pinned just below it. Visible in both states: hiding the
+       TOC must not take the code toggle away with it. */
     #code_toggle_all {
       position: fixed;
       top: 5rem;
@@ -760,7 +841,7 @@ async function setPageBody(html) {
       width: var(--block);
       box-sizing: border-box;
       z-index: 5;
-      display: none;
+      display: block;
       border: 0;
       background: transparent;
       color: white;
@@ -772,7 +853,6 @@ async function setPageBody(html) {
       text-align: center;
     }
     #code_toggle_all:hover { opacity: 1; }
-    input[type=checkbox]:not(:checked) ~ #code_toggle_all { display: block; }
 
     /* Wrap code line
      * With white-space: pre-wrap;
@@ -783,7 +863,7 @@ async function setPageBody(html) {
   `);
 
   // Global "collapse / expand all code" dropdown. Lives right under the
-  // TOC opener and (via CSS) only shows while the TOC pane is open.
+  // TOC opener, whether the TOC pane is open or closed.
   const code_toggle_all = document.createElement("button");
   code_toggle_all.type = "button";
   code_toggle_all.id = "code_toggle_all";
