@@ -90,6 +90,7 @@ function showHome(){
     welcome_elt.style="z-index:3;";
     welcome_elt.name="welcome_iframe";
     document.getElementById("id_main").prepend(welcome_elt);
+    if (null != window.swipeAttachToFrame) { window.swipeAttachToFrame(welcome_elt); }
   }
 
   // Show home && Hide iframe
@@ -437,6 +438,71 @@ function addHandlerHider() {
   barOpener.addEventListener('keydown', handleBar);
 }
 
+function addHandlerSwipe() {
+  // Mobile: swipe right opens the left sidebar, swipe left closes it
+  const MIN_DISTANCE = 60;   // px, minimum horizontal travel
+  const MAX_VERTICAL = 60;   // px, above this it is a scroll, not a swipe
+  const MAX_DURATION = 800;  // ms, above this it is a drag, not a swipe
+
+  function isSidebar2Open() {
+    for (id of aNavId) {
+      const elt = document.getElementById(id);
+      if (null != elt && elt.style.display == "flex") { return true; }
+    }
+    return false;
+  }
+
+  function swipeRight() {
+    showBar(true);
+  }
+
+  function swipeLeft() {
+    // First close the eventual second sidebar, then the main one
+    if (isSidebar2Open()) { closeAll(false); return; }
+    showBar(false);
+  }
+
+  function addTo(doc) {
+    if (null == doc) { return; }
+    let xStart = null, yStart = null, tStart = 0;
+
+    doc.addEventListener('touchstart', function(e) {
+      if (e.touches.length != 1) { xStart = null; return; }
+      xStart = e.touches[0].clientX;
+      yStart = e.touches[0].clientY;
+      tStart = Date.now();
+    }, { passive: true });
+
+    doc.addEventListener('touchend', function(e) {
+      if (null == xStart) { return; }
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - xStart;
+      const dy = touch.clientY - yStart;
+      const dt = Date.now() - tStart;
+      xStart = null;
+      if (dt > MAX_DURATION) { return; }
+      if (Math.abs(dy) > MAX_VERTICAL) { return; }
+      if (Math.abs(dx) < MIN_DISTANCE) { return; }
+      if (dx > 0) { swipeRight(); } else { swipeLeft(); }
+    }, { passive: true });
+  }
+
+  // Main page
+  addTo(document);
+
+  // Same origin iframes: else the swipe is eaten by the frame
+  function addToFrame(frame) {
+    if (null == frame) { return; }
+    frame.addEventListener('load', function() {
+      try { addTo(frame.contentDocument); } catch (err) { /* cross origin */ }
+    });
+  }
+  addToFrame(document.getElementById('main_iframe'));
+  // Exposed as the welcome iframe is created later, by showHome
+  window.swipeAttachToFrame = addToFrame;
+  addToFrame(document.getElementById('welcome'));
+}
+
 function mainPro() {
   declareGlobal();
   readUrlParameters();
@@ -444,6 +510,7 @@ function mainPro() {
   setImageSrc();
   addHandlerKeyboardArrow();
   addHandlerHider();
+  addHandlerSwipe();
   document.getElementById("home").focus();
 }
 
