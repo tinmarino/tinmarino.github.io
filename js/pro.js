@@ -108,6 +108,11 @@ function showBar(bol) {
 }
 
 function openOne(id) {
+  // Remember it, so a swipe right can bring back the dash the user was on
+  // instead of leaving them on a bare icon bar.
+  window.lastNavId = id;
+  try { sessionStorage.setItem('tin_last_nav', id); } catch (err) { /* private mode */ }
+
   // Restore
   closeAll(true);
   // document.getElementById("id_main").style.marginLeft = "calc( 2 * var(--sidebar-width) )";
@@ -452,12 +457,32 @@ function addHandlerSwipe() {
     return false;
   }
 
-  function swipeRight() {
-    showBar(true);
+  function isBarOpen() {
+    const opener = document.getElementById("input_opener");
+    return null != opener && !opener.checked;
   }
 
+  function getLastNavId() {
+    if (null != window.lastNavId) { return window.lastNavId; }
+    try { return sessionStorage.getItem('tin_last_nav'); } catch (err) { return null; }
+  }
+
+  // Right reveals, one layer at a time, and remembers where the user was:
+  //   1. bar hidden (only the iframe)  -> bring the icon bar back
+  //   2. bar shown, no dash open       -> reopen the dash last used
+  //   3. everything already open       -> nothing left to reveal
+  function swipeRight() {
+    if (!isBarOpen()) { showBar(true); return; }
+    if (isSidebar2Open()) { return; }
+    const last = getLastNavId();
+    if (null == last) { return; }
+    const elt = document.getElementById(last);
+    if (null == elt) { return; }
+    openOne(last);
+  }
+
+  // Left hides in the mirror order: dash first, then the icon bar
   function swipeLeft() {
-    // First close the eventual second sidebar, then the main one
     if (isSidebar2Open()) { closeAll(false); return; }
     showBar(false);
   }
@@ -489,6 +514,17 @@ function addHandlerSwipe() {
 
   // Main page
   addTo(document);
+
+  // A cross-origin iframe eats its own touch events, so our own embedded pages
+  // (the classroom, the IPyodide shell) forward the gesture with postMessage
+  // instead. Same-origin frames are still handled directly by addToFrame below;
+  // this is the path that also works when they are not.
+  window.addEventListener('message', function(e) {
+    const data = e.data;
+    if (null == data || data.type != 'tinmarino-swipe') { return; }
+    if (data.dir == 'right') { swipeRight(); }
+    else if (data.dir == 'left') { swipeLeft(); }
+  });
 
   // Same origin iframes: else the swipe is eaten by the frame
   function addToFrame(frame) {
