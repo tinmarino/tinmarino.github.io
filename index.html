@@ -195,16 +195,17 @@
   .w3-small{font-size:12px!important}
   .w3-xxlarge{font-size:36px!important}
   .w3-padding-large{padding:12px 24px!important}
+  .nav-label{display:block}
 
   /* Link color of subitems
    -- The problem is that each item is a link fo if I color a, all text is yellow
    -- Firefox make them blue and purple, I wanted to change them
-  */
-  nav > button > div > a {
+   */
+  nav > .card-button > div > a {
     color: #fabd2f;
     text-decoration: none;
   }
-  nav > button > div > a:visited {
+  nav > .card-button > div > a:visited {
     color: #d79921;
   }
 
@@ -272,7 +273,7 @@
 <!-- Icon Bar {{{1 -->
 <nav id="side_main" tabindex="-1" class="sidebar sidebar1 w3-small w3-center">
 <!-- Home {{{2 -->
-  <button
+  <button type="button"
     id="home"
     tabindex="2"
     class="w3-button w3-padding-large w3-hover-black"
@@ -281,11 +282,11 @@
     <img src="./img/fa/home-light-white.svg"
     style="height:36px; width:auto;"
     alt="" class="w3-xxlarge">
-    <p>Home</p>
+    <span class="nav-label">Home</span>
   </button>
 
   <!-- CV {{{2 -->
-  <button href="./cv/martin_tourneboeuf_cv_english.html" target="main_iframe"
+  <button type="button"
     id="cv"
     class="w3-button w3-padding-large w3-hover-black"
     onclick="openOne('id_cv'); document.getElementById('cv_en').click();"
@@ -293,14 +294,14 @@
     <img src="./img/fa/address-card-light-white.svg"
     style="height:36px; width:auto;"
     alt="" class="w3-xxlarge">
-    <p>CV</p>
+    <span class="nav-label">CV</span>
   </button>
 
   <!-- Fill {{{2 -->
   <div style="flex-grow:1;"></div>
 
   <!-- Web {{{2 -->
-  <button
+  <button type="button"
     id="web"
     class="w3-button w3-padding-large w3-hover-black"
     onclick="openOne('id_web');"
@@ -308,53 +309,53 @@
     <img src="./img/fa/globe-light-white.svg"
     style="height:36px; width:auto;"
     alt="" class="w3-xxlarge">
-    <p>Web</p>
+    <span class="nav-label">Web</span>
   </button>
 
   <!-- Astro {{{2 -->
-  <button class="w3-button w3-padding-large w3-hover-black"
+  <button type="button" class="w3-button w3-padding-large w3-hover-black"
     id="astro"
     onclick="openOne('id_astro');"
   >
     <img src="./img/telescope_white_xx.svg"
-    style="height:36px; width:auto;"
-    alt="" class="w3-xxlarge">
-    <p>Astro</p>
+      style="height:36px; width:auto;"
+      alt="" class="w3-xxlarge">
+    <span class="nav-label">Astro</span>
   </button>
 
   <!-- Cyber {{{2 -->
-  <button class="w3-button w3-padding-large w3-hover-black"
+  <button type="button" class="w3-button w3-padding-large w3-hover-black"
     id="cyber"
     onclick="openOne('id_cyber');"
   >
     <img src="./img/fa/user-secret-light-white.svg"
-    style="height:36px; width:auto;"
-    alt="" class="w3-xxlarge">
-    <p>Cyber</p>
+      style="height:36px; width:auto;"
+      alt="" class="w3-xxlarge">
+    <span class="nav-label">Cyber</span>
   </button>
 
   <!-- Blog {{{2 -->
-  <button class="w3-button w3-padding-large w3-hover-black"
+  <button type="button" class="w3-button w3-padding-large w3-hover-black"
     id="blog"
     onclick="openOne('id_blog');"
   >
     <img src="./img/fa/fa-book-light-white.svg"
-    style="height:36px; width:auto;"
-    alt="" class="w3-xxlarge">
-    <p>Blog</p>
+      style="height:36px; width:auto;"
+      alt="" class="w3-xxlarge">
+    <span class="nav-label">Blog</span>
   </button>
   <!-- Fill {{{2 -->
   <div style="flex-grow:10;"></div>
 
   <!-- Contact {{{2 -->
-  <button class="w3-button w3-padding-large w3-hover-black"
+  <button type="button" class="w3-button w3-padding-large w3-hover-black"
     id="contact"
     onclick="openOne('id_contact')"
   >
     <img src="./img/fa/star-light-white.svg"
-    style="height:36px; width:auto;"
-    alt="" class="w3-xxlarge">
-    <p>Contact</p>
+      style="height:36px; width:auto;"
+      alt="" class="w3-xxlarge">
+    <span class="nav-label">Contact</span>
   </button>
 </nav>
 
@@ -421,10 +422,29 @@
   </a>
 
 
-  <!-- Web.0 Python -->
-  <button href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
-    id="python_js"
+  <!-- Web.0a Python Exercises (Classroom) -->
+  <a href="/class/python-exercices/index.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="python_exercises"
     hreflang="en"
+    onclick="hideHome(this);"
+  >
+    <!-- Description -->
+    <div class="description">
+      Python Exercises<br/><br/>
+      Interactive Python exercises with in-browser runtime.<br/>
+      Reverse lists, strings, Fibonacci, and more.
+    </div>
+    <img src="./img/owl_teacher_python.svg"
+      data-src="./img/owl_teacher_python.svg"
+      alt="Python Exercises" class="delayed w3-xxlarge"
+      style="width:120px; height:auto;">
+    <p>Py Exercises</p>
+  </a>
+
+
+  <!-- Web.0 Python -->
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
+    id="python_js"
     onclick="
       document.getElementById('main_iframe').src = 'https://tinmarino.github.io/app/python/brython/console.html';
       hideHome(this);
@@ -443,36 +463,36 @@
     Html app in English<br/><br/>
     Python.js: python on browser<br/>
 
-    &nbsp&nbsp&nbsp Js:
+    &nbsp;&nbsp;&nbsp; Js:
     <a href="https://tinmarino.github.io/app/python/brython/console.html" target="main_iframe"
       id="brython"
       tabindex="-1"
-      onclick="hideHome(this);"
+      onclick="event.stopPropagation(); hideHome(this);"
     >
       Brython<br/>
     </a>
 
-    &nbsp&nbsp&nbsp Wasm - C:
+    &nbsp;&nbsp;&nbsp; Wasm - C:
     <a href="https://tinmarino.github.io/app/python/pyodide/console.html" target="main_iframe"
       id="pyodide"
       tabindex="-1"
-      onclick="hideHome(this);"
+      onclick="event.stopPropagation(); hideHome(this);"
     >
       Pyodide<br/>
     </a>
 
-    &nbsp&nbsp&nbsp Wasm - Rust:
+    &nbsp;&nbsp;&nbsp; Wasm - Rust:
     <a href="https://tinmarino.github.io/app/python/rustpython/index.html" target="main_iframe"
       id="rust_python"
       tabindex="-1"
-      onclick="hideHome(this);"
+      onclick="event.stopPropagation(); hideHome(this);"
     >
       RustPython<br/>
     </a>
 
     Dislaimer: None of these if my work
   </div>
-  </button>
+  </div>
 
 
   <!-- Web.1 Raku -->
@@ -628,9 +648,8 @@
 
 
   <!-- Astro.0 Aperture Guide -->
-  <button href="./pdf/2020_aperture_synthesis_fr.html" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="aperture_guide"
-    hreflang="fr"
     onclick="
       document.getElementById('main_iframe').src = './pdf/2020_aperture_synthesis_fr.html';
       hideHome(this);
@@ -647,22 +666,22 @@
   >
     Html guide in:<br/>
 
-    &nbsp&nbsp&nbsp
+    &nbsp;&nbsp;&nbsp;
     <a href="./pdf/2020_aperture_synthesis_es.html" target="main_iframe"
-      id="aperture_guide_es" tabindex="-1" onclick="hideHome(this);" >
+      id="aperture_guide_es" tabindex="-1" onclick="event.stopPropagation(); hideHome(this);" >
       Spanish<br/>
     </a>
 
-    &nbsp&nbsp&nbsp
+    &nbsp;&nbsp;&nbsp;
     <a href="./pdf/2020_aperture_synthesis_fr.html" target="main_iframe"
-      id="aperture_guide_fr" tabindex="-1" onclick="hideHome(this);" >
+      id="aperture_guide_fr" tabindex="-1" onclick="event.stopPropagation(); hideHome(this);" >
       French<br/>
     </a>
 
       Aperture Synthesis: Practical guide
   </div>
 
-  </button>
+  </div>
 
 
   <!-- Astro.1.1 Cosmo Obs Slide -->
@@ -684,9 +703,8 @@
 
 
   <!-- Astro.1 Cosmo Obs Cheat -->
-  <button href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="cosmo_obs_cheat"
-    hreflang="fr"
     onclick="
       document.getElementById('main_iframe').src = './pdf/2019_cosmondements_2_cheat_en.pdf';
       hideHome(this);
@@ -703,20 +721,20 @@
   >
     Pdf cheatsheet in:<br/>
 
-    &nbsp&nbsp&nbsp
+    &nbsp;&nbsp;&nbsp;
     <a href="./pdf/2019_cosmondements_2_cheat_en.pdf" target="main_iframe"
       id="cosmo_obs_cheat_en"
       tabindex="-1"
-      onclick="hideHome(this);"
+      onclick="event.stopPropagation(); hideHome(this);"
     >
       English<br/>
     </a>
 
-    &nbsp&nbsp&nbsp
+    &nbsp;&nbsp;&nbsp;
     <a href="./pdf/2019_cosmondements_2_cheat_fr.pdf" target="main_iframe"
       id="cosmo_obs_cheat_fr"
       tabindex="-1"
-      onclick="hideHome(this);"
+      onclick="event.stopPropagation(); hideHome(this);"
     >
       French<br/>
     </a>
@@ -724,7 +742,7 @@
     CosmObs: Introduction to observational cosmology tools and practices
   </div>
 
-  </button>
+  </div>
 
 
 
@@ -742,7 +760,7 @@
     </div>
     <img src="./img/grav_len_xx.svg"
       data-src="./img/grav_len_xx.svg"
-      alt="Gravitational lenses for high redshift galaxies thesis" class="delayed w3-xxlarge" class="delayed w3-xxlarge">
+      alt="Gravitational lenses for high redshift galaxies thesis" class="delayed w3-xxlarge">
     <p>Gravitational Lenses<br/>Book</p>
   </a>
 
@@ -850,9 +868,8 @@
     -- Class 2: mutualizar, ramificar, entregar, reparar
     -- Script: gg, the teacher companion (cards + commit candy)
   -->
-  <button href="./pdf/2026-git-para-operaciones-01_slide_sek.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="git-para-operaciones"
-    hreflang="es"
     onclick="
       document.getElementById('main_iframe').src = './pdf/2026-git-para-operaciones-01_slide_sek.pdf';
       hideHome(this);
@@ -900,7 +917,7 @@
         Script gg (fichas + demo)<br/>
       </a>
     </div>
-  </button>
+  </div>
 
 
   <!-- Cyber 16: Lógica decimal en un mundo binario {{{2
@@ -909,9 +926,8 @@
     -- Presented 2026 to SEK
     -- Presented 23 Jun 2026 to UTEM
   -->
-  <button href="./pdf/2025-logica-decimal-en-un-mundo-binario_slide_gruvbox.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="logica-decimal"
-    h reflang="es"
     onclick="
       document.getElementById('main_iframe').src = './pdf/2025-logica-decimal-en-un-mundo-binario_slide_gruvbox.pdf';
       hideHome(this);
@@ -950,7 +966,7 @@
         Corta (UTEM 2026)<br/>
       </a>
     </div>
-  </button>
+  </div>
 
 
   <!-- Cyber 15: Crypto 0x00: Presented 05 July 2025 to Dreamlab, after giving it at PUC class too (but will upload the first latter {{{2 -->
@@ -973,9 +989,8 @@
 
 
   <!-- Cyber 14: Priviledge Escalation: Class given at PUC May 2025 -->
-  <button href="./pdf/2025_class_privesc_01_process.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="class_privesc"
-    h reflang="es"
     onclick="
       document.getElementById('main_iframe').src = './pdf/2025_class_privesc_01_process.pdf';
       hideHome(this);
@@ -1015,12 +1030,11 @@
         Servicios<br/>
       </a>
     </div>
-  </button>
+  </div>
 
   <!-- Cyber 13: Pentest Web: Class given at PUC May 2025 -->
-  <button href="./pdf/2025_class_pentest_web_01_intro.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+  <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="class_pentest_web"
-    h reflang="es"
     onclick="
       document.getElementById('main_iframe').src = './pdf/2025_class_pentest_web_01_intro.pdf';
       hideHome(this);
@@ -1115,7 +1129,7 @@
         Plan docente<br/>
       </a>
     </div>
-  </button>
+  </div>
 
 
   <!-- Cyber 12: El terreno ciber: Presented 26 Nov 2024 at DUOC university, San Joaquim {{{2 -->
