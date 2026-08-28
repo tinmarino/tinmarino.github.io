@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <title>Tinmarino</title>
-</head>
 
 <style type="text/css" media="screen">
 
@@ -131,7 +130,7 @@ footer {
 <body>
 
 <!-- Background image see js -->
-<img id="bg">
+<img id="bg" src="../img/bck/north_xx.svg" alt="">
 
 <h1 style="text-align:center">
   Martin Tourneboeuf
@@ -249,7 +248,7 @@ function mainWelcome() {
            <p class="p p2">The journey of a thousand miles begins with one step (LaoZi)</p>
            <p class="p p4">Do not wait to be perfect to start something good (Abbé Pierre)</p>
            <p class="p p5">Hope is the last thing you lose (chilean proverb)</p>
-           <p class="p p6">He who knows that enough is enough will always have enough (LaoZi)<p>
+            <p class="p p6">He who knows that enough is enough will always have enough (LaoZi)</p>
 
            <!-- Tinmarino -->
            <br style="display: block; margin: 10px 0;">
@@ -279,7 +278,7 @@ function mainWelcome() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const d_date = new Date(document.lastModified)
   const s_date = d_date.toLocaleDateString("en-US", options);
-  const s_foot = "v0.29 " + s_date + "</br>Tinmarino"
+  const s_foot = "v0.29 " + s_date + "<br>Tinmarino"
   const footer = document.createElement('footer');
   footer.id = "id_sign";
   footer.innerHTML = s_foot;
@@ -292,4 +291,4 @@ window.onload = mainWelcome;
 
 </body>
 </html>
-<!-- vim:sw=2:
+<!-- vim:sw=2: -->
