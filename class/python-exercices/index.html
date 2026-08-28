@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Exercises - Tinmarino Classroom</title>
+
+<!-- Gruvbox theme (same as the main site) -->
+<link rel="stylesheet" href="/css/lib_color_dark_gruvbox.css">
+<link rel="stylesheet" href="/css/lib_color_use_custom_var.css">
+<style>
+  html, body { height: 100%; margin: 0; background: var(--bg, #1d2021); color: var(--fg, #ebdbb2);
+               font-family: system-ui, sans-serif; }
+  #shim { display: flex; flex-direction: column; align-items: center; justify-content: center;
+          height: 100%; gap: 1rem; text-align: center; }
+  a { color: var(--blue, #83a598); }
+</style>
+</head>
+<body>
+
+<!--
+  This folder holds ONLY the custom class content:
+    manifest.json  - exercise index
+    ex/*.md        - one file per exercise (instructions + template + tests)
+
+  The classroom application itself (editor, Pyodide runtime, vendored wasm) lives
+  in the App repo -> https://github.com/tinmarino/app  at python/classroom/
+  and is served, same origin as this page, under /app/ :
+    https://www.tinmarino.com/app/python/classroom/
+  Locally, the gitignored Page/app -> ../App symlink reproduces that layout.
+
+  This page only forwards to the app, telling it where to read the exercises from
+  (?ex=<this folder>).  Override the app build with ?app=<url> when developing.
+-->
+
+<div id="shim">
+  <p>Loading the Python classroom&hellip;</p>
+  <p><a id="fallback" href="#">Open it manually</a></p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var params = new URLSearchParams(location.search);
+  // Same origin in production and locally -> no CORS, no cross-origin worker rules
+  var app = params.get('app') || '/app/python/classroom/';
+  // Exercise content base = this very folder
+  var ex  = new URL('.', location.href).href;
+  var url = app + (app.indexOf('?') === -1 ? '?' : '&') + 'ex=' + encodeURIComponent(ex);
+  document.getElementById('fallback').href = url;
+  location.replace(url);
+})();
+</script>
+
+</body>
+</html>

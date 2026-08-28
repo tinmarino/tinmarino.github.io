@@ -1,0 +1,6 @@
+[
+  { "id": "ex00", "title": "00 - Print Hello", "file": "ex/python-exercice-00-print-hello.md" },
+  { "id": "ex01", "title": "01 - Reverse a List", "file": "ex/python-exercice-01-reverse-list.md" },
+  { "id": "ex02", "title": "02 - Reverse a String", "file": "ex/python-exercice-02-reverse-string.md" },
+  { "id": "ex03", "title": "03 - Fibonacci", "file": "ex/python-exercice-03-fibonacci.md" }
+]
