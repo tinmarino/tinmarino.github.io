@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Blackboard (top-left corner) -->
+  <rect x="2" y="2" width="52" height="36" rx="4" fill="#1d2021" stroke="#8ec07c" stroke-width="2.5"/>
+  <text x="7" y="16" font-family="monospace" font-size="8" font-weight="bold" fill="#b8bb26">[x**2</text>
+  <text x="7" y="27" font-family="monospace" font-size="8" font-weight="bold" fill="#83a598">for x in</text>
+  <text x="7" y="37" font-family="monospace" font-size="8" font-weight="bold" fill="#d3869b">range(10)]</text>
+
+  <!-- Pointer: board corner → owl left wing -->
+  <line x1="44" y1="36" x2="44" y2="58" stroke="#ebdbb2" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="44" cy="36" r="3" fill="#fb4934"/>
+
+  <!-- Owl body — centered at x=60 -->
+  <ellipse cx="60" cy="90" rx="26" ry="28" fill="#a89984"/>
+
+  <!-- Owl head -->
+  <circle cx="60" cy="62" r="22" fill="#bdae93"/>
+
+  <!-- Ear tufts -->
+  <polygon points="44,46 38,33 49,44" fill="#d5c4a1"/>
+  <polygon points="76,46 82,33 71,44" fill="#d5c4a1"/>
+
+  <!-- Graduation cap -->
+  <polygon points="60,34 40,46 80,46" fill="#282828"/>
+  <rect x="42" y="46" width="36" height="5" rx="1" fill="#1d2021"/>
+  <line x1="73" y1="46" x2="79" y2="56" stroke="#fabd2f" stroke-width="1.5"/>
+  <circle cx="79" cy="57" r="2.5" fill="#fabd2f"/>
+
+  <!-- Eyes -->
+  <circle cx="52" cy="61" r="9" fill="#fbf1c7"/>
+  <circle cx="68" cy="61" r="9" fill="#fbf1c7"/>
+  <circle cx="53" cy="62" r="5" fill="#1d2021"/>
+  <circle cx="69" cy="62" r="5" fill="#1d2021"/>
+  <circle cx="55" cy="60" r="2" fill="#fff"/>
+  <circle cx="71" cy="60" r="2" fill="#fff"/>
+
+  <!-- Glasses (gold) -->
+  <circle cx="52" cy="61" r="10" fill="none" stroke="#fabd2f" stroke-width="2"/>
+  <circle cx="68" cy="61" r="10" fill="none" stroke="#fabd2f" stroke-width="2"/>
+  <line x1="62" y1="61" x2="58" y2="61" stroke="#fabd2f" stroke-width="2"/>
+  <line x1="42" y1="59" x2="37" y2="56" stroke="#fabd2f" stroke-width="1.8"/>
+  <line x1="78" y1="59" x2="83" y2="56" stroke="#fabd2f" stroke-width="1.8"/>
+
+  <!-- Beak -->
+  <polygon points="60,70 56,77 64,77" fill="#fe8019"/>
+
+  <!-- Belly -->
+  <ellipse cx="60" cy="93" rx="14" ry="20" fill="#d5c4a1"/>
+  <path d="M55,85 l3,3 l3,-3" fill="none" stroke="#7c6f64" stroke-width="1.5"/>
+  <path d="M62,85 l3,3 l3,-3" fill="none" stroke="#7c6f64" stroke-width="1.5"/>
+  <path d="M55,93 l3,3 l3,-3" fill="none" stroke="#7c6f64" stroke-width="1.5"/>
+  <path d="M62,93 l3,3 l3,-3" fill="none" stroke="#7c6f64" stroke-width="1.5"/>
+
+  <!-- Wings -->
+  <ellipse cx="36" cy="84" rx="8" ry="18" fill="#7c6f64" transform="rotate(10 36 84)"/>
+  <ellipse cx="84" cy="84" rx="8" ry="18" fill="#7c6f64" transform="rotate(-10 84 84)"/>
+
+  <!-- Feet -->
+  <ellipse cx="52" cy="116" rx="8" ry="4" fill="#fe8019"/>
+  <ellipse cx="68" cy="116" rx="8" ry="4" fill="#fe8019"/>
+</svg>
