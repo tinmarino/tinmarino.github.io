@@ -32,6 +32,7 @@ comes to. Return it &mdash; do not print it.
 - Three operators: `+`, `-` and `*`. No division.
 - Every number is a whole number. Negative numbers can appear as values, like `"-3 5 +"`.
 - The expression is always valid. You do not have to report errors.
+- The expression always contains at least one number. Empty strings will not be tested.
 - A lone number is a complete expression: `"5"` is `5`.
 - **Order matters for `-`.** `"5 3 -"` is `5 - 3`, which is `2`. Not `-2`.
 - Do **not** use `eval(`. It cannot read this notation, and doing the arithmetic yourself is the exercise.
@@ -122,8 +123,12 @@ print(evaluate("5 1 2 + 4 * + 3 -"))
 
 ```python # tests
 # Working it out is the exercise, so Check refuses the shortcut.
+# Strip docstrings and comments first so a note about eval( is not punished.
+_chunks = __student_code__.split('"""')[::2]
+_lines = [_line.split("#")[0] for _chunk in _chunks for _line in _chunk.split("\n")]
 for _banned in ("eval(",):
-    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+    assert not any(_banned in _line for _line in _lines), \
+        f"Got: the banned shortcut {_banned}"
 
 assert evaluate("3 4 +") == 7, f"Got: {evaluate('3 4 +')}"
 assert evaluate("3 4 + 2 *") == 14, f"Got: {evaluate('3 4 + 2 *')}"
@@ -185,7 +190,7 @@ def evaluate(stg: str) -> int:
 Each one is an answer a student really writes, or a shortcut that games the
 test data. Every one of them must make **Check** fail.
 
-```python # wrong: reaches for eval(, which Check refuses
+```python # wrong: reaches for eval( -- caught by the source ban, not the assertions
 def evaluate(stg: str) -> int:
     return eval(stg)
 ```

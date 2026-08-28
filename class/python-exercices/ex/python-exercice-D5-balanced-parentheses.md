@@ -95,8 +95,12 @@ print(is_balanced("print(sorted([3, 1, 2]))"))
 ```python # tests
 # Stripping the pairs until nothing is left answers the question without ever
 # asking which opener a closer belongs to, so Check refuses it on the source.
+# Strip docstrings and comments first so a note about .replace( is not punished.
+_chunks = __student_code__.split('"""')[::2]
+_lines = [_line.split("#")[0] for _chunk in _chunks for _line in _chunk.split("\n")]
 for _banned in (".replace(",):
-    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+    assert not any(_banned in _line for _line in _lines), \
+        f"Got: the banned shortcut {_banned}"
 
 # The answer is a bool, not a number that happens to be truthy
 assert isinstance(is_balanced("()"), bool), f"Got: {type(is_balanced('()'))}"

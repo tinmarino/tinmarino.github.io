@@ -99,6 +99,9 @@ assert reverse_string("ab c!") == "!c ba", f"Got: {reverse_string('ab c!')}"
 assert reverse_string("a1b2") == "2b1a", f"Got: {reverse_string('a1b2')}"
 assert reverse_string("  x  ") == "  x  ", f"Got: {reverse_string('  x  ')}"
 assert reverse_string("Hello, World!") == "!dlroW ,olleH", f"Got: {reverse_string('Hello, World!')}"
+# Anti-hardcoding: a string not visible in the Examples table
+_ANTI = "xkcd42!"
+assert reverse_string(_ANTI) == "!24dckx", f"Got: {reverse_string(_ANTI)}"
 print("All tests passed!")
 ```
 
@@ -157,6 +160,14 @@ def reverse_string(stg: str) -> str:
     for char in stg.lower():
         out = char + out
     return out
+```
+
+```python # wrong: hard-codes the test data
+def reverse_string(stg: str) -> str:
+    table = {"hello": "olleh", "": "", "a": "a", "Python": "nohtyP",
+             "racecar": "racecar", "ab c!": "!c ba", "a1b2": "2b1a",
+             "  x  ": "  x  ", "Hello, World!": "!dlroW ,olleH"}
+    return table.get(stg, stg)
 ```
 
 ### Give-aways the Description must never contain

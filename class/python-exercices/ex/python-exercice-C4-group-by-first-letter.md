@@ -8,7 +8,7 @@ title: "Python C4 - Group by First Letter"
 
 Write a function `group_words(words: list) -> dict` that returns each starting letter mapped to the list of the words beginning with it, in the order they appeared.
 
-Do the filing yourself. `collections.defaultdict`, `dict.setdefault()`, `itertools.groupby` and `dict.get(key, [])` keep the books for you, so **Check** turns all four down.
+Do the filing yourself. `collections.defaultdict`, `dict.setdefault()`, `itertools.groupby` and `.get(` keep the books for you, so **Check** turns all four down.
 
 ## Description
 
@@ -32,7 +32,7 @@ that actually occurs, and under each key the words that start with it.
 - Key order does not matter. Two dicts holding the same pairs are `==` whatever
   order they were built in, so the tests will not quibble about it.
 - Build the dict yourself. Do **not** use `collections.defaultdict`, `dict.setdefault()`,
-  `itertools.groupby` or `dict.get(key, [])` &mdash; each of those hides the one piece of
+  `itertools.groupby` or `.get(` &mdash; each of those hides the one piece of
   bookkeeping that *is* the exercise.
 
 ### Examples
@@ -141,8 +141,10 @@ print(group_words(["bread", "butter", "coffee", "beans"]))
 ## Tests
 
 ```python # tests
+import random as _random
+
 # The bookkeeping is the exercise, so Check refuses every tool that does it for you.
-for _banned in ("defaultdict", "setdefault", "groupby", ".get"):
+for _banned in ("defaultdict", "setdefault", "groupby", ".get("):
     assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
 
 assert group_words([]) == {}, f"Got: {group_words([])}"
@@ -173,6 +175,16 @@ group_words(_original)
 assert _original == ["pear", "plum", "quince"], f"Got: the input became {_original}"
 # The dict is returned, not printed
 assert isinstance(group_words(["kiwi"]), dict), f"Got: {type(group_words(['kiwi']))}"
+# Built fresh every run, so a memorised table cannot fake it
+_vocab = ["apple", "apricot", "banana", "blueberry", "cherry", "coconut", "date", "durian"]
+_basket = [_random.choice(_vocab) for _ in range(40)]
+_expected = {}
+for _w in _basket:
+    _l = _w[0]
+    if _l not in _expected:
+        _expected[_l] = []
+    _expected[_l].append(_w)
+assert group_words(_basket) == _expected, f"Got: {group_words(_basket)}"
 print("All tests passed!")
 ```
 
@@ -324,5 +336,5 @@ if\s+\w+\s+not\s+in\s+\w+
 defaultdict
 setdefault
 groupby
-.get
+.get(
 ```

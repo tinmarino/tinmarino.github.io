@@ -155,6 +155,10 @@ assert reverse_with_stack([1, "a", None]) == [None, "a", 1], \
 _original = [1, 2, 3]
 reverse_with_stack(_original)
 assert _original == [1, 2, 3], f"Got: the input was modified into {_original}"
+# Large enough that a memorised table cannot pass
+_big = list(range(80))
+assert reverse_with_stack(_big) == list(range(79, -1, -1)), \
+    f"Got: {reverse_with_stack(_big)}"
 print("All tests passed!")
 ```
 

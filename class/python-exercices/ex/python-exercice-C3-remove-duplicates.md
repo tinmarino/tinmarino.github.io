@@ -112,9 +112,12 @@ print(dedup(["milk", "eggs", "milk", "bread"]))
 ## Tests
 
 ```python # tests
+import re as _re
+import random as _random
+
 # The loop is the exercise, so Check refuses the two one-line shortcuts.
-for _banned in ("set(", "dict.fromkeys"):
-    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+for _banned, _pattern in (("set(", r"\bset\s*\("), ("dict.fromkeys", r"dict\.fromkeys")):
+    assert not _re.search(_pattern, __student_code__), f"Got: the banned shortcut {_banned}"
 
 _sheet = ["milk", "eggs", "milk", "bread"]
 _got = dedup(_sheet)
@@ -154,6 +157,13 @@ try:
 except TypeError as _exc:
     _got = f"TypeError: {_exc}"
 assert _got == [["milk"], ["eggs"], []], f"Got: {_got}"
+# Built fresh every run, so a memorised table cannot fake it
+_big = [_random.choice(["x", "y", "z"]) for _ in range(60)]
+_expected = []
+for _item in _big:
+    if _item not in _expected:
+        _expected.append(_item)
+assert dedup(_big) == _expected, f"Got: {dedup(_big)}"
 print("All tests passed!")
 ```
 

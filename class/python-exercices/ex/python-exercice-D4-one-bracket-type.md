@@ -87,8 +87,12 @@ print(is_balanced_round("(cos(x) + 1)"))
 
 ```python # tests
 # One kind of bracket does not need a pile, so Check refuses the list.
+# Strip docstrings and comments first so a note about .append( is not punished.
+_chunks = __student_code__.split('"""')[::2]
+_lines = [_line.split("#")[0] for _chunk in _chunks for _line in _chunk.split("\n")]
 for _banned in (".append(",):
-    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+    assert not any(_banned in _line for _line in _lines), \
+        f"Got: the banned shortcut {_banned}"
 
 # The answer is a bool, not a number that happens to be truthy
 assert isinstance(is_balanced_round("()"), bool), f"Got: {type(is_balanced_round('()'))}"
