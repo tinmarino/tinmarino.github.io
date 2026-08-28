@@ -1,5 +1,5 @@
 ---
-title: "Python 01 - Reverse a List"
+title: "Python A2 - Reverse a List"
 ---
 
 # Reverse a List
@@ -7,6 +7,8 @@ title: "Python 01 - Reverse a List"
 ## Instructions
 
 Write a function `reverse_list(lst: list) -> list` that returns the elements of `lst` in the opposite order.
+
+Write the loop yourself. `[::-1]`, `.reverse()` and `reversed(` *are* the answer, so **Check** turns them down.
 
 ## Description
 
@@ -100,6 +102,10 @@ print(reverse_list([1, 2, 3]))
 ## Tests
 
 ```python # tests
+# The point of this one is the loop you write, so Check refuses the shortcuts.
+for _banned in ("[::-1]", ".reverse()", "reversed("):
+    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+
 assert reverse_list([1, 2, 3]) == [3, 2, 1], f"Got: {reverse_list([1, 2, 3])}"
 assert reverse_list([]) == [], f"Got: {reverse_list([])}"
 assert reverse_list([42]) == [42], f"Got: {reverse_list([42])}"
@@ -113,4 +119,79 @@ _original = [1, 2, 3]
 reverse_list(_original)
 assert _original == [1, 2, 3], f"Got: the input was modified into {_original}"
 print("All tests passed!")
+```
+
+## Solution
+
+Not shown by the app: it renders only `## Description` and the labelled
+fences. This section is what `script/verify_exercices.py` checks the
+exercise against, so the exercise is verifiable on its own.
+
+### Reference solution
+
+```python # solution
+def reverse_list(lst: list) -> list:
+    """ Return a new list with the elements of lst reversed. """
+    out = []
+    for item in lst:
+        out.insert(0, item)
+    return out
+```
+
+### Wrong answers the tests must catch
+
+Each one is an answer a student really writes, or a shortcut that games the
+test data. Every one of them must make **Check** fail.
+
+```python # wrong: sorts descending instead of reversing
+def reverse_list(lst: list) -> list:
+    return sorted(lst, key=str, reverse=True)
+```
+
+```python # wrong: returns the input unchanged
+def reverse_list(lst: list) -> list:
+    return lst
+```
+
+```python # wrong: takes the slice shortcut
+def reverse_list(lst: list) -> list:
+    return lst[::-1]
+```
+
+```python # wrong: calls reversed() instead of looping
+def reverse_list(lst: list) -> list:
+    return list(reversed(lst))
+```
+
+```python # wrong: reverses the caller's list in place
+def reverse_list(lst: list) -> list:
+    lst.reverse()
+    return lst
+```
+
+```python # wrong: drops the first element
+def reverse_list(lst: list) -> list:
+    out = []
+    for item in lst[1:]:
+        out.insert(0, item)
+    return out
+```
+
+### Give-aways the Description must never contain
+
+```text # forbidden
+\[::-1\]
+\.reverse\(\)
+\breversed\(
+for\s+\w+\s+in\s+lst\b
+insert\(0,\s*(item|x|element)\b
+out\.insert\(0
+```
+
+### Shortcuts the tests reject outright
+
+```text # banned
+[::-1]
+.reverse()
+reversed(
 ```

@@ -1,5 +1,5 @@
 ---
-title: "Python 02 - Reverse a String"
+title: "Python A3 - Reverse a String"
 ---
 
 # Reverse a String
@@ -7,6 +7,8 @@ title: "Python 02 - Reverse a String"
 ## Instructions
 
 Write a function `reverse_string(stg: str) -> str` that returns the characters of `stg` in the opposite order.
+
+Write the loop yourself. `[::-1]` and `reversed(` *are* the answer, so **Check** turns them down.
 
 ## Description
 
@@ -83,6 +85,10 @@ print(reverse_string("hello"))
 ## Tests
 
 ```python # tests
+# The point of this one is the loop you write, so Check refuses the shortcuts.
+for _banned in ("[::-1]", "reversed("):
+    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+
 assert reverse_string("hello") == "olleh", f"Got: {reverse_string('hello')}"
 assert reverse_string("") == "", f"Got: {reverse_string('')}"
 assert reverse_string("a") == "a", f"Got: {reverse_string('a')}"
@@ -94,4 +100,78 @@ assert reverse_string("a1b2") == "2b1a", f"Got: {reverse_string('a1b2')}"
 assert reverse_string("  x  ") == "  x  ", f"Got: {reverse_string('  x  ')}"
 assert reverse_string("Hello, World!") == "!dlroW ,olleH", f"Got: {reverse_string('Hello, World!')}"
 print("All tests passed!")
+```
+
+## Solution
+
+Not shown by the app: it renders only `## Description` and the labelled
+fences. This section is what `script/verify_exercices.py` checks the
+exercise against, so the exercise is verifiable on its own.
+
+### Reference solution
+
+```python # solution
+def reverse_string(stg: str) -> str:
+    """ Return the characters of stg in reverse order. """
+    out = ""
+    for char in stg:
+        out = char + out
+    return out
+```
+
+### Wrong answers the tests must catch
+
+Each one is an answer a student really writes, or a shortcut that games the
+test data. Every one of them must make **Check** fail.
+
+```python # wrong: takes the slice shortcut
+def reverse_string(stg: str) -> str:
+    return stg[::-1]
+```
+
+```python # wrong: calls reversed() instead of looping
+def reverse_string(stg: str) -> str:
+    return "".join(reversed(stg))
+```
+
+```python # wrong: keeps only letters
+def reverse_string(stg: str) -> str:
+    out = ""
+    for char in stg:
+        if char.isalpha():
+            out = char + out
+    return out
+```
+
+```python # wrong: concatenates in the wrong order
+def reverse_string(stg: str) -> str:
+    out = ""
+    for char in stg:
+        out = out + char
+    return out
+```
+
+```python # wrong: lowercases as a side effect
+def reverse_string(stg: str) -> str:
+    out = ""
+    for char in stg.lower():
+        out = char + out
+    return out
+```
+
+### Give-aways the Description must never contain
+
+```text # forbidden
+\[::-1\]
+\breversed\(
+for\s+\w+\s+in\s+stg\b
+\bout\s*=\s*char\s*\+
+"c"\s*\+\s*"ab"
+```
+
+### Shortcuts the tests reject outright
+
+```text # banned
+[::-1]
+reversed(
 ```

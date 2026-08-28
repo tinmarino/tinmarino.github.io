@@ -1,5 +1,5 @@
 ---
-title: "Python 00 - Print Hello (Template)"
+title: "Python A1 - Print Hello"
 ---
 
 # Print Hello
@@ -76,4 +76,51 @@ print(hello())
 assert hello() == "hello", f"Got: {hello()!r}"
 assert isinstance(hello(), str), f"Got: a {type(hello()).__name__}, not a str"
 print("All tests passed!")
+```
+
+## Solution
+
+Not shown by the app: it renders only `## Description` and the labelled
+fences. This section is what `script/verify_exercices.py` checks the
+exercise against, so the exercise is verifiable on its own.
+
+### Reference solution
+
+```python # solution
+def hello() -> str:
+    """ Return the string "hello". """
+    return "hello"
+```
+
+### Wrong answers the tests must catch
+
+Each one is an answer a student really writes, or a shortcut that games the
+test data. Every one of them must make **Check** fail.
+
+```python # wrong: prints instead of returning
+def hello() -> str:
+    print("hello")
+```
+
+```python # wrong: returns the wrong text
+def hello() -> str:
+    return "Hello"
+```
+
+```python # wrong: returns the name of the value, not the value
+def hello() -> str:
+    return "the string hello"
+```
+
+### Give-aways the Description must never contain
+
+```text # forbidden
+return\s+"hello"
+```
+
+### Shortcuts the tests reject outright
+
+None: there is no one-liner that skips this lesson.
+
+```text # banned
 ```

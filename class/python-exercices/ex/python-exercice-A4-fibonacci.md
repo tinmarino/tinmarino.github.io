@@ -1,5 +1,5 @@
 ---
-title: "Python 03 - Fibonacci"
+title: "Python A4 - Fibonacci"
 ---
 
 # Fibonacci
@@ -108,4 +108,63 @@ assert [fibo(k) for k in range(12)] == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
     f"Got: {[fibo(k) for k in range(12)]}"
 assert fibo(20) == 6765, f"Got: {fibo(20)}"
 print("All tests passed!")
+```
+
+## Solution
+
+Not shown by the app: it renders only `## Description` and the labelled
+fences. This section is what `script/verify_exercices.py` checks the
+exercise against, so the exercise is verifiable on its own.
+
+### Reference solution
+
+```python # solution
+def fibo(pos: int) -> int:
+    """ Return the Fibonacci number at position pos. """
+    left, right = 0, 1
+    for _ in range(pos):
+        left, right = right, left + right
+    return left
+```
+
+### Wrong answers the tests must catch
+
+Each one is an answer a student really writes, or a shortcut that games the
+test data. Every one of them must make **Check** fail.
+
+```python # wrong: lookup table of the tested positions only
+def fibo(pos: int) -> int:
+    return {0: 0, 1: 1, 2: 1, 5: 5, 10: 55, 20: 6765}.get(pos, 0)
+```
+
+```python # wrong: off by one
+def fibo(pos: int) -> int:
+    left, right = 0, 1
+    for _ in range(pos + 1):
+        left, right = right, left + right
+    return left
+```
+
+```python # wrong: starts the sequence at 1, 1
+def fibo(pos: int) -> int:
+    left, right = 1, 1
+    for _ in range(pos):
+        left, right = right, left + right
+    return left
+```
+
+### Give-aways the Description must never contain
+
+```text # forbidden
+fibo\(\s*pos\s*-
+\+\s*fibo\(
+range\(pos\)
+right,\s*left\s*\+\s*right
+```
+
+### Shortcuts the tests reject outright
+
+None: there is no one-liner that skips this lesson.
+
+```text # banned
 ```

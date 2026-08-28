@@ -16,14 +16,22 @@ Per exercise, this checks:
   4. the starter template parses and runs on its own
   5. the reference solution plus the run snippet produce output
   6. the reference solution passes the tests
-  7. every registered WRONG answer *fails* the tests, for the right reason
+  7. every declared WRONG answer *fails* the tests, for the right reason, and
+     every BANNED construct is both named in the Instructions and rejected by
+     a wrong answer that actually uses it
   8. pylint 10/10 on the reference solution and on each self-contained
      ```python snippet, and on the ``# template`` / ``# run`` / ``# tests``
      fences under a documented per-fence exemption set
   9. no Description text -- prose *or* code -- leaks the solution
 
-Add to SOLUTIONS, WRONG_ANSWERS and FORBIDDEN_IN_HINTS whenever you add an
-exercise: a missing entry in any of them is a hard error, not a skip.
+Everything an exercise needs to be verified lives in its own file, under the
+``## Solution`` section: the ``# solution`` fence, two or more
+``# wrong: <label>`` fences, a ``# forbidden`` fence of leak regexes and a
+``# banned`` fence of constructs the student may not use. Nothing about an
+individual exercise is configured here, so two exercises can never conflict.
+
+The app never shows that section: it reads only the named fences and
+``## Description``. Add ``--only ex07,ex08`` to verify a subset.
 """
 import json
 import pathlib
@@ -35,118 +43,6 @@ import tempfile
 QUOTES = '"""'
 MAX_LINE = 100
 
-
-def _doc(text):
-    """ Build a padded docstring line, the house style for these exercises. """
-    return f'    {QUOTES} {text} {QUOTES}\n'
-
-
-SOLUTIONS = {
-    'ex00': (
-        'def hello() -> str:\n'
-        + _doc('Return the string "hello".')
-        + '    return "hello"\n'),
-    'ex01': (
-        'def reverse_list(lst: list) -> list:\n'
-        + _doc('Return a new list with the elements of lst reversed.')
-        + '    out = []\n'
-          '    for item in lst:\n'
-          '        out.insert(0, item)\n'
-          '    return out\n'),
-    'ex02': (
-        'def reverse_string(stg: str) -> str:\n'
-        + _doc('Return the characters of stg in reverse order.')
-        + '    out = ""\n'
-          '    for char in stg:\n'
-          '        out = char + out\n'
-          '    return out\n'),
-    'ex03': (
-        'def fibo(pos: int) -> int:\n'
-        + _doc('Return the Fibonacci number at position pos.')
-        + '    left, right = 0, 1\n'
-          '    for _ in range(pos):\n'
-          '        left, right = right, left + right\n'
-          '    return left\n'),
-}
-
-# Plausible-but-wrong implementations. Each MUST fail its exercise's tests.
-# These are the ones a student actually writes, or that a lazy answer would use
-# to game sparse test data -- not strawmen.
-WRONG_ANSWERS = {
-    'ex00': [
-        ('prints instead of returning',
-         'def hello() -> str:\n    print("hello")\n'),
-        ('returns the wrong text',
-         'def hello() -> str:\n    return "Hello"\n'),
-    ],
-    'ex01': [
-        ('sorts descending instead of reversing',
-         'def reverse_list(lst: list) -> list:\n    return sorted(lst, reverse=True)\n'),
-        ('returns the input unchanged',
-         'def reverse_list(lst: list) -> list:\n    return lst\n'),
-        ('reverses the caller\'s list in place',
-         'def reverse_list(lst: list) -> list:\n    lst.reverse()\n    return lst\n'),
-        ('drops the first element',
-         'def reverse_list(lst: list) -> list:\n'
-         '    out = []\n'
-         '    for item in lst[1:]:\n'
-         '        out.insert(0, item)\n'
-         '    return out\n'),
-    ],
-    'ex02': [
-        ('keeps only letters',
-         'def reverse_string(stg: str) -> str:\n'
-         '    out = ""\n'
-         '    for char in stg:\n'
-         '        if char.isalpha():\n'
-         '            out = char + out\n'
-         '    return out\n'),
-        ('concatenates in the wrong order',
-         'def reverse_string(stg: str) -> str:\n'
-         '    out = ""\n'
-         '    for char in stg:\n'
-         '        out = out + char\n'
-         '    return out\n'),
-        ('lowercases as a side effect',
-         'def reverse_string(stg: str) -> str:\n'
-         '    out = ""\n'
-         '    for char in stg.lower():\n'
-         '        out = char + out\n'
-         '    return out\n'),
-    ],
-    'ex03': [
-        ('lookup table of the tested positions only',
-         'def fibo(pos: int) -> int:\n'
-         '    return {0: 0, 1: 1, 2: 1, 5: 5, 10: 55, 20: 6765}.get(pos, 0)\n'),
-        ('off by one',
-         'def fibo(pos: int) -> int:\n'
-         '    left, right = 0, 1\n'
-         '    for _ in range(pos + 1):\n'
-         '        left, right = right, left + right\n'
-         '    return left\n'),
-        ('starts the sequence at 1, 1',
-         'def fibo(pos: int) -> int:\n'
-         '    left, right = 1, 1\n'
-         '    for _ in range(pos):\n'
-         '        left, right = right, left + right\n'
-         '    return left\n'),
-    ],
-}
-
-# Text that would hand the answer away if it appeared anywhere in a Description,
-# prose included. Sentences that merely *forbid* a construct are exempted by
-# ALLOWED_CONTEXT below.
-FORBIDDEN_IN_HINTS = {
-    'ex00': [r'return\s+"hello"'],
-    'ex01': [r'\[::-1\]', r'\.reverse\(\)', r'\breversed\(',
-             r'for\s+\w+\s+in\s+lst\b', r'insert\(0,\s*(item|x|element)\b',
-             r'out\.insert\(0'],
-    'ex02': [r'\[::-1\]', r'\breversed\(',
-             r'for\s+\w+\s+in\s+stg\b', r'\bout\s*=\s*char\s*\+',
-             r'"c"\s*\+\s*"ab"'],
-    'ex03': [r'fibo\(\s*pos\s*-', r'\+\s*fibo\(', r'range\(pos\)',
-             r'right,\s*left\s*\+\s*right'],
-}
 
 # A line that both matches a forbidden pattern and one of these is a prohibition
 # ("do not use [::-1]") or a plain mention, not a leak.
@@ -162,12 +58,24 @@ FENCE_EXEMPTIONS = {
     'template': ['unused-argument', 'pointless-string-statement'],
     # These call the function the student writes; it cannot be defined here.
     'run': ['undefined-variable'],
+    # Plus __student_code__, which the app and this script inject; see
+    # STUDENT_CODE_VAR below.
     'tests': ['undefined-variable'],
+    # A reference solution and a wrong answer are both plain modules; a wrong
+    # answer is deliberately bad Python only in the ways pylint cannot see.
+    'solution': [],
 }
+
+# The tests run in the same namespace as the student's code, and are also handed
+# its *source* under this name. That is what lets a test reject a banned
+# construct -- `max(`, `[::-1]`, `.split(` -- which no amount of asserting on
+# return values could ever catch. app.js injects the identical variable.
+STUDENT_CODE_VAR = '__student_code__'
 
 PYLINT_BASE = [
     'pylint', '--rcfile=/dev/null', '--enable=invalid-name',
     '--disable=missing-module-docstring',
+    f'--additional-builtins={STUDENT_CODE_VAR}',
 ]
 
 SIGNATURE_RE = re.compile(r'^def\s+(\w+)\s*\((.*?)\)\s*->\s*(\w+)\s*:', re.M)
@@ -196,6 +104,36 @@ def sketch_snippets(markdown):
     complete modules and are only checked for syntax.
     """
     return fences(markdown, 'sketch')
+
+
+def wrong_answers(markdown):
+    """ Return the (label, code) pairs of every ```python # wrong: <label> fence. """
+    return re.findall(r'```python[ \t]*#[ \t]*wrong:[ \t]*(.+?)[ \t]*\n(.*?)```',
+                      markdown, re.S)
+
+
+def text_lines(markdown, kind):
+    """ Return the non-empty, non-comment lines of a ```text # <kind> fence. """
+    found = re.findall(rf'```text[ \t]*#[ \t]*{kind}[ \t]*\n(.*?)```', markdown, re.S)
+    if not found:
+        return None
+    return [line.strip() for line in found[0].split('\n')
+            if line.strip() and not line.strip().startswith('#')]
+
+
+def run_tests(code, tests, relative):
+    """ Exec code + tests with the source exposed, as the app does.
+
+    Returns None on success, or the exception the tests raised. The student's
+    own source is bound to __student_code__ so a test can reject a construct
+    the exercise bans.
+    """
+    namespace = {STUDENT_CODE_VAR: code}
+    try:
+        exec(compile(code + '\n' + tests, relative, 'exec'), namespace)  # pylint: disable=exec-used
+    except Exception as exc:                           # pylint: disable=broad-except
+        return exc
+    return None
 
 
 def pylint_score_10(code, label, errors, exempt=()):
@@ -231,6 +169,20 @@ def check_structure(tag, markdown, errors):
             errors.append(f'{tag}: missing "## {name}" section')
 
 
+def check_signature(tag, template, errors):
+    """ Check the template's `def name(arg: type) -> type:` line. """
+    signature = SIGNATURE_RE.search(template)
+    if not signature:
+        errors.append(f'{tag}: template needs `def name(...) -> type:` with a return annotation')
+        return
+    name, params, _ = signature.groups()
+    for param in [p.strip() for p in params.split(',') if p.strip()]:
+        if ':' not in param:
+            errors.append(f'{tag}: parameter "{param}" of {name}() has no type annotation')
+        elif len(param.split(':')[0].strip()) < 2:
+            errors.append(f'{tag}: parameter "{param}" is a single letter; use a real name')
+
+
 def check_style(tag, markdown, blocks, errors):
     """ Check the house-style rules that do not need to run any code. """
     template, tests = blocks['template'], blocks['tests']
@@ -244,16 +196,7 @@ def check_style(tag, markdown, blocks, errors):
     if '>>>' not in template:
         errors.append(f'{tag}: docstring must carry a doctest example')
 
-    signature = SIGNATURE_RE.search(template)
-    if not signature:
-        errors.append(f'{tag}: template needs `def name(...) -> type:` with a return annotation')
-    else:
-        name, params, _ = signature.groups()
-        for param in [p.strip() for p in params.split(',') if p.strip()]:
-            if ':' not in param:
-                errors.append(f'{tag}: parameter "{param}" of {name}() has no type annotation')
-            elif len(param.split(':')[0].strip()) < 2:
-                errors.append(f'{tag}: parameter "{param}" is a single letter; use a real name')
+    check_signature(tag, template, errors)
 
     # Join backslash continuations so a message on the next line still counts
     joined = re.sub(r'\\\n\s*', ' ', tests)
@@ -272,13 +215,15 @@ def check_style(tag, markdown, blocks, errors):
     return description
 
 
-def check_no_leak(tag, exercise_id, description, errors):
+def check_no_leak(tag, patterns, description, errors):
     """ Check that no Description line -- prose or code -- gives the answer. """
     if description is None:
         return
-    patterns = FORBIDDEN_IN_HINTS.get(exercise_id)
     if patterns is None:
-        errors.append(f'{tag}: no FORBIDDEN_IN_HINTS entry, hints cannot be checked')
+        errors.append(f'{tag}: no "```text # forbidden" fence, hints cannot be checked')
+        return
+    if not patterns:
+        errors.append(f'{tag}: the "# forbidden" fence is empty; name the give-aways')
         return
     for line in description.split('\n'):
         if any(re.search(allow, line, re.I) for allow in ALLOWED_CONTEXT):
@@ -291,37 +236,62 @@ def check_no_leak(tag, exercise_id, description, errors):
 
 def check_behaviour(tag, relative, blocks, solution, errors):
     """ Run the template, the run snippet and the tests. """
-    cases = (
-        ('template', blocks['template']),
-        ('run snippet', solution + '\n' + blocks['run']),
-        ('reference solution against its tests', solution + '\n' + blocks['tests']),
-    )
-    for label, code in cases:
+    for label, code in (('template', blocks['template']),
+                        ('run snippet', solution + '\n' + blocks['run'])):
         try:
             exec(compile(code, relative, 'exec'), {})  # pylint: disable=exec-used
         except Exception as exc:                       # pylint: disable=broad-except
             errors.append(f'{tag}: {label} raises: {exc!r}')
 
+    failure = run_tests(solution, blocks['tests'], relative)
+    if failure is not None:
+        errors.append(f'{tag}: the reference solution FAILS its own tests: {failure!r}')
 
-def check_wrong_answers(tag, exercise_id, relative, tests, errors):
-    """ Every registered wrong answer must fail the tests via an AssertionError. """
-    wrongs = WRONG_ANSWERS.get(exercise_id)
-    if not wrongs:
-        errors.append(f'{tag}: no WRONG_ANSWERS entry, test strength cannot be checked')
+
+def check_wrong_answers(tag, relative, tests, wrongs, errors):
+    """ Every declared wrong answer must fail the tests via an AssertionError.
+
+    Two is the floor: one wrong answer usually only proves the tests call the
+    function at all. These are the answers a student actually writes.
+    """
+    if len(wrongs) < 2:
+        errors.append(f'{tag}: needs at least 2 "# wrong:" fences to prove the tests '
+                      f'have teeth, found {len(wrongs)}')
         return
     for label, code in wrongs:
-        try:
-            exec(compile(code + '\n' + tests, relative, 'exec'))  # pylint: disable=exec-used
-        except AssertionError:
+        failure = run_tests(code, tests, relative)
+        if isinstance(failure, AssertionError):
             continue
-        except Exception as exc:                       # pylint: disable=broad-except
+        if failure is None:
+            errors.append(f'{tag}: tests ACCEPT the wrong answer "{label}"')
+        else:
             errors.append(f'{tag}: wrong answer "{label}" failed for the wrong reason '
-                          f'({exc!r}); the tests should catch it with an assert')
-            continue
-        errors.append(f'{tag}: tests ACCEPT the wrong answer "{label}"')
+                          f'({failure!r}); the tests should catch it with an assert')
 
 
-def check_snippets(tag, relative, markdown, solution, blocks, errors):
+def check_banned(tag, markdown, wrongs, banned, errors):
+    """ Check every banned construct is announced and actually rejected.
+
+    Naming a shortcut in the prose is not enough: a student who reaches for
+    ``max(`` must be told by **Check**, not by the honour system. So each banned
+    construct needs a wrong answer that really uses it, which the wrong-answer
+    pass above then proves the tests reject.
+    """
+    if banned is None:
+        errors.append(f'{tag}: no "```text # banned" fence; write an empty one if '
+                      f'this exercise genuinely bans nothing')
+        return
+    instructions = section(markdown, 'Instructions') or ''
+    wrong_code = '\n'.join(code for _, code in wrongs)
+    for construct in banned:
+        if construct not in instructions:
+            errors.append(f'{tag}: bans "{construct}" but never says so in ## Instructions')
+        if construct not in wrong_code:
+            errors.append(f'{tag}: bans "{construct}" but no "# wrong:" fence uses it, '
+                          f'so nothing proves the tests reject it')
+
+
+def check_snippets(tag, relative, markdown, blocks, errors):
     """ Parse-check the sketches and pylint everything that can be linted. """
     for index, snippet in enumerate(sketch_snippets(markdown), start=1):
         try:
@@ -329,7 +299,6 @@ def check_snippets(tag, relative, markdown, solution, blocks, errors):
         except SyntaxError as exc:
             errors.append(f'{tag}: sketch #{index} does not parse: {exc}')
 
-    pylint_score_10(solution, f'{tag} reference solution', errors)
     for kind, body in blocks.items():
         pylint_score_10(body, f'{tag} "# {kind}" fence', errors,
                         exempt=FENCE_EXEMPTIONS.get(kind, ()))
@@ -357,16 +326,26 @@ def check_exercise(base, entry, errors):
         blocks[kind] = found[0]
 
     check_structure(tag, markdown, errors)
-    description = check_style(tag, markdown, blocks, errors)
-    check_no_leak(tag, exercise_id, description, errors)
-
-    solution = SOLUTIONS.get(exercise_id)
-    if solution is None:
-        errors.append(f'{tag}: no SOLUTIONS entry, the exercise cannot be verified')
+    if section(markdown, 'Solution') is None:
+        errors.append(f'{tag}: missing "## Solution" section (solution, wrong answers, '
+                      f'forbidden and banned fences); the exercise cannot be verified')
         return
+
+    description = check_style(tag, markdown, blocks, errors)
+    check_no_leak(tag, text_lines(markdown, 'forbidden'), description, errors)
+
+    found = fences(markdown, 'solution')
+    if len(found) != 1:
+        errors.append(f'{tag}: expected exactly one "# solution" fence, found {len(found)}')
+        return
+    solution = found[0]
+    blocks['solution'] = solution
+    wrongs = wrong_answers(markdown)
+
     check_behaviour(tag, relative, blocks, solution, errors)
-    check_wrong_answers(tag, exercise_id, relative, blocks['tests'], errors)
-    check_snippets(tag, relative, markdown, solution, blocks, errors)
+    check_wrong_answers(tag, relative, blocks['tests'], wrongs, errors)
+    check_banned(tag, markdown, wrongs, text_lines(markdown, 'banned'), errors)
+    check_snippets(tag, relative, markdown, blocks, errors)
 
     print('checked', tag)
 
@@ -386,15 +365,26 @@ def check_manifest(manifest, errors):
 
 def main(argv):
     """ Verify every exercise listed in the manifest. Return an exit status. """
-    if len(argv) != 2:
+    args = [a for a in argv[1:] if not a.startswith('--')]
+    only = None
+    for flag in argv[1:]:
+        if flag.startswith('--only='):
+            only = {part.strip() for part in flag.split('=', 1)[1].split(',') if part.strip()}
+    if len(args) != 1:
         print(__doc__)
         return 2
-    base = pathlib.Path(argv[1])
+    base = pathlib.Path(args[0])
     manifest = json.loads((base / 'manifest.json').read_text(encoding='utf-8'))
 
     errors = []
     check_manifest(manifest, errors)
-    for entry in manifest:
+    # --only verifies one exercise without needing the others to exist yet, so
+    # several can be written in parallel against the same tree.
+    todo = [e for e in manifest if only is None or e.get('id') in only]
+    if only is not None and not todo:
+        print(f'no manifest entry matches --only={",".join(sorted(only))}')
+        return 2
+    for entry in todo:
         check_exercise(base, entry, errors)
 
     print()
@@ -403,7 +393,7 @@ def main(argv):
         for error in errors:
             print('  -', error)
         return 1
-    print(f'ALL {len(manifest)} EXERCISES OK')
+    print(f'ALL {len(todo)} EXERCISES OK')
     return 0
 
 

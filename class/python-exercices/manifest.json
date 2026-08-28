@@ -1,6 +1,21 @@
 [
-  { "id": "ex00", "title": "00 - Print Hello", "file": "ex/python-exercice-00-print-hello.md" },
-  { "id": "ex01", "title": "01 - Reverse a List", "file": "ex/python-exercice-01-reverse-list.md" },
-  { "id": "ex02", "title": "02 - Reverse a String", "file": "ex/python-exercice-02-reverse-string.md" },
-  { "id": "ex03", "title": "03 - Fibonacci", "file": "ex/python-exercice-03-fibonacci.md" }
+  {"id": "A1", "title": "A1 - Print Hello", "file": "ex/python-exercice-A1-print-hello.md"},
+  {"id": "A2", "title": "A2 - Reverse a List", "file": "ex/python-exercice-A2-reverse-list.md"},
+  {"id": "A3", "title": "A3 - Reverse a String", "file": "ex/python-exercice-A3-reverse-string.md"},
+  {"id": "A4", "title": "A4 - Fibonacci", "file": "ex/python-exercice-A4-fibonacci.md"},
+  {"id": "B1", "title": "B1 - Count the Vowels", "file": "ex/python-exercice-B1-count-vowels.md"},
+  {"id": "B2", "title": "B2 - Largest of a List", "file": "ex/python-exercice-B2-largest-of-list.md"},
+  {"id": "B3", "title": "B3 - Is it a Palindrome?", "file": "ex/python-exercice-B3-is-palindrome.md"},
+  {"id": "B4", "title": "B4 - Sum of Digits", "file": "ex/python-exercice-B4-sum-of-digits.md"},
+  {"id": "C1", "title": "C1 - Count Each Letter", "file": "ex/python-exercice-C1-count-each-letter.md"},
+  {"id": "C2", "title": "C2 - Most Frequent Word", "file": "ex/python-exercice-C2-most-frequent.md"},
+  {"id": "C3", "title": "C3 - Remove Duplicates", "file": "ex/python-exercice-C3-remove-duplicates.md"},
+  {"id": "C4", "title": "C4 - Group by First Letter", "file": "ex/python-exercice-C4-group-by-first-letter.md"},
+  {"id": "C5", "title": "C5 - Two Sum", "file": "ex/python-exercice-C5-two-sum.md"},
+  {"id": "D1", "title": "D1 - A Stack from a List", "file": "ex/python-exercice-D1-stack-from-a-list.md"},
+  {"id": "D2", "title": "D2 - Reverse with a Stack", "file": "ex/python-exercice-D2-reverse-with-a-stack.md"},
+  {"id": "D3", "title": "D3 - Undo History", "file": "ex/python-exercice-D3-undo-history.md"},
+  {"id": "D4", "title": "D4 - One Bracket Type", "file": "ex/python-exercice-D4-one-bracket-type.md"},
+  {"id": "D5", "title": "D5 - Balanced Parentheses", "file": "ex/python-exercice-D5-balanced-parentheses.md"},
+  {"id": "E1", "title": "E1 - Reverse Polish Notation", "file": "ex/python-exercice-E1-reverse-polish-notation.md"}
 ]
