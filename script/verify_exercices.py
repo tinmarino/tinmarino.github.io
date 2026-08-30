@@ -78,7 +78,7 @@ PYLINT_BASE = [
     f'--additional-builtins={STUDENT_CODE_VAR}',
 ]
 
-SIGNATURE_RE = re.compile(r'^def\s+(\w+)\s*\((.*?)\)\s*->\s*(\w+)\s*:', re.M)
+SIGNATURE_RE = re.compile(r'^def\s+(\w+)\s*\((.*?)\)\s*->\s*([^:]+?)\s*:', re.M)
 
 
 def fences(markdown, kind):
@@ -170,10 +170,10 @@ def check_structure(tag, markdown, errors):
 
 
 def check_signature(tag, template, errors):
-    """ Check the template's `def name(arg: type) -> type:` line. """
+    """ Check the template's `def name(arg: type) -> annotation:` line. """
     signature = SIGNATURE_RE.search(template)
     if not signature:
-        errors.append(f'{tag}: template needs `def name(...) -> type:` with a return annotation')
+        errors.append(f'{tag}: template needs `def name(...) -> annotation:` with a return annotation')
         return
     name, params, _ = signature.groups()
     for param in [p.strip() for p in params.split(',') if p.strip()]:

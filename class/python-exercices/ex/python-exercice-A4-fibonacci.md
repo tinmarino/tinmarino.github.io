@@ -10,20 +10,36 @@ Write a function `fibo(pos: int) -> int` that returns the number at position `po
 
 ## Description
 
+### Goal
+
+Return the Fibonacci number at position `pos`, counting from `0`.
+
+### History
+
+The name comes from **Fibonacci**, the Latin nickname of Leonardo of Pisa, who wrote
+about this sequence in *Liber Abaci* in 1202. The famous story attached to it is the
+rabbit puzzle: start with one pair, let each adult pair produce a new pair every month,
+and count how many pairs there are as time passes.
+
+That rabbit story is not biology. It is a compact way to describe a quantity whose new
+value depends on its recent past. The sequence turned out to be useful far beyond the
+story: population models, tree-like branching, dynamic programming examples, and the
+mathematics of growth all keep running into it.
+
 ### The sequence
 
-It starts with `0` and `1`, and every later number is the sum of the two before it:
+In this classroom it begins like this:
 
 ```
 position  0  1  2  3  4  5  6   7   8   9  10
 value     0  1  1  2  3  5  8  13  21  34  55
 ```
 
-### Rules
-
-- the value at position `0` is `0`
-- the value at position `1` is `1`
-- from position `2` onwards, a value is the sum of the two values before it
+The two border cases are the first two positions: `0` gives `0`, and `1` gives `1`.
+After that, each new value comes from the two just before it. Negative positions are
+outside this exercise, and they are worth mentioning because they show what a stopping
+rule has to protect you from: a recursive idea that never reaches its base case is not
+finished.
 
 ### Examples
 
@@ -35,14 +51,35 @@ value     0  1  1  2  3  5  8  13  21  34  55
 | `fibo(10)` | `55` |
 | `fibo(20)` | `6765` |
 
+### Recursive functions
+
+A **recursive** function is a function that solves a problem by calling itself on a
+smaller version of that same problem. Fibonacci is the textbook example because the
+definition itself is recursive: a later term is explained by earlier terms.
+
+Why teachers like it:
+
+- it forces you to identify the base cases clearly
+- it shows how one definition can lead to two very different programs
+- it makes the call stack visible as a useful tool instead of a hidden machine detail
+
+The attraction of recursion is that the code can become short and direct. You often need
+fewer working variables because the stack remembers where each unfinished call must come
+back to. The cost is speed: the naive recursive version recomputes the same values many
+times, so elegant code can still be expensive code.
+
 ### Where to start
 
-Look at the table again and ask what you actually need in order to produce the next
-value. Not the whole history &mdash; how many of the previous numbers, exactly? That
-answer tells you how many variables to keep.
+There are two honest roads here.
 
-Then ask how many times you have to move forward to get from position `0` to
-position `pos`.
+The loop asks: how little history do you really need to carry forward in order to build
+the next value? Not the whole sequence, only the part the next step depends on.
+
+The recursive road asks a different question: what smaller Fibonacci questions would a
+position ask before it can answer itself?
+
+Both roads teach something. Write the loop first, then come back and sketch the recursive
+one beside it.
 
 ### Things you will need
 
@@ -58,18 +95,20 @@ To repeat something a counted number of times, `for _ in range(count):` runs the
 `count` times; `_` is the conventional name for a loop variable you never read. Getting
 `count` right is on you &mdash; see "Check yourself" below.
 
-### A word on recursion
+### Why teachers keep assigning it
 
-The rules above are self-referential, so a function that calls itself can express
-them. It is shorter to write and much slower to run: it recomputes the same values
-over and over, so position `30` already costs over a million calls. Both approaches
-pass the tests. Write the loop.
+This one tiny problem packs several lessons into a very small function: edge cases,
+counted repetition, recursion, cost, and off-by-one errors. It is one of the first
+places where a mathematically neat definition and an efficient program part company.
+
+That is why it keeps turning up in computing classes. The function is short. The ideas it
+opens are not.
 
 ### Check yourself
 
-Before running anything, trace your idea by hand for `pos = 3` and confirm you get
-`2`, and for `pos = 0` that you get `0`. Off-by-one errors live exactly here: count
-how many times you step, not how many numbers you have seen.
+Before running anything, trace your idea by hand for `pos = 3` and confirm you get `2`,
+and for `pos = 0` that you get `0`. Off-by-one errors live exactly here: count how many
+times you step, not how many numbers you have seen.
 
 ## Starter code
 

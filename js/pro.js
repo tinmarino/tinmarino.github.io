@@ -472,19 +472,22 @@ function addHandlerSwipe() {
   //   2. bar shown, no dash open       -> reopen the dash last used
   //   3. everything already open       -> nothing left to reveal
   function swipeRight() {
-    if (!isBarOpen()) { showBar(true); return; }
-    if (isSidebar2Open()) { return; }
+    if (!isBarOpen()) { showBar(true); return true; }
+    if (isSidebar2Open()) { return false; }
     const last = getLastNavId();
-    if (null == last) { return; }
+    if (null == last) { return false; }
     const elt = document.getElementById(last);
-    if (null == elt) { return; }
+    if (null == elt) { return false; }
     openOne(last);
+    return true;
   }
 
-  // Left hides in the mirror order: dash first, then the icon bar
+  // Left hides in the mirror order: dash first, then the icon bar, so an
+  // embedded page can ask whether there was still one outer layer to close.
   function swipeLeft() {
-    if (isSidebar2Open()) { closeAll(false); return; }
-    showBar(false);
+    if (isSidebar2Open()) { closeAll(false); return true; }
+    if (isBarOpen()) { showBar(false); return true; }
+    return false;
   }
 
   function addTo(doc) {
@@ -521,7 +524,21 @@ function addHandlerSwipe() {
   // this is the path that also works when they are not.
   window.addEventListener('message', function(e) {
     const data = e.data;
-    if (null == data || data.type != 'tinmarino-swipe') { return; }
+    if (null == data) { return; }
+    if (data.type == 'tinmarino-swipe-request') {
+      let handled = false;
+      if (data.dir == 'right') { handled = swipeRight(); }
+      else if (data.dir == 'left') { handled = swipeLeft(); }
+      try {
+        e.source.postMessage({
+          type: 'tinmarino-swipe-result',
+          requestId: data.requestId,
+          handled: handled,
+        }, '*');
+      } catch (err) { /* iframe went away */ }
+      return;
+    }
+    if (data.type != 'tinmarino-swipe') { return; }
     if (data.dir == 'right') { swipeRight(); }
     else if (data.dir == 'left') { swipeLeft(); }
   });

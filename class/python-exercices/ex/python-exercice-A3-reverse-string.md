@@ -46,6 +46,15 @@ the whole exercise.
 You can also index a string like a list, `stg[0]` being the first character, and
 `len(stg)` gives its length.
 
+### A string behaves like a read-only list
+
+In Python, a string is not a list, but for reading it behaves like a sequence of
+one-character strings. You can walk it, count it and read one position from it.
+
+That is the small surprise of this exercise: the container changed, but the real
+question did not. You still have a row of things, and you still have to decide on
+which side each new thing belongs.
+
 ### Which order do you need?
 
 Same question as the previous exercise: if you visit the characters from **front to

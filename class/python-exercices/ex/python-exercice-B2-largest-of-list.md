@@ -6,7 +6,7 @@ title: "Python B2 - Largest of a List"
 
 ## Instructions
 
-Write a function `largest(lst: list) -> int` that returns the biggest number in `lst`.
+Write a function `largest(lst: list) -> int | None` that returns the biggest number in `lst`, or `None` when the list is empty.
 
 Find it yourself with a loop. `max(`, `min(`, `sorted(` and `.sort(` skip the exercise, so **Check** turns them down.
 
@@ -21,7 +21,7 @@ Given a list of numbers, hand back the biggest one. Return it &mdash; do not pri
 
 ### Rules
 
-- The list always holds at least one number. You never have to deal with an empty list.
+- An empty list returns `None`, because there is no number in it to compare.
 - Return the number itself, not its position in the list.
 - The list you were given must come out **unchanged**. Read it; do not take numbers out of it.
 - Find it yourself with a loop. Do **not** use `max(`, `min(`, `sorted(` or `.sort(` &mdash; writing the loop is the exercise.
@@ -37,6 +37,7 @@ The numbers are overnight temperatures, in degrees.
 | `largest([7])` | `7` |
 | `largest([2, 2, 2])` | `2` |
 | `largest([-3, -8, 0, -5])` | `0` |
+| `largest([])` | `None` |
 
 ### Something new: the answer is already in the list
 
@@ -64,17 +65,25 @@ look at each. So what has to survive from one turn of the loop to the next?
 
 ### Where do you start?
 
-The whole exercise hides in one line: what is your candidate **before** you have looked
-at anything?
+If the list is not empty, the best candidate to start from is a real number already in the
+list. But an empty list has no first candidate to borrow.
+
+That is why this exercise now returns `None` on `[]`: not because `None` is a number, but
+because it says plainly *there was no largest number to report*.
+
+So the whole exercise still hides in one line: what is your candidate **before** you have
+looked at anything, and what do you return when there is nothing to look at?
 
 ## Starter code
 
 ```python # template
-def largest(lst: list) -> int:
-    """ Return the biggest number in lst, which always holds at least one.
+def largest(lst: list) -> int | None:
+    """ Return the biggest number in lst, or None when lst is empty.
 
     >>> largest([3, 12, 8])
     12
+    >>> largest([])
+    None
     """
     # YOUR CODE HERE
 ```
@@ -92,6 +101,11 @@ print(largest([-3, -8, 0, -5, -11, -6, 2]))
 for _banned in ("max(", "min(", "sorted(", ".sort("):
     assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
 
+try:
+    _empty = largest([])
+except (IndexError, ValueError, TypeError) as _error:
+    _empty = f"crashed on an empty list: {_error!r}"
+assert _empty is None, f"Got: {_empty}"
 assert largest([3, 41, 12]) == 41, f"Got: {largest([3, 41, 12])}"
 assert largest([7]) == 7, f"Got: {largest([7])}"
 # The biggest is first: a loop that starts comparing too late misses it
@@ -137,8 +151,10 @@ exercise against, so the exercise is verifiable on its own.
 ### Reference solution
 
 ```python # solution
-def largest(lst: list) -> int:
-    """ Return the biggest number in lst, which always holds at least one. """
+def largest(lst: list) -> int | None:
+    """ Return the biggest number in lst, or None when lst is empty. """
+    if not lst:
+        return None
     champion = lst[0]
     for number in lst:
         if number > champion:
@@ -152,29 +168,29 @@ Each one is an answer a student really writes, or a shortcut that games the
 test data. Every one of them must make **Check** fail.
 
 ```python # wrong: calls max() instead of looping
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     return max(lst)
 ```
 
 ```python # wrong: sorts and takes the end
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     return sorted(lst)[-1]
 ```
 
 ```python # wrong: sorts a copy with list.sort(), so the input survives
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     copy = list(lst)
     copy.sort()
     return copy[-1]
 ```
 
 ```python # wrong: confuses min with max
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     return min(lst)
 ```
 
 ```python # wrong: starts the candidate at zero
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     champion = 0
     for number in lst:
         if number > champion:
@@ -183,7 +199,7 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: starts the candidate at a very small invented number
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     champion = -1000000000
     for number in lst:
         if number > champion:
@@ -192,7 +208,7 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: the same invented floor, only deeper: no literal is deep enough
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     champion = -10 ** 30
     for number in lst:
         if number > champion:
@@ -201,7 +217,7 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: returns the last element
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     champion = lst[0]
     for number in lst:
         champion = number
@@ -209,12 +225,12 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: returns the first element
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     return lst[0]
 ```
 
 ```python # wrong: compares the wrong way round, so it finds the smallest
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     champion = lst[0]
     for number in lst:
         if number < champion:
@@ -223,7 +239,7 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: returns the position instead of the number
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     champion = 0
     for index in range(len(lst)):
         if lst[index] > lst[champion]:
@@ -232,7 +248,7 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: stops at the first number bigger than its neighbour
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     for index in range(len(lst) - 1):
         if lst[index] > lst[index + 1]:
             return lst[index]
@@ -240,7 +256,7 @@ def largest(lst: list) -> int:
 ```
 
 ```python # wrong: a memorised table of every list the tests spell out
-def largest(lst: list) -> int:
+def largest(lst: list) -> int | None:
     known = {
         (3, 41, 12): 41, (7,): 7, (41, 12, 3): 41, (3, 12, 41): 41,
         (-5, -3, -9): -3, (-1,): -1, (-100, -200): -100,
