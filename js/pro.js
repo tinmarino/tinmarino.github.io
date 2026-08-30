@@ -525,6 +525,8 @@ function addHandlerSwipe() {
   window.addEventListener('message', function(e) {
     const data = e.data;
     if (null == data) { return; }
+    // Only accept messages from our own origin (embedded iframes)
+    if (e.origin !== location.origin) { return; }
     if (data.type == 'tinmarino-swipe-request') {
       let handled = false;
       if (data.dir == 'right') { handled = swipeRight(); }
@@ -534,7 +536,7 @@ function addHandlerSwipe() {
           type: 'tinmarino-swipe-result',
           requestId: data.requestId,
           handled: handled,
-        }, '*');
+        }, e.origin);
       } catch (err) { /* iframe went away */ }
       return;
     }

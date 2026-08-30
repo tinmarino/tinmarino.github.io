@@ -14,32 +14,40 @@ Write a function `fibo(pos: int) -> int` that returns the number at position `po
 
 Return the Fibonacci number at position `pos`, counting from `0`.
 
-### History
+### The algorithm
 
-The name comes from **Fibonacci**, the Latin nickname of Leonardo of Pisa, who wrote
-about this sequence in *Liber Abaci* in 1202. The famous story attached to it is the
-rabbit puzzle: start with one pair, let each adult pair produce a new pair every month,
-and count how many pairs there are as time passes.
+Three rules define the whole sequence:
 
-That rabbit story is not biology. It is a compact way to describe a quantity whose new
-value depends on its recent past. The sequence turned out to be useful far beyond the
-story: population models, tree-like branching, dynamic programming examples, and the
-mathematics of growth all keep running into it.
+1. The value at position `0` is `0`.
+2. The value at position `1` is `1`.
+3. For any position from `2` onwards, the value is the sum of the values at the two positions just before it.
 
-### The sequence
+Those first two rules are the **border cases**: they are not computed from anything, they are simply given. Without them, rule 3 would keep asking for earlier values forever and never land on solid ground.
 
-In this classroom it begins like this:
+Negative positions are outside this exercise for exactly that reason: rule 3 would ask for positions that go further and further below zero, with no border case to stop it.
+
+Here is what the three rules produce:
 
 ```
 position  0  1  2  3  4  5  6   7   8   9  10
 value     0  1  1  2  3  5  8  13  21  34  55
 ```
 
-The two border cases are the first two positions: `0` gives `0`, and `1` gives `1`.
-After that, each new value comes from the two just before it. Negative positions are
-outside this exercise, and they are worth mentioning because they show what a stopping
-rule has to protect you from: a recursive idea that never reaches its base case is not
-finished.
+Check a few by hand. Position `2` is the value at position `1` plus the value at position `0`, which is `1 + 0 = 1`. Position `5` is the value at position `4` plus the value at position `3`, which is `3 + 2 = 5`. Every later number is built the same way.
+
+### The rabbit story
+
+The name comes from **Fibonacci**, the Latin nickname of Leonardo of Pisa, who described this sequence in *Liber Abaci* in 1202. The story he told goes like this:
+
+- In month 0 you have **one newborn pair** of rabbits. They are too young to breed.
+- In month 1 that pair is now adult but has not bred yet: still **one pair**.
+- In month 2 the adult pair produces a new pair. You now have **two pairs**: one adult, one newborn.
+- In month 3 the adult pair breeds again; the pair born in month 2 is now adult but has not bred yet. **Three pairs**.
+- In month 4 both adult pairs breed, and the pair born in month 3 just became adult. **Five pairs**.
+
+The pattern: each month's population is last month's population (everybody survives) plus the population from two months ago (only the pairs that were already alive then are old enough to breed now). That is rule 3 above, dressed in fur.
+
+The rabbit model is not biology &mdash; real rabbits do not obey it. It is a parable: a quantity whose present depends on its recent past. The same shape turns up in population models, tree branching, dynamic programming, and the mathematics of growth.
 
 ### Examples
 
