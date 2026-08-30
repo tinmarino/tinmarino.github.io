@@ -47,7 +47,7 @@ The tests call `hello()` and compare the result, so only `return` will pass.
 |---|---|
 | `hello()` | `"hello"` |
 
-### Hint
+### Things you will need
 
 The body needs a single statement. Mind the quotes: `"hello"` is a string.
 

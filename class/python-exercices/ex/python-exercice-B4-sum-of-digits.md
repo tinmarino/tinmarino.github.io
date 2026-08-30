@@ -152,9 +152,19 @@ print(sum_digits(123456789))
 ## Tests
 
 ```python # tests
-# The adding up is the exercise, so Check refuses the shortcut.
-for _banned in ("sum(",):
-    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+# Refuse the shortcuts that skip the lesson. __student_code__ is the student's own
+# source, injected by the app and the verifier; strip its docstrings and comments
+# so a note to yourself is never mistaken for the real thing, then match each
+# construct whitespace-insensitively and on a word boundary, so a stray space
+# cannot slip a banned call past the ban that names it.
+import re as _re
+_lines = [_line.split("#")[0]
+          for _chunk in __student_code__.split('"""')[::2]
+          for _line in _chunk.split("\n")]
+_bans = [((r"\b" if _b[:1].isalpha() else "") + r"\s*".join(_re.escape(_c) for _c in _b), _b)
+         for _b in ("sum(",)]
+for _pat, _banned in _bans:
+    assert not _re.search(_pat, "\n".join(_lines)), f"Got: the banned shortcut {_banned}"
 
 # Adding is not multiplying: 1*2*3*4 is 24, but 1+2+3+4 is 10
 assert sum_digits(1234) == 10, f"Got: {sum_digits(1234)}"

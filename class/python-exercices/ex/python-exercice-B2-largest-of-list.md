@@ -82,7 +82,7 @@ def largest(lst: list) -> int | None:
 
     >>> largest([3, 12, 8])
     12
-    >>> largest([])
+    >>> print(largest([]))
     None
     """
     # YOUR CODE HERE
@@ -98,8 +98,18 @@ print(largest([-3, -8, 0, -5, -11, -6, 2]))
 
 ```python # tests
 # The point of this one is the loop you write, so Check refuses the shortcuts.
-for _banned in ("max(", "min(", "sorted(", ".sort("):
-    assert _banned not in __student_code__, f"Got: the banned shortcut {_banned}"
+# __student_code__ is the student's own source, injected by the app and the
+# verifier. Strip docstrings and comments so a note to yourself is never mistaken
+# for the real thing, then match each construct whitespace-insensitively (and on a
+# word boundary) so a stray space cannot slip a banned call past the ban.
+import re as _re
+_lines = [_line.split("#")[0]
+          for _chunk in __student_code__.split('"""')[::2]
+          for _line in _chunk.split("\n")]
+_bans = [((r"\b" if _b[:1].isalpha() else "") + r"\s*".join(_re.escape(_c) for _c in _b), _b)
+         for _b in ("max(", "min(", "sorted(", ".sort(")]
+for _pat, _banned in _bans:
+    assert not _re.search(_pat, "\n".join(_lines)), f"Got: the banned shortcut {_banned}"
 
 try:
     _empty = largest([])

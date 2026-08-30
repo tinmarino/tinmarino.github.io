@@ -122,21 +122,26 @@ print(reverse_with_stack(["never", "odd", "or", "even"]))
 ## Tests
 
 ```python # tests
-# The point of this one is the stack, so Check refuses the shortcuts of A2 and the
-# constructs an answer would use to work out a position. Docstrings and comments go
-# first: a note to yourself about how A2 did it is not an answer that calls insert.
-_chunks = __student_code__.split('"""')[::2]
-_lines = [_line.split("#")[0] for _chunk in _chunks for _line in _chunk.split("\n")]
-for _banned in ("[::-1]", ".reverse()", "reversed(", ".insert("):
-    assert not any(_banned in _line for _line in _lines), \
-        f"Got: the banned shortcut {_banned}"
-assert not any("len(" in _line for _line in _lines), \
+# Refuse the shortcuts that skip the lesson. __student_code__ is the student's own
+# source, injected by the app and the verifier; strip its docstrings and comments
+# so a note to yourself is never mistaken for the real thing, then match each
+# construct whitespace-insensitively and on a word boundary, so a stray space
+# cannot slip a banned call past the ban that names it.
+import re as _re
+_lines = [_line.split("#")[0]
+          for _chunk in __student_code__.split('"""')[::2]
+          for _line in _chunk.split("\n")]
+_bans = [((r"\b" if _b[:1].isalpha() else "") + r"\s*".join(_re.escape(_c) for _c in _b), _b)
+         for _b in ("[::-1]", ".reverse()", "reversed(", ".insert(")]
+for _pat, _banned in _bans:
+    assert not _re.search(_pat, "\n".join(_lines)), f"Got: the banned shortcut {_banned}"
+assert not _re.search(r"\blen\s*\(", "\n".join(_lines)), \
     "Got: len( -- this one is meant to run without counting anything. An empty list " \
     "is false, so a loop can stop on that alone"
-assert not any("range(" in _line for _line in _lines), \
+assert not _re.search(r"\brange\s*\(", "\n".join(_lines)), \
     "Got: range( -- this one is meant to run without working out a position. The " \
     "stack already knows which element comes off next"
-assert any(".pop(" in _line for _line in _lines), \
+assert _re.search(r"\.\s*pop\s*\(", "\n".join(_lines)), \
     "Got: no .pop( anywhere, and this one is about taking elements back off a stack"
 
 assert reverse_with_stack([1, 2, 3]) == [3, 2, 1], f"Got: {reverse_with_stack([1, 2, 3])}"

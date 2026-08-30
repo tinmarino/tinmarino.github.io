@@ -146,11 +146,19 @@ print(is_palindrome("step on no pets"))
 ## Tests
 
 ```python # tests
-# The point of this one is the comparing you do yourself, so Check refuses the
-# shortcuts. Whitespace is squashed first, so `stg[:: -1]` cannot sneak past.
-_SQUASHED = "".join(__student_code__.split())
-for _banned in ("[::-1]", "reversed(", ".reverse()"):
-    assert _banned not in _SQUASHED, f"Got: the banned shortcut {_banned}"
+# Refuse the shortcuts that skip the lesson. __student_code__ is the student's own
+# source, injected by the app and the verifier; strip its docstrings and comments
+# so a note to yourself is never mistaken for the real thing, then match each
+# construct whitespace-insensitively and on a word boundary, so a stray space
+# cannot slip a banned call past the ban that names it.
+import re as _re
+_lines = [_line.split("#")[0]
+          for _chunk in __student_code__.split('"""')[::2]
+          for _line in _chunk.split("\n")]
+_bans = [((r"\b" if _b[:1].isalpha() else "") + r"\s*".join(_re.escape(_c) for _c in _b), _b)
+         for _b in ("[::-1]", "reversed(", ".reverse()")]
+for _pat, _banned in _bans:
+    assert not _re.search(_pat, "\n".join(_lines)), f"Got: the banned shortcut {_banned}"
 
 assert is_palindrome("kayak") is True, f"Got: {is_palindrome('kayak')}"
 assert is_palindrome("python") is False, f"Got: {is_palindrome('python')}"

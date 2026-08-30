@@ -136,14 +136,19 @@ print(most_frequent(["pizza", "sushi", "pizza", "tacos", "pizza"]))
 ## Tests
 
 ```python # tests
-import re
-
-# Doing the counting is the exercise, so Check refuses the shortcuts. Matched as
-# patterns, so a stray space cannot sneak one past, and a word boundary keeps a
-# helper of your own named find_max fine.
-for _banned, _pattern in (("Counter", r"Counter"), ("sorted(", r"sorted\s*\("),
-                          (".count(", r"\.\s*count\s*\("), ("max(", r"\bmax\s*\(")):
-    assert not re.search(_pattern, __student_code__), f"Got: the banned shortcut {_banned}"
+# Refuse the shortcuts that skip the lesson. __student_code__ is the student's own
+# source, injected by the app and the verifier; strip its docstrings and comments
+# so a note to yourself is never mistaken for the real thing, then match each
+# construct whitespace-insensitively and on a word boundary, so a stray space
+# cannot slip a banned call past the ban that names it.
+import re as _re
+_lines = [_line.split("#")[0]
+          for _chunk in __student_code__.split('"""')[::2]
+          for _line in _chunk.split("\n")]
+_bans = [((r"\b" if _b[:1].isalpha() else "") + r"\s*".join(_re.escape(_c) for _c in _b), _b)
+         for _b in ("Counter", "sorted(", ".count(", "max(")]
+for _pat, _banned in _bans:
+    assert not _re.search(_pat, "\n".join(_lines)), f"Got: the banned shortcut {_banned}"
 
 # Asked first, on purpose: a function that eats the list it was handed would make
 # every later message below a lie, because they call it a second time.

@@ -112,12 +112,21 @@ print(dedup(["milk", "eggs", "milk", "bread"]))
 ## Tests
 
 ```python # tests
-import re as _re
 import random as _random
 
-# The loop is the exercise, so Check refuses the two one-line shortcuts.
-for _banned, _pattern in (("set(", r"\bset\s*\("), ("dict.fromkeys", r"dict\.fromkeys")):
-    assert not _re.search(_pattern, __student_code__), f"Got: the banned shortcut {_banned}"
+# Refuse the shortcuts that skip the lesson. __student_code__ is the student's own
+# source, injected by the app and the verifier; strip its docstrings and comments
+# so a note to yourself is never mistaken for the real thing, then match each
+# construct whitespace-insensitively and on a word boundary, so a stray space
+# cannot slip a banned call past the ban that names it.
+import re as _re
+_lines = [_line.split("#")[0]
+          for _chunk in __student_code__.split('"""')[::2]
+          for _line in _chunk.split("\n")]
+_bans = [((r"\b" if _b[:1].isalpha() else "") + r"\s*".join(_re.escape(_c) for _c in _b), _b)
+         for _b in ("set(", "dict.fromkeys")]
+for _pat, _banned in _bans:
+    assert not _re.search(_pat, "\n".join(_lines)), f"Got: the banned shortcut {_banned}"
 
 _sheet = ["milk", "eggs", "milk", "bread"]
 _got = dedup(_sheet)
