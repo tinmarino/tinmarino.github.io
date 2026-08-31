@@ -14,9 +14,10 @@
     ul.task-list{list-style: none;}
   </style>
 <style>
-/* Mobile: stack the two columns, keep tables within the screen, break long
-   words, and give the page symmetric left/right padding so it reads balanced.
-   No fixed table layout -- it forced 50/50 columns and cut the email/URL. */
+/* Mobile: neutralise the print-oriented tex4ht wrappers (hard-coded 45px left
+   indent, 200px top margin, fixed width), stack the columns, break long words
+   and give symmetric side padding so every bordered box is fully visible and
+   evenly margined. */
 @media (max-width: 700px) {
   html, body { overflow-x: hidden; max-width: 100%; }
   body {
@@ -25,12 +26,27 @@
     box-sizing: border-box;
   }
   * { overflow-wrap: anywhere; }
+  /* Only the flowed content blocks -- never the absolutely-positioned title
+     blocks (the "Martin Tourneboeuf" heading is one; it is meant to sit off the
+     narrow viewport). Drop the 45px print indent and the fixed width so the
+     boxes fill the column and centre. */
+  .textblock:not([style*="absolute"]), .textcustomblock:not([style*="absolute"]) {
+    margin-left: 0 !important; margin-right: 0 !important;
+    width: 100% !important; max-width: 100% !important;
+  }
   div.column { display: block !important; width: 100% !important; }
   table, table.tabular, table.equation {
     width: 100% !important; max-width: 100%;
     margin-left: 0 !important; margin-right: 0 !important;
   }
-  td, th, td * { overflow-wrap: anywhere !important; word-break: break-word !important; }
+  td, th {
+    overflow-wrap: anywhere !important; word-break: break-word !important;
+    white-space: normal !important; padding: 5px 8px !important;
+  }
+  /* Breathing room between Education entries. Each entry begins with its year
+     span (.rm-lmr-12 -- used only for the four year ranges), so a block spacer
+     before it separates entries cleanly without splitting year from degree. */
+  .rm-lmr-12::before { content: ""; display: block; height: 1.2em; }
   img { max-width: 100%; height: auto; }
   .marginpar, .reversemarginpar { float: none; width: auto; margin: 0.5em 0; }
 }
