@@ -6,6 +6,7 @@
 
 <!-- Meta -->
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="gXi7KZ5VSzFhWj3DkqjQR4aMMERLKXq6z88MEu_J1As" />
 <meta name="keywords" content="Github, Tinmarino, Page, Astro, Cyber security, Computing, Science">
 <meta name="description" content="Tinmarino's personal webpage. Showoff for astrophysics and computing.">
@@ -31,6 +32,16 @@
     --block: 120px;
     /* Changing */
     --sidebar-width: 120px;
+  }
+
+  /* On a phone the nav bar and the card dash were sized for a desktop; at
+     device-width they take far too much of the screen. Bring them back to the
+     ~60% they used to occupy when the page rendered zoomed-out. */
+  @media (max-width: 700px) {
+    html, body {
+      --block: 72px;
+      --sidebar-width: 72px;
+    }
   }
 
   /* Interactive hide */
