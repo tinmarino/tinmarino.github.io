@@ -13,6 +13,21 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
   </style>
+<style>
+/* Mobile: stack the two columns, keep tables within the screen, and break long
+   words (emails, URLs) so the page never scrolls sideways. Added for narrow
+   screens; must not reshape column widths (that overlapped the Idioma table). */
+@media (max-width: 700px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  body { overflow-wrap: anywhere; word-break: break-word; font-size: 88%; }
+  * { overflow-wrap: anywhere; }
+  div.column { display: block !important; width: 100% !important; }
+  table, table.tabular, table.equation { width: 100% !important; max-width: 100%; }
+  td, th, td * { overflow-wrap: anywhere !important; word-break: break-word !important; }
+  img { max-width: 100%; height: auto; }
+  .marginpar, .reversemarginpar { float: none; width: auto; margin: 0.5em 0; }
+}
+</style>
 </head>
 <body>
 <?xml version="1.0" encoding="utf-8" ?>

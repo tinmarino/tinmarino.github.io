@@ -41,6 +41,34 @@
     html, body {
       --block: 72px;
       --sidebar-width: 72px;
+      /* The page itself must never scroll sideways. */
+      overflow-x: hidden;
+    }
+
+    /* Card dash: the desktop cards use an 80px thumbnail, 24px padding and a
+       single nowrap line -- all of which overflow the 72px rail and get clipped
+       so they look like they run under the poem. Shrink the thumbnail, trim the
+       padding and let the caption wrap. !important beats the inline width/height
+       the thumbnails carry. */
+    .sidebar2 a,
+    .sidebar2 .card-button {
+      white-space: normal !important;
+      padding: 6px 4px !important;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 11px;
+      line-height: 1.15;
+    }
+    .sidebar2 p {
+      white-space: normal !important;
+      overflow-wrap: anywhere;
+      margin: 3px 0 0;
+    }
+    .sidebar2 img {
+      width: 48px !important;
+      height: 48px !important;
+      max-width: 100%;
+      margin: 0 auto !important;
     }
   }
 
