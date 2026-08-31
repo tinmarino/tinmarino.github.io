@@ -515,8 +515,54 @@ function addHandlerSwipe() {
     }, { passive: true });
   }
 
+  // Native PDF viewers and cross-origin iframes swallow every touch that lands
+  // on them, so a swipe started "on the iframe" never reaches us. Two thin,
+  // transparent catch strips pinned over the left and right screen edges sit
+  // *above* the iframe (higher stacking context), so an edge swipe is caught by
+  // the parent page whatever the frame is showing -- a PDF included.
+  function addEdgeSwipe() {
+    const host = document.getElementById('id_main');
+    if (null == host) { return; }
+    // Only worth the dead strips on a touch device; a mouse has the icon bar.
+    if (!window.matchMedia('(pointer: coarse)').matches) { return; }
+    host.style.position = 'relative';
+
+    function makeStrip(side) {
+      const strip = document.createElement('div');
+      strip.setAttribute('aria-hidden', 'true');
+      strip.style.cssText =
+        'position:absolute;top:0;bottom:0;width:28px;z-index:3;'
+        + 'background:transparent;touch-action:pan-y;' + side + ':0;';
+      host.appendChild(strip);
+
+      let xStart = null, yStart = null, tStart = 0;
+      strip.addEventListener('touchstart', function(e) {
+        if (e.touches.length != 1) { xStart = null; return; }
+        xStart = e.touches[0].clientX;
+        yStart = e.touches[0].clientY;
+        tStart = Date.now();
+      }, { passive: true });
+      strip.addEventListener('touchend', function(e) {
+        if (null == xStart) { return; }
+        const touch = e.changedTouches[0];
+        const dx = touch.clientX - xStart;
+        const dy = touch.clientY - yStart;
+        const dt = Date.now() - tStart;
+        xStart = null;
+        if (dt > MAX_DURATION) { return; }
+        if (Math.abs(dy) > MAX_VERTICAL) { return; }
+        if (Math.abs(dx) < MIN_DISTANCE) { return; }
+        if (dx > 0) { swipeRight(); } else { swipeLeft(); }
+      }, { passive: true });
+    }
+
+    makeStrip('left');
+    makeStrip('right');
+  }
+
   // Main page
   addTo(document);
+  addEdgeSwipe();
 
   // A cross-origin iframe eats its own touch events, so our own embedded pages
   // (the classroom, the IPyodide shell) forward the gesture with postMessage
@@ -549,7 +595,15 @@ function addHandlerSwipe() {
   function addToFrame(frame) {
     if (null == frame) { return; }
     frame.addEventListener('load', function() {
-      try { addTo(frame.contentDocument); } catch (err) { /* cross origin */ }
+      try {
+        // Our own apps (classroom, IPyodide shell) drive their own gestures and
+        // forward the leftovers by postMessage; injecting here too would make
+        // every swipe fire twice, so leave those frames alone.
+        if (frame.contentWindow && frame.contentWindow.__tinSwipeSelfManaged) {
+          return;
+        }
+        addTo(frame.contentDocument);
+      } catch (err) { /* cross origin */ }
     });
   }
   addToFrame(document.getElementById('main_iframe'));
