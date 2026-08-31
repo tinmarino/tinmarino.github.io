@@ -47,6 +47,9 @@
   // Exercise content base = this very folder
   var ex  = new URL('.', location.href).href;
   var url = app + (app.indexOf('?') === -1 ? '?' : '&') + 'ex=' + encodeURIComponent(ex);
+  // Forward a deep-link to a specific exercise, e.g. ?exercice=a4-fibonacci
+  var wanted = params.get('exercice') || params.get('exercise');
+  if (wanted) url += '&exercice=' + encodeURIComponent(wanted);
   document.getElementById('fallback').href = url;
   location.replace(url);
 })();
