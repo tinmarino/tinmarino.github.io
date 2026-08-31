@@ -15,9 +15,9 @@
   </style>
 <style>
 /* Mobile: neutralise the print-oriented tex4ht wrappers (hard-coded 45px left
-   indent, 200px top margin, fixed width), stack the columns, break long words
-   and give symmetric side padding so every bordered box is fully visible and
-   evenly margined. */
+   indent, 200px top margin, fixed width, absolute positioning), stack the
+   columns, break long words and give symmetric side padding so every bordered
+   box is fully visible and evenly margined. */
 @media (max-width: 700px) {
   html, body { overflow-x: hidden; max-width: 100%; }
   body {
@@ -26,14 +26,40 @@
     box-sizing: border-box;
   }
   * { overflow-wrap: anywhere; }
-  /* Only the flowed content blocks -- never the absolutely-positioned title
-     blocks (the "Martin Tourneboeuf" heading is one; it is meant to sit off the
-     narrow viewport). Drop the 45px print indent and the fixed width so the
-     boxes fill the column and centre. */
-  .textblock:not([style*="absolute"]), .textcustomblock:not([style*="absolute"]) {
+  /* ---- Tunable mobile sizes -- edit these to taste ---- */
+  :root {
+    --cv-name-size: 13vw;       /* name scales with viewport width ...        */
+    --cv-name-max: 3.2rem;      /* ... but is capped so it never overflows    */
+    --cv-subtitle-size: 150%;   /* the "Informatico / Software Engineer" line */
+    --cv-header-gap: 0.5em;     /* vertical breathing room around the header  */
+    --cv-edu-gap: 0.6em;        /* gap between education entries (was 1.2em)  */
+  }
+  /* Drop the 45px print indent and the fixed width so every wrapper -- flowed
+     OR absolutely-positioned -- fills the narrow column instead of hanging off
+     the right edge. On the phone we WANT the header in the flow: the name and
+     the contact table are print-absolute at fixed pixel offsets, so pull them
+     back to static so nothing sits off-screen or overflows right. */
+  .textblock, .textcustomblock {
+    position: static !important;
     margin-left: 0 !important; margin-right: 0 !important;
     width: 100% !important; max-width: 100% !important;
   }
+  /* .textblock is used only for the three header blocks (name, subtitle,
+     contact). Centre them with equal side margins, and delete the empty
+     <p>/<br> that tex4ht left behind -- those were bloating the vertical gaps
+     the user boxed in red (before the name, and around the subtitle). */
+  .textblock { margin: var(--cv-header-gap) 0 !important; text-align: center !important; }
+  .textblock .center, div.maketitle { text-align: center !important; }
+  .textblock .center p:empty, .textblock .center br { display: none !important; }
+  /* Name: (nearly) full-screen width, centred, capped so it never overflows. */
+  .rm-lmbx-12x-x-266, span[style*="319%"] {
+    font-size: min(var(--cv-name-size), var(--cv-name-max)) !important;
+    line-height: 1.1 !important;
+  }
+  .textblock span[style*="200%"] { font-size: var(--cv-subtitle-size) !important; }
+  /* The 200px spacer only existed to clear the absolute header in print; with
+     the header back in the flow it is pure dead space -- collapse it. */
+  .textcustomblock[style*="200px"] { margin-top: 0 !important; }
   div.column { display: block !important; width: 100% !important; }
   table, table.tabular, table.equation {
     width: 100% !important; max-width: 100%;
@@ -46,7 +72,9 @@
   /* Breathing room between Education entries. Each entry begins with its year
      span (.rm-lmr-12 -- used only for the four year ranges), so a block spacer
      before it separates entries cleanly without splitting year from degree. */
-  .rm-lmr-12::before { content: ""; display: block; height: 1.2em; }
+  .rm-lmr-12::before { content: ""; display: block; height: var(--cv-edu-gap); }
+  /* Halve the 23px inter-entry <br> tex4ht bakes into the education list. */
+  .textcustomblock br[style*="23px"] { margin-top: 11px !important; }
   img { max-width: 100%; height: auto; }
   .marginpar, .reversemarginpar { float: none; width: auto; margin: 0.5em 0; }
 }
