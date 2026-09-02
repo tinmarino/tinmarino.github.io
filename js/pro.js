@@ -209,6 +209,7 @@ function readUrlParameters () {
   const params = new URL(url).searchParams;
   var s_show = '';
   var s_lang = '';
+  var s_exercice = '';
 
   // Loop parameters
   params.forEach(function(value, key) {
@@ -219,6 +220,10 @@ function readUrlParameters () {
     // Save lang
     if (key.startsWith('lang')) {
       s_lang = value;
+    }
+    // Save the classroom deep-link: ?show=python_exercises&exercice=a4-fibonacci
+    if (key == 'exercice' || key == 'exercise') {
+      s_exercice = value;
     }
   });
 
@@ -232,6 +237,10 @@ function readUrlParameters () {
   if (s_id) {
       var elt = document.getElementById(s_id);
       if (null == elt) { return }
+      // The classroom shim forwards ?exercice= to the app, which opens it
+      if (s_exercice && s_id == 'python_exercises') {
+        elt.href = '/class/python-exercices/?exercice=' + encodeURIComponent(s_exercice);
+      }
       elt.click();
       // Hide side bar
       showBar(false);
@@ -584,6 +593,16 @@ function addHandlerSwipe() {
           handled: handled,
         }, e.origin);
       } catch (err) { /* iframe went away */ }
+      return;
+    }
+    // The classroom reports the exercise it opened: keep it in the address
+    // bar so the link can be shared and reloaded (replace, not push: the
+    // Back button should leave the classroom, not walk the exercise list).
+    if (data.type == 'tinmarino-exercice') {
+      const url = new URL(location.href);
+      url.searchParams.set('show', 'python_exercises');
+      url.searchParams.set('exercice', String(data.exercice));
+      window.history.replaceState(document.title, '', url.search);
       return;
     }
     if (data.type != 'tinmarino-swipe') { return; }
