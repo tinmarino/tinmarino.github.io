@@ -6,7 +6,7 @@ title: "Python A17 - Same Word, Any Case"
 
 ## Instructions
 
-Write a function `same_word(left: str, right: str) -> bool:` that returns `True` when the two strings are the same word ignoring upper and lower case.
+Write a function `same_word(left: str, right: str) -> bool` that returns `True` when the two strings are the same word ignoring upper and lower case.
 
 Return the boolean, do not print it.
 

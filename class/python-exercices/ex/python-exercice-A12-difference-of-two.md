@@ -6,7 +6,7 @@ title: "Python A12 - Difference of Two Numbers"
 
 ## Instructions
 
-Write a function `sub(left: int, right: int) -> int:` that returns `left` with `right` taken away.
+Write a function `sub(left: int, right: int) -> int` that returns `left` with `right` taken away.
 
 Return the number, do not print it.
 

@@ -6,7 +6,7 @@ title: "Python A14 - Absolute Value"
 
 ## Instructions
 
-Write a function `absolute(number: int) -> int:` that returns the distance of `number` from zero. Do **not** use `abs()`.
+Write a function `absolute(number: int) -> int` that returns the distance of `number` from zero. Do **not** use `abs()`.
 
 Return the number, do not print it.
 

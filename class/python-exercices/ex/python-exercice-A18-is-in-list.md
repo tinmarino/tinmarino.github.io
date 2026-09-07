@@ -6,7 +6,7 @@ title: "Python A18 - Is It in the List?"
 
 ## Instructions
 
-Write a function `contains(item: int, lst: list) -> bool:` that returns `True` when `item` is one of the elements of `lst`, and `False` otherwise.
+Write a function `contains(item: int, lst: list) -> bool` that returns `True` when `item` is one of the elements of `lst`, and `False` otherwise.
 
 Return the boolean, do not print it.
 

@@ -6,7 +6,7 @@ title: "Python A13 - Larger of Two Numbers"
 
 ## Instructions
 
-Write a function `larger(left: int, right: int) -> int:` that returns the bigger of the two numbers. Do **not** use `max()`.
+Write a function `larger(left: int, right: int) -> int` that returns the bigger of the two numbers. Do **not** use `max()`.
 
 Return the number, do not print it.
 
@@ -40,8 +40,7 @@ for number in [4, -2, 9]:
     print(number > 0)
 ```
 
-An `if` then chooses which value to hand back. You returned early from a choice
-in `B30`.
+An `if` then chooses which of the two values to hand back.
 
 ### Which order do you need?
 

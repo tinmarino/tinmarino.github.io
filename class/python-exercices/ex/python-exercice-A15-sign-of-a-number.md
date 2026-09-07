@@ -6,7 +6,7 @@ title: "Python A15 - Sign of a Number"
 
 ## Instructions
 
-Write a function `sign(number: int) -> int:` that returns `1` when `number` is positive, `-1` when it is negative, and `0` when it is zero.
+Write a function `sign(number: int) -> int` that returns `1` when `number` is positive, `-1` when it is negative, and `0` when it is zero.
 
 Return the number, do not print it.
 

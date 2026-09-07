@@ -6,7 +6,7 @@ title: "Python A19 - Swap A for O"
 
 ## Instructions
 
-Write a function `swap_a(stg: str) -> str:` that returns a new string with every `"a"` turned into an `"o"`. Do **not** use `.replace()`.
+Write a function `swap_a(stg: str) -> str` that returns a new string with every `"a"` turned into an `"o"`. Do **not** use `.replace()`.
 
 Return the new string, do not print it.
 
@@ -34,7 +34,7 @@ Build a new string that is the input with every lowercase `"a"` changed to an
 
 ### Things you will need
 
-You can look at a string one character at a time, as you did in `A30`:
+You can look at a string one character at a time:
 
 ```python
 for char in "cat":
@@ -49,8 +49,8 @@ for char in "xyz":
     print("!" if char == "y" else char)
 ```
 
-Collect the chosen characters into a result string, the way you built one up in
-`A30`.
+Collect the chosen characters into a result string as you go, starting from an
+empty string.
 
 ### Which order do you need?
 

@@ -6,7 +6,7 @@ title: "Python A16 - Remote URL?"
 
 ## Instructions
 
-Write a function `is_remote(url: str) -> bool:` that returns `True` when `url` begins with `"http"` or with `"ssh"`, and `False` otherwise.
+Write a function `is_remote(url: str) -> bool` that returns `True` when `url` begins with `"http"` or with `"ssh"`, and `False` otherwise.
 
 Return the boolean, do not print it.
 

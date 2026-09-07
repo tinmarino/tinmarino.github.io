@@ -38,8 +38,8 @@ print(105 % 7)
 print(104 % 7)
 ```
 
-Start just above 100 and step up one number at a time until that remainder is 0.
-You looped until a condition was met with `while` in `B40`.
+Start just above 100 and step up one number at a time with a `while` loop, until
+that remainder is 0.
 
 ### Which order do you need?
 
