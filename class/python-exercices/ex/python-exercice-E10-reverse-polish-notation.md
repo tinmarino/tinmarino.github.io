@@ -1,5 +1,5 @@
 ---
-title: "Python E1 - Reverse Polish Notation"
+title: "Python E10 - Reverse Polish Notation"
 ---
 
 # Reverse Polish Notation
@@ -63,10 +63,10 @@ print("the quick brown fox".split())    # prints ['the', 'quick', 'brown', 'fox'
 ```
 
 Every piece it gives you is text, including the ones that look like numbers, so `"3"`
-still needs `int("3")` before it can be added to anything. You met that in exercise `B4`.
+still needs `int("3")` before it can be added to anything. You met that in exercise `B40`.
 
 You will also want to ask which kind of piece you are holding. `in` works on a tuple of
-choices, exactly as it worked on a string of vowels in exercise `B1`:
+choices, exactly as it worked on a string of vowels in exercise `B10`:
 
 ```python
 print("and" in ("and", "or"))    # prints True
@@ -84,8 +84,8 @@ most recent ones. And the moment you have used them, the answer they produced be
 number you are holding, waiting for some later operator, exactly like the ones before it.
 
 You have a structure that keeps things and gives back the most recent one first. You
-built it out of a list in exercise `D1`, you reversed with it in `D2`, and you undid
-edits with it in `D3`.
+built it out of a list in exercise `D10`, you reversed with it in `D20`, and you undid
+edits with it in `D30`.
 
 So: when an operator arrives, where do its two numbers come from, and where does the
 result it produces have to go? Answer that and the rest is typing.
@@ -94,7 +94,7 @@ result it produces have to go? Answer that and the rest is typing.
 
 `5 3 -` is `2`, and `3 5 -` is `-2`. Whichever way you get your two numbers back, one of
 them is the left-hand side of the subtraction and one is the right. Which is which?
-You already know what a stack does to the order of things &mdash; you proved it in `D2`.
+You already know what a stack does to the order of things &mdash; you proved it in `D20`.
 Work out which way round it lands *before* you type it, then check yourself against
 `5 3 -`.
 

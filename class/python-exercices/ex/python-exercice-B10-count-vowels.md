@@ -1,5 +1,5 @@
 ---
-title: "Python B1 - Count the Vowels"
+title: "Python B10 - Count the Vowels"
 ---
 
 # Count the Vowels
@@ -42,8 +42,8 @@ that number, do not print it.
 
 ### Keeping a count
 
-`A3` had a variable set up before the loop, changed on every character, read at the end.
-Same three moments here, except that in `A3` the variable grew into the answer while here
+`A30` had a variable set up before the loop, changed on every character, read at the end.
+Same three moments here, except that in `A30` the variable grew into the answer while here
 it counts: no character of `banana` is ever `3`.
 
 Counting on its own, away from any loop:
@@ -83,7 +83,7 @@ show_long_word("beetle")    # prints beetle
 show_long_word("ant")       # prints nothing
 ```
 
-Walking a string character by character you have from `A3`. Loop, `if`, counter: the parts
+Walking a string character by character you have from `A30`. Loop, `if`, counter: the parts
 are all on the table, and *where* each one goes is yours.
 
 ### Come back here once it works

@@ -1,5 +1,5 @@
 ---
-title: "Python C3 - Remove Duplicates"
+title: "Python C30 - Remove Duplicates"
 ---
 
 # Remove Duplicates
@@ -62,7 +62,7 @@ print(["nail"] in boxes)         # True
 print(["bolt"] in boxes)         # False
 ```
 
-The rest you already own from exercise `A2`.
+The rest you already own from exercise `A20`.
 
 ### Which ones have you already seen?
 

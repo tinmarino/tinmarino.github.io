@@ -1,5 +1,5 @@
 ---
-title: "Python C4 - Group by First Letter"
+title: "Python C40 - Group by First Letter"
 ---
 
 # Group by First Letter
@@ -87,7 +87,7 @@ So whatever you decide to keep under a letter, something has to put it there fir
 
 ### What lives under a key
 
-A dict value is just a value. When you counted letters in exercise `C1` you kept a
+A dict value is just a value. When you counted letters in exercise `C10` you kept a
 number under each key because a count is a number. Ask yourself what you want to find
 under `"b"` when this function is done, and the type of the value follows from the
 answer.

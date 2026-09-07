@@ -1,5 +1,5 @@
 ---
-title: "Python D4 - One Bracket Type"
+title: "Python D40 - One Bracket Type"
 ---
 
 # One Bracket Type
@@ -47,7 +47,7 @@ Pairing up means two things at the same time: every `(` is closed by a `)` somew
 
 ### Things you will need
 
-You have walked a string one character at a time since exercise `A3`, kept a running count since `B1`, and returned early from inside a loop in `B3`. Every part you need is already yours.
+You have walked a string one character at a time since exercise `A30`, kept a running count since `B10`, and returned early from inside a loop in `B30`. Every part you need is already yours.
 
 One piece of syntax is new. When a character can be one of two interesting kinds, the second question goes on an `elif`: it is asked only when the `if` above it said no, and when both say no, neither block runs at all.
 
@@ -267,7 +267,7 @@ def is_balanced_round(stg: str) -> bool:
     return depth == 0
 ```
 
-```python # wrong: a stack, which is D5's answer arriving one exercise early
+```python # wrong: a stack, which is D50's answer arriving one exercise early
 def is_balanced_round(stg: str) -> bool:
     waiting = []
     for char in stg:
@@ -303,14 +303,14 @@ stg\.count\(
 
 ### Shortcuts the tests reject outright
 
-One construct is banned, and it is not a shortcut: `.append(`. Exercises `D1`,
-`D2` and `D3` spend three problems building the reflex of reaching for a pile,
+One construct is banned, and it is not a shortcut: `.append(`. Exercises `D10`,
+`D20` and `D30` spend three problems building the reflex of reaching for a pile,
 and this is the problem where that reflex costs more than it earns. An answer
 built on a stack returns the right booleans for every string here, so no
 assertion on a return value can ever turn it down &mdash; which is exactly why
-the ban has to be on the source. Exercise `D5` opens by handing this exercise's
+the ban has to be on the source. Exercise `D50` opens by handing this exercise's
 counter back to the student and showing where it breaks; a student who quietly
-solved `D4` with a stack has already been told the punchline and gets nothing
+solved `D40` with a stack has already been told the punchline and gets nothing
 from it.
 
 The obvious one-liner &mdash; comparing how many `(` there are with how many `)`

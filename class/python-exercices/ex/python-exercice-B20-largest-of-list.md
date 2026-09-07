@@ -1,5 +1,5 @@
 ---
-title: "Python B2 - Largest of a List"
+title: "Python B20 - Largest of a List"
 ---
 
 # Largest of a List
@@ -41,7 +41,7 @@ The numbers are overnight temperatures, in degrees.
 
 ### Something new: the answer is already in the list
 
-In exercise `B1` you **built** an answer that did not exist anywhere in the input: no
+In exercise `B10` you **built** an answer that did not exist anywhere in the input: no
 single character of `banana` was ever the number `3`. Here it is the other way round.
 You are not building anything. The answer is one of the numbers sitting in front of
 you, and your job is only to work out **which one**.

@@ -1,5 +1,5 @@
 ---
-title: "Python C5 - Two Sum"
+title: "Python C50 - Two Sum"
 ---
 
 # Two Sum

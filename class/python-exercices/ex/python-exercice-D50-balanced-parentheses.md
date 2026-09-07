@@ -1,5 +1,5 @@
 ---
-title: "Python D5 - Balanced Parentheses"
+title: "Python D50 - Balanced Parentheses"
 ---
 
 # Balanced Parentheses
@@ -40,7 +40,7 @@ Given a string, return `True` when its brackets are correctly nested, and `False
 | `is_balanced("")` | `True` |
 | `is_balanced("no brackets here")` | `True` |
 
-### What exercise `D4` gave you
+### What exercise `D40` gave you
 
 One kind of bracket needs one number. Add one when a bracket opens, take one away when it closes, and read the number as *how many are still open*:
 
@@ -189,7 +189,7 @@ be closed by its closer*.
 Each one is an answer a student really writes, or a shortcut that games the
 test data. Every one of them must make **Check** fail.
 
-```python # wrong: keeps exercise `D4`'s counter, so it cannot see the kind
+```python # wrong: keeps exercise `D40`'s counter, so it cannot see the kind
 def is_balanced(stg: str) -> bool:
     count = 0
     for char in stg:
@@ -304,7 +304,7 @@ def is_balanced(stg: str) -> bool:
     return not waiting
 ```
 
-```python # wrong: exercise `D4` handed in unchanged, round brackets only
+```python # wrong: exercise `D40` handed in unchanged, round brackets only
 def is_balanced(stg: str) -> bool:
     count = 0
     for char in stg:

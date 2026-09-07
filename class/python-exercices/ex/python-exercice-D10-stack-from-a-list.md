@@ -1,5 +1,5 @@
 ---
-title: "Python D1 - A Stack from a List"
+title: "Python D10 - A Stack from a List"
 ---
 
 # A Stack from a List
@@ -54,7 +54,7 @@ run of digits.
 | `stack_top(["pop", "pop", "push 9"])` | `9` |
 | `stack_top([])` | `-1` |
 
-The undo from the first paragraph is exercise `D3`. It is this pile, with something worth
+The undo from the first paragraph is exercise `D30`. It is this pile, with something worth
 remembering in it.
 
 ### Things you will need
@@ -70,7 +70,7 @@ print(label[start:])         # prints Ada
 
 Counting the characters of the prefix is on you. What you get back is still a string
 even when it is made of digits, so it still needs `int("3")` before it can be counted as
-a number. You met that in exercise `B4`.
+a number. You met that in exercise `B40`.
 
 You also need somewhere to keep the pile. Before you reach for anything new, look at
 what you already have. `append` puts an element on the end of a list. There is a second

@@ -1,5 +1,5 @@
 ---
-title: "Python A2 - Reverse a List"
+title: "Python A20 - Reverse a List"
 ---
 
 # Reverse a List

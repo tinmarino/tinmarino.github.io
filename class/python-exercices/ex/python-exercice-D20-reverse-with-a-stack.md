@@ -1,5 +1,5 @@
 ---
-title: "Python D2 - Reverse with a Stack"
+title: "Python D20 - Reverse with a Stack"
 ---
 
 # Reverse with a Stack
@@ -8,7 +8,7 @@ title: "Python D2 - Reverse with a Stack"
 
 Write a function `reverse_with_stack(lst: list) -> list` that returns the elements of `lst` in the opposite order, using a stack.
 
-Same output as exercise `A2`, different route. **Check** refuses `[::-1]`, `.reverse()`, `reversed(`, `len(`, `range(` and `.insert(`, and wants to see `.pop(`.
+Same output as exercise `A20`, different route. **Check** refuses `[::-1]`, `.reverse()`, `reversed(`, `len(`, `range(` and `.insert(`, and wants to see `.pop(`.
 
 ## Description
 
@@ -16,7 +16,7 @@ Same output as exercise `A2`, different route. **Check** refuses `[::-1]`, `.rev
 
 You have already solved this one. Given a list, hand back a **new** list holding
 the same elements, last one first. The expected output has not changed since
-exercise `A2`.
+exercise `A20`.
 
 What has changed is what you are allowed to use. Last time you reasoned about
 order yourself: front to back or back to front, and where each element had to
@@ -33,7 +33,7 @@ order.
   stack answer never needs to know how many elements there are, nor where any one of
   them goes. An empty list is false, so a loop can stop on that alone.
 - **Check** also refuses an answer that never calls `.pop(`. Producing the right
-  list some other way is exercise `A2`, not this one.
+  list some other way is exercise `A20`, not this one.
 
 ### Examples
 
@@ -93,9 +93,9 @@ Answer this on paper, before you type anything:
 Put blue on the pile, then green, then white. Now take them all off again, one at a
 time, and write down the order they came off in.
 
-### When Check passes, open A2 again
+### When Check passes, open A20 again
 
-Put your answer to exercise `A2` next to this one and read the two together. Count, in
+Put your answer to exercise `A20` next to this one and read the two together. Count, in
 each, every `len`, every `[` and every `+` or `-` that is there only to work out where
 an element belongs. Then compare what the two functions hand back for the same list.
 Same answer both times &mdash; so which of the two ever had to decide where anything
@@ -192,7 +192,7 @@ def reverse_with_stack(lst: list) -> list:
 Each one is an answer a student really writes, or a shortcut that games the
 test data. Every one of them must make **Check** fail.
 
-```python # wrong: pops by computed index, which is A2 wearing a stack
+```python # wrong: pops by computed index, which is A20 wearing a stack
 def reverse_with_stack(lst: list) -> list:
     copy = list(lst)
     out = []
@@ -201,7 +201,7 @@ def reverse_with_stack(lst: list) -> list:
     return out
 ```
 
-```python # wrong: the A2 answer, no stack anywhere
+```python # wrong: the A20 answer, no stack anywhere
 def reverse_with_stack(lst: list) -> list:
     out = []
     for item in lst:

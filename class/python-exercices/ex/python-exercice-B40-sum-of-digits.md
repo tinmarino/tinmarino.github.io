@@ -1,5 +1,5 @@
 ---
-title: "Python B4 - Sum of Digits"
+title: "Python B40 - Sum of Digits"
 ---
 
 # Sum of Digits
@@ -58,7 +58,7 @@ There are two completely different ways to do that, and both are good answers.
 ### Road one: make it into a row of things
 
 Text and numbers are two different things in Python, and it converts each way. You already
-know how to walk text one character at a time, from exercise `A3`. The two conversions are
+know how to walk text one character at a time, from exercise `A30`. The two conversions are
 what you may not have met, and text that looks like a number is still text, so it does not
 add up the way a number does:
 
@@ -107,7 +107,7 @@ road, and finding it is the exercise.
 Two warnings before you start down it. You will not know in advance how many turns your
 loop needs, since a number does not announce how many digits it has: `for` is the loop for
 when you know how many, `while` is the loop for when you only know when to *stop*, and you
-met it in `B3`. And get the stopping condition wrong and the loop never ends &mdash; that
+met it in `B30`. And get the stopping condition wrong and the loop never ends &mdash; that
 is what the **Stop** button above the editor is for.
 
 ### Which road?

@@ -1,5 +1,5 @@
 ---
-title: "Python C2 - Most Frequent Word"
+title: "Python C20 - Most Frequent Word"
 ---
 
 # Most Frequent Word
@@ -102,16 +102,16 @@ So when you walk a dict, whose key do you meet first? Hold that against the tie 
 
 ### The starting value, again
 
-Exercise `B2` asked you for the largest number in a list, and the whole exercise turned out
+Exercise `B20` asked you for the largest number in a list, and the whole exercise turned out
 to be the value you start from. The same question is waiting here: before you have looked
 at anything at all, what is the best word so far, and how often has it appeared? The
 empty list is what will tell you whether you chose well.
 
 ### What has to change?
 
-Exercise `C1` counted the characters of a string. This one counts the words of a list.
+Exercise `C10` counted the characters of a string. This one counts the words of a list.
 
-Open your answer to `C1` beside this one. Before you type anything, count how many lines
+Open your answer to `C10` beside this one. Before you type anything, count how many lines
 of its **counting** you have to touch, and write that number down. Then do it, and see
 whether you were right. The picking is yours to add on top &mdash; that half is new.
 

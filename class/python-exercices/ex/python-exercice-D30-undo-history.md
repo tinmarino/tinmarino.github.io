@@ -1,5 +1,5 @@
 ---
-title: "Python D3 - Undo History"
+title: "Python D30 - Undo History"
 ---
 
 # Undo History
@@ -19,7 +19,7 @@ other puts it in again. You are handed the log of a short editing session &mdash
 was typed, where the writer pressed undo, where they asked for it back &mdash; and you
 hand back the text that survived.
 
-Exercise `D1` already told you that undo is a pile. It said nothing about where an
+Exercise `D10` already told you that undo is a pile. It said nothing about where an
 undone edit *goes*, and that is the whole of this one.
 
 ### The three actions
@@ -110,7 +110,7 @@ parts = ["Mont", "pel", "lier"]
 print("".join(parts))        # Montpellier
 ```
 
-You built the pile itself in `D1`, and the calls on it have not changed since. Only what
+You built the pile itself in `D10`, and the calls on it have not changed since. Only what
 you put in it, and how many piles you need, are open questions here.
 
 ### The questions to answer first

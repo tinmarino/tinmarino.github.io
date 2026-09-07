@@ -1,5 +1,5 @@
 ---
-title: "Python B3 - Is it a Palindrome?"
+title: "Python B30 - Is it a Palindrome?"
 ---
 
 # Is it a Palindrome?

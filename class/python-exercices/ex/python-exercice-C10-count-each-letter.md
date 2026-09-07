@@ -1,5 +1,5 @@
 ---
-title: "Python C1 - Count Each Letter"
+title: "Python C10 - Count Each Letter"
 ---
 
 # Count Each Letter
@@ -8,16 +8,16 @@ title: "Python C1 - Count Each Letter"
 
 Write a function `letter_count(stg: str) -> dict` that returns how many times each character of `stg` appears: a dict whose keys are the characters and whose values are the counts.
 
-Every character counts, spaces and punctuation included. `Counter(` and `defaultdict(` from `collections` are this exercise already written, and `.count` is still off the table for the same reason as in `B1`, so **Check** turns all three down.
+Every character counts, spaces and punctuation included. `Counter(` and `defaultdict(` from `collections` are this exercise already written, and `.count` is still off the table for the same reason as in `B10`, so **Check** turns all three down.
 
 ## Description
 
 ### One variable was enough, until now
 
-Count every letter of a string. Not just the vowels of `B1` &mdash; all of them:
+Count every letter of a string. Not just the vowels of `B10` &mdash; all of them:
 how many `b`, how many `n`, how many spaces.
 
-With the technique from `B1` you need one variable per letter, and one `if` to pick
+With the technique from `B10` you need one variable per letter, and one `if` to pick
 which variable to add to. That is twenty-six of each before you have even reached
 the digits and the punctuation, and it only works for English. Nobody writes that
 function once, let alone twice.
@@ -79,7 +79,7 @@ print("apple" in stock)          # True
 print("plum" in stock)           # False
 ```
 
-The `if` from `B1` runs its block when the answer is `True` and skips it
+The `if` from `B10` runs its block when the answer is `True` and skips it
 otherwise. Its other half is `else`, which runs exactly when the `if` did not:
 
 ```python
@@ -230,7 +230,7 @@ def letter_count(stg: str) -> dict:
     return counts
 ```
 
-```python # wrong: still counting only the vowels, as in exercise `B1`
+```python # wrong: still counting only the vowels, as in exercise `B10`
 def letter_count(stg: str) -> dict:
     counts = {}
     for char in stg:
