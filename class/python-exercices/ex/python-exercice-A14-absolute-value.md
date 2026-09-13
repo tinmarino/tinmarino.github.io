@@ -6,7 +6,7 @@ title: "Python A14 - Absolute Value"
 
 ## Instructions
 
-Write a function `absolute(number: int) -> int` that returns the distance of `number` from zero. Do **not** use `abs()`.
+Write a function `absolute(num: int) -> int` that returns the distance of `num` from zero. Do **not** use `abs()`.
 
 Return the number, do not print it.
 
@@ -50,8 +50,8 @@ Which numbers need their sign flipped, and which are already the answer?
 ## Starter code
 
 ```python # template
-def absolute(number: int) -> int:
-    """ Return the distance of `number` from zero, e.g. 5 for -5.
+def absolute(num: int) -> int:
+    """ Return the distance of `num` from zero, e.g. 5 for -5.
 
     >>> absolute(-5)
     5
@@ -89,32 +89,32 @@ print("All tests passed!")
 ### Reference solution
 
 ```python # solution
-def absolute(number: int) -> int:
-    """ Return the distance of `number` from zero, e.g. 5 for -5. """
-    if number < 0:
-        return -number
-    return number
+def absolute(num: int) -> int:
+    """ Return the distance of `num` from zero, e.g. 5 for -5. """
+    if num < 0:
+        return -num
+    return num
 ```
 
 ### Wrong answers the tests must catch
 
 ```python # wrong: uses the built-in abs
-def absolute(number: int) -> int:
+def absolute(num: int) -> int:
     """ Hand the work to abs. """
-    return abs(number)
+    return abs(num)
 ```
 
 ```python # wrong: never flips the sign
-def absolute(number: int) -> int:
+def absolute(num: int) -> int:
     """ Return the number untouched. """
-    return number
+    return num
 ```
 
 ### Give-aways the Description must never contain
 
 ```text # forbidden
 abs\(
-number\s+if\s+number
+num\s+if\s+num
 ```
 
 ### Shortcuts the tests reject outright

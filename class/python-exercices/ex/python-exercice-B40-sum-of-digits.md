@@ -6,7 +6,7 @@ title: "Python B40 - Sum of Digits"
 
 ## Instructions
 
-Write a function `sum_digits(number: int) -> int` that returns the sum of the digits of `number`.
+Write a function `sum_digits(num: int) -> int` that returns the sum of the digits of `num`.
 
 Add them up yourself. `sum(` does the adding for you, so **Check** turns it down.
 
@@ -26,7 +26,7 @@ Return it &mdash; do not print it.
 
 ### Rules
 
-- `number` is zero or more. You never have to deal with a negative number.
+- `num` is zero or more. You never have to deal with a negative number.
 - A single digit is its own total: `sum_digits(7)` is `7`.
 - Zeros inside the number contribute nothing, but they are still digits: `5000` is `5`.
 - `sum_digits(0)` is `0`, and it should fall out of your loop on its own. If you find
@@ -134,8 +134,8 @@ It tries every number up to ten thousand. Read what it prints twice.
 ## Starter code
 
 ```python # template
-def sum_digits(number: int) -> int:
-    """ Return the total of the digits of number, which is zero or more.
+def sum_digits(num: int) -> int:
+    """ Return the total of the digits of num, which is zero or more.
 
     >>> sum_digits(1234)
     10
@@ -213,10 +213,10 @@ exercise against, so the exercise is verifiable on its own.
 ### Reference solution
 
 ```python # solution
-def sum_digits(number: int) -> int:
-    """ Return the total of the digits of number, which is zero or more. """
+def sum_digits(num: int) -> int:
+    """ Return the total of the digits of num, which is zero or more. """
     total = 0
-    rest = number
+    rest = num
     while rest > 0:
         total += rest % 10
         rest //= 10
@@ -229,29 +229,29 @@ Each one is an answer a student really writes, or a shortcut that games the
 test data. Every one of them must make **Check** fail.
 
 ```python # wrong: lets sum() do the adding
-def sum_digits(number: int) -> int:
-    return sum(int(digit) for digit in str(number))
+def sum_digits(num: int) -> int:
+    return sum(int(digit) for digit in str(num))
 ```
 
 ```python # wrong: returns the number itself
-def sum_digits(number: int) -> int:
-    return number
+def sum_digits(num: int) -> int:
+    return num
 ```
 
 ```python # wrong: counts the digits instead of adding them
-def sum_digits(number: int) -> int:
-    return len(str(number))
+def sum_digits(num: int) -> int:
+    return len(str(num))
 ```
 
 ```python # wrong: returns only the first digit
-def sum_digits(number: int) -> int:
-    return int(str(number)[0])
+def sum_digits(num: int) -> int:
+    return int(str(num)[0])
 ```
 
 ```python # wrong: stops one digit early, leaving the leading one behind
-def sum_digits(number: int) -> int:
+def sum_digits(num: int) -> int:
     total = 0
-    rest = number
+    rest = num
     while rest > 9:
         total += rest % 10
         rest //= 10
@@ -259,9 +259,9 @@ def sum_digits(number: int) -> int:
 ```
 
 ```python # wrong: divides with / so a long number loses digits to the decimal
-def sum_digits(number: int) -> int:
+def sum_digits(num: int) -> int:
     total = 0
-    rest = number
+    rest = num
     while rest > 0:
         total += rest % 10
         rest = int(rest / 10)
@@ -269,9 +269,9 @@ def sum_digits(number: int) -> int:
 ```
 
 ```python # wrong: a fixed count of turns instead of a while
-def sum_digits(number: int) -> int:
+def sum_digits(num: int) -> int:
     total = 0
-    rest = number
+    rest = num
     for _ in range(1000):
         total += rest % 10
         rest //= 10
@@ -279,24 +279,24 @@ def sum_digits(number: int) -> int:
 ```
 
 ```python # wrong: hard-codes the answers instead of computing them
-def sum_digits(number: int) -> int:
+def sum_digits(num: int) -> int:
     return {1234: 10, 2026: 10, 7: 7, 0: 0, 100: 1, 5000: 5, 1000000: 1,
             101: 2, 91: 10, 999999: 54, 123456789: 45, 987654321: 45,
-            2222: 8}.get(number, 0)
+            2222: 8}.get(num, 0)
 ```
 
 ```python # wrong: multiplies the digits instead of adding them
-def sum_digits(number: int) -> int:
+def sum_digits(num: int) -> int:
     product = 1
-    for digit in str(number):
+    for digit in str(num):
         product *= int(digit)
     return product
 ```
 
 ```python # wrong: adds the characters as text, so it never gets a number
-def sum_digits(number: int) -> int:
+def sum_digits(num: int) -> int:
     total = ""
-    for digit in str(number):
+    for digit in str(num):
         total += digit
     return int(total)
 ```
@@ -306,7 +306,7 @@ def sum_digits(number: int) -> int:
 ```text # forbidden
 %\s*10
 //\s*10
-str\(number\)
+str\(num\)
 int\(str\(
 \bsum\(
 for\s+\w+\s+in\s+str\(

@@ -6,7 +6,7 @@ title: "Python A15 - Sign of a Number"
 
 ## Instructions
 
-Write a function `sign(number: int) -> int` that returns `1` when `number` is positive, `-1` when it is negative, and `0` when it is zero.
+Write a function `sign(num: int) -> int` that returns `1` when `num` is positive, `-1` when it is negative, and `0` when it is zero.
 
 Return the number, do not print it.
 
@@ -50,8 +50,8 @@ the other two are ruled out?
 ## Starter code
 
 ```python # template
-def sign(number: int) -> int:
-    """ Return 1, -1 or 0 for the sign of `number`, e.g. -1 for -3.
+def sign(num: int) -> int:
+    """ Return 1, -1 or 0 for the sign of `num`, e.g. -1 for -3.
 
     >>> sign(-3)
     -1
@@ -81,11 +81,11 @@ print("All tests passed!")
 ### Reference solution
 
 ```python # solution
-def sign(number: int) -> int:
-    """ Return 1, -1 or 0 for the sign of `number`, e.g. -1 for -3. """
-    if number > 0:
+def sign(num: int) -> int:
+    """ Return 1, -1 or 0 for the sign of `num`, e.g. -1 for -3. """
+    if num > 0:
         return 1
-    if number < 0:
+    if num < 0:
         return -1
     return 0
 ```
@@ -93,17 +93,17 @@ def sign(number: int) -> int:
 ### Wrong answers the tests must catch
 
 ```python # wrong: forgets the zero case
-def sign(number: int) -> int:
+def sign(num: int) -> int:
     """ Only tells positive from negative. """
-    if number < 0:
+    if num < 0:
         return -1
     return 1
 ```
 
 ```python # wrong: returns the number itself
-def sign(number: int) -> int:
+def sign(num: int) -> int:
     """ Hands back the number, not its sign. """
-    return number
+    return num
 ```
 
 ### Give-aways the Description must never contain

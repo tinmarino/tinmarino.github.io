@@ -7,6 +7,8 @@ How to read this file:
 - Start with **Download and patch** when you only have a device and need to pull, decode, patch or rebuild an APK.
 - Jump to **Emulator work** when your blocker is lab reliability: AVD startup, root, Burp CA, per-app DNAT, Frida services, mock GPS or sensors.
 - Jump to **All to Burp** when you need plaintext HTTP: proxy, mitmproxy, OkHttp, WebView, SSL hooks or Burp-paste files.
+- Jump to **Getting off the device** when your own script is refused but the app works, or when you want to stop replaying through the phone and talk to the API from your laptop.
+- Jump to **Working the reverse engineering methodically** before a multi-day campaign: how to freeze a snapshot, annotate it, and keep a symbol ledger and hypothesis tree so each session builds on the last instead of re-deriving it.
 - Jump to **Flutter and keys** when `jadx` is not enough, secrets are encrypted on disk, or the interesting logic lives in Dart AOT/native code.
 - Treat every snippet as a template. Keep real client names, domains, tokens, phone numbers, national IDs, vehicle identifiers, request bodies and offsets out of public commits.
 
@@ -376,6 +378,162 @@ A grab-bag of things that broke at least once, in roughly the order you'll hit t
       });
   });
   ```
+
+- **A hook that never fires is not evidence of absence.** The trap: hooking `javax.net.ssl.SSLContext.init` to check whether an app presents a client certificate, observing `keyManagers=null`, and concluding "no mTLS here". Frameworks that build their own `SSLContext` internally — okhttp-tls `HandshakeCertificates` is the usual one — make that hook *structurally* unable to fire, and the false negative reads exactly like a real one. It can survive for days and send you chasing JA3 fingerprints. Before writing any negative down, corroborate it at a second, independent observation point, ideally outside the instrumentation: on the wire, on disk, or on the object the app actually handed to the socket. When runtime and wire disagree, the wire wins.
+
+- **Never decide "blocked" by substring-matching a status code against captured output.** A sweep that does `if '403' in stdout` will abort on its first ID, because AWS gateways stamp every response with random hex in `x-amzn-requestid` / `x-amz-apigw-id` / `x-amzn-trace-id`, and those contain `403` or `429` often enough to look like a WAF. Parse a real status code into an int and branch on that. The failure mode is silent and expensive: the run ends with a clean-looking "endpoint not enumerable" summary while the server was returning 200 the whole time.
+
+# Getting off the device
+
+The workflow above puts the phone in the request path: one attach, one script load, one round trip. That is right for observation and hopeless for volume. The end state worth aiming at is a plain `requests` script on your laptop, with the handset used **once** to extract credentials and then unplugged.
+
+### Why your script is refused when the app is not
+
+Answer this before any deep reversing, because the answer picks the branch. There are exactly four layers and they are cheap to separate:
+
+```bash
+getent hosts target.example.com                                                       # 1. DNS
+timeout 5 bash -c 'exec 3<>/dev/tcp/target.example.com/443' && echo TCP_OPEN          # 2. TCP
+echo | openssl s_client -connect target.example.com:443 -servername target.example.com -tls1_2 2>&1 \
+  | grep -E 'CONNECTED|Acceptable client|No client certificate CA|alert|Verify return' # 3. TLS
+curl -sv --http1.1 https://target.example.com/ 2>&1 \
+  | grep -E 'Request CERT|Certificate \(11\)|reset|HTTP/'                              # 4. HTTP
+```
+
+| Symptom | Layer | Means |
+| --- | --- | --- |
+| TCP refused or timeout | network | IP allowlist, geo, firewall |
+| `alert handshake failure` | TLS | cipher, version or SNI mismatch |
+| Handshake OK, reset on the first HTTP byte | TLS client auth | mutual TLS: a client certificate is required |
+| A real HTTP status (401/403/429) | app | you are through the transport; it is auth or policy |
+
+The third row is the one everybody misdiagnoses as a WAF, a rate limit or a JA3 filter, because the handshake *succeeds* and only the request dies:
+
+```
+* TLSv1.3 (IN), TLS handshake, Request CERT (13)      <- the server asks for a client cert
+* TLSv1.3 (OUT), TLS handshake, Certificate (11)      <- curl sends an EMPTY one
+* SSL certificate verify ok.
+> POST /v2/resource HTTP/1.1
+* Recv failure: Connection reset by peer, errno 104
+```
+
+Under TLS 1.3 the rejection lands *after* the handshake, so `openssl s_client` with nothing to send exits happily with `Verify return code: 0`. `Request CERT (13)` is the tell. Note also that an AWS API Gateway sends an empty acceptable-CA list (`No client certificate CA names sent`), so the wire never tells you which issuer to chain to — that has to come from the app.
+
+Kill the cheap explanations by testing them, not by reasoning about them:
+
+```bash
+# source IP? same egress + opposite outcomes = not the network
+adb shell curl -s https://ifconfig.me ; curl -s https://ifconfig.me
+# TLS fingerprint? identical failures across profiles = the ClientHello is not the variable
+python3 -c "from curl_cffi import requests as r; print(r.get('https://target.example.com/', impersonate='chrome124'))"
+# does the edge evaluate a cert at all? present ANY cert and watch the failure MODE change
+openssl req -x509 -newkey rsa:2048 -nodes -keyout /tmp/r.key -out /tmp/r.crt -subj /CN=probe -days 1
+curl -sv --cert /tmp/r.crt --key /tmp/r.key https://target.example.com/ 2>&1 | tail -5
+```
+
+A reset that becomes a well-formed `403` as soon as *any* certificate is attached proves the edge reaches client-certificate validation. That one observation turns a vague "blocked" into a named objective.
+
+### Lifting the client certificate out of RAM
+
+Static first, because it is cheap: `unzip -l base.apk | grep -iE '\.(p12|pfx|bks|jks|keystore|pem)$'`, a PKCS12 magic-byte scan (`30 82`) over extensionless assets, and the keystore password as a string constant next to the `KeyStore.getInstance` call. But the heap hands you the deobfuscated object directly, and three capture points corroborate each other — which matters, because two independent extractions agreeing byte-for-byte is the cheapest proof available.
+
+```javascript
+Java.perform(function () {
+    // (a) any KeyStore on the heap
+    Java.choose('java.security.KeyStore', { onMatch: ks => {
+        const it = ks.aliases(); while (it.hasMoreElements()) send('alias ' + it.nextElement());
+    }, onComplete(){} });
+
+    // (b) the KeyManager the socket actually consulted -- fires on every connection
+    ['com.android.org.conscrypt.KeyManagerImpl', 'sun.security.ssl.X509KeyManagerImpl'].forEach(function (c) {
+        try {
+            const KM = Java.use(c);
+            KM.getPrivateKey.implementation = function (a) {
+                const k = this.getPrivateKey(a);
+                send('key ' + a + ' ' + pem(k.getEncoded(), 'PRIVATE KEY'));   // null => hardware-backed
+                return k;
+            };
+            KM.getCertificateChain.implementation = function (a) {
+                const ch = this.getCertificateChain(a);
+                ch.forEach(c2 => send(pem(c2.getEncoded(), 'CERTIFICATE')));
+                return ch;
+            };
+        } catch (e) {}
+    });
+
+    // (c) ground truth -- what the live socket presented
+    Java.choose('com.android.org.conscrypt.ConscryptEngineSocket', { onMatch: s => {
+        (s.getSession().getLocalCertificates() || []).forEach(c => send(pem(c.getEncoded(), 'CERTIFICATE')));
+    }, onComplete(){} });
+});
+```
+
+`pem(bytes, label)` is base64 in 64-character lines between `-----BEGIN/END <label>-----`. Certificates serialize with `getEncoded()`; private keys with `getEncoded()` in PKCS#8. Hook `SSLContext.getInstance` as well as `init`, for the reason in the gotchas above.
+
+**There is exactly one hard fork here: `getEncoded()` returns bytes, or it returns `null`.** `null` means the key lives in the TEE/StrongBox and is non-exportable, so there is no host-side client at all and your fallback is routing host traffic through the device. Bytes mean you are done. Check this early — it decides whether the rest of the work is worth doing.
+
+```bash
+openssl x509 -in client.crt -noout -subject -issuer -dates -ext extendedKeyUsage
+openssl rsa  -in client.key -noout -check
+openssl x509 -in client.crt -noout -modulus | md5sum      # these two must match
+openssl rsa  -in client.key -noout -modulus | md5sum
+md5sum client.crt socket-localcert-0.pem                  # (b) vs (c): identical = it is the wire cert
+```
+
+### Replaying the login, and proving the phone is gone
+
+A stolen transport certificate solves the edge, but the session token still comes from the handset unless you replay the login host-side too. Capture it once, re-send it with the new client, and check whether it actually needs the token the app sends alongside it — often that is a stale leftover the server ignores.
+
+```python
+from requests import Session
+s = Session()
+s.cert = ('client.crt', 'client.key')
+r = s.post('https://target.example.com/auth/v2/login',
+           json={'user': USER, 'password': PASSWORD},
+           headers={'User-Agent': 'okhttp/4.12.0'})
+token = r.json()['data']['payload']['userToken']
+```
+
+Read the login response for an attempt counter (`tries`, `attemptsLeft`, `remainingAttempts`) and treat it as a hard limit: **never retry a rejected login and never guess a password.** Lockout is usually the only irreversible mistake available on this path, and unlocking tends to require the vendor. A session-refresher daemon must break its loop on failure rather than spin.
+
+Then the only verification that counts — kill the phone and see if it still works:
+
+```bash
+adb shell am force-stop target.cl && adb kill-server
+python3 local.py --path /v2/resource --body 'id=1'        # must still return 200
+```
+
+Build the result as a reusable client rather than a one-off: a persistent `Session` so the handshake happens once, a structured result carrying `status` as an int, and every decision taken from that int. Map the failure modes explicitly so the next person diagnoses instead of guessing — `reset` means no certificate was presented, `403` means the certificate rotated, `401` means the certificate is fine and only the session went stale, `200` means good. Keep the extractor around for when the certificate expires (`openssl x509 -noout -enddate`), and retire the on-device request path entirely.
+
+# Working the reverse engineering methodically
+
+Offline work — decompiling, grepping, annotating, diffing, heap-parsing a snapshot — touches no target, trips no rate limit and wakes nobody. It is effectively free, so the discipline is *exhaust*, not *sample*. The actual constraint is amnesia: come back a week later, or hand the work to someone else, and half of it gets re-derived. Three artifacts fix that, and they are worth setting up before the first `jadx` run.
+
+**Freeze the artifact.** Decompile once into a dated directory and never re-run the decompiler over it, because that silently destroys every annotation. Record `sha256sum base.apk` next to it: offsets are true for that hash and no other. When the app updates, decompile into a new dated directory and `diff -rq` the two rather than starting over.
+
+**Annotate in place, with a greppable marker.** A comment three lines above the method beats a paragraph in a document nobody opens. Fix the format so it is machine-findable — `// [RE-0042] <claim> | <confidence> | wave <N>` — and use the same id in the ledger so code and notes point at each other. `grep -rn '\[RE-[0-9]\{4\}\]'` recovers the whole set; in Ghidra, put the marker in the function's plate comment so it survives export.
+
+**Keep a symbol ledger as TSV, not prose**, because it sorts, greps and diffs: `addr / symbol / signature / meaning / confidence / evidence / wave`. Seed it for free from `nm -D --defined-only`, `readelf -sW` and `strings -a -t x`. Allow exactly three confidence levels — `GUESS` (the name or shape suggests it), `CONSISTENT` (every observation fits, none contradicts), `PROVEN` (a falsifier was run and held) — and require the evidence column to be filled before anything is promoted. Nothing is ever promoted for being plausible. When a row turns out wrong, append a new one and mark the old `REFUTED`; never rewrite history.
+
+**Keep a hypothesis tree where every node carries its falsifier** — the one command whose output settles it. A node without a falsifier is a mood, not a hypothesis.
+
+```markdown
+# H1 -- the client is refused by a transport-layer control  [CONFIRMED wave 2]
+Falsifier: curl -v https://target.example.com/ 2>&1 | grep -E 'Request CERT|alert|reset'
+Result: Request CERT (13) + reset after first byte -> mutual TLS.
+
+## H1.1 -- the cert material ships inside the APK  [REFUTED wave 3]
+Falsifier: unzip -l base.apk | grep -iE '\.(p12|pfx|bks|jks)$' + PKCS12 magic scan over assets/
+Result: 0 hits both ways. Not static.
+
+### H1.2.1 -- the private key is exportable  [CONFIRMED wave 3]
+Falsifier: key.getEncoded() != null in-process, then openssl rsa -check on the PEM.
+Result: PKCS#8, software-backed. Host-side client is possible.
+```
+
+Then each wave is a closed transaction: read the ledger, pick the open leaf that is cheapest to falsify and whose refutation would kill the most subtree, write the falsifier down *before* running it, record the verdict with the literal output, append new symbols and annotations, and append the child hypotheses the result just opened. A wave that opens no new node means that branch is exhausted — pick another; it does not mean the campaign is over.
+
+Keep refuted branches in the file forever. Deleting them is precisely how the same dead end gets re-tested three waves later.
 
 # Emulator work
 
