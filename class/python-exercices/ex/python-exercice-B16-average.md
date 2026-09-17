@@ -28,6 +28,7 @@ Add up the numbers and divide by how many there are. `[2, 4]` averages to `3.0`.
 |---|---|
 | `average([2, 4])` | `3.0` |
 | `average([1, 2, 3, 4])` | `2.5` |
+| `average([1, 2, 6])` | `3.0` |
 | `average([5])` | `5.0` |
 | `average([])` | `0.0` |
 
@@ -86,6 +87,9 @@ for _pat, _banned in _bans:
 assert average([2, 4]) == 3.0, f"Got: {average([2, 4])}"
 assert average([1, 2, 3, 4]) == 2.5, f"Got: {average([1, 2, 3, 4])}"
 assert average([5]) == 5.0, f"Got: {average([5])}"
+assert average([1, 2, 6]) == 3.0, f"Got: {average([1, 2, 6])}"
+assert average([10, 1, 1]) == 4.0, f"Got: {average([10, 1, 1])}"
+assert average([0, 0, 0, 8]) == 2.0, f"Got: {average([0, 0, 0, 8])}"
 assert average([]) == 0.0, f"Got: {average([])}"
 assert average([-2, 2]) == 0.0, f"Got: {average([-2, 2])}"
 assert average([1, 2]) == 1.5, f"Got: {average([1, 2])}"
@@ -115,6 +119,14 @@ def average(lst: list) -> float:
     if not lst:
         return 0.0
     return sum(lst) / len(lst)
+```
+
+```python # wrong: averages only the ends, not every number
+def average(lst: list) -> float:
+    """ Midpoint of first and last, which is not the mean. """
+    if not lst:
+        return 0.0
+    return (lst[0] + lst[-1]) / 2
 ```
 
 ```python # wrong: integer division drops the fraction

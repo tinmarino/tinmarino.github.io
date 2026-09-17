@@ -33,6 +33,7 @@ individual exercise is configured here, so two exercises can never conflict.
 The app never shows that section: it reads only the named fences and
 ``## Description``. Add ``--only ex07,ex08`` to verify a subset.
 """
+import ast
 import json
 import pathlib
 import re
@@ -198,14 +199,28 @@ def check_style(tag, markdown, blocks, errors):
 
     check_signature(tag, template, errors)
 
-    # Join backslash continuations so a message on the next line still counts
-    joined = re.sub(r'\\\n\s*', ' ', tests)
-    asserts = re.findall(r'^\s*assert\b.*$', joined, re.M)
-    if not asserts:
+    # Find the asserts with the parser, not a line regex. An assert split across
+    # lines inside brackets is ONE statement, and the old line-based scan saw only
+    # its first line, so it reported a perfectly good f"Got: ..." message as
+    # missing. Backslash continuations were joined by hand; implicit bracket
+    # continuations were not, which is the case that cost an author an iteration.
+    try:
+        tree = ast.parse(tests)
+    except SyntaxError:
+        tree = None
+    if tree is None:
+        joined = re.sub(r'\\\n\s*', ' ', tests)
+        nodes = re.findall(r'^\s*assert\b.*$', joined, re.M)
+        texts = [(line, line) for line in nodes]
+    else:
+        nodes = [n for n in ast.walk(tree) if isinstance(n, ast.Assert)]
+        texts = [('' if n.msg is None else ast.unparse(n.msg), ast.unparse(n.test))
+                 for n in nodes]
+    if not nodes:
         errors.append(f'{tag}: tests contain no assert')
-    for line in asserts:
-        if 'Got:' not in line:
-            errors.append(f'{tag}: assert without an f"Got: ..." message: {line.strip()[:70]}')
+    for message, shown in texts:
+        if 'Got:' not in message:
+            errors.append(f'{tag}: assert without an f"Got: ..." message: {shown.strip()[:70]}')
     if not re.search(r'print\("All tests passed!"\)\s*$', tests.rstrip() + '\n'):
         errors.append(f'{tag}: tests must END with print("All tests passed!")')
 

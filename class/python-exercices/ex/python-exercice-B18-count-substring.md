@@ -31,6 +31,7 @@ Count the appearances of one short string inside a longer one. In
 | `count_sub("na", "banana")` | `2` |
 | `count_sub("ban", "banana")` | `1` |
 | `count_sub("z", "banana")` | `0` |
+| `count_sub("aa", "aaaa")` | `2` |
 
 ### Things you will need
 
@@ -86,6 +87,9 @@ assert count_sub("ban", "banana") == 1, f"Got: {count_sub('ban', 'banana')}"
 assert count_sub("z", "banana") == 0, f"Got: {count_sub('z', 'banana')}"
 assert count_sub("a", "banana") == 3, f"Got: {count_sub('a', 'banana')}"
 assert count_sub("o", "python") == 1, f"Got: {count_sub('o', 'python')}"
+assert count_sub("aa", "aaaa") == 2, f"Got: {count_sub('aa', 'aaaa')}"
+assert count_sub("aa", "aaa") == 1, f"Got: {count_sub('aa', 'aaa')}"
+assert count_sub("ana", "banana") == 1, f"Got: {count_sub('ana', 'banana')}"
 print("All tests passed!")
 ```
 
@@ -110,6 +114,17 @@ def count_sub(needle: str, haystack: str) -> int:
 def count_sub(needle: str, haystack: str) -> int:
     """ Hands the work to count. """
     return haystack.count(needle)
+```
+
+```python # wrong: counts overlapping matches, advancing one character
+def count_sub(needle: str, haystack: str) -> int:
+    """ Steps on by one, so "aa" is found three times in "aaaa". """
+    count = 0
+    start = haystack.find(needle)
+    while start != -1:
+        count += 1
+        start = haystack.find(needle, start + 1)
+    return count
 ```
 
 ```python # wrong: returns where the first match is, not how many

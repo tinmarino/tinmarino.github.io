@@ -1,73 +1,492 @@
 [
-  {"id": "A10", "title": "A10 - Print Hello", "file": "ex/python-exercice-A10-print-hello.md"},
-  {"id": "A12", "title": "A12 - Difference of Two Numbers", "file": "ex/python-exercice-A12-difference-of-two.md"},
-  {"id": "A13", "title": "A13 - Larger of Two Numbers", "file": "ex/python-exercice-A13-larger-of-two.md"},
-  {"id": "A14", "title": "A14 - Absolute Value", "file": "ex/python-exercice-A14-absolute-value.md"},
-  {"id": "A15", "title": "A15 - Sign of a Number", "file": "ex/python-exercice-A15-sign-of-a-number.md"},
-  {"id": "A16", "title": "A16 - Remote URL?", "file": "ex/python-exercice-A16-starts-with.md"},
-  {"id": "A17", "title": "A17 - Same Word, Any Case", "file": "ex/python-exercice-A17-equal-ignoring-case.md"},
-  {"id": "A18", "title": "A18 - Is It in the List?", "file": "ex/python-exercice-A18-is-in-list.md"},
-  {"id": "A19", "title": "A19 - Swap A for O", "file": "ex/python-exercice-A19-replace-a-with-o.md"},
-  {"id": "A20", "title": "A20 - Reverse a List", "file": "ex/python-exercice-A20-reverse-list.md"},
-  {"id": "A21", "title": "A21 - Last Character", "file": "ex/python-exercice-A21-last-character.md"},
-  {"id": "A22", "title": "A22 - Average of Two", "file": "ex/python-exercice-A22-average-of-two.md"},
-  {"id": "A23", "title": "A23 - First and Last", "file": "ex/python-exercice-A23-first-and-last.md"},
-  {"id": "A30", "title": "A30 - Reverse a String", "file": "ex/python-exercice-A30-reverse-string.md"},
-  {"id": "A40", "title": "A40 - Fibonacci", "file": "ex/python-exercice-A40-fibonacci.md"},
-  {"id": "B10", "title": "B10 - Count the Vowels", "file": "ex/python-exercice-B10-count-vowels.md"},
-  {"id": "B11", "title": "B11 - Double Every Number", "file": "ex/python-exercice-B11-double-every-number.md"},
-  {"id": "B12", "title": "B12 - Keep Only the Even Numbers", "file": "ex/python-exercice-B12-keep-even.md"},
-  {"id": "B13", "title": "B13 - Multiples of Three", "file": "ex/python-exercice-B13-multiples-of-three.md"},
-  {"id": "B14", "title": "B14 - A List of Squares", "file": "ex/python-exercice-B14-squares.md"},
-  {"id": "B15", "title": "B15 - How Many Are Even", "file": "ex/python-exercice-B15-count-even.md"},
-  {"id": "B16", "title": "B16 - Average of a List", "file": "ex/python-exercice-B16-average.md"},
-  {"id": "B17", "title": "B17 - Even or Odd Labels", "file": "ex/python-exercice-B17-even-odd-labels.md"},
-  {"id": "B18", "title": "B18 - Count a Substring", "file": "ex/python-exercice-B18-count-substring.md"},
-  {"id": "B19", "title": "B19 - First Big Multiple of Seven", "file": "ex/python-exercice-B19-first-big-multiple.md"},
-  {"id": "B20", "title": "B20 - Largest of a List", "file": "ex/python-exercice-B20-largest-of-list.md"},
-  {"id": "B25", "title": "B25 - FizzBuzz", "file": "ex/python-exercice-B25-fizzbuzz.md"},
-  {"id": "B27", "title": "B27 - Sort a List Ascending", "file": "ex/python-exercice-B27-sort-ascending.md"},
-  {"id": "B30", "title": "B30 - Is it a Palindrome?", "file": "ex/python-exercice-B30-is-palindrome.md"},
-  {"id": "B40", "title": "B40 - Sum of Digits", "file": "ex/python-exercice-B40-sum-of-digits.md"},
-  {"id": "C10", "title": "C10 - Count Each Letter", "file": "ex/python-exercice-C10-count-each-letter.md"},
-  {"id": "C12", "title": "C12 - Longest Run of One Character", "file": "ex/python-exercice-C12-longest-run.md"},
-  {"id": "C14", "title": "C14 - Squash the Runs", "file": "ex/python-exercice-C14-squash-the-runs.md"},
-  {"id": "C16", "title": "C16 - Run-Length Encode", "file": "ex/python-exercice-C16-run-length-encode.md"},
-  {"id": "C18", "title": "C18 - Title-Case by Hand", "file": "ex/python-exercice-C18-title-case.md"},
-  {"id": "C20", "title": "C20 - Most Frequent Word", "file": "ex/python-exercice-C20-most-frequent.md"},
-  {"id": "C22", "title": "C22 - Count the Words", "file": "ex/python-exercice-C22-count-words.md"},
-  {"id": "C24", "title": "C24 - Caesar Shift", "file": "ex/python-exercice-C24-caesar-shift.md"},
-  {"id": "C26", "title": "C26 - Count the Digits", "file": "ex/python-exercice-C26-count-digits.md"},
-  {"id": "C28", "title": "C28 - Reverse an Integer", "file": "ex/python-exercice-C28-reverse-integer.md"},
-  {"id": "C30", "title": "C30 - Remove Duplicates", "file": "ex/python-exercice-C30-remove-duplicates.md"},
-  {"id": "C32", "title": "C32 - Count the Set Bits", "file": "ex/python-exercice-C32-count-set-bits.md"},
-  {"id": "C40", "title": "C40 - Group by First Letter", "file": "ex/python-exercice-C40-group-by-first-letter.md"},
-  {"id": "C50", "title": "C50 - Two Sum", "file": "ex/python-exercice-C50-two-sum.md"},
-  {"id": "C60", "title": "C60 - What Two Lists Share", "file": "ex/python-exercice-C60-what-two-lists-share.md"},
-  {"id": "D10", "title": "D10 - A Stack from a List", "file": "ex/python-exercice-D10-stack-from-a-list.md"},
-  {"id": "D12", "title": "D12 - Running Totals", "file": "ex/python-exercice-D12-running-totals.md"},
-  {"id": "D14", "title": "D14 - Pairwise Differences", "file": "ex/python-exercice-D14-pairwise-differences.md"},
-  {"id": "D16", "title": "D16 - Is It Sorted", "file": "ex/python-exercice-D16-is-sorted.md"},
-  {"id": "D18", "title": "D18 - Dot Product", "file": "ex/python-exercice-D18-dot-product.md"},
-  {"id": "D20", "title": "D20 - Reverse with a Stack", "file": "ex/python-exercice-D20-reverse-with-a-stack.md"},
-  {"id": "D22", "title": "D22 - Rotate a List", "file": "ex/python-exercice-D22-rotate-a-list.md"},
-  {"id": "D24", "title": "D24 - Interleave Two Lists", "file": "ex/python-exercice-D24-interleave.md"},
-  {"id": "D26", "title": "D26 - Merge Two Sorted Lists", "file": "ex/python-exercice-D26-merge-sorted.md"},
-  {"id": "D28", "title": "D28 - GCD by Subtraction", "file": "ex/python-exercice-D28-gcd-by-subtraction.md"},
-  {"id": "D30", "title": "D30 - Undo History", "file": "ex/python-exercice-D30-undo-history.md"},
-  {"id": "D40", "title": "D40 - One Bracket Type", "file": "ex/python-exercice-D40-one-bracket-type.md"},
-  {"id": "D50", "title": "D50 - Balanced Parentheses", "file": "ex/python-exercice-D50-balanced-parentheses.md"},
-  {"id": "D60", "title": "D60 - Is It a Rotation", "file": "ex/python-exercice-D60-is-rotation.md"},
-  {"id": "D70", "title": "D70 - Are the Tags Nested Right?", "file": "ex/python-exercice-D70-tags-nested.md"},
-  {"id": "E10", "title": "E10 - Reverse Polish Notation", "file": "ex/python-exercice-E10-reverse-polish-notation.md"},
-  {"id": "E20", "title": "E20 - Flatten One Level", "file": "ex/python-exercice-E20-flatten-one-level.md"},
-  {"id": "E25", "title": "E25 - Sum of Each Row", "file": "ex/python-exercice-E25-row-sums.md"},
-  {"id": "E30", "title": "E30 - Count a Value in a Grid", "file": "ex/python-exercice-E30-count-value-in-grid.md"},
-  {"id": "E35", "title": "E35 - Sum of Each Column", "file": "ex/python-exercice-E35-column-sums.md"},
-  {"id": "E40", "title": "E40 - Main-Diagonal Sum", "file": "ex/python-exercice-E40-diagonal-sum.md"},
-  {"id": "E45", "title": "E45 - Identity Matrix", "file": "ex/python-exercice-E45-identity-matrix.md"},
-  {"id": "E50", "title": "E50 - Multiplication Table", "file": "ex/python-exercice-E50-multiplication-table.md"},
-  {"id": "E55", "title": "E55 - Add Two Matrices", "file": "ex/python-exercice-E55-add-two-matrices.md"},
-  {"id": "E60", "title": "E60 - Transpose a Matrix", "file": "ex/python-exercice-E60-transpose-a-matrix.md"},
-  {"id": "E70", "title": "E70 - Pascal's Triangle", "file": "ex/python-exercice-E70-pascals-triangle.md"}
+  {
+    "id": "A10",
+    "title": "A10 - Print Hello",
+    "file": "ex/python-exercice-A10-print-hello.md"
+  },
+  {
+    "id": "A12",
+    "title": "A12 - Difference of Two Numbers",
+    "file": "ex/python-exercice-A12-difference-of-two.md"
+  },
+  {
+    "id": "A13",
+    "title": "A13 - Larger of Two Numbers",
+    "file": "ex/python-exercice-A13-larger-of-two.md"
+  },
+  {
+    "id": "A14",
+    "title": "A14 - Absolute Value",
+    "file": "ex/python-exercice-A14-absolute-value.md"
+  },
+  {
+    "id": "A15",
+    "title": "A15 - Sign of a Number",
+    "file": "ex/python-exercice-A15-sign-of-a-number.md"
+  },
+  {
+    "id": "A16",
+    "title": "A16 - Remote URL?",
+    "file": "ex/python-exercice-A16-starts-with.md"
+  },
+  {
+    "id": "A17",
+    "title": "A17 - Same Word, Any Case",
+    "file": "ex/python-exercice-A17-equal-ignoring-case.md"
+  },
+  {
+    "id": "A18",
+    "title": "A18 - Is It in the List?",
+    "file": "ex/python-exercice-A18-is-in-list.md"
+  },
+  {
+    "id": "A19",
+    "title": "A19 - Swap A for O",
+    "file": "ex/python-exercice-A19-replace-a-with-o.md"
+  },
+  {
+    "id": "A20",
+    "title": "A20 - Reverse a List",
+    "file": "ex/python-exercice-A20-reverse-list.md"
+  },
+  {
+    "id": "A21",
+    "title": "A21 - Last Character",
+    "file": "ex/python-exercice-A21-last-character.md"
+  },
+  {
+    "id": "A22",
+    "title": "A22 - Average of Two",
+    "file": "ex/python-exercice-A22-average-of-two.md"
+  },
+  {
+    "id": "A23",
+    "title": "A23 - First and Last",
+    "file": "ex/python-exercice-A23-first-and-last.md"
+  },
+  {
+    "id": "A30",
+    "title": "A30 - Reverse a String",
+    "file": "ex/python-exercice-A30-reverse-string.md"
+  },
+  {
+    "id": "A40",
+    "title": "A40 - Fibonacci",
+    "file": "ex/python-exercice-A40-fibonacci.md"
+  },
+  {
+    "id": "B10",
+    "title": "B10 - Count the Vowels",
+    "file": "ex/python-exercice-B10-count-vowels.md"
+  },
+  {
+    "id": "B11",
+    "title": "B11 - Double Every Number",
+    "file": "ex/python-exercice-B11-double-every-number.md"
+  },
+  {
+    "id": "B12",
+    "title": "B12 - Keep Only the Even Numbers",
+    "file": "ex/python-exercice-B12-keep-even.md"
+  },
+  {
+    "id": "B13",
+    "title": "B13 - Multiples of Three",
+    "file": "ex/python-exercice-B13-multiples-of-three.md"
+  },
+  {
+    "id": "B14",
+    "title": "B14 - A List of Squares",
+    "file": "ex/python-exercice-B14-squares.md"
+  },
+  {
+    "id": "B15",
+    "title": "B15 - How Many Are Even",
+    "file": "ex/python-exercice-B15-count-even.md"
+  },
+  {
+    "id": "B16",
+    "title": "B16 - Average of a List",
+    "file": "ex/python-exercice-B16-average.md"
+  },
+  {
+    "id": "B17",
+    "title": "B17 - Even or Odd Labels",
+    "file": "ex/python-exercice-B17-even-odd-labels.md"
+  },
+  {
+    "id": "B18",
+    "title": "B18 - Count a Substring",
+    "file": "ex/python-exercice-B18-count-substring.md"
+  },
+  {
+    "id": "B19",
+    "title": "B19 - First Big Multiple of Seven",
+    "file": "ex/python-exercice-B19-first-big-multiple.md"
+  },
+  {
+    "id": "B20",
+    "title": "B20 - Largest of a List",
+    "file": "ex/python-exercice-B20-largest-of-list.md"
+  },
+  {
+    "id": "B25",
+    "title": "B25 - FizzBuzz",
+    "file": "ex/python-exercice-B25-fizzbuzz.md"
+  },
+  {
+    "id": "B27",
+    "title": "B27 - Sort a List Ascending",
+    "file": "ex/python-exercice-B27-sort-ascending.md"
+  },
+  {
+    "id": "B30",
+    "title": "B30 - Is it a Palindrome?",
+    "file": "ex/python-exercice-B30-is-palindrome.md"
+  },
+  {
+    "id": "B40",
+    "title": "B40 - Sum of Digits",
+    "file": "ex/python-exercice-B40-sum-of-digits.md"
+  },
+  {
+    "id": "C10",
+    "title": "C10 - Count Each Letter",
+    "file": "ex/python-exercice-C10-count-each-letter.md"
+  },
+  {
+    "id": "C12",
+    "title": "C12 - Longest Run of One Character",
+    "file": "ex/python-exercice-C12-longest-run.md"
+  },
+  {
+    "id": "C14",
+    "title": "C14 - Squash the Runs",
+    "file": "ex/python-exercice-C14-squash-the-runs.md"
+  },
+  {
+    "id": "C16",
+    "title": "C16 - Run-Length Encode",
+    "file": "ex/python-exercice-C16-run-length-encode.md"
+  },
+  {
+    "id": "C18",
+    "title": "C18 - Title-Case by Hand",
+    "file": "ex/python-exercice-C18-title-case.md"
+  },
+  {
+    "id": "C20",
+    "title": "C20 - Most Frequent Word",
+    "file": "ex/python-exercice-C20-most-frequent.md"
+  },
+  {
+    "id": "C22",
+    "title": "C22 - Count the Words",
+    "file": "ex/python-exercice-C22-count-words.md"
+  },
+  {
+    "id": "C24",
+    "title": "C24 - Caesar Shift",
+    "file": "ex/python-exercice-C24-caesar-shift.md"
+  },
+  {
+    "id": "C26",
+    "title": "C26 - Count the Digits",
+    "file": "ex/python-exercice-C26-count-digits.md"
+  },
+  {
+    "id": "C28",
+    "title": "C28 - Reverse an Integer",
+    "file": "ex/python-exercice-C28-reverse-integer.md"
+  },
+  {
+    "id": "C30",
+    "title": "C30 - Remove Duplicates",
+    "file": "ex/python-exercice-C30-remove-duplicates.md"
+  },
+  {
+    "id": "C32",
+    "title": "C32 - Count the Set Bits",
+    "file": "ex/python-exercice-C32-count-set-bits.md"
+  },
+  {
+    "id": "C40",
+    "title": "C40 - Group by First Letter",
+    "file": "ex/python-exercice-C40-group-by-first-letter.md"
+  },
+  {
+    "id": "C50",
+    "title": "C50 - Two Sum",
+    "file": "ex/python-exercice-C50-two-sum.md"
+  },
+  {
+    "id": "C60",
+    "title": "C60 - What Two Lists Share",
+    "file": "ex/python-exercice-C60-what-two-lists-share.md"
+  },
+  {
+    "id": "D10",
+    "title": "D10 - A Stack from a List",
+    "file": "ex/python-exercice-D10-stack-from-a-list.md"
+  },
+  {
+    "id": "D12",
+    "title": "D12 - Running Totals",
+    "file": "ex/python-exercice-D12-running-totals.md"
+  },
+  {
+    "id": "D14",
+    "title": "D14 - Pairwise Differences",
+    "file": "ex/python-exercice-D14-pairwise-differences.md"
+  },
+  {
+    "id": "D16",
+    "title": "D16 - Is It Sorted",
+    "file": "ex/python-exercice-D16-is-sorted.md"
+  },
+  {
+    "id": "D18",
+    "title": "D18 - Dot Product",
+    "file": "ex/python-exercice-D18-dot-product.md"
+  },
+  {
+    "id": "D20",
+    "title": "D20 - Reverse with a Stack",
+    "file": "ex/python-exercice-D20-reverse-with-a-stack.md"
+  },
+  {
+    "id": "D22",
+    "title": "D22 - Rotate a List",
+    "file": "ex/python-exercice-D22-rotate-a-list.md"
+  },
+  {
+    "id": "D24",
+    "title": "D24 - Interleave Two Lists",
+    "file": "ex/python-exercice-D24-interleave.md"
+  },
+  {
+    "id": "D26",
+    "title": "D26 - Merge Two Sorted Lists",
+    "file": "ex/python-exercice-D26-merge-sorted.md"
+  },
+  {
+    "id": "D28",
+    "title": "D28 - GCD by Subtraction",
+    "file": "ex/python-exercice-D28-gcd-by-subtraction.md"
+  },
+  {
+    "id": "D30",
+    "title": "D30 - Undo History",
+    "file": "ex/python-exercice-D30-undo-history.md"
+  },
+  {
+    "id": "D40",
+    "title": "D40 - One Bracket Type",
+    "file": "ex/python-exercice-D40-one-bracket-type.md"
+  },
+  {
+    "id": "D50",
+    "title": "D50 - Balanced Parentheses",
+    "file": "ex/python-exercice-D50-balanced-parentheses.md"
+  },
+  {
+    "id": "D60",
+    "title": "D60 - Is It a Rotation",
+    "file": "ex/python-exercice-D60-is-rotation.md"
+  },
+  {
+    "id": "D70",
+    "title": "D70 - Are the Tags Nested Right?",
+    "file": "ex/python-exercice-D70-tags-nested.md"
+  },
+  {
+    "id": "E10",
+    "title": "E10 - Reverse Polish Notation",
+    "file": "ex/python-exercice-E10-reverse-polish-notation.md"
+  },
+  {
+    "id": "E20",
+    "title": "E20 - Flatten One Level",
+    "file": "ex/python-exercice-E20-flatten-one-level.md"
+  },
+  {
+    "id": "E25",
+    "title": "E25 - Sum of Each Row",
+    "file": "ex/python-exercice-E25-row-sums.md"
+  },
+  {
+    "id": "E30",
+    "title": "E30 - Count a Value in a Grid",
+    "file": "ex/python-exercice-E30-count-value-in-grid.md"
+  },
+  {
+    "id": "E35",
+    "title": "E35 - Sum of Each Column",
+    "file": "ex/python-exercice-E35-column-sums.md"
+  },
+  {
+    "id": "E40",
+    "title": "E40 - Main-Diagonal Sum",
+    "file": "ex/python-exercice-E40-diagonal-sum.md"
+  },
+  {
+    "id": "E45",
+    "title": "E45 - Identity Matrix",
+    "file": "ex/python-exercice-E45-identity-matrix.md"
+  },
+  {
+    "id": "E50",
+    "title": "E50 - Multiplication Table",
+    "file": "ex/python-exercice-E50-multiplication-table.md"
+  },
+  {
+    "id": "E55",
+    "title": "E55 - Add Two Matrices",
+    "file": "ex/python-exercice-E55-add-two-matrices.md"
+  },
+  {
+    "id": "E60",
+    "title": "E60 - Transpose a Matrix",
+    "file": "ex/python-exercice-E60-transpose-a-matrix.md"
+  },
+  {
+    "id": "E70",
+    "title": "E70 - Pascal's Triangle",
+    "file": "ex/python-exercice-E70-pascals-triangle.md"
+  },
+  {
+    "id": "F10",
+    "title": "F10 - Who Is of Age",
+    "file": "ex/python-exercice-F10-who-is-of-age.md"
+  },
+  {
+    "id": "F20",
+    "title": "F20 - The Shortest Word",
+    "file": "ex/python-exercice-F20-shortest-word.md"
+  },
+  {
+    "id": "F30",
+    "title": "F30 - Flatten a List of Lists",
+    "file": "ex/python-exercice-F30-flatten-list-of-lists.md"
+  },
+  {
+    "id": "F40",
+    "title": "F40 - Flatten Any Nesting",
+    "file": "ex/python-exercice-F40-flatten-any-nesting.md"
+  },
+  {
+    "id": "G10",
+    "title": "G10 - Keep What Is Under a Limit",
+    "file": "ex/python-exercice-G10-under-a-limit.md"
+  },
+  {
+    "id": "G15",
+    "title": "G15 - Between Two Bounds",
+    "file": "ex/python-exercice-G15-between-two-bounds.md"
+  },
+  {
+    "id": "G20",
+    "title": "G20 - Drop Every Copy of a Value",
+    "file": "ex/python-exercice-G20-drop-every-copy.md"
+  },
+  {
+    "id": "G25",
+    "title": "G25 - Flip Every Sign",
+    "file": "ex/python-exercice-G25-flip-every-sign.md"
+  },
+  {
+    "id": "G30",
+    "title": "G30 - First Letter of Every Word",
+    "file": "ex/python-exercice-G30-first-letter-of-every-word.md"
+  },
+  {
+    "id": "G35",
+    "title": "G35 - Square the Positives",
+    "file": "ex/python-exercice-G35-square-the-positives.md"
+  },
+  {
+    "id": "G40",
+    "title": "G40 - The Longest Word",
+    "file": "ex/python-exercice-G40-longest-word.md"
+  },
+  {
+    "id": "G45",
+    "title": "G45 - Words with No Vowel",
+    "file": "ex/python-exercice-G45-words-with-no-vowel.md"
+  },
+  {
+    "id": "G50",
+    "title": "G50 - What the Basket Costs",
+    "file": "ex/python-exercice-G50-basket-total.md"
+  },
+  {
+    "id": "G55",
+    "title": "G55 - Glue the Words with Spaces",
+    "file": "ex/python-exercice-G55-glue-words-with-spaces.md"
+  },
+  {
+    "id": "G60",
+    "title": "G60 - Where Is It First",
+    "file": "ex/python-exercice-G60-where-is-it-first.md"
+  },
+  {
+    "id": "G65",
+    "title": "G65 - Position of the Biggest",
+    "file": "ex/python-exercice-G65-position-of-the-biggest.md"
+  },
+  {
+    "id": "G70",
+    "title": "G70 - Keep Every Nth Element",
+    "file": "ex/python-exercice-G70-keep-every-nth.md"
+  },
+  {
+    "id": "G75",
+    "title": "G75 - Cheap and Expensive",
+    "file": "ex/python-exercice-G75-cheap-and-expensive.md"
+  },
+  {
+    "id": "G80",
+    "title": "G80 - The Longer List",
+    "file": "ex/python-exercice-G80-the-longer-list.md"
+  },
+  {
+    "id": "H10",
+    "title": "H10 - Do They Share Anything?",
+    "file": "ex/python-exercice-H10-do-they-share-anything.md"
+  },
+  {
+    "id": "H20",
+    "title": "H20 - In the First, Not in the Second",
+    "file": "ex/python-exercice-H20-in-first-not-in-second.md"
+  },
+  {
+    "id": "H30",
+    "title": "H30 - Add Two Lists Element by Element",
+    "file": "ex/python-exercice-H30-add-two-lists.md"
+  },
+  {
+    "id": "H40",
+    "title": "H40 - Glue Them Position by Position",
+    "file": "ex/python-exercice-H40-glue-position-by-position.md"
+  },
+  {
+    "id": "H50",
+    "title": "H50 - Passed and Failed",
+    "file": "ex/python-exercice-H50-passed-and-failed.md"
+  },
+  {
+    "id": "H60",
+    "title": "H60 - Biggest in the Whole Grid",
+    "file": "ex/python-exercice-H60-biggest-in-the-grid.md"
+  },
+  {
+    "id": "H70",
+    "title": "H70 - Cut Into Chunks",
+    "file": "ex/python-exercice-H70-cut-into-chunks.md"
+  },
+  {
+    "id": "H80",
+    "title": "H80 - The Ones That Repeat",
+    "file": "ex/python-exercice-H80-the-ones-that-repeat.md"
+  }
 ]
