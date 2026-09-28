@@ -910,7 +910,26 @@
 <!-- -------------------------------------------------------------------------------- -->
 <!-- 3. Cyber {{{1 -->
 <nav id="id_cyber" tabindex="-1" class="sidebar sidebar2 w3-small w3-center">
-<!-- Cyber 17: Git para operaciones {{{2
+  <!-- Cyber 18: ROP Dance: Presented 02 September 2026 to Hackinta, DUOC Viña del mar {{{2 -->
+  <a href="./pdf/2026-rop-dance.pdf" target="main_iframe" class="w3-button w3-padding-large w3-hover-black"
+    id="rop-dance"
+    hreflang="es"
+    onclick="hideHome(this);"
+  >
+    <!-- Description -->
+    <div class="description">
+      PDF presentation in Spanish<br/><br/>
+      ROP Dance<br/><br/>
+      Mi baile en tu RAM.
+    </div>
+    <img src="./img/rop_dance.svg"
+      data-src="./img/rop_dance.svg"
+      alt="ROP Dance" class="delayed w3-xxlarge">
+    <p>ROP Dance<br/>Slide</p>
+  </a>
+
+
+  <!-- Cyber 17: Git para operaciones {{{2
     -- Presented Aug 2026 to SEK, in two classes
     -- Class 1: iniciar, capitalizar, historiar, recuperar
     -- Class 2: mutualizar, ramificar, entregar, reparar
@@ -919,7 +938,7 @@
   <div role="button" tabindex="0" class="card-button w3-button w3-padding-large w3-hover-black"
     id="git-para-operaciones"
     onclick="
-      document.getElementById('main_iframe').src = './pdf/2026-git-para-operaciones-01_slide_sek.pdf';
+      document.getElementById('main_iframe').src = './pdf/2026-git-para-operaciones.pdf';
       hideHome(this);
     "
   >
